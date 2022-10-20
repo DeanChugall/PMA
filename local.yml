@@ -5,6 +5,24 @@ volumes:
   postgres_data_local_backups: {}
 
 services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: pma_django_local
+    container_name: pma_django_local
+    platform: linux/x86_64
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - "8000:8000"
+    command: /start
+
   postgres:
     build:
       context: .
