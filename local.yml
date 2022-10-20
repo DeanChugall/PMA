@@ -5,7 +5,7 @@ volumes:
   postgres_data_local_backups: {}
 
 services:
-  django: &django
+  django:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -28,9 +28,21 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: postgres
-    container_name: postgres
+    container_name: postgres_pma
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data_local:/var/lib/postgresql/data:Z
       - postgres_data_local_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
+
+  pgadmin-pma:
+    container_name: pgadmin4-pma
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: info@dejan.pro
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5050:80"
