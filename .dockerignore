@@ -3,7 +3,7 @@
 .github
 .gitignore
 .gitlab-ci.yml
-.idea
+#.idea
 .pre-commit-config.yaml
 .readthedocs.yml
 .travis.yml
