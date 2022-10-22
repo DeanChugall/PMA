@@ -1,18 +1,16 @@
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # APPS_DIR = BASE_DIR / "real_estate_api" ovo ubaciti kada se napravi prvi app
-
 
 
 SECRET_KEY = 'django-insecure-&i1&0c%coa+h2cm4m3#fqfxs@^^p0kctw_ju5m&v#nkzpxelud'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -54,17 +52,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pma_database',  # for Local DB-BASE
+        'USER': 'pma_database',
+        'PASSWORD': 'pma_database',
+        'HOST': 'postgres',
+        'PORT': '5432',
+        # 'OPTIONS': {'sslmode': 'require'},
     }
 }
-
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+# https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -84,7 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -95,7 +104,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
