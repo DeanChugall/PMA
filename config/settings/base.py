@@ -13,6 +13,9 @@ if READ_DOT_ENV_FILE:
     env.read_env(str(ROOT_DIR / ".envs/.local/.django"))
     env.read_env(str(ROOT_DIR / ".envs/.local/.postgres"))
 
+DEBUG = env.bool("DJANGO_DEBUG", False)
+
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
