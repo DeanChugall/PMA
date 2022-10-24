@@ -1,20 +1,11 @@
 from .base import *
+from .base import env
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'pma_database',  # for Local DB-BASE
-#         'USER': 'pma_database',
-#         'PASSWORD': 'pma_database',
-#         'HOST': '0.0.0.0',
-#         'PORT': '5432',
-#         'OPTIONS': {'sslmode': 'require'},
-#     }
-# }
+ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+print(f'ROOT DIR from local.py = {ROOT_DIR}')
+
+
+
+DEBUG = env.bool("DJANGO_DEBUG", False)
+

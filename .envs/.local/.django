@@ -1,7 +1,6 @@
 # General
 # ------------------------------------------------------------------------------
-# USE_DOCKER=yes
-# IPYTHONDIR=/app/.ipython
+USE_DOCKER=True
 POSTGRES_HOST=postgres
-DEBUG=True
+DJANGO_DEBUG=True
 OPTIONS={'sslmode': 'require'}
