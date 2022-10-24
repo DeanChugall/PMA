@@ -43,6 +43,6 @@ while True:
     time.sleep(1)
 END
 
->&2 echo 'PostgreSQL is available'
+>&2 echo 'PostgreSQL is available yeaaaahhh'
 
 exec "$@"

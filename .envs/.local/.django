@@ -5,4 +5,4 @@ DEBUG=True
 DJANGO_DEBUG=True
 DJANGO_SECRET_KEY=dHteuy50To55IlWACdB5JBOq0Kn6gYclLWFqWHzNVV3KpGgoN9TooF7fjpe9ZIaB
 DJANGO_SETTINGS_MODULE=config.settings.local
-DATABASE_URL=postgres://pma_database:pma_database@0.0.0.0:5432/pma_database
+DATABASE_URL=postgres://pma_database:pma_database@postgres:5432/pma_database

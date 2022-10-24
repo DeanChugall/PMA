@@ -6,7 +6,7 @@ FROM python:${PYTHON_VERSION} as python
 # Python build stage
 FROM python as python-build-stage
 
-ARG BUILD_ENVIRONMENT=local
+ARG BUILD_ENVIRONMENT=requirements
 
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libpq-dev
 
 # Requirements are installed here to ensure they will be cached.
-COPY ./requirements .
+COPY ./ .
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \

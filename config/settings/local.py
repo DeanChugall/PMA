@@ -1,5 +1,5 @@
 from .base import *
 
-DJANGO_SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
-
+DEBUG = env.bool("DJANGO_DEBUG", False)
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
