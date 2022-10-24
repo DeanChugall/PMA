@@ -5,3 +5,4 @@ POSTGRES_PORT=5432
 POSTGRES_DB=pma_database
 POSTGRES_USER=pma_database
 POSTGRES_PASSWORD=pma_database
+

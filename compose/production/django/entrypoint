@@ -5,8 +5,7 @@ set -o pipefail
 set -o nounset
 
 
-
-# N.B. If only .env files supported variable expansion...
+# N.B. If only .env_dev files supported variable expansion...
 # export CELERY_BROKER_URL="${REDIS_URL}"
 
 

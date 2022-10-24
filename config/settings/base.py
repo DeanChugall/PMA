@@ -1,23 +1,24 @@
 from pathlib import Path
 import environ
 
+# GENERAL
+# ------------------------------------------------------------------------------
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-print(f'ROOT DIR from base.py = {ROOT_DIR}')
 APPS_DIR = ROOT_DIR / "PMA"
 
 env = environ.Env()
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
+    # OS environment variables take precedence over variables from .env_dev
     env.read_env(str(ROOT_DIR / ".envs/.local/.django"))
     env.read_env(str(ROOT_DIR / ".envs/.local/.postgres"))
 
-print(f'USE_DOCKER: {env.str("DJANGO_DEBUG")}')
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
-# APPS_DIR = BASE_DIR / "real_estate_api" ovo ubaciti kada se napravi prvi app
-
 DEBUG = env.bool("DJANGO_DEBUG", False)
+
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY",
+    default="test",
+)
 
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
@@ -75,26 +76,8 @@ TEMPLATES = [
 
 # DATABASES
 # ------------------------------------------------------------------------------
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASE = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pma_database',  # for Local DB-BASE
-        'USER': 'pma_database',
-        'PASSWORD': 'pma_database',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        # 'OPTIONS': {'sslmode': 'require'},
-    }
-}
+DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # PASSWORDS
