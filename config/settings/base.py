@@ -15,7 +15,7 @@ if READ_DOT_ENV_FILE:
 
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
-SECRET_KEY = env.str("DJANGO_SECRET_KEY")
+SECRET_KEY = env.str("DJANGO_SECRET_KEY", default="Test")
 
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "squid-app-ktzit.ondigitalocean.app"]
 
@@ -58,7 +58,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ROOT_DIR / 'templates'],
+        'DIRS': [APPS_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,7 +73,20 @@ TEMPLATES = [
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES = {"default": env.db("DATABASE_URL")}
+# DATABASES = {"default": env.db("DATABASE_URL")}
+
+DATABASES = {
+    'default': {
+        'ENGINE': env.str("ENGINE", default="django.db.backends.postgresql"),
+        'NAME': env.str("POSTGRES_DB", default="pma_database"),
+        'USER': env.str("POSTGRES_USER", default="pma_database"),
+        'PASSWORD': env.str("POSTGRES_PASSWORD", default="pma_database"),
+        'HOST': env.str("POSTGRES_HOST", default="postgres"),
+        'PORT': env.str("POSTGRES_PORT", default="5432"),
+    }
+}
+
+
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -104,7 +117,7 @@ USE_TZ = True
 # ------------------------------------------------------------------------------
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(ROOT_DIR / "static")]
+STATICFILES_DIRS = [str(APPS_DIR / "static")]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -113,6 +126,6 @@ STATICFILES_FINDERS = [
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(ROOT_DIR / "media")
+MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
