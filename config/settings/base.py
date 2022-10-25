@@ -85,8 +85,6 @@ DATABASES = {
         'PORT': env.str("POSTGRES_PORT", default="5432"),
     }
 }
-
-
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
