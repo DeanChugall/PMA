@@ -4,7 +4,7 @@ import environ
 # GENERAL
 # ------------------------------------------------------------------------------
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-APPS_DIR = ROOT_DIR / "PMA"
+APPS_DIR = ROOT_DIR / "pma_apps"
 
 env = environ.Env()
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -31,9 +31,21 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = []
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'pma_apps.auctions',
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+# MIGRATIONS
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
+# Use this for separation if migrations
+MIGRATION_MODULES = {"auctions": "pma_apps.contrib.auctions.migrations"}
+
+# AUTHENTICATION
+# ------------------------------------------------------------------------------
+AUTH_USER_MODEL = "auctions.User"
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
@@ -81,7 +93,7 @@ DATABASES = {
         'NAME': env.str("POSTGRES_DB", default="pma_database"),
         'USER': env.str("POSTGRES_USER", default="pma_database"),
         'PASSWORD': env.str("POSTGRES_PASSWORD", default="pma_database"),
-        'HOST': env.str("POSTGRES_HOST", default="postgres"),
+        'HOST': env.str("POSTGRES_HOST", default="0.0.0.0"),
         'PORT': env.str("POSTGRES_PORT", default="5432"),
     }
 }
@@ -110,12 +122,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # STATIC
 # ------------------------------------------------------------------------------
 STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(ROOT_DIR / "static")]
+STATICFILES_DIRS = [str(APPS_DIR / "static")]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
