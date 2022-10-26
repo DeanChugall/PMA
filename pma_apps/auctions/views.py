@@ -10,12 +10,10 @@ from django.urls import reverse
 
 from pma_apps.auctions.models import Auction, Bid, Category, Image, User
 from pma_apps.auctions.forms import AuctionForm, ImageForm, CommentForm, BidForm
-
-
 def index(request):
-    '''
+    """
     The default route which renders a Dashboard page
-    '''
+    """
     auctions = Auction.objects.all()
 
     expensive_auctions = Auction.objects.order_by('-starting_bid')[:4]

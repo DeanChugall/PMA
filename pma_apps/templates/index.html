@@ -1,1 +1,64 @@
-<h1>asfda</h1>
+{% extends 'base.html' %}
+{% block title %}Auctions | {{ title }} {% endblock %}
+
+{% for category in categories %}
+<li class='nav-item'>
+    <a class='nav-link' href="{% url 'category_details_view' category.category_name %}">
+        <i class='fas fa-fw fa-folder-open'></i>
+        <span class='text-uppercase'>{{ category }}</span>
+        <span class='badge-custom'>
+                    {{ category.count_active_auctions }}
+                </span>
+    </a>
+</li>
+{% endfor %}
+{% block body %}
+<h1 class='h3 mb-4 text-gray-800'>Dashboard</h1>
+<div class='row'>
+
+    <div class='col-xl-3 col-md-6 mb-4'>
+        <div class='card border-left-blue shadow h-100 py-2'>
+            <div class='card-body'>
+                <div class='row no-gutters align-items-center'>
+                    <div class='col mr-2'>
+                        <div class='text-xs font-weight-bold text-primary text-uppercase mb-1'>
+                            Auctions
+                        </div>
+                        <div class='h5 mb-0 font-weight-bold text-gray-800'>
+                            {{ auctions_count }}
+                        </div>
+                        <hr>
+                        <div class='h5 mb-0 font-weight-bold text-gray-800'>
+                            {{ categories }}
+                        </div>
+                        <hr>
+                        <table class='table table-hover'>
+
+                            <div class='h5 mb-0 font-weight-bold text-gray-800'>
+                                <tbody>
+                                {% for auction in pages %}
+                                <tr>
+                                    <td>{{ auction.title }}</td>
+                                    <td>{{ auction.category }}</td>
+                                    <td>{{ auction.date_created }}</td>
+                                    <td>{{ auction.starting_bid }}</td>
+                                    <td>{{ auction.current_bid }}</td>
+                                    <td>{{ auction.buyer }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </div>
+
+                        </table>
+
+                    </div>
+                    <div class='col-auto'>
+                        <i class='fas fa-shopping-cart fa-2x text-gray-300'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
