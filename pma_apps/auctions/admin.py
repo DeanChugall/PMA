@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Auction, Image, Bid, Comment, Category, User
+from .models import Auction, Image, Bid, Comment, Category
 
 admin.site.register(Auction)
 admin.site.register(Image)

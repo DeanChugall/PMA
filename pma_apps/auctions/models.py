@@ -71,7 +71,7 @@ class Bid(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="get_user")
     auction = models.ForeignKey(
         Auction, on_delete=models.CASCADE, related_name="get_comments"
     )
