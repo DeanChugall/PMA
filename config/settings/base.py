@@ -29,9 +29,16 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+]
 
 LOCAL_APPS = [
+    'pma_apps.users',
     'pma_apps.auctions',
 ]
 
@@ -41,11 +48,14 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
 # Use this for separation if migrations
-MIGRATION_MODULES = {"auctions": "pma_apps.contrib.auctions.migrations"}
+MIGRATION_MODULES = {
+    "auctions": "pma_apps.contrib.auctions.migrations",
+    "users": "pma_apps.contrib.users.migrations",
+}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
-AUTH_USER_MODEL = "auctions.User"
+AUTH_USER_MODEL = "users.User"
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------

@@ -1,32 +1,7 @@
-from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models import CharField
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-from django.urls import reverse
-
-
-class User(AbstractUser):
-    """
-    Default custom user model for PMA Project.
-    If adding fields that need to be filled at user signup,
-    check forms.SignupForm and forms.SocialSignupForms accordingly.
-    """
-
-    #: First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
-    first_name = None  # type: ignore
-    last_name = None  # type: ignore
-
-    def get_absolute_url(self):
-        """Get url for user's detail view.
-
-        Returns:
-            str: URL for user detail.
-
-        """
-        return reverse("users:detail", kwargs={"username": self.username})
+from pma_apps.users.models import User
 
 
 class Category(models.Model):
