@@ -52,15 +52,6 @@
         <div class="hor-header header">
             <div class="container main-container">
                 <div class="d-flex">
-                    <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar"
-                       href="javascript:void(0)"></a>
-                    <!-- sidebar-toggle-->
-                    <a class="logo-horizontal " href="{% url 'home' %}">
-                        <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo"
-                             alt="logo">
-                        <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1"
-                             alt="logo">
-                    </a>
                     <!-- LOGO -->
                     <div class="d-flex order-lg-2 ms-auto header-right-icons">
                         <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
@@ -87,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <!-- /app-Header -->
+        <!-- END app-Header -->
 
         <div class="landing-top-header overflow-hidden">
             <div class="top sticky overflow-hidden">
@@ -151,24 +142,20 @@
                 <div class="container px-sm-0">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 mb-8 pb-7 animation-zidex pos-relative">
-                            <h4 class="fw-semibold mt-7">{% translate "Popravi moj auto !" %}</h4>
-                            <h1 class="text-start fw-bold">We Help to Build Your Dream Project with <span
-                             <span
-                                class="text-primary animate-heading">PMA</span></h1>
-                            <h6 class="pb-3">
-                                Sash - Now you can use this admin template to design stunning dashboards
-                                that will wow your target viewers or users to no end. To create a good and
-                                well-structured dashboard,
-                                you need to start from scratch with HTML, SCSS, CSS, and JS and with lots of coding,
-                                but by using this Sash-Admin template.</h6>
+                            <h4 class="fw-semibold mt-7">Popravi Moj Auto</h4>
+                            <h1 class="text-start fw-bold">Pronađite lokalne garaže na koje možete da se oslonite !
+                                <span class="text-primary animate-heading"><b>Extra</b></span>
+                            </h1>
+                            <h4 class="pb-4">
+                                Pomoći ćemo vam da uštedite novac na popravci automobila u samo nekoliko klikova.</h4>
 
                             <a href="{% url 'auctions:auctions' %}"
                                target="_self" class="btn ripple btn-min w-lg mb-3 me-2 btn-primary"><i
-                                class="fe fe-play me-2"></i> Get Started
+                                class="fe fe-play me-2"></i> <b>Pogledaj kako</b>
                             </a>
                             <a href="{% url 'auctions:auctions' %}"
                                class="btn ripple btn-min w-lg btn-outline-primary mb-3 me-2" target="_self"><i
-                                class="fe fe-eye me-2"></i>Discover More
+                                class="fe fe-eye me-2"></i><b>Više informacija</b>
                             </a>
                         </div>
                         <div class="col-xl-6 col-lg-6 my-auto">
@@ -1484,8 +1471,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-lg-6 reveal revealright">
-                                                <img src="{% static 'assets/images/landing/frequently-asked-questions.png' %}"
-                                                     alt="">
+                                                <img
+                                                    src="{% static 'assets/images/landing/frequently-asked-questions.png' %}"
+                                                    alt="">
                                             </div>
                                         </div>
                                     </section>
