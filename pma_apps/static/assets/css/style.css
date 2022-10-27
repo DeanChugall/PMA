@@ -19191,8 +19191,8 @@ img {
     color: var(--primary-bg-color);
     letter-spacing: 0px;
     text-transform: capitalize;
-    font-size: 2rem;
-    animation: text 3s steps(15) infinite;
+    font-size: 1.5rem;
+    animation: text 5s steps(35) infinite;
     overflow: hidden;
     display: flex;
 }
@@ -19207,7 +19207,7 @@ img {
 
     30%,
     60% {
-        width: 78.50px;
+        width: 458.50px;
     }
 }
 
