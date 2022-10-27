@@ -10,20 +10,20 @@ from django.urls import reverse
 
 from pma_apps.auctions.models import Auction, Bid, Category, Image, User
 from pma_apps.auctions.forms import AuctionForm, ImageForm, CommentForm, BidForm
-def index(request):
+def auctions(request):
     """
     The default route which renders a Dashboard page
     """
-    auctions = Auction.objects.all()
+    auctions_obj = Auction.objects.all()
 
     expensive_auctions = Auction.objects.order_by('-starting_bid')[:4]
 
-    for auction in auctions:
+    for auction in auctions_obj:
         auction.image = auction.get_images.first()
 
-    # Show 5 auctions per page
+    # Show 5 auctions_obj per page
     page = request.GET.get('page', 1)
-    paginator = Paginator(auctions, 5)
+    paginator = Paginator(auctions_obj, 5)
 
     try:
         pages = paginator.page(page)
@@ -32,9 +32,9 @@ def index(request):
     except EmptyPage:
         pages = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', {
+    return render(request, 'auctions/auctions.html', {
         'categories': Category.objects.all(),
-        'auctions': auctions,
+        'auctions_obj': auctions_obj,
         'expensive_auctions': expensive_auctions,
         'auctions_count': Auction.objects.all().count(),
         'bids_count': Bid.objects.all().count(),

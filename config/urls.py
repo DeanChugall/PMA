@@ -5,10 +5,13 @@ from django.views import defaults as default_views
 from django.conf import settings
 
 urlpatterns = [
+
+    path("", TemplateView.as_view(template_name="landing_page/landing_page.html"), name="home"),
+
     path('admin/', admin.site.urls),
     path("users/", include("pma_apps.users.urls", namespace="users")),
 
-    path('', include('pma_apps.auctions.urls')),
+    path('auctions/', include('pma_apps.auctions.urls', namespace="auctions")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),

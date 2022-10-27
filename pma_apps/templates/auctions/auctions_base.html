@@ -281,7 +281,7 @@
             <div class="app-sidebar">
                 <div class="side-header">
                     <!-- SIDE BAR LOGO -->
-                    <a class="header-brand1" href="{% url 'index' %}">
+                    <a class="header-brand1" href="{% url 'home' %}">
                         <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo"
                              alt="logo">
                         <img src="{% static 'assets/images/brand/logo-1.png' %}" class="header-brand-img toggle-logo"
@@ -305,7 +305,7 @@
                             <h3>Main</h3>
                         </li>
                         <li class="slide">
-                            <a class="side-menu__item has-link" data-bs-toggle="slide" href="{% url 'index' %}"><i
+                            <a class="side-menu__item has-link" data-bs-toggle="slide" href="{% url 'auctions:auctions' %}"><i
                                 class="side-menu__icon fe fe-home"></i><span
                                 class="side-menu__label">Dashboard</span></a>
                         </li>
