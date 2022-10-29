@@ -5,34 +5,38 @@
 <html lang="{{ LANGUAGE_CODE }}" dir="ltr">
 
 <head>
+    {% block metadata %}
     <!-- META DATA -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="SPopravi Moj Auto">
+    <meta name="description" content="Popravi Moj Auto">
     <meta name="author" content="PMA Technologies Private Limited">
     <meta name="keywords"
-          content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
-
+          content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,
+          flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
+    {% endblock metadata %}
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}"/>
 
     <!-- TITLE -->
     <title>Popravi Moj Auto</title>
 
+    {% block css %}
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
 
     <!-- STYLE CSS -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
     <link href="{% static 'assets/css/dark-style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet"/>
 
     <!--- FONT-ICONS CSS -->
     <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"/>
 
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}"/>
-
+    {% endblock css %}
 </head>
 
 <body class="app ltr landing-page horizontal dark-mode">
@@ -1077,10 +1081,10 @@
                                                     <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
                                                         <div class="card p-3 pricing-card reveal revealrotate">
                                                             <div class="card-header d-block text-justified pt-2">
-                                                                <p class="fs-18 fw-semibold mb-1">Basic</p>
+                                                                <p class="fs-18 fw-semibold mb-1">Osnovni</p>
                                                                 <p class="text-justify fw-semibold mb-1"> <span
-                                                                    class="fs-30 me-2">$</span><span
-                                                                    class="fs-30 me-1">399</span><span
+                                                                    class="fs-30 me-2">€</span><span
+                                                                    class="fs-30 me-1">0</span><span
                                                                     class="fs-25"><span
                                                                     class="op-0-5 text-muted text-20">/</span>
                                                                             year</span></p>
