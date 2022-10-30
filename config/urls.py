@@ -11,6 +11,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("users/", include("pma_apps.users.urls", namespace="users")),
 
+    #path("servis/", include("pma_apps.auto_servis.urls", namespace="auto_servis")),
+
     path('auctions/', include('pma_apps.auctions.urls', namespace="auctions")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"

@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'pma_apps.users',
     'pma_apps.auctions',
+    'pma_apps.auto_servis',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -51,6 +52,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIGRATION_MODULES = {
     "auctions": "pma_apps.contrib.auctions.migrations",
     "users": "pma_apps.contrib.users.migrations",
+    "auto_servis": "pma_apps.contrib.auto_servis.migrations",
 }
 
 # AUTHENTICATION

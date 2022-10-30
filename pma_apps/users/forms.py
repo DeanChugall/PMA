@@ -4,7 +4,14 @@ from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from pma_apps.users.models import Vozac
+
 User = get_user_model()
+
+
+class VozacForm(admin_forms.UserChangeForm):
+    class Meta(admin_forms.UserChangeForm.Meta):
+        model = Vozac
 
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):
