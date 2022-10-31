@@ -55,6 +55,16 @@
         <div class="hor-header header">
             <div class="container main-container">
                 <div class="d-flex">
+                    <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar"
+                       href="javascript:void(0)"></a>
+                    <!-- sidebar-toggle-->
+                    <a class="logo-horizontal " href="{% url 'home' %}">
+                        <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo"
+                             alt="logo">
+                        <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1"
+                             alt="logo">
+                    </a>
+                    <!-- END sidebar-toggle-->
                     <!-- LOGO -->
                     <div class="d-flex order-lg-2 ms-auto header-right-icons">
                         <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
@@ -67,17 +77,18 @@
                             <div class="collapse navbar-collapse bg-white px-0" id="navbarSupportedContent-4">
                                 <!-- SEARCH -->
                                 <div class="header-nav-right p-5">
-                                    <a href="#"
+                                    <a href="register.html"
                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto"
-                                       target="_blank">Novi Korisnik
+                                       target="_blank">New User
                                     </a>
                                     <a href="login.html" class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
-                                       target="_blank">Prijava
+                                       target="_blank">Login
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- END LOGO -->
                 </div>
             </div>
         </div>
@@ -120,6 +131,14 @@
                                             class="side-menu__label">Contact</span></a>
                                     </li>
                                 </ul>
+                                                                    <!-- Theme-Layout DARK-LIGHT -->
+                                    <div class="d-flex country">
+                                        <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                            <span class="dark-layout"><i class="fe fe-moon"></i></span>
+                                            <span class="light-layout"><i class="fe fe-sun"></i></span>
+                                        </a>
+                                    </div>
+                                    <!-- END Theme-Layout DARK-LIGHT -->
                                 <div class="header-nav-right d-none d-lg-flex">
                                     <a href="register.html"
                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
@@ -141,7 +160,8 @@
             <div class="demo-screen-headline main-demo main-demo-1 spacing-top overflow-hidden reveal" id="home">
                 <div class="container px-sm-0">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 mb-8 pb-7 animation-zidex pos-relative">
+                        <div class="col-xl-6 col-lg-6 mb-5 pb-5 animation-zidex pos-relative">
+                            <h4 class="fw-semibold mt-7">Najpovoljnije Servisne Ponude</h4>
                             <h1 class="text-start fw-bold">Saznaj najpovoljniju servisnu ponudu za Vaš automobil
                                 <span class="text-primary animate-heading">
                                     <b>Prihvatite&nbsp;ponudu&nbsp;koja&nbsp;Vama&nbsp;odgovara.</b>
@@ -214,8 +234,9 @@
                             </div>
 
                             <a href="{% url 'auctions:auctions' %}"
-                               target="_self" class="btn ripple btn-lg w-lg mb-3 me-2 btn-primary"><i
-                                class="fe fe-play me-2"></i> <b>Zahtev za ponudu VOZAČI </b>
+                               target="_self" class="btn ripple btn-lg w-lg mb-3 me-2 btn-primary">
+                                <i class="fe fe-play me-2"></i>
+                                <b>Zahtev za ponudu VOZAČI </b>
                             </a>
                             <a href="{% url 'auctions:auctions' %}"
                                class="btn ripple btn-lg w-lg btn-outline-primary mb-3 me-2" target="_self"><i
@@ -345,9 +366,8 @@
 
                                     <div class="row text-center services-statistics landing-statistics">
                                         <!-- VELIKI SERVIS KARTICA -->
-
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <a href="#">
+                                            <a href="#" style="color:rgb(255,255,255);">
                                                 <div class="card">
                                                     <div class="card-body bg-primary-transparent">
                                                         <div>
@@ -366,12 +386,11 @@
                                                 </div>
                                             </a>
                                         </div>
-
                                         <!-- END VELIKI SERVIS KARTICA -->
 
                                         <!-- MALI SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <a href="#">
+                                            <a href="#" style="color:rgb(255,255,255);">
                                                 <div class="card">
                                                     <div class="card-body bg-secondary-transparent">
                                                         <div>
@@ -394,136 +413,168 @@
 
                                         <!-- KLIMA SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <a href="#">
-                                            <div class="card">
-                                                <div class="card-body bg-success-transparent">
-                                                    <div>
-                                                        <img
-                                                            src="{% static 'assets/images/landing/web/klima.png' %}">
-                                                    </div>
-                                                    <div class="test-body text-center">
-                                                        <h1 class=" mb-0">
-                                                            <span class="fw-semibold">Klima Servis</span>
-                                                        </h1>
-                                                        <div class="counter-text">
-                                                            <h5 class="font-weight-normal mb-0 ">Klima Servis</h5>
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-success-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/klima.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Klima Servis</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Klima Servis</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </a>
                                         </div>
                                         <!-- END KLIMA SERVIS KARTICA -->
 
                                         <!-- KOCNICE SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <div class="card">
-                                                <div class="card-body bg-danger-transparent">
-                                                    <div>
-                                                        <img
-                                                            src="{% static 'assets/images/landing/web/kocnice.png' %}">
-                                                    </div>
-                                                    <div class="test-body text-center">
-                                                        <h1 class=" mb-0">
-                                                            <span class="fw-semibold">Kočnice</span>
-                                                        </h1>
-                                                        <div class="counter-text">
-                                                            <h5 class="font-weight-normal mb-0 ">Kočnice</h5>
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-danger-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/kocnice.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Kočnice</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Kočnice</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <!-- END KOCNICE SERVIS KARTICA -->
 
                                         <!-- MENJAC SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <div class="card">
-                                                <div class="card-body bg-danger-transparent">
-                                                    <div>
-                                                        <img
-                                                            src="{% static 'assets/images/landing/web/menjac.png' %}">
-                                                    </div>
-                                                    <div class="test-body text-center">
-                                                        <h1 class=" mb-0">
-                                                            <span class="fw-semibold">Menjač</span>
-                                                        </h1>
-                                                        <div class="counter-text">
-                                                            <h5 class="font-weight-normal mb-0 ">Menjač</h5>
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-danger-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/menjac.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Menjač</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Menjač</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <!-- END MENJAC SERVIS KARTICA -->
 
                                         <!-- AUSPUH SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <div class="card">
-                                                <div class="card-body bg-success-transparent">
-                                                    <div>
-                                                        <img
-                                                            src="{% static 'assets/images/landing/web/auspuh.png' %}">
-                                                    </div>
-                                                    <div class="test-body text-center">
-                                                        <h1 class=" mb-0">
-                                                            <span class="fw-semibold">Auspuh</span>
-                                                        </h1>
-                                                        <div class="counter-text">
-                                                            <h5 class="font-weight-normal mb-0 ">Auspuh</h5>
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-success-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/auspuh.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Auspuh</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Auspuh</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <!-- END AUSPUH SERVIS KARTICA -->
 
                                         <!-- ELEKTRIKA SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <div class="card">
-                                                <div class="card-body bg-secondary-transparent">
-                                                    <div>
-                                                        <img
-                                                            src="{% static 'assets/images/landing/web/elektrika.png' %}">
-                                                    </div>
-                                                    <div class="test-body text-center">
-                                                        <h1 class=" mb-0">
-                                                            <span class="fw-semibold">Elektrika</span>
-                                                        </h1>
-                                                        <div class="counter-text">
-                                                            <h5 class="font-weight-normal mb-0 ">Elektrika</h5>
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-secondary-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/elektrika.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Elektrika</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Elektrika</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <!-- END ELEKTRIKA SERVIS KARTICA -->
 
                                         <!-- ELEKTRONIKA SERVIS KARTICA -->
                                         <div class="col-xl-3 col-md-6 col-lg-6">
-                                            <div class="card">
-                                                <div class="card-body bg-primary-transparent">
-                                                    <div>
-                                                        <img
-                                                            src="{% static 'assets/images/landing/web/elektronika.png' %}">
-                                                    </div>
-                                                    <div class="test-body text-center">
-                                                        <h1 class=" mb-0">
-                                                            <span class="fw-semibold">Elektronika</span>
-                                                        </h1>
-                                                        <div class="counter-text">
-                                                            <h5 class="font-weight-normal mb-0 ">Elektronika</h5>
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-primary-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/elektronika.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Elektronika</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Elektronika</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <!-- END ELEKTRONIKA SERVIS KARTICA -->
+
+                                        <!-- TRAP SERVIS KARTICA -->
+                                        <div class="col-xl-3 col-md-6 col-lg-6">
+                                            <a href="#" style="color:rgb(255,255,255);">
+                                                <div class="card">
+                                                    <div class="card-body bg-primary-transparent">
+                                                        <div>
+                                                            <img
+                                                                src="{% static 'assets/images/landing/web/elektronika.png' %}">
+                                                        </div>
+                                                        <div class="test-body text-center">
+                                                            <h1 class=" mb-0">
+                                                                <span class="fw-semibold">Trap</span>
+                                                            </h1>
+                                                            <div class="counter-text">
+                                                                <h5 class="font-weight-normal mb-0 ">Trap</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <!-- TRAP SERVIS KARTICA -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br><br><br>
                         <!-- ROW-2 CLOSED -->
 
                         <!-- ROW-3 OPEN -->
