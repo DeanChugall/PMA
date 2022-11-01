@@ -17,7 +17,7 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 
 SECRET_KEY = env.str("DJANGO_SECRET_KEY", default="Test")
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "squid-app-ktzit.ondigitalocean.app"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "squid-app-ktzit.ondigitalocean.app", "pma-app-k89y6.ondigitalocean.app"]
 
 # APPS
 # ------------------------------------------------------------------------------
