@@ -1801,30 +1801,78 @@
                                                     </div>
                                                     <div class="col-xl-9">
                                                         <div class="">
-                                                            <form class="form-horizontal reveal revealrotate m-t-20"
-                                                                  action="index.html">
+                                                            <form class="form-horizontal reveal revealrotate m-t-20 "
+                                                                  action="https://popravimojauto.us13.list-manage.com/subscribe/post?u=a2c160b17f39b0a0f8f8b8f10&amp;id=0295048d62&amp;f_id=004a97e2f0"
+                                                                  method="post"
+                                                                  id="mc-embedded-subscribe-form"
+                                                                  name="mc-embedded-subscribe-form"
+                                                                  target="_blank"
+                                                                  novalidate>
+
                                                                 <div class="form-group">
                                                                     <div class="col-xs-12">
-                                                                        <input class="form-control" type="text"
-                                                                               required="" placeholder="Ime*">
+                                                                        <input type="text"
+                                                                               value=""
+                                                                               name="FNAME"
+                                                                               class="form-control"
+                                                                               id="mce-FNAME"
+                                                                               required
+                                                                               placeholder="Ime*">
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <div class="col-xs-12">
-                                                                        <input class="form-control" type="email"
-                                                                               required="" placeholder="Email*">
+                                                                        <input type="email" value=""
+                                                                               name="EMAIL"
+                                                                               class="form-control"
+                                                                               id="mce-EMAIL"
+                                                                               required
+                                                                               placeholder="Email*">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-xs-12">
+                                                                        <input type="text"
+                                                                               name="PHONE"
+                                                                               class="form-control"
+                                                                               value=""
+                                                                               id="mce-PHONE"
+                                                                               placeholder="Telefon">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <div class="col-xs-12">
                                                                             <textarea class="form-control"
                                                                                       rows="5"
-                                                                                      placeholder="Vaš komentar ovde...*"></textarea>
+                                                                                      name="MMERGE6"
+                                                                                      id="mce-MMERGE6"
+                                                                                      placeholder="Vaš komentar ovde...*"
+                                                                                      required></textarea>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div id="mce-responses" class="clear foot">
+                                                                    <div class="response"
+                                                                         id="mce-error-response"
+                                                                         style="display:none">
+                                                                    </div>
+                                                                    <div class="response"
+                                                                         data-bs-target="#modaldemo4"
+                                                                         data-bs-toggle="modal"
+                                                                         id="mce-success-response"
+                                                                         style="display:none">
                                                                     </div>
                                                                 </div>
                                                                 <div class="">
-                                                                    <a href="javascript:void(0)"
-                                                                       class="btn btn-primary btn-rounded  waves-effect waves-light">Pošalji</a>
+                                                                    <input type="submit"
+                                                                           value="Pošalji"
+                                                                           name="subscribe"
+                                                                           id="mc-embedded-subscribe"
+                                                                           data-bs-target="#modaldemo4"
+                                                                         data-bs-toggle="modal"
+                                                                           class="btn btn-primary btn-rounded  waves-effect waves-light">
+
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -1836,6 +1884,26 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- MODALS CONTACT -->
+                        <div class="modal fade" id="modaldemo4">
+                            <div class="modal-dialog modal-dialog-centered text-center " role="document">
+                                <div class="modal-content tx-size-sm">
+                                    <div class="modal-body text-center p-4 pb-5">
+                                        <button aria-label="Close" class="btn-close position-absolute"
+                                                data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                        <i class="icon icon-check fs-70 text-success lh-1 my-5 d-inline-block"></i>
+                                        <h4 class="text-success tx-semibold">Čestitamo!</h4>
+                                        <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum
+                                            available, but the majority have suffered alteration.</p>
+                                        <button aria-label="Close" class="btn btn-success pd-x-25"
+                                                data-bs-dismiss="modal">Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END MODALS CONTACT -->
+
                         <!-- ROW-10 CLOSED: Contact -->
 
                         <!-- ROW-11 OPEN -->
@@ -2023,6 +2091,12 @@
 
 <!-- CUSTOM JS -->
 <script src="{% static 'assets/js/landing.js' %}"></script>
+
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+
+<!-- mc_embed_signup-->
+
+<!--End mc_embed_signup-->
 {% endblock javascript %}
 
 
