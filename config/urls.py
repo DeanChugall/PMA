@@ -6,12 +6,12 @@ from django.conf import settings
 
 urlpatterns = [
 
-    path("", TemplateView.as_view(template_name="landing_page/landing_page.html"), name="home"),
+    path("", include("pma_apps.landing_page.urls", namespace="landing_page")),
 
     path('admin/', admin.site.urls),
     path("users/", include("pma_apps.users.urls", namespace="users")),
 
-    #path("servis/", include("pma_apps.auto_servis.urls", namespace="auto_servis")),
+    # path("servis/", include("pma_apps.auto_servis.urls", namespace="auto_servis")),
 
     path('auctions/', include('pma_apps.auctions.urls', namespace="auctions")),
     path(

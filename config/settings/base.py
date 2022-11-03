@@ -42,6 +42,8 @@ LOCAL_APPS = [
     'pma_apps.users',
     'pma_apps.auctions',
     'pma_apps.auto_servis',
+    'pma_apps.landing_page',
+    'pma_apps.contacts',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -54,8 +56,9 @@ MIGRATION_MODULES = {
     "auctions": "pma_apps.contrib.auctions.migrations",
     "users": "pma_apps.contrib.users.migrations",
     "auto_servis": "pma_apps.contrib.auto_servis.migrations",
+    "contacts": "pma_apps.contrib.contacts.migrations",
+    "pages": "pma_apps.contrib.landing_page.migrations",
 }
-
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.User"

@@ -1,0 +1,119 @@
+{% load static i18n %}
+
+    <div class="demo-footer">
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="top-footer">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-12 col-md-12 reveal revealleft">
+                                    <h6>O Nama</h6>
+                                    <p>Pokrenuli smo @PMA 2022. godine kada smo iz prve ruke iskusili
+                                        nedostatak poverenja koji je postojao između vozača i servisera. Znali smo da to
+                                        neće biti lako popraviti, kako su nam automobili u srcu, a šansa da
+                                        pokrenemo stvarne promene je ono što nas tera da idemo napred. Od tada smo
+                                        pomogli velikom broju vozača da pronađu lokalne, pouzdane
+                                        servise.
+                                    </p>
+                                    <p class="mb-5 mb-lg-2"></p>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 col-md-4 reveal revealleft">
+                                    <h6>Navigacija</h6>
+                                    <ul class="list-unstyled mb-5 mb-lg-0">
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#home">Home</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#ponude">Ponude</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#About">Misija</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#faqs">@PMA</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#scba">Infinity SCBA</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 col-md-4 reveal revealleft">
+                                    <h6>Informacije</h6>
+                                    <ul class="list-unstyled mb-5 mb-lg-0">
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#cena">Cena</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#Contact">Kontakt</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="{% url 'auctions:auctions' %}">
+                                                Dashboard
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#">Novi Korisnik</a>
+                                        </li>
+                                        <li>
+                                            <a data-bs-toggle="slide" href="#">Prijava</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-sm-12 col-md-4 reveal revealleft">
+                                    <div class="">
+                                        <a href="index.html">
+                                            <img loading="lazy" alt="" class="logo-2 mb-3"
+                                                 src="{% static 'assets/images/brand/logo-3.png' %}">
+                                        </a>
+                                        <a href="index.html">
+                                            <img src="{% static 'assets/images/brand/logo.png' %}"
+                                                 class="logo-3" alt="logo">
+                                        </a>
+                                        &nbsp;
+                                        <p>
+                                            Ukoliko želite da budete prvi saznate najnovije vesti @PMA kompanije
+                                            (poboljšanja proizvoda, popusti, nagrade), ostavite nam Vaš e-mail (nema
+                                            spama).
+                                        </p>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       placeholder="Budite obavešteni...Vaš e-mail"
+                                                       aria-label="prijava email-a"
+                                                       aria-describedby="button-addon1">
+                                                <button class="btn btn-primary" type="button"
+                                                        id="button-addon2">upiši mail
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-list mt-6">
+                                        <button type="button" class="btn btn-icon rounded-pill"><i
+                                            class="fa fa-facebook"></i></button>
+                                        <button type="button" class="btn btn-icon rounded-pill"><i
+                                            class="fa fa-youtube"></i></button>
+                                        <button type="button" class="btn btn-icon rounded-pill"><i
+                                            class="fa fa-twitter"></i></button>
+                                        <button type="button" class="btn btn-icon rounded-pill"><i
+                                            class="fa fa-instagram"></i></button>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="main-footer px-0 pb-0 text-center">
+                            <div class="row ">
+                                <div class="col-md-12 col-sm-12">
+                                    Copyright © <span id="year"></span> <a href="#">@PMA</a>.
+                                    Designed with <span class="fa fa-heart text-danger"></span> by <a
+                                    href="#"> Popravi Moj Auto </a> All rights reserved.
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
