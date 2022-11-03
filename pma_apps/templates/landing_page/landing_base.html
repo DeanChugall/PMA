@@ -1818,7 +1818,6 @@
                                                                                id="mce-FNAME"
                                                                                required
                                                                                placeholder="Ime*">
-
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -1847,10 +1846,9 @@
                                                                                       rows="5"
                                                                                       name="MMERGE6"
                                                                                       id="mce-MMERGE6"
-                                                                                      placeholder="Vaš komentar ovde...*"
+                                                                                      placeholder="Vaše pitanje ovde...*"
                                                                                       required></textarea>
                                                                     </div>
-
                                                                 </div>
                                                                 <div id="mce-responses" class="clear foot">
                                                                     <div class="response"
@@ -1870,9 +1868,8 @@
                                                                            name="subscribe"
                                                                            id="mc-embedded-subscribe"
                                                                            data-bs-target="#modaldemo4"
-                                                                         data-bs-toggle="modal"
+                                                                           data-bs-toggle="modal"
                                                                            class="btn btn-primary btn-rounded  waves-effect waves-light">
-
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -1892,11 +1889,11 @@
                                         <button aria-label="Close" class="btn-close position-absolute"
                                                 data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                                         <i class="icon icon-check fs-70 text-success lh-1 my-5 d-inline-block"></i>
-                                        <h4 class="text-success tx-semibold">Čestitamo!</h4>
-                                        <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum
-                                            available, but the majority have suffered alteration.</p>
+                                        <h4 class="text-success tx-semibold">Zahvaljujemo!</h4>
+                                        <p class="mg-b-20 mg-x-20">
+                                            U najkraćem mogućem roku će Vam naša tehnička podrška odgovoriti na pitanje.</p>
                                         <button aria-label="Close" class="btn btn-success pd-x-25"
-                                                data-bs-dismiss="modal">Continue
+                                                data-bs-dismiss="modal">Naastavi dalje
                                         </button>
                                     </div>
                                 </div>
@@ -2022,7 +2019,8 @@
                                         </p>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input type="text" class="form-control"
+                                                <input type="text"
+                                                       class="form-control"
                                                        placeholder="Budite obavešteni...Vaš e-mail"
                                                        aria-label="prijava email-a"
                                                        aria-describedby="button-addon1">
@@ -2049,9 +2047,9 @@
                         <footer class="main-footer px-0 pb-0 text-center">
                             <div class="row ">
                                 <div class="col-md-12 col-sm-12">
-                                    Copyright © <span id="year"></span> <a href="javascript:void(0)">@PMA</a>.
+                                    Copyright © <span id="year"></span> <a href="#">@PMA</a>.
                                     Designed with <span class="fa fa-heart text-danger"></span> by <a
-                                    href="javascript:void(0)"> Popravi Moj Auto </a> All rights reserved.
+                                    href="#"> Popravi Moj Auto </a> All rights reserved.
                                 </div>
                             </div>
                         </footer>
@@ -2095,7 +2093,25 @@
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 
 <!-- mc_embed_signup-->
-
+<script type='text/javascript'>(function ($) {
+    window.fnames = new Array();
+    window.ftypes = new Array();
+    fnames[0] = 'EMAIL';
+    ftypes[0] = 'email';
+    fnames[1] = 'FNAME';
+    ftypes[1] = 'text';
+    fnames[2] = 'LNAME';
+    ftypes[2] = 'text';
+    fnames[3] = 'ADDRESS';
+    ftypes[3] = 'address';
+    fnames[4] = 'PHONE';
+    ftypes[4] = 'phone';
+    fnames[5] = 'BIRTHDAY';
+    ftypes[5] = 'birthday';
+    fnames[6] = 'MMERGE6';
+    ftypes[6] = 'text';
+}(jQuery));
+var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
 {% endblock javascript %}
 
