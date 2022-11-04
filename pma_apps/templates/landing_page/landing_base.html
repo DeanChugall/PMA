@@ -1823,29 +1823,16 @@
 <!-- Sticky js -->
 <script src="{% static 'assets/js/sticky.js' %}"></script>
 
+<!-- HTMX -->
+<script src="https://unpkg.com/htmx.org@1.8.2"></script>
+
 <!-- CUSTOM JS -->
 <script src="{% static 'assets/js/landing.js' %}"></script>
 
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 
 <!-- SUCCESS MODAL -->
- <script type="text/javascript">
-    $(document).on('submit','#task-form',function(e){
-        e.preventDefault();
-        $.ajax({
-            type:'POST',
-            url:'{% url "landing_page:landing_page" %}',
-            data:
-            {
-                task:$("#task").val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-            },
-            success:function(){
-                  alert('Saved');
-                    }
-            })
-        });
-    </script>
+
 <!-- END SUCCESS MODAL -->
 
 <!-- mc_embed_signup-->
