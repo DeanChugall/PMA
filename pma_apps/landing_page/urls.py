@@ -2,7 +2,6 @@ from django.urls import path
 
 from . import views
 
-
 app_name = "landing_page"
 
 urlpatterns = [
@@ -10,9 +9,8 @@ urlpatterns = [
 
 ]
 
-
 htmx_urlpatterns = [
-    path("join_hello_message/", views.join_hello_message, name="join_hello_message"),
+    path("kontakt_hello_message/", views.kontakt_hello_message, name="kontakt_hello_message"),
 ]
 
 urlpatterns += htmx_urlpatterns

@@ -1,29 +1,31 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.views.generic import FormView
-from django.views import generic
 from django.urls import reverse
-from pma_apps.contacts.forms import JoinForm
-from pma_apps.contacts.models import Join
+from django.views import generic
+
+from pma_apps.landing_page.forms import KontaktForma
 
 
 class LandingPageView(SuccessMessageMixin, generic.CreateView):
     template_name = 'landing_page/landing_page.html'
-    form_class = JoinForm
+    form_class = KontaktForma
     success_message = "%(email)s was created successfully"
-    context_object_name = 'joined'
+    context_object_name = 'kontakti'
 
     def get_success_url(self):
         return reverse('landing_page:landing_page')
-        # return reverse('landing_page:landing_page')
-
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, "landing_page/landing_page.html")
 
 
-def join_hello_message(request):
-    email = request.POST.get("email")
-    email = Join.objects.create(email=email)
-    # return HttpResponse(f"Hava sto ste se prijavili: {email} !!!")
-    return render(request, "landing_page/partials/join-form.html", {'email':email})
+def kontakt_hello_message(request):
+    form = KontaktForma(request.POST or None)
+    context = {
+        'form': form,
+    }
+
+    if form.is_valid():
+        kontakti_obj = form.save()
+        context['form'] = KontaktForma()
+        context['object'] = kontakti_obj
+        context['kreiran'] = True
+        print(f"CONTEXT: {context}")
+    return render(request, "landing_page/partials/kontakt_hello_message.html", context=context)

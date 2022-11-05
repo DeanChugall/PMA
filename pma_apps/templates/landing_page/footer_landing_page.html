@@ -83,24 +83,24 @@
                                             <div class="input-group">
                                                 <input
                                                     type="text"
-                                                    name = "email"
+                                                    name="email"
                                                     class="form-control"
-                                                    placeholder="Enter your email"
+                                                    placeholder="Vaš E-Mail ovde..."
                                                     aria-label="Example text with button addon"
                                                     aria-describedby="button-addon1">
                                                 <button
                                                     class="btn btn-primary"
                                                     type="button"
                                                     id="button-addon2"
-                                                    hx-post="/join_hello_message/"
+                                                    hx-post="/kontakt_hello_message/"
                                                     hx-trigger="click"
-                                                    hx-target="#search-results"
+                                                    hx-target="#join"
                                                     hx-swap=".">
-                                                    Submit
+                                                    Prijavi
                                                 </button>
                                             </div>
-                                            <div id="search-results">
-                                                {% include 'landing_page/partials/join-form.html' %}
+                                            <div id="join">
+                                                {% include 'landing_page/partials/kontakt_hello_message.html' %}
                                             </div>
 
                                         </div>
@@ -130,9 +130,7 @@
                             href="#"> Popravi Moj Auto </a> All rights reserved.
                         </div>
                     </div>
-
                 </footer>
-
             </div>
         </div>
     </div>
