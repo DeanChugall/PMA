@@ -1823,17 +1823,14 @@
 <!-- Sticky js -->
 <script src="{% static 'assets/js/sticky.js' %}"></script>
 
-<!-- HTMX -->
-<script src="https://unpkg.com/htmx.org@1.8.2"></script>
-
 <!-- CUSTOM JS -->
 <script src="{% static 'assets/js/landing.js' %}"></script>
 
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 
-<!-- SUCCESS MODAL -->
+<!-- HTMX -->
+<script src="https://unpkg.com/htmx.org@1.8.3"></script>
 
-<!-- END SUCCESS MODAL -->
 
 <!-- mc_embed_signup-->
 <script type='text/javascript'>(function ($) {
@@ -1856,6 +1853,24 @@
 }(jQuery));
 var $mcj = jQuery.noConflict(true);</script>
 <!--End mc_embed_signup-->
+<script>
+function closeModal() {
+	var container = document.getElementById("modals-here")
+	var backdrop = document.getElementById("modal-backdrop")
+	var modal = document.getElementById("modal")
+
+	modal.classList.remove("show")
+	backdrop.classList.remove("show")
+
+	setTimeout(function() {
+		container.removeChild(backdrop)
+		container.removeChild(modal)
+	}, 200)
+}
+</script>
+
+
+
 {% endblock javascript %}
 
 
