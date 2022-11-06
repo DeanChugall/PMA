@@ -36,9 +36,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "django_htmx",
 ]
 
@@ -70,6 +67,11 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
+
+# Load Auth0 application settings into memory
+AUTH0_DOMAIN = env.str("AUTH0_DOMAIN", default="")
+AUTH0_CLIENT_ID = env.str("AUTH0_CLIENT_ID", default="")
+AUTH0_CLIENT_SECRET = env.str("AUTH0_CLIENT_SECRET", default="")
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
@@ -124,8 +126,6 @@ MANAGERS = ADMINS
 
 # DATABASES
 # ------------------------------------------------------------------------------
-# DATABASES = {"default": env.db("DATABASE_URL")}
-
 DATABASES = {
     'default': {
         'ENGINE': env.str("ENGINE", default="django.db.backends.postgresql"),
@@ -152,6 +152,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # INTERNATIONALIZATION
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
+# ------------------------------------------------------------------------------
 
 LANGUAGE_CODE = 'en-us'
 
@@ -177,7 +178,6 @@ STATICFILES_FINDERS = [
 MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
-
 
 # EMAIL_BACKEND
 # ------------------------------------------------------------------------------
