@@ -1,6 +1,9 @@
+from urllib.parse import urlencode
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -49,10 +52,21 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 user_redirect_view = UserRedirectView.as_view()
 
-@login_required
+# @login_required
+# def logout(request):
+#     django_logout(request)
+#     domain = settings.SOCIAL_AUTH_AUTH0_DOMAIN
+#     client_id = settings.SOCIAL_AUTH_AUTH0_KEY
+#     return_to = 'http://0.0.0.0:8000' # this can be current domain
+#     return redirect(f'https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}')
+
 def logout(request):
     django_logout(request)
-    domain = settings.SOCIAL_AUTH_AUTH0_DOMAIN
-    client_id = settings.SOCIAL_AUTH_AUTH0_KEY
-    return_to = 'http://0.0.0.0:8000' # this can be current domain
-    return redirect(f'https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}')
+    redirect_uri = request.build_absolute_uri("/")
+    url = "https://{}/v2/logout?".format(settings.SOCIAL_AUTH_AUTH0_DOMAIN) + urlencode(
+        {
+            "client_id": settings.SOCIAL_AUTH_AUTH0_KEY,
+            "returnTo": redirect_uri,
+        }
+    )
+    return HttpResponseRedirect(url)
