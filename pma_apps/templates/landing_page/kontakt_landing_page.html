@@ -146,7 +146,7 @@
                                                 class="btn btn-primary btn-rounded  waves-effect waves-light"
                                                 hx-post="/send_email/"
                                                 x-trigger="click"
-                                                hx-target="#modals-here"
+                                                hx-target="#email-modals"
                                                 hx-swap=".">Pošalji...
                                             </button>
                                         </div>
@@ -157,30 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div id="modals-here"></div>
-        </div>
-    </div>
-</div>
-<!-- MODALS CONTACT -->
-<div class="modal fade" id="modaldemo4">
-    <div class="modal-dialog modal-dialog-centered text-center " role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body text-center p-4 pb-5">
-                <button
-                    aria-label="Close"
-                    class="btn-close position-absolute"
-                    data-bs-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <i class="icon icon-check fs-70 text-success lh-1 my-5 d-inline-block"></i>
-                <h4 class="text-success tx-semibold">Zahvaljujemo!</h4>
-                <p class="mg-b-20 mg-x-20">
-                    U najkraćem mogućem roku će Vam naša tehnička podrška odgovoriti na
-                    pitanje.</p>
-                <button aria-label="Close" class="btn btn-success pd-x-25"
-                        data-bs-dismiss="modal">Naastavi dalje
-                </button>
-            </div>
+            <div id="email-modals"></div>
         </div>
     </div>
 </div>
