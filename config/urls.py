@@ -8,9 +8,9 @@ from django.views.generic import TemplateView
 urlpatterns = [
 
     path("", include("pma_apps.landing_page.urls", namespace="landing_page")),
+    path("", include('social_django.urls')),
 
-
-    path("users/", include("pma_apps.users.urls", namespace="users")),
+    path("", include("pma_apps.users.urls", namespace="users")),
 
     # path("servis/", include("pma_apps.auto_servis.urls", namespace="auto_servis")),
 

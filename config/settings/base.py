@@ -13,6 +13,7 @@ if READ_DOT_ENV_FILE:
     env.read_env(str(ROOT_DIR / ".envs/.local/.django"))
     env.read_env(str(ROOT_DIR / ".envs/.local/.postgres"))
     env.read_env(str(ROOT_DIR / ".envs/.production/.django"))
+    env.read_env(str(ROOT_DIR / ".envs/.production/.auth0"))
 
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
@@ -37,6 +38,7 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_htmx",
+    'social_django',
 ]
 
 LOCAL_APPS = [
@@ -63,15 +65,27 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.User"
 
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+# LOGIN_REDIRECT_URL = "users:redirect"
+# LOGIN_URL = "account_login"
+LOGIN_URL = '/login/auth0'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Load Auth0 application settings into memory
-AUTH0_DOMAIN = env.str("AUTH0_DOMAIN", default="")
-AUTH0_CLIENT_ID = env.str("AUTH0_CLIENT_ID", default="")
-AUTH0_CLIENT_SECRET = env.str("AUTH0_CLIENT_SECRET", default="")
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = env.str("AUTH0_DOMAIN", default="")
+SOCIAL_AUTH_AUTH0_KEY = env.str("AUTH0_CLIENT_ID", default="")
+SOCIAL_AUTH_AUTH0_SECRET = env.str("AUTH0_CLIENT_SECRET", default="")
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile',
+    'email'
+]
+
+AUTHENTICATION_BACKENDS = {
+    'social_core.backends.auth0.Auth0OAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+}
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
