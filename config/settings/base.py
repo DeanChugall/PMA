@@ -12,6 +12,7 @@ if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env_dev
     env.read_env(str(ROOT_DIR / ".envs/.local/.django"))
     env.read_env(str(ROOT_DIR / ".envs/.local/.postgres"))
+    env.read_env(str(ROOT_DIR / ".envs/.production/.django"))
 
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
@@ -174,3 +175,15 @@ STATICFILES_FINDERS = [
 MEDIA_ROOT = str(APPS_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
+
+
+# EMAIL_BACKEND
+# ------------------------------------------------------------------------------
+DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL", default="")
+
+EMAIL_BACKEND = env.str("EMAIL_BACKEND", default="")
+EMAIL_HOST = env.str("EMAIL_HOST", default="")
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
+EMAIL_PORT = env.str("EMAIL_PORT", default="")
+EMAIL_USE_TLS = env.str("EMAIL_USE_TLS", default="")

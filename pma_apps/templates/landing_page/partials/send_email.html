@@ -1,0 +1,37 @@
+{% if form.email and not form.errors%}
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Poštovani {{ form.data.ime }},</h5>
+            </div>
+            <div class="modal-body">
+                <p>u najkraćem roku će Vas neko iz našeg tima za podršku kontaktirati na<br>
+                    (<b>{{ form.data.email }}</b>) email adresu koju ste ostavili.</p>
+                <hr>
+                <ul>
+                    <li>
+                        Email: {{ form.data.email }}
+                    </li>
+                    <li>
+                        Ime: {{ form.data.ime }}
+                    </li>
+                    <li>
+                        Tema: {{ form.data.tema }}
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ form.errors }}
+    <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}

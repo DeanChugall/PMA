@@ -3,25 +3,34 @@
 {% load static i18n %}
 
 {% block metadata %}
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Popravi Moj Auto">
-    <meta name="author" content="PMA Technologies Private Limited">
-    <meta name="keywords" content="auto, servis, autoservis, auto-servis">
+<meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Popravi Moj Auto">
+<meta name="author" content="PMA Technologies Private Limited">
+<meta name="keywords" content="auto, servis, autoservis, auto-servis">
 
-    <title>Popravi Moj Auto</title>
+<title>Popravi Moj Auto</title>
 {% endblock metadata %}
 
-<!--MENU -->
+{# GLAVNI MENU #}
 {% block menu_landing_page %}
 {% include "landing_page/menu_landing_page.html" %}
 {% endblock menu_landing_page %}
-<!--END MENU -->
+{# END GLAVNI MENU #}
 
+{# GLAVNI SLAJDER #}
 {% block glavni_slajder_landing_page %}
 {% include "landing_page/galvni_slajder_landing_page.html" %}
 {% endblock glavni_slajder_landing_page %}
+{# END GLAVNI SLAJDER #}
+
+{# ROW-10 OPEN: KONTAKT  #}
+{% block row-10-kontakt %}
+{% include "landing_page/kontakt_landing_page.html" %}
+{% endblock row-10-kontakt %}
+{# ROW-10 CLOSE: KONTAKT #}
+
 
 {% block footer %}
 {% include "landing_page/footer_landing_page.html" %}
