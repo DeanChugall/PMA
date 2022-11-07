@@ -14,7 +14,7 @@ urlpatterns = [
 
     # path("servis/", include("pma_apps.auto_servis.urls", namespace="auto_servis")),
 
-    path('auctions/', include('pma_apps.auctions.urls', namespace="auctions")),
+    path('ponude/', include('pma_apps.auctions.urls', namespace="ponude")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),

@@ -68,7 +68,7 @@ AUTH_USER_MODEL = "users.User"
 # LOGIN_REDIRECT_URL = "users:redirect"
 # LOGIN_URL = "account_login"
 LOGIN_URL = '/login/auth0'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/ponude'
 LOGOUT_REDIRECT_URL = '/'
 
 # Load Auth0 application settings into memory

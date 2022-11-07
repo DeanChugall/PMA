@@ -10,7 +10,7 @@ from django.urls import reverse
 
 from pma_apps.auctions.models import Auction, Bid, Category, Image, User
 from pma_apps.auctions.forms import AuctionForm, ImageForm, CommentForm, BidForm
-def auctions(request):
+def ponude_view(request):
     """
     The default route which renders a Dashboard page
     """
