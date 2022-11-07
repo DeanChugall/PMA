@@ -13,3 +13,8 @@
   sekciji [APP / SETTINGS / DOMAIN](https://cloud.digitalocean.com/apps/8058ee2c-a1c4-420f-bb1c-534672111037/settings?i=8d2545)
   dodati domain name: **popravimojauto.com**.
 - Zatim na CloudFlare dodati ponudjenu CNAME varijablu !  
+
+---
+
+## Korisne komande:
+- Ciscenje svi paketa iz PIP-a: ```pip freeze | xargs pip uninstall -y```

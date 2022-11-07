@@ -41,7 +41,7 @@
                     </ul>
                     <div class="header-nav-right d-none d-lg-flex">
                         {% if user.is_authenticated %}
-                        <a href="register.html"
+                        <a href="#"
                            class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
                            target="_self">HELLO {{ user.username }}
                         </a>
@@ -55,7 +55,7 @@
                                class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                target="_self">Novi Korisnik
                             </a>
-                            <a href="/login/auth0"
+                            <a href="{% url 'users:login' %}"
                                class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                target="_self">Prijava
                             </a>

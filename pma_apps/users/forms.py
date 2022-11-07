@@ -7,11 +7,6 @@ from pma_apps.users.models import Vozac
 User = get_user_model()
 
 
-class VozacForm(admin_forms.UserChangeForm):
-    class Meta(admin_forms.UserChangeForm.Meta):
-        model = Vozac
-
-
 class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
@@ -20,7 +15,6 @@ class UserAdminChangeForm(admin_forms.UserChangeForm):
 class UserAdminCreationForm(admin_forms.UserCreationForm):
     """
     Form for User Creation in the Admin Area.
-    To change user signup, see UserSignupForm and UserSocialSignupForm.
     """
 
     class Meta(admin_forms.UserCreationForm.Meta):

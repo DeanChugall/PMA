@@ -71,11 +71,11 @@ LOGIN_URL = '/login/auth0'
 LOGIN_REDIRECT_URL = '/ponude'
 LOGOUT_REDIRECT_URL = '/'
 
-# Load Auth0 application settings into memory
+# Load Auth0 za VOZACE
 SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
 SOCIAL_AUTH_AUTH0_DOMAIN = env.str("AUTH0_DOMAIN", default="")
-SOCIAL_AUTH_AUTH0_KEY = env.str("AUTH0_CLIENT_ID", default="")
-SOCIAL_AUTH_AUTH0_SECRET = env.str("AUTH0_CLIENT_SECRET", default="")
+SOCIAL_AUTH_AUTH0_KEY = env.str("AUTH0_CLIENT_ID_VOZACI", default="")
+SOCIAL_AUTH_AUTH0_SECRET = env.str("AUTH0_CLIENT_SECRET_VOZACI", default="")
 SOCIAL_AUTH_AUTH0_SCOPE = [
     'openid',
     'profile',

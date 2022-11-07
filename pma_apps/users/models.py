@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.db.models import CharField
+from django.db.models import CharField, ImageField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
@@ -13,7 +13,7 @@ class User(AbstractUser):
         VOZAC = "VOZAC", "Vozac"
         SERVIS = "SERVIS", "Servis"
 
-    base_role = Role.ADMIN
+    base_role = Role.VOZAC
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -26,6 +26,9 @@ class User(AbstractUser):
     name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
     last_name = CharField(_("last_name"), blank=True, max_length=255)
+
+    def __str__(self):
+        return f"{self.username} {self.role}"
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
@@ -40,7 +43,6 @@ class VozacManager(BaseUserManager):
 
 class Vozac(User):
     base_role = User.Role.VOZAC
-
     vozac = VozacManager()
 
     class Meta:
@@ -60,11 +62,14 @@ class VozacProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     vozac_id = models.IntegerField(null=True, blank=True)
 
+    slika_vozaca = ImageField(null=True, blank=True)
+
     class Meta:
         db_table: str = 'vozac_profile'
         verbose_name: str = "Vozac Profile"
         verbose_name_plural: str = "VOozac Profiles"
         ordering = ['-vozac_id']
+
 
 # ###########################################################33
 # ###########################################################33
