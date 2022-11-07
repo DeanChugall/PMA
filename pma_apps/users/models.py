@@ -21,7 +21,7 @@ class User(AbstractUser):
             return super().save(*args, **kwargs)
 
     #: First and last name do not cover name patterns around the globe
-    role = models.CharField(max_length=50, choices=Role.choices, default=Role.ADMIN)
+    role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
 
     name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
