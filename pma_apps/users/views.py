@@ -6,8 +6,10 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views import generic
 
+from pma_apps.users.forms import DetaljiVozacaForm
 from pma_apps.users.models import Vozac
 
 User = get_user_model()
@@ -15,8 +17,18 @@ User = get_user_model()
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
     template_name = 'users/user_detail.html'
-    queryset = Vozac.objects.all()
+    queryset = User.objects.all()
     context_oject_name = "detalji_vozaca"
+
+
+class UrediKupcaView(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'users/user_detail.html'
+    queryset = User.objects.all()
+    form_class = DetaljiVozacaForm
+    context_object_name = "uredi_vozaca"
+
+    def get_success_url(self):
+        return reverse('landing_page:landing_page')
 
 
 def login(request):

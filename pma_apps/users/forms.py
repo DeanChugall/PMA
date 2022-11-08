@@ -10,17 +10,16 @@ from pma_apps.users.models import Vozac
 User = get_user_model()
 
 
-class KreirajKupcaForm(forms.ModelForm):
+class DetaljiVozacaForm(forms.ModelForm):
     email = forms.EmailField()
     class Meta:
-        model = Vozac
+        model = User
         fields = (
             'role',
             'name',
             'last_name',
             'email',
             'username',
-
         )
 
 
