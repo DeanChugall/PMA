@@ -51,9 +51,9 @@
                                     target="_self">Odjava
                                 </a>
                             {% else %}
-                                <a href="#"
+                                <a href="{% url 'users:kreiraj_servis' %}"
                                     class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
-                                    target="_self">Novi Korisnik
+                                    target="_self">Novi Servis
                                 </a>
                                 <a href="{% url 'users:login' %}"
                                     class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"

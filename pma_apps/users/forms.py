@@ -1,35 +1,42 @@
+from django import forms
 from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
-from django import forms
-from django.views import generic
 
-from pma_apps.users.models import Vozac
+from pma_apps.users.models import Servis, Vozac
 
 User = get_user_model()
 
 
 class DetaljiVozacaForm(forms.ModelForm):
     email = forms.EmailField()
+
     class Meta:
-        model = User
+        model = Vozac
         fields = (
-            'role',
-            'name',
-            'last_name',
-            'email',
-            'username',
+            "role",
+            "name",
+            "last_name",
+            "email",
+            "username",
         )
 
 
-
-class UserUpdateForm(forms.ModelForm):
+class UpdateVozaciForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
-        model = get_user_model()
-        fields = ['first_name', 'last_name', 'email']
+        model = Vozac
+        fields = ["first_name", "last_name", "email"]
+
+
+class KreirajServisForm(UserCreationForm):
+    role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
+
+    class Meta:
+        model = Servis
+        fields = ("username", "role", "first_name", "last_name", "email")
 
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):

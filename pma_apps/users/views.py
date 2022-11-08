@@ -9,30 +9,38 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
-from pma_apps.users.forms import DetaljiVozacaForm
+from pma_apps.users.forms import DetaljiVozacaForm, KreirajServisForm
 from pma_apps.users.models import Vozac
 
 User = get_user_model()
 
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
-    template_name = 'users/user_detail.html'
+    template_name = "users/user_detail.html"
     queryset = Vozac.objects.all()
     context_object_name = "detalji_vozaca"
-
 
     slug_field = "username"
     slug_url_kwarg = "username"
 
 
 class UrediKupcaView(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'users/user_detail.html'
+    template_name = "users/user_detail.html"
     queryset = Vozac.objects.all()
     form_class = DetaljiVozacaForm
     context_object_name = "uredi_vozaca"
 
     def get_success_url(self):
-        return reverse('landing_page:landing_page')
+        return reverse("landing_page:landing_page")
+
+
+class KreirajServisView(generic.CreateView):
+    template_name = "auto_servis/kreiraj-servis.html"
+    form_class = KreirajServisForm
+    context_object_name = "kreiraj_servis"
+
+    def get_success_url(self):
+        return reverse("landing_page:landing_page")
 
 
 def login(request):
@@ -43,7 +51,7 @@ def login(request):
 def logout(request):
     django_logout(request)
     redirect_uri = request.build_absolute_uri("/")
-    url = "https://{}/v2/logout?".format(settings.SOCIAL_AUTH_AUTH0_DOMAIN) + urlencode(
+    url = f"https://{settings.SOCIAL_AUTH_AUTH0_DOMAIN}/v2/logout?" + urlencode(
         {
             "client_id": settings.SOCIAL_AUTH_AUTH0_KEY,
             "returnTo": redirect_uri,
@@ -51,6 +59,7 @@ def logout(request):
     )
 
     return HttpResponseRedirect(url)
+
 
 # def profile(request, username):
 #     if request.method == "POST":
