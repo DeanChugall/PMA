@@ -17,13 +17,13 @@ User = get_user_model()
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
     template_name = 'users/user_detail.html'
-    queryset = User.objects.all()
+    queryset = Vozac.objects.all()
     context_oject_name = "detalji_vozaca"
 
 
 class UrediKupcaView(LoginRequiredMixin, generic.UpdateView):
     template_name = 'users/user_detail.html'
-    queryset = User.objects.all()
+    queryset = Vozac.objects.all()
     form_class = DetaljiVozacaForm
     context_object_name = "uredi_vozaca"
 
