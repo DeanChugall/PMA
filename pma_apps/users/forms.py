@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import forms as admin_forms
+from django.contrib.auth import forms as auto_servis_form
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
 from pma_apps.users.models import Servis, Vozac
@@ -31,12 +31,20 @@ class UpdateVozaciForm(forms.ModelForm):
         fields = ["first_name", "last_name", "email"]
 
 
-class KreirajServisForm(UserCreationForm):
+class KreirajServisForm(auto_servis_form.UserCreationForm):
     role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
 
     class Meta:
         model = Servis
-        fields = ("username", "role", "first_name", "last_name", "email")
+        fields = ("username", "email", "role")
+        error_messages = {
+            "email": {
+                "unique": _("Ovo EMSIL ime je vec zauzeto."),
+            },
+            "username": {
+                "unique": _("Ovo korisnicko ime je vec zauzeto."),
+            },
+        }
 
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):
