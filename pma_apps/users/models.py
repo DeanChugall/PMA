@@ -112,6 +112,6 @@ class ServisProfile(models.Model):
 
 # flake8: noqa: F811
 @receiver(post_save, sender=Servis)
-def create_user_profile(instance, created):
+def create_user_profile(sender, instance, created, **kwargs):
     if created and instance.role == "SERVIS":
         ServisProfile.objects.create(user=instance)
