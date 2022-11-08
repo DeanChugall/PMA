@@ -86,6 +86,21 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
     'profile',
     'email',
 ]
+SOCIAL_AUTH_USER_MODEL = env.str("SOCIAL_AUTH_USER_MODEL", default="")
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = False
+#SOCIAL_AUTH_URL_NAMESPACE = ''
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
 
 AUTHENTICATION_BACKENDS = {
     'social_core.backends.auth0.Auth0OAuth2',
@@ -125,6 +140,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
