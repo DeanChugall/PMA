@@ -1,15 +1,15 @@
 {% if object.email %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    Zahvaljujemo na prijavi sa emailom: {{ object.email }}
-    <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Zahvaljujemo na prijavi sa emailom: {{ object.email }}
+        <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {% endif %}
 
 {% if form.errors %}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ form.errors }}
-    <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ form.errors }}
+        <button type="button" class="btn-close mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 {% endif %}
 
 

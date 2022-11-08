@@ -13,6 +13,6 @@ urlpatterns = [
     # path("<str:username>/", view=user_detail_view, name="detail"),
     path('logout/', view=logout, name='logout'),
     path('login/', view=login, name='login'),
-    path('detalji-vozaca/<int:pk>/', DetaljiVozacaView.as_view(), name='detalji_vozaca'),
+    path('detalji-vozaca/<str:username>/', DetaljiVozacaView.as_view(), name='detalji_vozaca'),
 
 ]

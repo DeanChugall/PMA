@@ -2,51 +2,51 @@
 {% load crispy_forms_tags %}
 
 {% if object == request.user %}
-{% block title %}User: {{ object.username }}{% endblock %}
+    {% block title %}User: {{ detalji_vozaca.username }}{% endblock %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h2>{{ user.username }}</h2>
-            <p>{{ user.name }}</p>
-            <p>{{ user.username }}</p>
-            <p>{{ user.id }}</p>
-            <p>{{ user.email }}</p>
-        </div>
-    </div>
-
-
-    <div class="form-group col-md-6 mb-0">
-        <p> email Name:{{ user.email}}</p>
-        <p>base_role:{{ user.base_role}}</p>
-        <p>first_name:{{ user.first_name}}</p>
-        <p>vozac_id:{{ user.vozac_id}}</p>
-    </div>
-
-    <!-- Action buttons -->
-    <div class="row">
-
-        <div class="col-sm-12">
-            <a class="btn btn-primary" href="{% url 'landing_page:landing_page' %}" role="button">My Info</a>
-            <!-- Your Stuff: Custom user template urls -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ detalji_vozaca.username }}</h2>
+                <p>{{ detalji_vozaca.name }}</p>
+                <p>{{ detalji_vozaca.username }}</p>
+                <p>{{ detalji_vozaca.id }}</p>
+                <p>{{ detalji_vozaca.email }}</p>
+            </div>
         </div>
 
-    </div>
+
+        <div class="form-group col-md-6 mb-0">
+            <p> email Name:{{ detalji_vozaca.email}}</p>
+            <p>base_role:{{ detalji_vozaca.base_role}}</p>
+            <p>first_name:{{ detalji_vozaca.first_name}}</p>
+            <p>vozac_id:{{ detalji_vozaca.vozac_id}}</p>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="row">
+
+            <div class="col-sm-12">
+                <a class="btn btn-primary" href="{% url 'landing_page:landing_page' %}" role="button">My Info</a>
+                <!-- Your Stuff: Custom user template urls -->
+            </div>
+
+        </div>
 
 
-     <div class="mx-auto" style="width: 800px;">
+        <div class="mx-auto" style="width: 800px;">
             <form method='post'>
                 {% csrf_token %}
                 {{ form|crispy }}
                 <br />
                 <button class="btn btn-success btn-lg" type='submit'
-                        onclick="return confirm('Da li želite da sačuvate izmene za kupca: {{ uredi_kupca.ime_prezime }}?')">
+                    onclick="return confirm('Da li želite da sačuvate izmene za kupca: {{ uredi_kupca.ime_prezime }}?')">
                     Sačuvaj
                 </button>
 
             </form>
         </div>
-    <!-- End Action buttons -->
+        <!-- End Action buttons -->
 {% endif %}
 
 </div>

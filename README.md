@@ -3,8 +3,8 @@
 --- 
 
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-[![Python](https://img.shields.io/badge/python-3.11.0-blue.svg?&logo=python)
-](https://github.com/ambv/black)
+[![Python](https://img.shields.io/badge/HTML%20code%20style-djhtml-orange?logo=html5)](https://github.com/rtts/djhtml)
+[![Python](https://img.shields.io/badge/python-3.11.0-blue.svg?logo=python&logoColor=yellow)](https://www.python.org/)
 
 ## Integracija sa Digital Ocean APP platformom
 

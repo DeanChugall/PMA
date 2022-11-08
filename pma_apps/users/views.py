@@ -18,7 +18,11 @@ User = get_user_model()
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
     template_name = 'users/user_detail.html'
     queryset = Vozac.objects.all()
-    context_oject_name = "detalji_vozaca"
+    context_object_name = "detalji_vozaca"
+
+
+    slug_field = "username"
+    slug_url_kwarg = "username"
 
 
 class UrediKupcaView(LoginRequiredMixin, generic.UpdateView):
