@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 
-from pma_apps.users.models import User, Servis
+from pma_apps.users.models import User, Servis, Vozac
 
 
 class Category(models.Model):
@@ -24,7 +24,7 @@ class Auction(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=800, null=True)
     creator = models.ForeignKey(
-        Servis, on_delete=models.PROTECT, related_name="auction_creator", default=1
+        Vozac, on_delete=models.PROTECT, related_name="auction_creator", default=1
     )
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="auction_category", default=1
@@ -43,8 +43,8 @@ class Auction(models.Model):
         blank=True,
         null=True,
     )
-    buyer = models.ForeignKey(User, on_delete=models.PROTECT,blank=True, null=True)
-    watchers = models.ManyToManyField(User, related_name="watchlist", blank=True)
+    buyer = models.ForeignKey(Servis, on_delete=models.PROTECT,blank=True, null=True)
+    watchers = models.ManyToManyField(Servis, related_name="watchlist", blank=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -63,16 +63,16 @@ class Image(models.Model):
 
 class Bid(models.Model):
     auction = models.ForeignKey(Auction, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    servis = models.ForeignKey(Servis, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Bid #{self.id}: {self.amount} on {self.auction.title} by {self.user.username}"
+        return f"Bid #{self.id}: {self.amount} on {self.auction.title} by {self.amount.username}"
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="get_user")
+    vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE, related_name="get_user")
     auction = models.ForeignKey(
         Auction, on_delete=models.CASCADE, related_name="get_comments"
     )
@@ -83,4 +83,4 @@ class Comment(models.Model):
         return self.date_created.strftime("%B %d %Y")
 
     def __str__(self):
-        return f"Comment #{self.id}: {self.user.username} on {self.auction.title}: {self.comment}"
+        return f"Comment #{self.id}: {self.vozac.id} on {self.auction.title}: {self.comment}"

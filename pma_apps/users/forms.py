@@ -1,10 +1,36 @@
 from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
+from django import forms
+from django.views import generic
 
 from pma_apps.users.models import Vozac
 
 User = get_user_model()
+
+
+class KreirajKupcaForm(forms.ModelForm):
+    email = forms.EmailField()
+    class Meta:
+        model = Vozac
+        fields = (
+            'role',
+            'name',
+            'last_name',
+            'email',
+            'username',
+
+        )
+
+
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email']
 
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):

@@ -48,6 +48,7 @@ class Vozac(User):
     class Meta:
         proxy = True
 
+
     def welcome(self):
         return "Only for VOZACe"
 
@@ -65,17 +66,17 @@ class VozacProfile(models.Model):
     slika_vozaca = ImageField(null=True, blank=True)
 
     class Meta:
-        db_table: str = 'vozac_profile'
-        verbose_name: str = "Vozac Profile"
-        verbose_name_plural: str = "VOozac Profiles"
+        db_table: str = 'vozaci'
+        verbose_name: str = "Vozac"
+        verbose_name_plural: str = "Voozaci"
         ordering = ['-vozac_id']
 
 
-# ###########################################################33
-# ###########################################################33
-# ###########################################################33
-# ###########################################################33
-# ###########################################################33
+# ###########################################################
+# ###########################################################
+# ###########################################################
+# ###########################################################
+# ###########################################################
 
 class ServisManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
@@ -100,9 +101,9 @@ class ServisProfile(models.Model):
     servis_id = models.IntegerField(null=True, blank=True)
 
     class Meta:
-        db_table: str = 'servis_profile'
-        verbose_name: str = "Servis Profile"
-        verbose_name_plural: str = "Servis Profiles"
+        db_table: str = 'servisi'
+        verbose_name: str = "Servis"
+        verbose_name_plural: str = "Servisi"
         ordering = ['-servis_id']
 
 

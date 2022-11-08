@@ -1,8 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 
 from pma_apps.users.views import (
     logout,
-    login
+    login,
+    DetaljiVozacaView
 )
 
 app_name = "users"
@@ -12,5 +13,6 @@ urlpatterns = [
     # path("<str:username>/", view=user_detail_view, name="detail"),
     path('logout/', view=logout, name='logout'),
     path('login/', view=login, name='login'),
+    path('detalji-vozaca/<int:pk>/', DetaljiVozacaView.as_view(), name='detalji_vozaca'),
 
 ]

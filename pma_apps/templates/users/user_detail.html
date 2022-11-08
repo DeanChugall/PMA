@@ -8,20 +8,27 @@
   <div class="row">
     <div class="col-sm-12">
 
-      <h2>{{ object.username }}</h2>
+      <h2>{{ user.username }}</h2>
       {% if object.name %}
         <p>{{ object.name }}</p>
         <p>{{ object.username }}</p>
+        <p>{{ object.id }}</p>
+        <p>{{ object.email }}</p>
       {% endif %}
     </div>
   </div>
-
+<div class="form-group col-md-6 mb-0">
+                       <p> email Name:{{ user.email}}</p>
+                       <p>base_role:{{ object.base_role}}</p>
+                       <p>first_name:{{ object.first_name}}</p>
+                       <p>vozac_id:{{ object.vozac_id}}</p>
+                    </div>
 {% if object == request.user %}
 <!-- Action buttons -->
 <div class="row">
 
   <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+    <a class="btn btn-primary" href="#" role="button">My Info</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
 
