@@ -23,8 +23,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
-    "squid-app-ktzit.ondigitalocean.app",
-    "pma-app-k89y6.ondigitalocean.app",
+    "pma-7x5sd.ondigitalocean.app",
 ]
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
