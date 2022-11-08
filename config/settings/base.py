@@ -69,17 +69,15 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.User"
 
-# LOGIN_REDIRECT_URL = "users:redirect"
-# LOGIN_URL = "account_login"
 LOGIN_URL = '/login/auth0'
 LOGIN_REDIRECT_URL = '/ponude'
 LOGOUT_REDIRECT_URL = '/'
 
 # Load Auth0 za VOZACE
 SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
-SOCIAL_AUTH_AUTH0_DOMAIN = env.str("AUTH0_DOMAIN", default="")
-SOCIAL_AUTH_AUTH0_KEY = env.str("AUTH0_CLIENT_ID_VOZACI", default="")
-SOCIAL_AUTH_AUTH0_SECRET = env.str("AUTH0_CLIENT_SECRET_VOZACI", default="")
+SOCIAL_AUTH_AUTH0_DOMAIN = env.str("SOCIAL_AUTH_AUTH0_DOMAIN", default="")
+SOCIAL_AUTH_AUTH0_KEY = env.str("SOCIAL_AUTH_AUTH0_KEY", default="")
+SOCIAL_AUTH_AUTH0_SECRET = env.str("SOCIAL_AUTH_AUTH0_SECRET", default="")
 SOCIAL_AUTH_AUTH0_SCOPE = [
     'openid',
     'profile',
@@ -87,7 +85,6 @@ SOCIAL_AUTH_AUTH0_SCOPE = [
 ]
 SOCIAL_AUTH_USER_MODEL = env.str("SOCIAL_AUTH_USER_MODEL", default="")
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = False
-#SOCIAL_AUTH_URL_NAMESPACE = ''
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
