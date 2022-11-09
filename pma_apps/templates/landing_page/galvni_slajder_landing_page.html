@@ -78,12 +78,13 @@
 
                 <a href="{% url 'ponude:ponude' %}"
                     target="_self" class="btn ripple btn-lg w-lg mb-3 me-2 btn-primary">
-                    <i class="fe fe-play me-2"></i>
-                    <b>Zahtev za ponudu VOZAČI </b>
+                    <i class="fe fe-eye fa-lg me-2"></i>
+                    <b>Kontrolna Tabla Zahteva</b>
                 </a>
-                <a href="{% url 'ponude:ponude' %}"
-                    class="btn ripple btn-lg w-lg btn-outline-primary mb-3 me-2" target="_self"><i
-                        class="fe fe-eye me-2"></i><b>Više informacija SERVISI</b>
+                <a href="{% url 'auto_servis:kreiraj_servis' %}"
+                    class="btn ripple btn-lg w-lg btn-outline-primary mb-3 me-2" target="_self">
+                    <i class="fa fa-sign-in fa-lg me-2"></i>
+                    <b>Registracija Auto Servisa</b>
                 </a>
             </div>
             <div class="col-xl-6 col-lg-6 my-auto">

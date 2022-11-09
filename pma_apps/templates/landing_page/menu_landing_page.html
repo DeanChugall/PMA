@@ -45,19 +45,18 @@
                                     class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                     target="_self">Pozdrav {{ user.username }}
                                 </a>
-
                                 <a href="{% url 'account_logout' %}"
                                     class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                     target="_self">Odjava
                                 </a>
                             {% else %}
-                                <a href="{% url 'auto_servis:kreiraj_servis' %}"
-                                    class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
-                                    target="_self">Novi Servis
-                                </a>
                                 <a href="{% url 'account_login' %}"
                                     class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                     target="_self">Prijava
+                                </a>
+                                <a href="{% url 'users:kreiraj_vozaca' %}"
+                                    class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                    target="_self">Registracija
                                 </a>
                             {% endif %}
                         </div>

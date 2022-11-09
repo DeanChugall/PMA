@@ -8,6 +8,28 @@ from pma_apps.users.models import Vozac
 User = get_user_model()
 
 
+class KreirajVozacaForm(admin_forms.UserCreationForm):
+    role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
+    password1 = forms.CharField(
+        help_text=None,
+    )
+    password2 = forms.CharField(
+        help_text=None,
+    )
+
+    class Meta:
+        model = Vozac
+        fields = (
+            "username",
+            "role",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        )
+
+
 class DetaljiVozacaForm(forms.ModelForm):
     email = forms.EmailField()
 
@@ -42,7 +64,10 @@ class UserAdminCreationForm(admin_forms.UserCreationForm):
 
     class Meta(admin_forms.UserCreationForm.Meta):
         model = User
-
+        fields = (
+            "username",
+            "name",
+        )
         error_messages = {
             "username": {"unique": _("This username has already been taken.")}
         }

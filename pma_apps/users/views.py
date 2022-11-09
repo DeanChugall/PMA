@@ -3,10 +3,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views import generic
 
-from pma_apps.users.forms import DetaljiVozacaForm
+from pma_apps.users.forms import DetaljiVozacaForm, KreirajVozacaForm
 from pma_apps.users.models import Vozac
 
 User = get_user_model()
+
+
+class KreirajVozacaView(generic.CreateView):
+    template_name = "vozaci/kreiraj_vozaca.html"
+    form_class = KreirajVozacaForm
+    context_object_name = "kreiraj_vozaca"
+
+    def get_success_url(self):
+        return reverse("account_login")
 
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
