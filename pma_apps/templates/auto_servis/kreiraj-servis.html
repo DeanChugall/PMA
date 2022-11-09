@@ -3,17 +3,17 @@
 
 {% block title %}Kreiranje NOVOG SERVISA{% endblock %}
 
-    <hr/>
-    <h1 style="text-align:center">KREIRANJE NOVOG SERVISA</h1>
-    <hr/>
-    <div class="mx-auto pt-5" style="width: 800px;">
-        <form method='post'>
-            {% csrf_token %}
-            {{ form|crispy }}
-            <br />
-            <button class="btn btn-success btn-lg" type='submit'
-                    onclick="return confirm('Da li želite da kreirate nov servis?')">Sačuvaj
-            </button>
+<hr/>
+<h1 style="text-align:center">KREIRANJE NOVOG SERVISA</h1>
+<hr/>
+<div class="mx-auto pt-5" style="width: 800px;">
+    <form method='post'>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br />
+        <button class="btn btn-success btn-lg" type='submit'
+            onclick="return confirm('Da li želite da kreirate nov servis?')">Sačuvaj
+        </button>
 
-        </form>
-    </div>
+    </form>
+</div>
