@@ -33,10 +33,32 @@ class UpdateVozaciForm(forms.ModelForm):
 
 class KreirajServisForm(UserCreationForm):
     role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
+    password1 = forms.CharField(
+        help_text=None,
+    )
+    password2 = forms.CharField(
+        help_text=None,
+    )
 
     class Meta:
         model = Servis
-        fields = ("username", "role", "first_name", "last_name", "email")
+        fields = (
+            "username",
+            "role",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        )
+        help_texts = {
+            "username": None,
+            "email": None,
+        }
+        help_text = {
+            "password1": None,
+            "password2": None,
+        }
 
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):
