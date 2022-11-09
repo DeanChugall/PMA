@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 from pma_apps.users.forms import UserAdminChangeForm, UserAdminCreationForm
-from pma_apps.users.models import Vozac, Servis
+from pma_apps.users.models import Servis, Vozac
 
 User = get_user_model()
 
@@ -27,8 +27,8 @@ class UserAdmin(auth_admin.UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    #"groups",
-                    #"user_permissions",
+                    # "groups",
+                    # "user_permissions",
                 ),
             },
         ),

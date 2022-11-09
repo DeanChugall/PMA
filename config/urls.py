@@ -1,27 +1,24 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-
     path("", include("pma_apps.landing_page.urls", namespace="landing_page")),
-    path("", include('social_django.urls')),
-
     path("", include("pma_apps.users.urls", namespace="users")),
-
     # path("servis/", include("pma_apps.auto_servis.urls", namespace="auto_servis")),
-
-    path('ponude/', include('pma_apps.auctions.urls', namespace="ponude")),
+    path("ponude/", include("pma_apps.auctions.urls", namespace="ponude")),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.ADMIN_ENABLED:
-    urlpatterns += [path('admin/', admin.site.urls),]
+    urlpatterns += [
+        path("admin/", admin.site.urls),
+    ]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

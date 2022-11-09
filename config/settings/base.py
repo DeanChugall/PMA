@@ -43,7 +43,6 @@ THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_htmx",
-    "social_django",
 ]
 
 LOCAL_APPS = [
@@ -73,35 +72,6 @@ LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/ponude"
 LOGOUT_REDIRECT_URL = "/"
 
-# Load Auth0 za VOZACE
-SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
-SOCIAL_AUTH_AUTH0_DOMAIN = env.str("SOCIAL_AUTH_AUTH0_DOMAIN", default="")
-SOCIAL_AUTH_AUTH0_KEY = env.str("SOCIAL_AUTH_AUTH0_KEY", default="")
-SOCIAL_AUTH_AUTH0_SECRET = env.str("SOCIAL_AUTH_AUTH0_SECRET", default="")
-SOCIAL_AUTH_AUTH0_SCOPE = [
-    "openid",
-    "profile",
-    "email",
-]
-SOCIAL_AUTH_USER_MODEL = env.str("SOCIAL_AUTH_USER_MODEL", default="")
-SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = False
-
-SOCIAL_AUTH_PIPELINE = (
-    "social_core.pipeline.social_auth.social_details",
-    "social_core.pipeline.social_auth.social_uid",
-    "social_core.pipeline.social_auth.social_user",
-    "social_core.pipeline.user.get_username",
-    "social_core.pipeline.social_auth.associate_by_email",
-    "social_core.pipeline.user.create_user",
-    "social_core.pipeline.social_auth.associate_user",
-    "social_core.pipeline.social_auth.load_extra_data",
-    "social_core.pipeline.user.user_details",
-)
-
-AUTHENTICATION_BACKENDS = {
-    "social_core.backends.auth0.Auth0OAuth2",
-    "django.contrib.auth.backends.ModelBackend",
-}
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
@@ -136,8 +106,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "social_django.context_processors.backends",
-                "social_django.context_processors.login_redirect",
             ],
         },
     },
