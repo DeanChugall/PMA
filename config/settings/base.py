@@ -38,11 +38,16 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
 ]
+
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_htmx",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
 ]
 
 LOCAL_APPS = [
@@ -72,6 +77,12 @@ LOGIN_URL = "/login/auth0"
 LOGIN_REDIRECT_URL = "/ponude"
 LOGOUT_REDIRECT_URL = "/"
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+SITE_ID = 1
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------

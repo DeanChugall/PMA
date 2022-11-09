@@ -9,7 +9,7 @@ class Kontakti(models.Model):
     datum_kreiranja = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table: str = 'kontakti'
+        db_table: str = "kontakti"
         verbose_name = "Kontakt"
         verbose_name_plural = "Kontakti"
 
