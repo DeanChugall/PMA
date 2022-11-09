@@ -54,6 +54,7 @@ LOCAL_APPS = [
     "pma_apps.users",
     "pma_apps.auctions",
     "pma_apps.landing_page",
+    "pma_apps.auto_servisi",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -65,7 +66,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIGRATION_MODULES = {
     "auctions": "pma_apps.contrib.auctions.migrations",
     "users": "pma_apps.contrib.users.migrations",
-    "auto_servis": "pma_apps.contrib.auto_servis.migrations",
+    "auto_servisi": "pma_apps.contrib.auto_servisi.migrations",
     "landing_page": "pma_apps.contrib.landing_page.migrations",
     "pages": "pma_apps.contrib.landing_page.migrations",
 }
@@ -73,7 +74,7 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_URL = "/login/auth0"
+LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/ponude"
 LOGOUT_REDIRECT_URL = "/"
 
@@ -81,6 +82,10 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 
 SITE_ID = 1
 
@@ -165,7 +170,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 # ------------------------------------------------------------------------------
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "sr-latn"
 
 TIME_ZONE = "UTC"
 

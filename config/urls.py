@@ -8,6 +8,7 @@ urlpatterns = [
     path("", include("pma_apps.landing_page.urls", namespace="landing_page")),
     path("accounts/", include("allauth.urls")),
     path("", include("pma_apps.users.urls", namespace="users")),
+    path("", include("pma_apps.auto_servisi.urls", namespace="auto_servis")),
     path("ponude/", include("pma_apps.auctions.urls", namespace="ponude")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

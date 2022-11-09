@@ -1,6 +1,6 @@
 from django.urls import path
 
-from pma_apps.users.views import DetaljiVozacaView, KreirajServisView
+from pma_apps.users.views import DetaljiVozacaView
 
 app_name = "users"
 urlpatterns = [
@@ -12,5 +12,4 @@ urlpatterns = [
         DetaljiVozacaView.as_view(),
         name="detalji_vozaca",
     ),
-    path("kreiraj_servis/", KreirajServisView.as_view(), name="kreiraj_servis"),
 ]
