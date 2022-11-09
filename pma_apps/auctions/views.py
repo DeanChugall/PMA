@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 
-from pma_apps.auctions.models import Auction, Bid, Category, User
+from pma_apps.auctions.models import Auction, Bid, Category
+
+User = get_user_model()
 
 
 def ponude_view(request):
