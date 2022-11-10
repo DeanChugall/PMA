@@ -74,15 +74,16 @@
                                                     class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto"
                                                     target="_self">Pozdrav {{ user.username }}
                                                 </a>
-                                                <a href="#" class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
+                                                <a href="{% url 'users:vozaci-odjava' %}"
+                                                    class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
                                                     target="_self">Odjava
                                                 </a>
                                             {% else %}
-                                                <a href="{% url 'account_signup' %}"
+                                                <a href="{% url 'users:kreiraj_vozaca' %}"
                                                     class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto"
                                                     target="_self">Registracija
                                                 </a>
-                                                <a href="{% url 'account_login' %}"
+                                                <a href="{% url 'users:vozaci-prijava' %}"
                                                     class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
                                                     target="_self">Prijava
                                                 </a>
@@ -148,7 +149,7 @@
                                                         class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                                         target="_self">Pozdrav {{ user.username }}
                                                     </a>
-                                                    <a href="{% url 'account_logout' %}"
+                                                    <a href="{% url 'users:vozaci-odjava' %}"
                                                         class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                                         target="_self">Odjava
                                                     </a>
@@ -158,7 +159,7 @@
                                                         class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                                         target="_self">Registracija
                                                     </a>
-                                                    <a href="{% url 'account_login' %}"
+                                                    <a href="{% url 'users:vozaci-prijava' %}"
                                                         class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
                                                         target="_self">Prijava
                                                     </a>

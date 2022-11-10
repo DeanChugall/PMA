@@ -18,6 +18,7 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
 
 class KreirajServisForm(UserCreationForm):
     role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
+    username = forms.CharField(help_text=None, label="Korisničko Ime: ")
     password1 = forms.CharField(
         help_text=None,
     )
