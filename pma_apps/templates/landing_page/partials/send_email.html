@@ -1,5 +1,4 @@
 {% if form.email and not form.errors%}
-    <div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
     <div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -9,18 +8,6 @@
                 <div class="modal-body">
                     <p>u najkraćem roku će Vas neko iz našeg tima za podršku kontaktirati na<br>
                         (<b>{{ form.data.email }}</b>) email adresu koju ste ostavili.</p>
-                    <hr>
-                    <ul>
-                        <li>
-                            Email: {{ form.data.email }}
-                        </li>
-                        <li>
-                            Ime: {{ form.data.ime }}
-                        </li>
-                        <li>
-                            Tema: {{ form.data.tema }}
-                        </li>
-                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">Zatvori</button>
