@@ -44,7 +44,7 @@ class DetaljiVozacaForm(forms.ModelForm):
         )
 
 
-class UpdateVozaciForm(forms.ModelForm):
+class UrediVozaciForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:

@@ -23,7 +23,9 @@ class KategorijaAutoServisa(models.Model):
 
 
 class AutoServis(models.Model):
-    auto_servis_name = CharField(_("Name of Auto Servis"), blank=True, max_length=255)
+    auto_servis_name = CharField(
+        _("Name of Auto Servis"), null=True, blank=True, max_length=255
+    )
     description = models.TextField(max_length=800, null=True)
     creator = models.ForeignKey(
         Servis,

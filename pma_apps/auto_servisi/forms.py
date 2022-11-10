@@ -1,10 +1,19 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import generic
 
+from pma_apps.auto_servisi.models import AutoServis
 from pma_apps.users.models import Servis
 
 User = get_user_model()
+
+
+class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
+    template_name = "kupci/detalji_kupca.html"
+    queryset = AutoServis.objects.all()
+    context_object_name = "detalji_kupca"
 
 
 class KreirajServisForm(UserCreationForm):

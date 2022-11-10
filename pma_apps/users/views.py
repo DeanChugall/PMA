@@ -19,7 +19,7 @@ class KreirajVozacaView(generic.CreateView):
 
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
-    template_name = "users/user_detail.html"
+    template_name = "vozaci/detalji-vozaca.html"
     queryset = Vozac.objects.all()
     context_object_name = "detalji_vozaca"
 
@@ -28,7 +28,7 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
 
 
 class UrediVozacaView(LoginRequiredMixin, generic.UpdateView):
-    template_name = "users/user_detail.html"
+    template_name = "vozaci/detalji-vozaca.html"
     queryset = Vozac.objects.all()
     form_class = DetaljiVozacaForm
     context_object_name = "uredi_vozaca"
