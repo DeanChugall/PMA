@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="ltr">
 
     <head>
-        {% block metadata %}
-        {% endblock metadata %}
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Popravi Moj Auto">
+        <meta name="author" content="PMA Technologies Private Limited">
+        <meta name="keywords" content="auto, servis, autoservis, auto-servis">
+        <title>Popravi Moj Auto</title>
 
         <!-- FAVICON -->
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}"/>
@@ -37,7 +41,6 @@
         <!-- PAGE -->
         <div class="page">
             <div class="page-main">
-
                 <!-- app-Header -->
                 <div class="hor-header header">
                     <div class="container main-container">
@@ -73,9 +76,9 @@
                                                     target="_self">Odjava
                                                 </a>
                                             {% else %}
-                                                <a href="{% url 'auto_servis:kreiraj_servis' %}"
+                                                <a href="{% url 'users:kreiraj_vozaca' %}"
                                                     class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto"
-                                                    target="_self">Novi Servis
+                                                    target="_self">Registracija
                                                 </a>
                                                 <a href="{% url 'account_login' %}" class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
                                                     target="_self">Prijava
@@ -90,20 +93,174 @@
                     </div>
                 </div>
                 <!-- END app-Header -->
-
                 {# MENU I SLIDER #}
                 <div class="landing-top-header overflow-hidden">
-
                     {# MENU #}
-                    {% block menu_landing_page %}
-                    {% endblock menu_landing_page %}
-                    {# ENDMENU #}
+                    <div class="top sticky overflow-hidden">
+                        <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                        <div class="app-sidebar bg-transparent horizontal-main">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="main-sidemenu navbar px-0">
+                                        <a class="navbar-brand ps-0 d-none d-lg-block"
+                                            href="{% url 'landing_page:landing_page' %}">
+                                            <img alt="" class="logo-2" src="{% static 'assets/images/brand/logo-3.png' %}">
+                                            <img src="{% static 'assets/images/brand/logo.png' %}" class="logo-3" alt="logo">
+                                        </a>
+                                        <ul class="side-menu">
+                                            <li class="slide">
+                                                <a class="side-menu__item active" data-bs-toggle="slide" href="#home"><span
+                                                    class="side-menu__label">Home</span></a>
+                                            </li>
+                                            <li class="slide">
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="#ponude"><span
+                                                    class="side-menu__label">Ponude</span></a>
+                                            </li>
+                                            <li class="slide">
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="#About"><span
+                                                    class="side-menu__label">Misija</span></a>
+                                            </li>
+                                            <li class="slide">
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="#faqs"><span
+                                                    class="side-menu__label">@PMA</span></a>
+                                                <li class="slide">
+                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#scba"><span
+                                                        class="side-menu__label">Infinity SCBA</span></a>
+                                                </li>
+                                                <li class="slide">
+                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#cena"><span
+                                                        class="side-menu__label">Cena</span></a>
+                                                </li>
+                                                <li class="slide">
+                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#Contact"><span
+                                                        class="side-menu__label">Kontakt</span></a>
+                                                </li>
+                                            </ul>
+                                            <div class="header-nav-right d-none d-lg-flex">
+                                                {% if user.is_authenticated %}
+                                                    <a href="{% url 'ponude:ponude' %}"
+                                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        target="_self">Pozdrav {{ user.username }}
+                                                    </a>
+                                                    <a href="{% url 'account_logout' %}"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        target="_self">Odjava
+                                                    </a>
+                                                {% else %}
 
-                    {# GLAVNI SLIDER #}
-                    {% block glavni_slajder_landing_page %}
-                    {% endblock glavni_slajder_landing_page %}
-                    {# END GLAVNI SLIDER #}
+                                                    <a href="{% url 'users:kreiraj_vozaca' %}"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        target="_self">Registracija
+                                                    </a>
+                                                    <a href="{% url 'account_login' %}"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        target="_self">Prijava
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# ENDMENU #}
 
+                        {# GLAVNI SLIDER #}
+                        <div class="demo-screen-headline main-demo main-demo-1 spacing-top overflow-hidden reveal" id="home">
+                            <div class="container px-sm-0">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 mb-5 pb-5 animation-zidex pos-relative">
+                                        <h4 class="fw-semibold mt-7">Najpovoljnije Servisne Ponude</h4>
+                                        <h1 class="text-start fw-bold">Saznaj najpovoljniju servisnu ponudu za Vaš automobil
+                                            <span class="text-primary animate-heading">
+                                                <b>Prihvatite&nbsp;najpovoljniju&nbsp;ponudu.</b>
+                                            </span>
+                                        </h1>
+                                        <h6 class="pb-4 text_left fw-normal">
+                                            Pomoći ćemo vam da uštedite novac prilikom popravke automobila tako što ćete odabrati
+                                            Vama najpovoljnuju ponudu majstora u samo nekoliko
+                                            klikova .
+                                        </h6>
+
+                                        <div class="d-flex">
+                                            <span>
+                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                    <path fill="#6c5ffc"
+                                                        d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,
+                                                            4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,
+                                                            21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,
+                                                            11.59L10,14.17L16.59,7.58L18,9L10,17Z"/>
+                                                </svg>
+                                            </span>
+                                            <div class="ms-5 mb-4">
+                                                <h5 class="fw-bold">Prijavite se na @PMA platformu.
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>
+                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                    <path fill="#6c5ffc"
+                                                        d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,
+                                                            4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,
+                                                            21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,
+                                                            11.59L10,14.17L16.59,7.58L18,9L10,17Z"/>
+                                                </svg>
+                                            </span>
+                                            <div class="ms-5 mb-4">
+                                                <h5 class="fw-bold">Odaberita plan koji Vama najviše odgovara.
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>
+                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                    <path fill="#6c5ffc"
+                                                        d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,
+                                                            4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,
+                                                            21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,
+                                                            11.59L10,14.17L16.59,7.58L18,9L10,17Z"/>
+                                                </svg>
+                                            </span>
+                                            <div class="ms-5 mb-4">
+                                                <h5 class="fw-bold">Zatraži ponudu za servis Vašeg automobila.</h5>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span>
+                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                    <path fill="#6c5ffc"
+                                                        d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,
+                                                            4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,
+                                                            21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,
+                                                            11.59L10,14.17L16.59,7.58L18,9L10,17Z"/>
+                                                </svg>
+                                            </span>
+                                            <div class="ms-5 mb-4">
+                                                <h5 class="fw-bold">Prihvatite ponudu koja Vama najviše odgovara.
+                                                </h5>
+                                            </div>
+                                        </div>
+
+                                        <a href="{% url 'ponude:ponude' %}"
+                                            target="_self" class="btn ripple btn-lg w-lg mb-3 me-2 btn-primary">
+                                            <i class="fe fe-eye fa-lg me-2"></i>
+                                            <b>Kontrolna Tabla Zahteva</b>
+                                        </a>
+                                        <a href="{% url 'auto_servis:kreiraj_servis' %}"
+                                            class="btn ripple btn-lg w-lg btn-outline-primary mb-3 me-2" target="_self">
+                                            <i class="fa fa-sign-in fa-lg me-2"></i>
+                                            <b>Registracija Auto Servisa</b>
+                                        </a>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 my-auto">
+                                        <img src="{% static 'assets/images/landing/market4.png' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# END GLAVNI SLIDER #}
+                    </div>
                 </div>
                 {# END MENU I SLIDER #}
 
@@ -1561,10 +1718,168 @@
                                 </div>
                                 <!-- ROW-6 CLOSED: Za Auto Servise-->
 
-
                                 {# ROW-10 OPEN: KONTAKT  #}
-                                {% block row-10-kontakt %}
-                                {% endblock row-10-kontakt %}
+                                <div class="bg-image-landing section pb-0" id="Contact">
+                                    <div class="container">
+                                        <div class="">
+                                            <div class="card card-shadow reveal">
+                                                <h4 class="text-center fw-semibold mt-7">Kontakt</h4>
+                                                <span class="landing-title"></span>
+                                                <h2 class="text-center fw-semibold mb-0 px-2">Budite u kontaktu <span
+                                                    class="text-primary">sa nama.</span></h2>
+                                                <div class="card-body p-5 pb-6 text-dark">
+                                                    <div class="statistics-info p-4">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-9">
+                                                                <div class="mt-3">
+                                                                    <div class="text-dark">
+                                                                        <div class="services-statistics reveal my-5">
+                                                                            <div class="row text-center">
+                                                                                <div class="col-xl-3 col-md-6 col-lg-6">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body p-0">
+                                                                                            <div class="counter-status">
+                                                                                                <div
+                                                                                                    class="counter-icon bg-primary-transparent box-shadow-primary">
+                                                                                                    <i
+                                                                                                        class="fe fe-map-pin text-primary fs-23"></i>
+                                                                                                </div>
+                                                                                                <h4
+                                                                                                    class="mb-2 fw-semibold">
+                                                                                                    Sedište</h4>
+                                                                                                <p>Beograd, R. Srbija </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-xl-3 col-md-6 col-lg-6">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body p-0">
+                                                                                            <div class="counter-status">
+                                                                                                <div
+                                                                                                    class="counter-icon bg-secondary-transparent box-shadow-secondary">
+                                                                                                    <i
+                                                                                                        class="fe fe-headphones text-secondary fs-23"></i>
+                                                                                                </div>
+                                                                                                <h4
+                                                                                                    class="mb-2 fw-semibold">
+                                                                                                    Telefon & Email</h4>
+                                                                                                <p class="mb-0">+381 75 33
+                                                                                                    175 </p>
+                                                                                                <p>info@popravimojauto.com</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-xl-3 col-md-6 col-lg-6">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body p-0">
+                                                                                            <div class="counter-statuss">
+                                                                                                <div
+                                                                                                    class="counter-icon bg-success-transparent box-shadow-success">
+                                                                                                    <i
+                                                                                                        class="fe fe-mail text-success fs-23"></i>
+                                                                                                </div>
+                                                                                                <h4
+                                                                                                    class="mb-2 fw-semibold">
+                                                                                                    Kontakt</h4>
+                                                                                                <p class="mb-0">
+                                                                                                    www.popravimojauto.com</p>
+                                                                                                <p>info@popravimojauto.com</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-xl-3 col-md-6 col-lg-6">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body p-0">
+                                                                                            <div class="counter-status">
+                                                                                                <div
+                                                                                                    class="counter-icon bg-danger-transparent box-shadow-danger">
+                                                                                                    <i
+                                                                                                        class="fe fe-airplay text-danger fs-23"></i>
+                                                                                                </div>
+                                                                                                <h4
+                                                                                                    class="mb-2 fw-semibold">
+                                                                                                    Radno Vreme</h4>
+                                                                                                <p class="mb-0">Pon -
+                                                                                                    Sub: 9h - 17h</p>
+                                                                                                <p>Nedelja-Praznici
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-9">
+                                                                <div class="">
+                                                                    <form class="form-horizontal reveal revealrotate m-t-20 "
+                                                                        method="post">
+                                                                        {% csrf_token %}
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <input type="text"
+                                                                                    name="ime"
+                                                                                    class="form-control"
+                                                                                    placeholder="Ime*">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <input type="email"
+                                                                                    name="email"
+                                                                                    class="form-control"
+                                                                                    placeholder="Email*"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <input type="text"
+                                                                                    name="tema"
+                                                                                    class="form-control"
+                                                                                    value=""
+                                                                                    placeholder="Tema"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <textarea class="form-control"
+                                                                                    rows="5"
+                                                                                    name="pitanje"
+                                                                                    placeholder="Vaše pitanje ovde...*"
+                                                                                    autocomplete="off"
+                                                                                    required></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="">
+                                                                            <button
+                                                                                type="button"
+                                                                                id="button-addon2"
+                                                                                class="btn btn-primary btn-rounded  waves-effect waves-light"
+                                                                                hx-post="/send_email/"
+                                                                                x-trigger="click"
+                                                                                hx-target="#email-modals"
+                                                                                hx-swap=".">Pošalji...
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="email-modals"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {# ROW-10 CLOSE: KONTAKT #}
 
                                 <!-- ROW-11 OPEN -->
