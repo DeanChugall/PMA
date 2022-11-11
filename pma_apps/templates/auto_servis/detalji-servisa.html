@@ -1,10 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
+{% load static %}
+{% load crispy_forms_tags %}
 
-    </body>
-</html>
+{% if object == request.user %}
+    {% block title %}User: {{ detalji_servisa.username }}{% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>DEEETALJI SERVISAAAAAAAAAAAAAAAA  SERVISA SERVISA SERVISA</h1>
+                <h2>{{ detalji_servisa.username }}</h2>
+                <p>{{ detalji_servisa.name }}</p>
+                <p>{{ detalji_servisa.username }}</p>
+                <p>{{ detalji_servisa.id }}</p>
+                <p>{{ detalji_servisa.email }}</p>
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-6 mb-0">
+            <p> email Name:{{ detalji_servisa.email}}</p>
+            <p>base_role:{{ detalji_servisa.base_role}}</p>
+            <p>first_name:{{ detalji_servisa.first_name}}</p>
+            <p>SERVIS_id:{{ detalji_servisa.servisprofile.servis_id}}</p>
+            <p>slika_SERVISA:{{ detalji_servisa.servisprofile.slika_servisa}}</p>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="row">
+
+            <div class="col-sm-12">
+                <a class="btn btn-primary" href="{% url 'landing_page:landing_page' %}" role="button">My Info</a>
+                <!-- Your Stuff: Custom user template urls -->
+            </div>
+
+        </div>
+
+
+        <div class="mx-auto" style="width: 800px;">
+            <form method='post'>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <br />
+                <button class="btn btn-success btn-lg" type='submit'
+                    onclick="return confirm('Da li želite da sačuvate izmene za kupca: {{ uredi_kupca.ime_prezime }}?')">
+                    Sačuvaj
+                </button>
+
+            </form>
+        </div>
+        <!-- End Action buttons -->
+{% endif %}
+
+</div>

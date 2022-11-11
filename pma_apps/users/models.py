@@ -107,6 +107,7 @@ class Servis(User):
 class ServisProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     servis_id = models.IntegerField(null=True, blank=True)
+    slika_servisa = ImageField(null=True, blank=True)
 
     class Meta:
         db_table: str = "servisi"
