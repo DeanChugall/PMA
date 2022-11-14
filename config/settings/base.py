@@ -44,6 +44,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
+    "widget_tweaks",
     "django_htmx",
     "allauth",
     "allauth.account",

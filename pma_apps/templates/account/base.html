@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html>
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
     <head>
         <title>{% block head_title %}{% endblock %}</title>
+
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico ' %}" />
         {% block extra_head %}
-        {% endblock %}
+        {% endblock extra_head %}
     </head>
-    <body>
+    <body class="app sidebar-mini ltr login-img">
         {% block body %}
 
-            {% if messages %}
-                <div>
-                    <strong>Messages:</strong>
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{message}}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
             {% endif %}
 
-            <div>
-                <strong>Menu:</strong>
-                <ul>
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-                        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-                    {% else %}
-                        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-                        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-                    {% endif %}
-                </ul>
-            </div>
             {% block content %}
-            {% endblock %}
-        {% endblock %}
+            {% endblock content %}
+
+        {% endblock body %}
+
         {% block extra_body %}
-        {% endblock %}
+        {% endblock extra_body %}
+
+        <!-- JQUERY JS -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+        <!-- BOOTSTRAP JS -->
+        <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+        <!-- SHOW PASSWORD JS -->
+        <script src="{% static 'assets/js/show-password.min.js' %}"></script>
+
+        <!-- GENERATE OTP JS -->
+        <script src="{% static 'assets/js/generate-otp.js' %}"></script>
+
+        <!-- Perfect SCROLLBAR JS-->
+        <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+
+        <!-- Color Theme js -->
+        <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+        <!-- CUSTOM JS -->
+        <script src="{% static 'assets/js/custom.js' %}"></script>
+
     </body>
 </html>

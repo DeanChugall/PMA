@@ -1,12 +1,28 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.urls import reverse
 from django.views import generic
 
-from pma_apps.users.forms import DetaljiVozacaForm, KreirajVozacaForm
+from pma_apps.users.forms import DetaljiVozacaForm, KreirajVozacaForm, UlogujVozacaForm
 from pma_apps.users.models import Vozac
 
 User = get_user_model()
+
+
+class LoginVozacaView(LoginView):
+    """
+    Display the login form and handle the login action.
+    """
+
+    form_class = UlogujVozacaForm
+    template_name = "account/login.html"
+    redirect_authenticated_user = True
+
+    # extra_context = None
+
+    def get_success_url(self):
+        return reverse("ponude:ponude")
 
 
 class KreirajVozacaView(generic.CreateView):
@@ -34,4 +50,4 @@ class UrediVozacaView(LoginRequiredMixin, generic.UpdateView):
     context_object_name = "uredi_vozaca"
 
     def get_success_url(self):
-        return reverse("account_login")
+        return reverse("auctions:ponude")
