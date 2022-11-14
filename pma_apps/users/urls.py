@@ -11,6 +11,7 @@ urlpatterns = [
     # path("prijava/", views.login, name="vozaci-prijava"),
     path("prijava/", LoginVozacaView.as_view(), name="vozaci-prijava"),
     path("odjava/", views.logout, name="vozaci-odjava"),
+    path("zaboravljena-lozinka", views.password_reset, name="vozaci-pass-reset"),
     path("kreiraj_vozaca/", KreirajVozacaView.as_view(), name="kreiraj_vozaca"),
     path(
         "detalji-vozaca/<str:username>/",

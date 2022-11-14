@@ -44,7 +44,7 @@
             <!-- CONTAINER OPEN -->
             <div class="col col-login mx-auto mt-7">
                 <div class="text-center">
-                    <a href="index.html"><img src="{% static 'assets/images/brand/logo-white.png' %}"
+                    <a href="{% url 'landing_page:landing_page' %}"><img src="{% static 'assets/images/brand/logo-white.png' %}"
                         class="header-brand-img" alt=""></a>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                         action="{% url 'users:vozaci-prijava' %}">
                         {% csrf_token %}
                         <span class="login100-form-title pb-5">
-                            Prijava
+                            Prijava Korisnika
                         </span>
                         <div class="panel panel-primary">
                             <div class="tab-menu-heading">
@@ -69,8 +69,7 @@
                                 <div class="tab-content">
 
                                     <div class="tab-pane active" id="tab5">
-                                        <div class="wrap-input100 validate-input input-group"
-                                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                                        <div class="wrap-input100 validate-input input-group">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                             </a>
@@ -83,17 +82,16 @@
                                             {{ form.password|add_class:"nput100 border-start-0 form-control" }}
                                         </div>
                                         <div class="text-end pt-4">
-                                            <p class="mb-0"><a href="forgot-password.html" class="text-primary ms-1">Zaboravljena
+                                            <p class="mb-0"><a href="{% url 'users:vozaci-pass-reset' %}" class="text-primary ms-1">Zaboravljena
                                                 Lozinka?</a>
                                             </p>
                                         </div>
                                         <div class="container-login100-form-btn">
-                                            <button class="login100-form-btn btn-primary" type="submit">{% trans "Sign In" %} </button>
+                                            <button class="login100-form-btn btn-primary" type="submit">{% trans "Sign In" %}</button>
                                         </div>
                                         <div class="text-center pt-3">
-                                            <p class="text-dark mb-0">Niste član?<a href="register.html"
-                                                class="text-primary ms-1">Napravi
-                                                nalog</a>
+                                            <p class="text-dark mb-0">Niste član?<a href="{% url 'users:kreiraj_vozaca' %}"
+                                                class="text-primary ms-1">Napravi nalog</a>
                                             </p>
                                             {% if form.errors %}
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
