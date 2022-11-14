@@ -31,7 +31,7 @@ class KreirajVozacaView(generic.CreateView):
     context_object_name = "kreiraj_vozaca"
 
     def get_success_url(self):
-        return reverse("account_login")
+        return reverse("users:vozaci-prijava")
 
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):

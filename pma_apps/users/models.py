@@ -64,6 +64,7 @@ class VozacProfile(models.Model):
     vozac_id = models.IntegerField(null=True, blank=True)
 
     slika_vozaca = ImageField(null=True, blank=True)
+    broj_telefona = CharField(null=True, blank=True, max_length=100)
 
     class Meta:
         db_table: str = "vozaci"

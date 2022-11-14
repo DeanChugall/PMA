@@ -2,36 +2,49 @@
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="ltr">
-
     <head>
+        <title>{% block head_title %}{% endblock %}</title>
 
-        <!-- META DATA -->
-        <meta charset="UTF-8">
-        <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Popravi Moj Auto">
-        <meta name="author" content="@PMA - Popravi Moj Auto">
-        <meta name="keywords" content="">
-
-        <!-- FAVICON -->
-        <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico" />
-
-        <!-- TITLE -->
-
-        {% block head_title %}{% trans "Sign In" %}{% endblock %}
-        <!-- BOOTSTRAP CSS -->
-        <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
-
-        <!-- STYLE CSS -->
-        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
-        <link href="{% static 'assets/css/dark-style.css' %}" rel="stylesheet" />
-        <link href="{% static 'assets/css/transparent-style.css' %}" rel="stylesheet">
-        <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet" />
-
-        <!--- FONT-ICONS CSS -->
-        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" />
-
-        <!-- COLOR SKIN CSS -->
-        <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}" />
-
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico ' %}" />
+        {% block extra_head %}
+        {% endblock extra_head %}
     </head>
+    <body class="app sidebar-mini ltr login-img">
+        {% block body %}
+
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+
+            {% block content %}
+            {% endblock content %}
+
+        {% endblock body %}
+
+        {% block extra_body %}
+        {% endblock extra_body %}
+
+        <!-- JQUERY JS -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+        <!-- BOOTSTRAP JS -->
+        <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+        <!-- SHOW PASSWORD JS -->
+        <script src="{% static 'assets/js/show-password.min.js' %}"></script>
+
+        <!-- GENERATE OTP JS -->
+        <script src="{% static 'assets/js/generate-otp.js' %}"></script>
+
+        <!-- Perfect SCROLLBAR JS-->
+        <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+
+        <!-- Color Theme js -->
+        <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+        <!-- CUSTOM JS -->
+        <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    </body>
+</html>

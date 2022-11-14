@@ -73,13 +73,13 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                             </a>
-                                            {{ form.username|add_class:"nput100 border-start-0 form-control" }}
+                                            {{ form.username|add_class:"input100 border-start-0 form-control" }}
                                         </div>
                                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                             </a>
-                                            {{ form.password|add_class:"nput100 border-start-0 form-control" }}
+                                            {{ form.password|add_class:"input100 border-start-0 form-control" }}
                                         </div>
                                         <div class="text-end pt-4">
                                             <p class="mb-0"><a href="{% url 'users:vozaci-pass-reset' %}" class="text-primary ms-1">Zaboravljena
@@ -129,4 +129,4 @@
     </div>
     <!-- End PAGE -->
 
-{% endblock %}
+{% endblock content %}

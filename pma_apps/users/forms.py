@@ -1,7 +1,11 @@
 from django import forms
-from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserChangeForm,
+    UserCreationForm,
+    UsernameField,
+)
 from django.utils.translation import gettext_lazy as _
 
 from pma_apps.users.models import Vozac
@@ -40,23 +44,23 @@ class UlogujVozacaForm(AuthenticationForm):
     }
 
 
-class KreirajVozacaForm(admin_forms.UserCreationForm):
-    role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
-    username = forms.CharField(help_text=None, label="Korisničko Ime: ")
-    password1 = forms.CharField(
-        help_text=None,
+class KreirajVozacaForm(UserCreationForm):
+    # role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.VOZAC)
+    first_name = forms.CharField(required=True, help_text="Ime*", label="")
+    last_name = forms.CharField(required=True, help_text="Prezime*", label="")
+    email = forms.EmailField(
+        required=True, help_text="E-Mail*", label="", widget=forms.EmailInput()
     )
-    password2 = forms.CharField(
-        help_text=None,
-    )
+    username = forms.CharField(required=True, help_text="Korisničko Ime*", label="")
+    password1 = forms.CharField(required=True, help_text="Lozinka*", label="")
+    password2 = forms.CharField(required=True, help_text="Potvrdi lozinku*", label="")
 
     class Meta:
         model = Vozac
         fields = (
-            "username",
-            "role",
             "first_name",
             "last_name",
+            "username",
             "email",
             "password1",
             "password2",
@@ -85,17 +89,17 @@ class UrediVozaciForm(forms.ModelForm):
         fields = ["first_name", "last_name", "email"]
 
 
-class UserAdminChangeForm(admin_forms.UserChangeForm):
-    class Meta(admin_forms.UserChangeForm.Meta):
+class UserAdminChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
         model = User
 
 
-class UserAdminCreationForm(admin_forms.UserCreationForm):
+class UserAdminCreationForm(UserCreationForm):
     """
     Form for User Creation in the Admin Area.
     """
 
-    class Meta(admin_forms.UserCreationForm.Meta):
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = (
             "username",
