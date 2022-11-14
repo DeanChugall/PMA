@@ -92,7 +92,7 @@
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                             </a>
-                            {% render_field form.password2 type="password" class="input100 border-start-0 ms-0  form-control" placeholder="Lozinka" %}
+                            {% render_field form.password2 type="password" class="input100 border-start-0 ms-0  form-control" placeholder="Potvrdi Lozinku" %}
                         </div>
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn btn-primary" type="submit">Registruj se kao Vozač</button>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="text-center pt-3">
                             <p class="text-dark mb-0">Imam već nalog?
-                                <a href="{% url 'users:vozaci-prijava' %}" class="text-primary ms-1">Prijava</a>
+                                <a href="{% url 'users:prijava' %}" class="text-primary ms-1">Prijava</a>
                             </p>
                             {% if form.errors %}
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

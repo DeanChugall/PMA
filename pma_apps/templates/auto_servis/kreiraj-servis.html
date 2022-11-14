@@ -1,19 +1,138 @@
-{% load static %}
+{% extends "auto_servis/base-servis.html" %}
+
+{% load i18n %}
+{% load static i18n %}
+{% load widget_tweaks %}
 {% load crispy_forms_tags %}
+{% block head_title %}@PMA - Registracija Servis korisnika{% endblock %}
 
-{% block title %}Kreiranje NOVOG SERVISA{% endblock %}
+{% block extra_head %}
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Popravi Moj Auto">
+    <meta name="author" content="@PMA - Popravi Moj Auto">
+    <meta name="keywords" content="">
 
-<hr/>
-<h1 style="text-align:center">KREIRANJE NOVOG SERVISA</h1>
-<hr/>
-<div class="mx-auto pt-5" style="width: 800px;">
-    <form method='post'>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br />
-        <button class="btn btn-success btn-lg" type='submit'>
-            Sačuvaj
-        </button>
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
 
-    </form>
-</div>
+    <!-- STYLE CSS -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/css/dark-style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/css/transparent-style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet"/>
+
+    <!--- FONT-ICONS CSS -->
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"/>
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <!-- GLOABAL LOADER -->
+    <div id="global-loader">
+        <img src="{% static 'assets/images/loader.svg' %}" class="loader-img" alt="Loader">
+    </div>
+    <!-- /GLOABAL LOADER -->
+
+    <!-- PAGE -->
+    <div class="page">
+        <div class="">
+            <!-- CONTAINER OPEN -->
+            <div class="col col-login mx-auto mt-7">
+                <div class="text-center">
+                    <a href="{% url 'landing_page:landing_page' %}"><img
+                        src="{% static 'assets/images/brand/logo-white.png' %}"
+                        class="header-brand-img" alt=""></a>
+                </div>
+            </div>
+            <div class="container-login100">
+                <div class="wrap-login100 p-6">
+                    <form class="ogin100-form validate-form" method="POST" action="">
+                        {% csrf_token %}
+                        <span class="login100-form-title">Registracija Servisa</span>
+                        <div class="wrap-input100 validate-input input-group"
+                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="mdi mdi-account" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.username class="input100 border-start-0 ms-0 form-control" placeholder="Korisničko Ime" %}
+                        </div>
+                        <div class="wrap-input100 validate-input input-group"
+                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="mdi mdi-account" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.first_name class="input100 border-start-0 ms-0 form-control" placeholder="Ime" %}
+                        </div>
+                        <div class="wrap-input100 validate-input input-group"
+                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="mdi mdi-account" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.last_name class="input100 border-start-0 ms-0 form-control" placeholder="Prezime" %}
+                        </div>
+                        <div class="wrap-input100 validate-input input-group"
+                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.email class="input100 border-start-0 ms-0 form-control" placeholder="Email" %}
+                        </div>
+                        <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.password1 type="password" class="input100 border-start-0 ms-0  form-control" placeholder="Lozinka" %}
+                        </div>
+                        <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.password2 type="password" class="input100 border-start-0 ms-0  form-control" placeholder="Potvrdi Lozinku" %}
+                        </div>
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn btn-primary" type="submit">Registruj se kao Servis</button>
+
+                        </div>
+                        <div class="text-center pt-3">
+                            <p class="text-dark mb-0">Imam već nalog?
+                                <a href="{% url 'users:prijava' %}" class="text-primary ms-1">Prijava</a>
+                            </p>
+                            {% if form.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ form.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <label class="login-social-icon"><span>Social Login</span></label>
+                        <div class="d-flex justify-content-center">
+                            <a href="javascript:void(0)">
+                                <div class="social-login me-4 text-center">
+                                    <i class="fa fa-google"></i>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="social-login me-4 text-center">
+                                    <i class="fa fa-facebook"></i>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <div class="social-login text-center">
+                                    <i class="fa fa-twitter"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- CONTAINER CLOSED -->
+        </div>
+    </div>
+    <!-- END PAGE -->
+
+{% endblock content %}

@@ -10,7 +10,7 @@ from pma_apps.users.models import Vozac
 User = get_user_model()
 
 
-class LoginVozacaView(LoginView):
+class LoginKorisnikaView(LoginView):
     """
     Display the login form and handle the login action.
     """
@@ -31,7 +31,7 @@ class KreirajVozacaView(generic.CreateView):
     context_object_name = "kreiraj_vozaca"
 
     def get_success_url(self):
-        return reverse("users:vozaci-prijava")
+        return reverse("users:prijava")
 
 
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):

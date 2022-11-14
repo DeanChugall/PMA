@@ -57,14 +57,14 @@ class KreirajVozacaForm(UserCreationForm):
 
     class Meta:
         model = Vozac
-        fields = (
+        fields = [
             "first_name",
             "last_name",
             "username",
             "email",
             "password1",
             "password2",
-        )
+        ]
 
 
 class DetaljiVozacaForm(forms.ModelForm):
@@ -72,13 +72,13 @@ class DetaljiVozacaForm(forms.ModelForm):
 
     class Meta:
         model = Vozac
-        fields = (
+        fields = [
             "role",
             "name",
             "last_name",
             "email",
             "username",
-        )
+        ]
 
 
 class UrediVozaciForm(forms.ModelForm):
@@ -101,10 +101,10 @@ class UserAdminCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = (
+        fields = [
             "username",
             "name",
-        )
+        ]
         error_messages = {
             "username": {"unique": _("This username has already been taken.")}
         }

@@ -7,46 +7,38 @@ from pma_apps.users.models import Servis
 User = get_user_model()
 
 
-class DetaljiVozacaForm(forms.ModelForm):
+class DetaljiServisKorisnikaForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
         model = Servis
-        fields = (
+        fields = [
             "role",
             "name",
             "last_name",
             "email",
             "username",
-        )
+        ]
 
 
-class KreirajServisForm(UserCreationForm):
-    role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.SERVIS)
-    username = forms.CharField(help_text=None, label="Korisničko Ime: ")
-    password1 = forms.CharField(
-        help_text=None,
+class KreirajServisKorisnikaForm(UserCreationForm):
+    # role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.VOZAC)
+    first_name = forms.CharField(required=True, help_text="Ime*", label="")
+    last_name = forms.CharField(required=True, help_text="Prezime*", label="")
+    email = forms.EmailField(
+        required=True, help_text="E-Mail*", label="", widget=forms.EmailInput()
     )
-    password2 = forms.CharField(
-        help_text=None,
-    )
+    username = forms.CharField(required=True, help_text="Korisničko Ime*", label="")
+    password1 = forms.CharField(required=True, help_text="Lozinka*", label="")
+    password2 = forms.CharField(required=True, help_text="Potvrdi lozinku*", label="")
 
     class Meta:
         model = Servis
-        fields = (
-            "username",
-            "role",
+        fields = [
             "first_name",
             "last_name",
+            "username",
             "email",
             "password1",
             "password2",
-        )
-        help_texts = {
-            "username": None,
-            "email": None,
-        }
-        help_text = {
-            "password1": None,
-            "password2": None,
-        }
+        ]
