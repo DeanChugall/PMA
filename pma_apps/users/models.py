@@ -59,13 +59,6 @@ class Vozac(User):
         return "Only for VOZACe"
 
 
-# flake8: noqa: F811
-@receiver(post_save, sender=Vozac)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created and instance.role == "VOZAC":
-        VozacProfile.objects.create(user=instance)
-
-
 class VozacProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     vozac_id = models.IntegerField(null=True, blank=True)
@@ -75,8 +68,15 @@ class VozacProfile(models.Model):
     class Meta:
         db_table: str = "vozaci"
         verbose_name: str = "Vozac"
-        verbose_name_plural: str = "Voozaci"
+        verbose_name_plural: str = "Vozaci"
         ordering = ["-vozac_id"]
+
+
+# flake8: noqa: F811
+@receiver(post_save, sender=Vozac)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created and instance.role == "VOZAC":
+        VozacProfile.objects.create(user=instance)
 
 
 # ###########################################################
