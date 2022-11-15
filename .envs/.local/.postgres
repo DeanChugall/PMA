@@ -7,3 +7,11 @@ POSTGRES_DB=pma_database
 POSTGRES_USER=pma_database
 POSTGRES_PASSWORD=pma_database
 
+# PostgreSQL-TEST
+# ------------------------------------------------------------------------------
+ENGINE_TEST=django.db.backends.postgresql
+POSTGRES_HOST_TEST=postgres
+POSTGRES_PORT_TEST=5432
+POSTGRES_DB_TEST=pma_database
+POSTGRES_USER_TEST=pma_database
+POSTGRES_PASSWORD_TEST=pma_database

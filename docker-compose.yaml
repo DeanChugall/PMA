@@ -37,6 +37,17 @@ services:
     env_file:
       - ./.envs/.local/.postgres
 
+  postgres-test:
+    build:
+      context: .
+      dockerfile: compose/local/postgres/Dockerfile
+    image: postgres
+    container_name: postgres_pma_test
+    ports:
+      - "5433:5433"
+    env_file:
+      - ./.envs/.local/.postgres
+
   pgadmin-pma:
     container_name: pgadmin4-pma
     image: dpage/pgadmin4
