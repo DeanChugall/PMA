@@ -14,7 +14,7 @@ urlpatterns = [
     # path("<str:username>/", view=user_detail_view, name="detail"),
     # path("prijava/", views.login, name="vozaci-prijava"),
     path("prijava/", LoginKorisnikaView.as_view(), name="prijava"),
-    path("odjava/", views.logout, name="odjava"),
+    path("odjava/", views.logout, name="odjava"),  # use allauth view to logout user.
     path("zaboravljena-lozinka", views.password_reset, name="pass-reset"),
     path("kreiraj_vozaca/", KreirajVozacaView.as_view(), name="kreiraj_vozaca"),
     path(
