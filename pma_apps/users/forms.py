@@ -36,10 +36,7 @@ class UlogujVozacaForm(AuthenticationForm):
     )
 
     error_messages = {
-        "invalid_login": _(
-            "Please enter a correct %(username)s and password. Note that both "
-            "fields may be case-sensitive."
-        ),
+        "invalid_login": _("Došlo je do greške,proverite Vaše pristupne podatke."),
         "inactive": _("This account is inactive."),
     }
 
