@@ -3,6 +3,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 
 from pma_apps.auctions.models import Auction, Bid, Category
+from pma_apps.users.models import ServisProfile, VozacProfile
 
 User = get_user_model()
 
@@ -39,7 +40,8 @@ def ponude_view(request):
             "auctions_count": Auction.objects.all().count(),
             "bids_count": Bid.objects.all().count(),
             "categories_count": Category.objects.all().count(),
-            "users_count": User.objects.all().count(),
+            "users_count": VozacProfile.objects.all().count(),
+            "servisa_count": ServisProfile.objects.all().count(),
             "pages": pages,
             "title": "Dashboard",
         },

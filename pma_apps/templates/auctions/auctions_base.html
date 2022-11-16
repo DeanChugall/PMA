@@ -64,8 +64,7 @@
                             <!-- LOGO -->
                             <a class="logo-horizontal" href="{% url 'landing_page:landing_page' %}">
                                 <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
-                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1"
-                                    alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1" alt="logo">
                             </a>
                             <!-- END LOGO -->
 
@@ -103,15 +102,6 @@
                                             {% if user.role == "SERVIS" %}
                                                 <p>{{user.role}}</p>
                                             {% else %}
-
-                                                <!--  <div class="d-flex country">
-                                                    <a class="nav-link icon text-center" data-bs-target="#country-selector"
-                                                        data-bs-toggle="modal">
-                                                        <i class="fe fe-globe"></i><span
-                                                            class="fs-16 ms-2 d-none d-xl-block">IZBERI GRAD</span>
-                                                    </a>
-                                                </div> -->
-
                                             {% endif %}
                                             <!-- END CITY CHOSE -->
 
@@ -132,132 +122,8 @@
                                             </div>
                                             <!-- END FULL-SCREEN -->
 
-                                            <!-- NOTIFICATIONS -->
-                                            <!--  <div class="dropdown  d-flex notifications">
-                                                <a class="nav-link icon" data-bs-toggle="dropdown"><i
-                                                    class="fe fe-bell"></i><span class=" pulse"></span>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                    <div class="drop-heading border-bottom">
-                                                        <div class="d-flex">
-                                                            <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">
-                                                                Notifications
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="notifications-menu">
-                                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                                            <div
-                                                                class="me-3 notifyimg  bg-primary brround box-shadow-primary">
-                                                                <i class="fe fe-mail"></i>
-                                                            </div>
-                                                            <div class="mt-1 wd-80p">
-                                                                <h5 class="notification-label mb-1">New Application
-                                                                    received
-                                                                </h5>
-                                                                <span class="notification-subtext">3 days ago</span>
-                                                            </div>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                                            <div
-                                                                class="me-3 notifyimg  bg-secondary brround box-shadow-secondary">
-                                                                <i class="fe fe-check-circle"></i>
-                                                            </div>
-                                                            <div class="mt-1 wd-80p">
-                                                                <h5 class="notification-label mb-1">Project has been
-                                                                    approved</h5>
-                                                                <span class="notification-subtext">2 hours ago</span>
-                                                            </div>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                                            <div
-                                                                class="me-3 notifyimg  bg-success brround box-shadow-success">
-                                                                <i class="fe fe-shopping-cart"></i>
-                                                            </div>
-                                                            <div class="mt-1 wd-80p">
-                                                                <h5 class="notification-label mb-1">Your Product
-                                                                    Delivered
-                                                                </h5>
-                                                                <span class="notification-subtext">30 min ago</span>
-                                                            </div>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                                            <div class="me-3 notifyimg bg-pink brround box-shadow-pink">
-                                                                <i class="fe fe-user-plus"></i>
-                                                            </div>
-                                                            <div class="mt-1 wd-80p">
-                                                                <h5 class="notification-label mb-1">Friend Requests</h5>
-                                                                <span class="notification-subtext">1 day ago</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="dropdown-divider m-0"></div>
-                                                    <a href="notify-list.html"
-                                                        class="dropdown-item text-center p-3 text-muted">View all
-                                                        Notification</a>
-                                                </div>
-                                            </div> -->
-                                            <!-- END NOTIFICATIONS -->
-
-                                            <!-- MESSAGE-BOX -->
-                                            <!--  <div class="dropdown  d-flex message">
-                                                <a class="nav-link icon text-center" data-bs-toggle="dropdown">
-                                                    <i class="fe fe-message-square"></i><span
-                                                        class="pulse-danger"></span>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                    <div class="drop-heading border-bottom">
-                                                        <div class="d-flex">
-                                                            <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">You have 5
-                                                                Messages</h6>
-                                                            <div class="ms-auto">
-                                                                <a href="javascript:void(0)"
-                                                                    class="text-muted p-0 fs-12">make
-                                                                    all unread</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="message-menu message-menu-scroll">
-                                                        <a class="dropdown-item d-flex" href="chat.html">
-                                                            <span
-                                                                class="avatar avatar-md brround me-3 align-self-center cover-image"
-                                                                data-bs-image-src="{% static 'assets/images/users/1.jpg' %}"></span>
-                                                            <div class="wd-90p">
-                                                                <div class="d-flex">
-                                                                    <h5 class="mb-1">Peter Theil</h5>
-                                                                    <small class="text-muted ms-auto text-end">
-                                                                        6:45 am
-                                                                    </small>
-                                                                </div>
-                                                                <span>Commented on file Guest list....</span>
-                                                            </div>
-                                                        </a>
-                                                        <a class="dropdown-item d-flex" href="chat.html">
-                                                            <span
-                                                                class="avatar avatar-md brround me-3 align-self-center cover-image"
-                                                                data-bs-image-src="{% static 'assets/images/users/15.jpg' %}"></span>
-                                                            <div class="wd-90p">
-                                                                <div class="d-flex">
-                                                                    <h5 class="mb-1">Abagael Luth</h5>
-                                                                    <small class="text-muted ms-auto text-end">
-                                                                        10:35 am
-                                                                    </small>
-                                                                </div>
-                                                                <span>New Meetup Started......</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="dropdown-divider m-0"></div>
-                                                    <a href="javascript:void(0)"
-                                                        class="dropdown-item text-center p-3 text-muted">See all
-                                                        Messages</a>
-                                                </div>
-                                            </div> -->
-                                            <!-- END MESSAGE-BOX -->
-
                                             <!-- PROFILE HEADER -->
                                             <div class="dropdown d-flex profile-1">
-
                                                 {% if user.is_authenticated %}
                                                     <a href="javascript:void(0)" data-bs-toggle="dropdown"
                                                         class="nav-link leading-none d-flex">
@@ -406,28 +272,120 @@
 
                         <!-- PAGE-HEADER -->
                         <div class="page-header">
-                            <h1 class="page-title">Maps</h1>
+                            <h1 class="page-title">@PMA Statistika</h1>
                         </div>
                         <!-- PAGE-HEADER END -->
 
-                        <!-- Row -->
+                        <!-- ROW-1 -->
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Map with links between the plotted cities</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mapcontainer">
-                                            <div class="map pt-0">
-                                                <span>Alternative content for the map</span>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                                <div class="row">
+
+                                    <!-- Ukupan Broj SERVISA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="mt-2">
+                                                        <h6 class="">Broj SERIVSA</h6>
+                                                        <h2 class="mb-0 number-font">{{ servisa_count }}</h2>
+                                                    </div>
+                                                    <div class="ms-auto">
+                                                        <div class="chart-wrapper mt-1">
+                                                            <canvas id="costchart"
+                                                                class="h-8 w-9 chart-dropshadow"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="text-muted fs-12"><span class="text-warning"><i
+                                                    class="fe fe-arrow-up-circle text-warning"></i> 0.6%</span>
+                                                    Last year</span>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- END Ukupan Broj SERVISA -->
+
+                                    <!-- Ukupno Kategorija SERVISA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="mt-2">
+                                                        <h6 class="">Ukupno KATEGORIJA SERVISA</h6>
+                                                        <h2 class="mb-0 number-font">{{ categories_count }}</h2>
+                                                    </div>
+                                                    <div class="ms-auto">
+                                                        <div class="chart-wrapper mt-1">
+                                                            <canvas id="saleschart"
+                                                                class="h-8 w-9 chart-dropshadow"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="text-muted fs-12"><span class="text-secondary"><i
+                                                    class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
+                                                    Last week</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Ukupno Kategorija SERVISA -->
+
+                                    <!-- Ukupan Broj VOZČA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="mt-2">
+                                                        <h6 class="">Broj VOZAČA</h6>
+                                                        <h2 class="mb-0 number-font">{{ users_count }}</h2>
+                                                    </div>
+                                                    <div class="ms-auto">
+                                                        <div class="chart-wrapper mt-1">
+                                                            <canvas id="profitchart"
+                                                                class="h-8 w-9 chart-dropshadow"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="text-muted fs-12"><span class="text-green"><i
+                                                    class="fe fe-arrow-up-circle text-green"></i> 0.9%</span>
+                                                    Last 9 days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Ukupan Broj VOZČA -->
+
+                                    <!-- Ukupan Broj ZAHTEVA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="mt-2">
+                                                        <h6 class="">Ukupan Broj ZAHTEVA</h6>
+                                                        <h2 class="mb-0 number-font">{{ auctions_count }}</h2>
+                                                    </div>
+                                                    <div class="ms-auto">
+                                                        <div class="chart-wrapper mt-1">
+                                                            <canvas id="leadschart"
+                                                                class="h-8 w-9 chart-dropshadow"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="text-muted fs-12">
+                                                    <span class="text-pink">
+                                                        <i class="fe fe-arrow-down-circle text-pink"></i> 0.75%
+                                                    </span>poslednjih 6 dana
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Ukupan Broj ZAHTEVA -->
+
+
+
+
                                 </div>
                             </div>
                         </div>
-                        <!-- /Row -->
+                        <!-- ROW-1 END -->
                     </div>
                     <!-- CONTAINER CLOSED -->
                 </div>
@@ -439,18 +397,14 @@
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
                     <div class="col-md-12 col-sm-12 text-center">
-                        Copyright © <span id="year"></span> <a href="javascript:void(0)">Sash</a>. Designed with
-                        <span
-                            class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> PMA </a> All
-                        rights
-                        reserved.
+                        Copyright © <span id="year"></span> <a href="{% url 'landing_page:landing_page' %}">@PMA</a>. Designed with
+                        <span class="fa fa-heart text-danger"></span> by <a href="{% url 'landing_page:landing_page' %}"> PMA </a> All rights reserved.
                     </div>
                 </div>
             </div>
         </footer>
         <!-- FOOTER CLOSED -->
     </div>
-
 
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
