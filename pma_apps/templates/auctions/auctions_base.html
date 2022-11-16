@@ -61,6 +61,11 @@
                         <div class="d-flex">
                             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar"
                                 href="javascript:void(0)"></a>
+                            <a class="logo-horizontal" href="{% url 'landing_page:landing_page' %}">
+                                <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1"
+                                    alt="logo">
+                            </a>
                             <div class="main-header-center ms-3 d-none d-lg-block">
                                 <input type="text" class="form-control" id="typehead"
                                     placeholder="Search for results..."
@@ -429,96 +434,6 @@
             </div>
             <!--app-content closed-->
         </div>
-
-
-        <!-- Country-selector modal-->
-        <div class="modal fade" id="country-selector">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content country-select-modal">
-                    <div class="modal-header">
-                        <h6 class="modal-title">Choose Country</h6>
-                        <button aria-label="Close" class="btn-close"
-                            data-bs-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="row p-3">
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block active">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/us_flag.jpg"
-                                        class="me-3 language"></span>USA
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/italy_flag.jpg"
-                                        class="me-3 language"></span>Italy
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/spain_flag.jpg"
-                                        class="me-3 language"></span>Spain
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/india_flag.jpg"
-                                        class="me-3 language"></span>India
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/french_flag.jpg"
-                                        class="me-3 language"></span>French
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/russia_flag.jpg"
-                                        class="me-3 language"></span>Russia
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/germany_flag.jpg"
-                                        class="me-3 language"></span>Germany
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/argentina.jpg"
-                                        class="me-3 language"></span>Argentina
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/malaysia.jpg"
-                                        class="me-3 language"></span>Malaysia
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="../assets/images/flags/turkey.jpg"
-                                        class="me-3 language"></span>Turkey
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Country-selector modal-->
-
         <!-- FOOTER -->
         <footer class="footer">
             <div class="container">
@@ -543,12 +458,6 @@
     {% block javascript %}
 
         <!-- INTERNAL Mapel Plugin -->
-        <script src="{% static 'assets/plugins/mapel/raphael.min.js' %}"></script>
-        <script src="{% static 'assets/plugins/mapel/jquery.mapael.js' %}"></script>
-        <script src="{% static 'assets/plugins/mapel/maps/france_departments.js' %}"></script>
-        <script src="{% static 'assets/plugins/mapel/maps/world_countries.js' %}"></script>
-        <script src="{% static 'assets/plugins/mapel/maps/usa_states.js' %}"></script>
-        <script src="{% static 'assets/js/mapelmaps.js' %}"></script>
 
         <!-- JQUERY JS -->
         <script src="{% static 'assets/js/jquery.min.js' %}"></script>
@@ -569,8 +478,6 @@
 
         <!-- Perfect SCROLLBAR JS-->
         <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
-        <script src="{% static 'assets/plugins/p-scroll/pscroll.js' %}"></script>
-        <script src="{% static 'assets/plugins/p-scroll/pscroll-1.js' %}"></script>
 
         <!-- Color Theme js -->
         <script src="{% static 'assets/js/themeColors.js' %}"></script>
@@ -582,7 +489,6 @@
         <script src="{% static 'assets/js/custom1.js' %}"></script>
 
         <!-- Switcher js -->
-        <script src="{% static 'assets/switcher/js/switcher.js' %}"></script>
     {% endblock javascript %}
 </body>
 
