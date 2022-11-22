@@ -21,7 +21,7 @@ def ponude_view(request):
 
     # Show 5 auctions_obj per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions_obj, 5)
+    paginator = Paginator(auctions_obj, 25)
 
     try:
         pages = paginator.page(page)
