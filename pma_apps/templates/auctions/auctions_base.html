@@ -489,10 +489,9 @@
                                                                                 <th class="bg-transparent border-bottom-0"  style="width: 5%;">Naslov</th>
                                                                                 <th class="bg-transparent border-bottom-0">Kategorija</th>
                                                                                 <th class="bg-transparent border-bottom-0">Datum Kreiranja</th>
-                                                                                <th class="bg-transparent border-bottom-0">Starting Bid</th>
-                                                                                <th class="bg-transparent border-bottom-0">Current Bid</th>
+                                                                                <th class="bg-transparent border-bottom-0">Startna Cena</th>
+                                                                                <th class="bg-transparent border-bottom-0">Cena Servisa</th>
                                                                                 <th class="bg-transparent border-bottom-0" style="width: 10%;">Status</th>
-                                                                                <th class="bg-transparent border-bottom-0" style="width: 5%;">Action</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -520,26 +519,17 @@
                                                                                         </div>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <span class="mt-sm-2 d-block">30 Aug 2021</span>
+                                                                                        <span class="mt-sm-2 d-block">{{ auction.starting_bid }} rsd</span>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <span class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
+                                                                                        <span class="fw-semibold mt-sm-2 d-block">{{ auction.current_bid }} rsd</span>
                                                                                     </td>
                                                                                     <td>
                                                                                         <div class="mt-sm-1 d-block">
-                                                                                            <span class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
+                                                                                            <span class="badge bg-success-transparent rounded-pill text-success p-2 px-3">{{ auction.active }}</span>
                                                                                         </div>
                                                                                     </td>
-                                                                                    <td>
-                                                                                        <div class="g-2">
-                                                                                            <a class="btn text-primary btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Edit">
-                                                                                                <span class="fe fe-edit fs-14"></span>
-                                                                                            </a>
-                                                                                            <a class="btn text-danger btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Delete">
-                                                                                                <span class="fe fe-trash-2 fs-14"></span>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </td>
+
                                                                                 </tr>
                                                                             {% endfor %}
                                                                         </tbody>
@@ -650,17 +640,6 @@
 
         <!-- CUSTOM JS -->
         <script src="{% static 'assets/js/custom.js' %}"></script>
-
-        <script>
-            function shortingText(value) {
-                if(value.length <= 10) {
-                    return value;
-                }
-
-                return value.substring(0, 5) + '...';
-
-            }
-        </script>
 
     {% endblock javascript %}
 </body>
