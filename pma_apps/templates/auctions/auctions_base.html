@@ -250,7 +250,9 @@
                             </li>
                             {% for category in categories %}
                                 <li class="slide">
-                                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                                    <a class="side-menu__item"
+                                        data-bs-toggle="slide"
+                                        href="{% url 'ponude:category_details_view' category.category_name %}">
                                         <i class="side-menu__icon fe fe-slack"></i>
                                         <span class="side-menu__label">{{ category }}</span>
                                         <span class="side-menu__label">{{ category.count_active_auctions }}</span>

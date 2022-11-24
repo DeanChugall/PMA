@@ -46,3 +46,39 @@ def ponude_view(request):
             "title": "Dashboard",
         },
     )
+
+
+def category_details_view(request, category_name):
+    """
+    Clicking on the name of any category takes the user to a page that
+    displays all the active listings in that category
+    Auctions are paginated: 3 per page
+    """
+
+    category = Category.objects.get(category_name=category_name)
+    auctions = Auction.objects.filter(category=category)
+
+    for auction in auctions:
+        auction.image = auction.get_images.first()
+
+    # Show 3 active auctions per page
+    page = request.GET.get("page", 1)
+    paginator = Paginator(auctions, 3)
+    try:
+        pages = paginator.page(page)
+    except PageNotAnInteger:
+        pages = paginator.page(1)
+    except EmptyPage:
+        pages = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        "auctions/auctions_category.html",
+        {
+            "categories": Category.objects.all(),
+            "auctions": auctions,
+            "auctions_count": auctions.count(),
+            "pages": pages,
+            "title": category.category_name,
+        },
+    )

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>auctions_category</title>
+    </head>
+    <body>
+        {% for auction in pages %}
+            <div class='col mb-5'>
+                <div class='card h-100'>
+                    <!-- Product image-->
+                    <div class='auction_image_first d-flex justify-content-center'>
+                        <div class='auction_image_second'>
+                            <img class='auction_image_third' src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no_image.png' }}" alt='Product image'>
+                        </div>
+                    </div>
+
+                    <!-- Product details-->
+                    <div class='card-body p-4'>
+                        <div class='text-center'>
+
+                            <!-- Product name-->
+                            <h5 class='fw-bolder'>{{ auction.title }}</h5>
+
+                            <!-- Product reviews-->
+                            <div class='d-flex justify-content-center small text-warning mb-2'>
+                                <div class='bi-star-fill'></div>
+                                <div class='bi-star-fill'></div>
+                                <div class='bi-star-fill'></div>
+                                <div class='bi-star-fill'></div>
+                                <div class='bi-star-fill'></div>
+                            </div>
+
+                            <!-- Product price-->
+                            {% if auction.current_bid %}
+                                &euro;{{auction.current_bid}}
+                            {% else %}
+                                &euro;{{auction.starting_bid}}
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                    <!-- Product actions-->
+                    <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
+                        <div class='text-center'>
+                            View details
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        {% endfor %}
+    </body>
+</html>
