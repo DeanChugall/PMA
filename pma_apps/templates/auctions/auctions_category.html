@@ -1,56 +1,945 @@
 <!DOCTYPE html>
-<html lang="en">
+
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+
     <head>
+        <style>
+            .tblColEllipsis {
+                max-width: 150px; /* Customise it accordingly */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+        <!-- META DATA -->
         <meta charset="UTF-8">
-        <title>auctions_category</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="@PMA Dashboard">
+        <meta name="author" content="@PMA Technologies Private Limited">
+        <meta name="keywords" content="Popravi Moj Auto.">
+
+        <!-- FAVICON -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}"/>
+
+        <!-- TITLE -->
+        <title>@PMA || Popravi Moj Auto ltd.</title>
+
+        <!-- BOOTSTRAP CSS -->
+        <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+
+        <!-- STYLE CSS -->
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/css/dark-style.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/css/transparent-style.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet"/>
+
+        <!--- FONT-ICONS CSS -->
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"/>
+
+        <!-- COLOR SKIN CSS -->
+        <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}"/>
+
+        <!-- INTERNAL Switcher css -->
+        <link href="{% static 'assets/switcher/css/switcher.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/switcher/demo.css' %}" rel="stylesheet"/>
+
     </head>
-    <body>
-        {% for auction in pages %}
-            <div class='col mb-5'>
-                <div class='card h-100'>
-                    <!-- Product image-->
-                    <div class='auction_image_first d-flex justify-content-center'>
-                        <div class='auction_image_second'>
-                            <img class='auction_image_third' src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no_image.png' }}" alt='Product image'>
-                        </div>
-                    </div>
 
-                    <!-- Product details-->
-                    <div class='card-body p-4'>
-                        <div class='text-center'>
+    <body class="app sidebar-mini ltr dark-mode">
 
-                            <!-- Product name-->
-                            <h5 class='fw-bolder'>{{ auction.title }}</h5>
 
-                            <!-- Product reviews-->
-                            <div class='d-flex justify-content-center small text-warning mb-2'>
-                                <div class='bi-star-fill'></div>
-                                <div class='bi-star-fill'></div>
-                                <div class='bi-star-fill'></div>
-                                <div class='bi-star-fill'></div>
-                                <div class='bi-star-fill'></div>
+        <!-- GLOBAL-LOADER -->
+        <div id="global-loader">
+            <img src="{% static 'assets/images/loader.svg' %}" class="loader-img" alt="Loader">
+        </div>
+        <!-- /GLOBAL-LOADER -->
+
+    <!-- PAGE -->
+    <div class="page">
+        <div class="page-main">
+
+                <!-- app-Header -->
+                <div class="app-header header sticky">
+                    <div class="container-fluid main-container">
+                        <div class="d-flex">
+                            <!-- sidebar-toggle-->
+                            <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
+                            <!-- LOGO -->
+                            <a class="logo-horizontal" href="{% url 'landing_page:landing_page' %}">
+                                <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1" alt="logo">
+                            </a>
+                            <!-- END LOGO -->
+
+                            <!-- SEARCH -->
+                            <div class="main-header-center ms-3 d-none d-lg-block">
+                                <input type="text" class="form-control" id="typehead" placeholder="Pretraga..." autocomplete="off">
+                                <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
                             </div>
+                            <!-- END SEARCH -->
+                            <div class="d-flex order-lg-2 ms-auto header-right-icons">
+                                <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
+                                    aria-controls="navbarSupportedContent-4" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon fe fe-more-vertical"></span>
+                                </button>
+                                <div class="navbar navbar-collapse responsive-navbar p-0">
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                                        <div class="d-flex order-lg-2">
+                                            <div class="dropdown d-lg-none d-flex">
+                                                <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
+                                                    <i class="fe fe-search"></i>
+                                                </a>
+                                                <div class="dropdown-menu header-search dropdown-menu-start">
+                                                    <div class="input-group w-100 p-2">
+                                                        <input type="text" class="form-control" placeholder="Pretraži....">
+                                                        <div class="input-group-text btn btn-primary">
+                                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                            <!-- Product price-->
-                            {% if auction.current_bid %}
-                                &euro;{{auction.current_bid}}
-                            {% else %}
-                                &euro;{{auction.starting_bid}}
-                            {% endif %}
+                                            <!-- CITY CHOSE -->
+                                            {% if user.role == "SERVIS" %}
+                                                <p>{{user.role}}</p>
+                                            {% else %}
+                                            {% endif %}
+                                            <!-- END CITY CHOSE -->
 
+                                            <!-- Theme-Layout DARK-LIGHT -->
+                                            <div class="d-flex country">
+                                                <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                                    <span class="dark-layout"><i class="fe fe-moon"></i></span>
+                                                    <span class="light-layout"><i class="fe fe-sun"></i></span>
+                                                </a>
+                                            </div>
+                                            <!-- END Theme-Layout DARK-LIGHT -->
+
+                                            <!-- FULL-SCREEN -->
+                                            <div class="dropdown d-flex">
+                                                <a class="nav-link icon full-screen-link nav-link-bg">
+                                                    <i class="fe fe-minimize fullscreen-button"></i>
+                                                </a>
+                                            </div>
+                                            <!-- END FULL-SCREEN -->
+
+                                            <!-- PROFILE HEADER -->
+                                            <div class="dropdown d-flex profile-1">
+                                                {% if user.is_authenticated %}
+                                                    <a href="javascript:void(0)" data-bs-toggle="dropdown"
+                                                        class="nav-link leading-none d-flex">
+                                                        <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                        <div class="drop-heading">
+                                                            <div class="text-center">
+                                                                <h5 class="text-dark mb-0 fs-14 fw-semibold">{{ user.username }}</h5>
+                                                                <small class="text-muted">{{ user.role }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-divider m-0"></div>
+                                                        {% if user.role == "VOZAC" %}
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'users:detalji_vozaca' request.user.username  %}">
+                                                                <i class="dropdown-icon fe fe-user"></i>
+                                                                Profil
+                                                            </a>
+                                                        {% else %}
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'auto_servis:detalji_servisa' request.user.username  %}">
+                                                                <i class="dropdown-icon fe fe-user"></i>
+                                                                Profil
+                                                            </a>
+                                                        {% endif %}
+                                                        <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                                            <i class="dropdown-icon fe fe-alert-circle"></i> Odjava
+                                                        </a>
+                                                {% else %}
+                                                    <a href="{% url 'users:kreiraj_vozaca' %}"
+                                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto"
+                                                        target="_self">Registracija
+                                                    </a>
+                                                    <a href="{% url 'users:prijava' %}"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
+                                                        target="_self">Prijava
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <!-- END PROFILE HEADER -->
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Product actions-->
-                    <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
-                        <div class='text-center'>
-                            View details
-                        </a>
                     </div>
                 </div>
+            </div>
+            <!-- /app-Header -->
 
+            <!--APP-SIDEBAR-->
+            <div class="sticky">
+                <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                <div class="app-sidebar">
+                    <div class="side-header">
+                        <!-- SIDE BAR LOGO -->
+                        <a class="header-brand1" href="{% url 'landing_page:landing_page' %}">
+                            <img src="{% static 'assets/images/brand/logo.png' %}"
+                                class="header-brand-img desktop-logo"
+                                alt="logo">
+                            <img src="{% static 'assets/images/brand/logo-1.png' %}"
+                                class="header-brand-img toggle-logo"
+                                alt="logo">
+                            <img src="{% static 'assets/images/brand/logo-2.png' %}"
+                                class="header-brand-img light-logo"
+                                alt="logo">
+                            <img src="{% static 'assets/images/brand/logo-3.png' %}"
+                                class="header-brand-img light-logo1"
+                                alt="logo">
+                        </a>
+                        <!-- END SIDE BAR LOGO -->
+                    </div>
+                    <div class="main-sidemenu">
+                        <div class="slide-left disabled" id="slide-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/>
+                            </svg>
+                        </div>
+                        <ul class="side-menu">
+                            <li class="sub-category">
+                                <h3>Popravi Moj Auto</h3>
+                            </li>
+                            <li class="slide">
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{% url 'ponude:ponude' %}">
+                                    <i class="side-menu__icon fe fe-pie-chart"></i>
+                                    <span class="side-menu__label">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="slide">
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{% url 'ponude:ponude' %}">
+                                    <i class="side-menu__icon fe fe-list"></i>
+                                    <span class="side-menu__label">Aktivni Zahtevi</span>
+                                </a>
+                            </li>
+                            {% if user.is_authenticated %}
+                                <li class="slide">
+                                    <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                        href="{% url 'ponude:ponude' %}">
+                                        <i class="side-menu__icon fe fe-eye"></i>
+                                        <span class="side-menu__label">Zahtevi Koje Pratim</span>
+                                    </a>
+                                </li>
+                                <li class="slide">
+                                    <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                        href="{% url 'ponude:ponude' %}">
+                                        <i class="side-menu__icon fe fe-plus-square"></i>
+                                        <span class="side-menu__label">Kreiraj Zahtev Za Ponudu</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <li class="sub-category">
+                                <h3>Zahtevi Za Ponude</h3>
+                            </li>
+                            {% for category in categories %}
+                                <li class="slide">
+                                    <a class="side-menu__item"
+                                        data-bs-toggle="slide"
+                                        href="{% url 'ponude:category_details_view' category.category_name %}">
+                                        <i class="side-menu__icon fe fe-slack"></i>
+                                        <span class="side-menu__label">{{ category }}</span>
+                                        <span class="side-menu__label">{{ category.count_active_auctions }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                        <div class="slide-right" id="slide-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- END APP-SIDEBAR-->
             </div>
+
+            <!--app-content open-->
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Shop</h1>
+                            <div>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0)">E-Commerce</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- PAGE-HEADER END -->
+
+                        <!-- ROW-1 OPEN -->
+                        <div class="row row-cards">
+
+                            <!-- COL-END -->
+                            <div class="col-xl-12 col-lg-8">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card p-0">
+                                            <div class="card-body p-4">
+                                                <div class="row">
+                                                    <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
+                                                        <div class="input-group d-flex w-100 float-start">
+                                                            <input type="text" class="form-control border-end-0 my-2" placeholder="Search ...">
+                                                            <button class="btn input-group-text bg-transparent border-start-0 text-muted my-2">
+                                                                <i class="fe fe-search text-muted" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                                        <ul class="nav item2-gl-menu float-end my-2">
+                                                            <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style"><i class="fa fa-th"></i></a></li>
+                                                            <li><a href="#tab-12" data-bs-toggle="tab" class="" title="Grid"><i class="fa fa-list"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-12">
+                                                        <a href="add-product.html" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>New Product</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-11">
+                                        <div class="row">
+                                            <div class="col-md-6 col-xl-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="product-grid6">
+                                                        <div class="product-image6 p-5">
+                                                            <ul class="icons">
+                                                                <li>
+                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
+                                                                </li>
+                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                                            </ul>
+                                                            <a href="shop-description.html" >
+                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/9.jpg" alt="img">
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div class="product-content text-center">
+                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Candy Pure Rose Water</a></h1>
+                                                                <div class="mb-2 text-warning">
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                                    <i class="fa fa-star-o text-warning"></i>
+                                                                </div>
+                                                                <div class="price">$599<span class="ms-4">$799</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer text-center">
+                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="product-grid6">
+                                                        <div class="product-image6 p-5">
+                                                            <ul class="icons">
+                                                                <li>
+                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
+                                                                </li>
+                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                                            </ul>
+                                                            <a href="shop-description.html" >
+                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/10.jpg" alt="img">
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div class="product-content text-center">
+                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">White Tshirt for Men</a></h1>
+                                                                <div class="mb-2 text-warning">
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                                    <i class="fa fa-star-o text-warning"></i>
+                                                                </div>
+                                                                <div class="price">$1,399<span class="ms-4">$1,599</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer text-center">
+                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="product-grid6">
+                                                        <div class="product-image6 p-5">
+                                                            <ul class="icons">
+                                                                <li>
+                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
+                                                                </li>
+                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                                            </ul>
+                                                            <a href="shop-description.html" >
+                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/4.jpg" alt="img">
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div class="product-content text-center">
+                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Flower Pot for Home Decor</a></h1>
+                                                                <div class="mb-2 text-warning">
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                                    <i class="fa fa-star-o text-warning"></i>
+                                                                </div>
+                                                                <div class="price">$1,299<span class="ms-4">$1,899</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer text-center">
+                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="product-grid6">
+                                                        <div class="product-image6 p-5">
+                                                            <ul class="icons">
+                                                                <li>
+                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
+                                                                </li>
+                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                                            </ul>
+                                                            <a href="shop-description.html" >
+                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/8.jpg" alt="img">
+                                                            </a>
+                                                        </div>
+                                                        <div class="card-body pt-0">
+                                                            <div class="product-content text-center">
+                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Stylish Rockerz 255 Ear Pods</a></h1>
+                                                                <div class="mb-2 text-warning">
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                                    <i class="fa fa-star-o text-warning"></i>
+                                                                </div>
+                                                                <div class="price">$16,599<span class="ms-4">$19,799</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer text-center">
+                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-5">
+                                                <div class="float-end">
+                                                    <ul class="pagination ">
+                                                        <li class="page-item page-prev disabled">
+                                                            <a class="page-link" href="javascript:void(0)" tabindex="-1">Prev</a>
+                                                        </li>
+                                                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">5</a></li>
+                                                        <li class="page-item page-next">
+                                                            <a class="page-link" href="javascript:void(0)">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab-12">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="card overflow-hidden">
+                                                    <div class="card-body">
+                                                        <div class="row g-0">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12">
+                                                                <div class="product-list">
+                                                                    <div class="product-image">
+                                                                        <ul class="icons">
+                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
+                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="br-be-0 br-te-0">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <img src="../assets/images/pngs/9.jpg" alt="img" class="cover-image br-7 w-100">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <h3 class="fw-bold fs-30 mb-3">Candy Pure Rose Water</h3>
+                                                                            <div class="mb-2 text-warning">
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
+                                                                            </div>
+                                                                        </a>
+                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
+                                                                        <form class="shop__filter">
+                                                                            <div class="row gutters-xs">
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked>
+                                                                                        <span class="colorinput-color bg-azure"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-indigo"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-purple"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                                <div class="card-body p-0">
+                                                                    <div class="price h3 text-center mb-5 fw-bold">$599</div>
+                                                                    <a href="cart.html" class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                                    <a href="wishlist.html" class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="card overflow-hidden">
+                                                    <div class="card-body">
+                                                        <div class="row g-0">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12">
+                                                                <div class="product-list">
+                                                                    <div class="product-image">
+                                                                        <ul class="icons">
+                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
+                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="br-be-0 br-te-0">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <img src="../assets/images/pngs/10.jpg" alt="img" class="cover-image br-7 w-100">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <h3 class="fw-bold fs-30 mb-3">White Tshirt for Men</h3>
+                                                                            <div class="mb-2 text-warning">
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
+                                                                            </div>
+                                                                        </a>
+                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
+                                                                        <form class="shop__filter">
+                                                                            <div class="row gutters-xs">
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
+                                                                                        <span class="colorinput-color bg-azure"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-indigo"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-purple"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                                <div class="card-body p-0">
+                                                                    <div class="price h3 text-center mb-5 fw-bold">$1,399</div>
+                                                                    <a href="cart.html" class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                                    <a href="wishlist.html" class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="card overflow-hidden">
+                                                    <div class="card-body">
+                                                        <div class="row g-0">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12">
+                                                                <div class="product-list">
+                                                                    <div class="product-image">
+                                                                        <ul class="icons">
+                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
+                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="br-be-0 br-te-0">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <img src="../assets/images/pngs/8.jpg" alt="img" class="cover-image br-7 w-100">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <h3 class="fw-bold fs-30 mb-3">Stylish Rockerz 255 Ear Pods</h3>
+                                                                            <div class="mb-2 text-warning">
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
+                                                                            </div>
+                                                                        </a>
+                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
+                                                                        <form class="shop__filter">
+                                                                            <div class="row gutters-xs">
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
+                                                                                        <span class="colorinput-color bg-azure"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-indigo"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-purple"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                                <div class="card-body p-0">
+                                                                    <div class="price h3 text-center mb-5 fw-bold">$16,599</div>
+                                                                    <a href="cart.html"><span  class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</span></a>
+                                                                    <a href="wishlist.html"><span  class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="card overflow-hidden">
+                                                    <div class="card-body">
+                                                        <div class="row g-0">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12">
+                                                                <div class="product-list">
+                                                                    <div class="product-image">
+                                                                        <ul class="icons">
+                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
+                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="br-be-0 br-te-0">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <img src="../assets/images/pngs/4.jpg" alt="img" class="cover-image br-7 w-100">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <h3 class="fw-bold fs-30 mb-3">Flower Pot for Home Decor</h3>
+                                                                            <div class="mb-2 text-warning">
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
+                                                                            </div>
+                                                                        </a>
+                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
+                                                                        <form class="shop__filter">
+                                                                            <div class="row gutters-xs">
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
+                                                                                        <span class="colorinput-color bg-azure"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-indigo"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-purple"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                                <div class="card-body p-0">
+                                                                    <div class="price h3 text-center mb-5 fw-bold">$1,299</div>
+                                                                    <a href="cart.html"><span class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</span></a>
+                                                                    <a href="wishlist.html"><span class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="card overflow-hidden">
+                                                    <div class="card-body">
+                                                        <div class="row g-0">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12">
+                                                                <div class="product-list">
+                                                                    <div class="product-image">
+                                                                        <ul class="icons">
+                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
+                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="br-be-0 br-te-0">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <img src="../assets/images/pngs/3.jpg" alt="img" class="cover-image br-7 w-100">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <a href="shop-description.html" class="">
+                                                                            <h3 class="fw-bold fs-30 mb-3">Running Shoes for men</h3>
+                                                                            <div class="mb-2 text-warning">
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
+                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
+                                                                            </div>
+                                                                        </a>
+                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
+                                                                        <form class="shop__filter">
+                                                                            <div class="row gutters-xs">
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
+                                                                                        <span class="colorinput-color bg-azure"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-indigo"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-purple"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                                <div class="card-body p-0">
+                                                                    <div class="price h3 text-center mb-5 fw-bold">$6,599</div>
+                                                                    <a href="cart.html"><span class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</span></a>
+                                                                    <a href="wishlist.html"><span class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-5">
+                                                <div class="float-end">
+                                                    <ul class="pagination ">
+                                                        <li class="page-item page-prev disabled">
+                                                            <a class="page-link" href="javascript:void(0)" tabindex="-1">Prev</a>
+                                                        </li>
+                                                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
+                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">5</a></li>
+                                                        <li class="page-item page-next">
+                                                            <a class="page-link" href="javascript:void(0)">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- COL-END -->
+                            </div>
+                            <!-- ROW-1 CLOSED -->
+                        </div>
+                        <!-- ROW-1 END -->
+                    </div>
+                    <!-- CONTAINER CLOSED -->
+                </div>
             </div>
-        {% endfor %}
-    </body>
+            <!--app-content closed-->
+        </div>
+
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        Copyright © <span id="year"></span> <a href="javascript:void(0)">Sash</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> Spruko </a> All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER CLOSED -->
+    </div>
+
+    <!-- BACK-TO-TOP -->
+    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    {% block javascript %}
+
+
+
+    <!-- JQUERY JS -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="{% static 'assets/plugins/input-mask/jquery.mask.min.js' %}"></script>
+
+    <!-- Ion.RangeSlider js-->
+    <script src="{% static 'assets/plugins/jquery-uislider/jquery-ui.js' %}"></script>
+    <script src="{% static 'assets/js/slider.js' %}"></script>
+
+    <!-- SIDE-MENU JS -->
+    <script src="{% static 'assets/plugins/sidemenu/sidemenu.js' %}"></script>
+
+	<!-- TypeHead js -->
+	<script src="{% static 'assets/plugins/bootstrap5-typehead/autocomplete.js' %}"></script>
+    <script src="{% static 'assets/js/typehead.js' %}"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="{% static 'assets/plugins/sidebar/sidebar.js' %}"></script>
+
+    <!-- INTERNAL SELECT2 JS -->
+    <script src="{% static 'assets/plugins/select2/select2.full.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/plugins/p-scroll/pscroll.js' %}"></script>
+    <script src="{% static 'assets/plugins/p-scroll/pscroll-1.js' %}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+    <!-- Sticky js -->
+    <script src="{% static 'assets/js/sticky.js' %}"></script>
+
+    <!-- CUSTOM JS-->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    {% endblock javascript %}
+</body>
+
 </html>

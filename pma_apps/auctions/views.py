@@ -32,7 +32,7 @@ def ponude_view(request):
 
     return render(
         request,
-        "auctions/auctions.html",
+        "auctions/auctions_dashboard.html",
         {
             "categories": Category.objects.all(),
             "auctions_obj": auctions_obj,
