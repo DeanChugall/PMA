@@ -53,7 +53,7 @@ class Auction(models.Model):
     @property
     def prethodna_ponuda(self):
         """Return field 'adresa_stana' for Ponuda serializers"""
-        return self.current_bid
+        return self.active
 
 
 class Image(models.Model):
