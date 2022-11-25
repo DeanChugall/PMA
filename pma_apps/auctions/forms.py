@@ -8,8 +8,6 @@ class AuctionForm(forms.ModelForm):
     A ModelForm class for creating a new auction listing
     """
 
-    prethodna_ponuda = forms.CharField()
-
     class Meta:
         model = Auction
         fields = [
@@ -17,7 +15,6 @@ class AuctionForm(forms.ModelForm):
             "description",
             "category",
             "starting_bid",
-            "prethodna_ponuda",
         ]
 
     def __init__(self, *args, **kwargs):

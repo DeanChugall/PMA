@@ -50,11 +50,6 @@ class Auction(models.Model):
     def __str__(self):
         return f"Auction #{self.id}: {self.title} ({self.creator})"
 
-    @property
-    def prethodna_ponuda(self):
-        """Return field 'adresa_stana' for Ponuda serializers"""
-        return self.active
-
 
 class Image(models.Model):
     auction = models.ForeignKey(
