@@ -348,7 +348,7 @@
 
                                                             <div class="card-body pt-0">
                                                                 <div class="product-content text-center">
-                                                                    <h1 class="title fw-bold fs-20"><a href="shop-description.html">Czdfgzdfgzandy Pure Rsadsadose Water</a></h1>
+                                                                    <h1 class="title fw-bold fs-20 text-truncate"><a href="shop-description.html">{{ auction.title }}</a></h1>
 
                                                                     <!-- ZVEZDICE -->
                                                                     <div class="mb-2 text-warning">
@@ -361,7 +361,7 @@
                                                                     <!-- END ZVEZDICE -->
 
                                                                     <!-- CENA -->
-                                                                    <div class="price">$59sdf9<span class="ms-4">$799</span></div>
+                                                                    <div class="price">{{auction.current_bid}}<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
                                                                     <!-- END CENA -->
                                                                 </div>
                                                             </div>
