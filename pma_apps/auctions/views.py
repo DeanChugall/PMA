@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from pma_apps.auctions.models import Auction, Bid, Category
 from pma_apps.users.models import ServisProfile, VozacProfile
@@ -55,7 +55,7 @@ def category_details_view(request, category_name):
     Auctions are paginated: 3 per page
     """
 
-    category = Category.objects.get(category_name=category_name)
+    category = get_object_or_404(Category, category_name=category_name)
     auctions = Auction.objects.filter(category=category)
 
     for auction in auctions:
