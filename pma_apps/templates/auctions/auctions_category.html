@@ -57,9 +57,9 @@
         </div>
         <!-- /GLOBAL-LOADER -->
 
-    <!-- PAGE -->
-    <div class="page">
-        <div class="page-main">
+        <!-- PAGE -->
+        <div class="page">
+            <div class="page-main">
 
                 <!-- app-Header -->
                 <div class="app-header header sticky">
@@ -294,9 +294,8 @@
 
                         <!-- ROW-1 OPEN -->
                         <div class="row row-cards">
-
-                            <!-- COL-END -->
                             <div class="col-xl-12 col-lg-8">
+                                <!-- HEADER SEARCH---NOVI ZAHTEV ... -->
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="card p-0">
@@ -304,10 +303,7 @@
                                                 <div class="row">
                                                     <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                                                         <div class="input-group d-flex w-100 float-start">
-                                                            <input type="text" class="form-control border-end-0 my-2" placeholder="Search ...">
-                                                            <button class="btn input-group-text bg-transparent border-start-0 text-muted my-2">
-                                                                <i class="fe fe-search text-muted" aria-hidden="true"></i>
-                                                            </button>
+
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
@@ -317,178 +313,69 @@
                                                         </ul>
                                                     </div>
                                                     <div class="col-xl-3 col-lg-12">
-                                                        <a href="add-product.html" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>New Product</a>
+                                                        <a href="add-product.html" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>Novi Zahtev</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- END HEADER SEARCH---NOVI ZAHTEV ... -->
+
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab-11">
                                         <div class="row">
-                                            <div class="col-md-6 col-xl-4 col-sm-6">
-                                                <div class="card">
-                                                    <div class="product-grid6">
-                                                        <div class="product-image6 p-5">
-                                                            <ul class="icons">
-                                                                <li>
-                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
-                                                                </li>
-                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                                            </ul>
-                                                            <a href="shop-description.html" >
-                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/9.jpg" alt="img">
-                                                            </a>
-                                                        </div>
-                                                        <div class="card-body pt-0">
-                                                            <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Candy Pure Rose Water</a></h1>
-                                                                <div class="mb-2 text-warning">
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star-half-o text-warning"></i>
-                                                                    <i class="fa fa-star-o text-warning"></i>
-                                                                </div>
-                                                                <div class="price">$599<span class="ms-4">$799</span>
-                                                                </div>
+                                            <!-- CARD ZAHTEVA -->
+                                            {% for auction in pages %}
+                                                <div class="col-md-6 col-xl-4 col-sm-6">
+                                                    <div class="card">
+                                                        <div class="product-grid6">
+                                                            <!-- HOVER ICONS -->
+                                                            <div class="product-image6 p-5">
+                                                                <ul class="icons">
+                                                                    <li>
+                                                                        <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
+                                                                    </li>
+                                                                    <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                                    <li></li>
+                                                                </ul>
+                                                                <a href="shop-description.html" >
+                                                                    <img class="img-fluid br-7 w-100" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                        <div class="card-footer text-center">
-                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
-                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-xl-4 col-sm-6">
-                                                <div class="card">
-                                                    <div class="product-grid6">
-                                                        <div class="product-image6 p-5">
-                                                            <ul class="icons">
-                                                                <li>
-                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
-                                                                </li>
-                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                                            </ul>
-                                                            <a href="shop-description.html" >
-                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/10.jpg" alt="img">
-                                                            </a>
-                                                        </div>
-                                                        <div class="card-body pt-0">
-                                                            <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">White Tshirt for Men</a></h1>
-                                                                <div class="mb-2 text-warning">
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star-half-o text-warning"></i>
-                                                                    <i class="fa fa-star-o text-warning"></i>
-                                                                </div>
-                                                                <div class="price">$1,399<span class="ms-4">$1,599</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-footer text-center">
-                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
-                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-xl-4 col-sm-6">
-                                                <div class="card">
-                                                    <div class="product-grid6">
-                                                        <div class="product-image6 p-5">
-                                                            <ul class="icons">
-                                                                <li>
-                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
-                                                                </li>
-                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                                            </ul>
-                                                            <a href="shop-description.html" >
-                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/4.jpg" alt="img">
-                                                            </a>
-                                                        </div>
-                                                        <div class="card-body pt-0">
-                                                            <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Flower Pot for Home Decor</a></h1>
-                                                                <div class="mb-2 text-warning">
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star-half-o text-warning"></i>
-                                                                    <i class="fa fa-star-o text-warning"></i>
-                                                                </div>
-                                                                <div class="price">$1,299<span class="ms-4">$1,899</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-footer text-center">
-                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
-                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-xl-4 col-sm-6">
-                                                <div class="card">
-                                                    <div class="product-grid6">
-                                                        <div class="product-image6 p-5">
-                                                            <ul class="icons">
-                                                                <li>
-                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye">  </i> </a>
-                                                                </li>
-                                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                                            </ul>
-                                                            <a href="shop-description.html" >
-                                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/8.jpg" alt="img">
-                                                            </a>
-                                                        </div>
-                                                        <div class="card-body pt-0">
-                                                            <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Stylish Rockerz 255 Ear Pods</a></h1>
-                                                                <div class="mb-2 text-warning">
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star-half-o text-warning"></i>
-                                                                    <i class="fa fa-star-o text-warning"></i>
-                                                                </div>
-                                                                <div class="price">$16,599<span class="ms-4">$19,799</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-footer text-center">
-                                                            <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
-                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <!-- END HOVER ICONS -->
 
-                                            <div class="mb-5">
-                                                <div class="float-end">
-                                                    <ul class="pagination ">
-                                                        <li class="page-item page-prev disabled">
-                                                            <a class="page-link" href="javascript:void(0)" tabindex="-1">Prev</a>
-                                                        </li>
-                                                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                                        <li class="page-item"><a class="page-link" href="javascript:void(0)">5</a></li>
-                                                        <li class="page-item page-next">
-                                                            <a class="page-link" href="javascript:void(0)">Next</a>
-                                                        </li>
-                                                    </ul>
+
+                                                            <div class="card-body pt-0">
+                                                                <div class="product-content text-center">
+                                                                    <h1 class="title fw-bold fs-20"><a href="shop-description.html">Czdfgzdfgzandy Pure Rsadsadose Water</a></h1>
+
+                                                                    <!-- ZVEZDICE -->
+                                                                    <div class="mb-2 text-warning">
+                                                                        <i class="fa fa-star text-warning"></i>
+                                                                        <i class="fa fa-star text-warning"></i>
+                                                                        <i class="fa fa-star text-warning"></i>
+                                                                        <i class="fa fa-star-half-o text-warning"></i>
+                                                                        <i class="fa fa-star-o text-warning"></i>
+                                                                    </div>
+                                                                    <!-- END ZVEZDICE -->
+
+                                                                    <!-- CENA -->
+                                                                    <div class="price">$59sdf9<span class="ms-4">$799</span></div>
+                                                                    <!-- END CENA -->
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-footer text-center">
+                                                                <a href="cart.html" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Vaša Ponuda</a>
+                                                                <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            {% endfor  %}
+                                            <!-- END CARD ZAHTEVA -->
+
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab-12">
@@ -508,7 +395,7 @@
                                                                     </div>
                                                                     <div class="br-be-0 br-te-0">
                                                                         <a href="shop-description.html" class="">
-                                                                            <img src="../assets/images/pngs/9.jpg" alt="img" class="cover-image br-7 w-100">
+                                                                            <img src="/static/assets/images/golf-6.jpeg" alt="img" class="cover-image br-7 w-100">
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -517,7 +404,7 @@
                                                                 <div class="card-body">
                                                                     <div class="mb-3">
                                                                         <a href="shop-description.html" class="">
-                                                                            <h3 class="fw-bold fs-30 mb-3">Candy Pure Rose Water</h3>
+                                                                            <h3 class="fw-bold fs-30 mb-3">Candy Puasdasdre Rose Water</h3>
                                                                             <div class="mb-2 text-warning">
                                                                                 <i class="fa fa-star fs-18 text-warning"></i>
                                                                                 <i class="fa fa-star fs-18 text-warning"></i>
@@ -563,6 +450,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- RESPONSIVE CARDs -->
                                             <div class="col-xl-12 col-lg-12 col-md-12">
                                                 <div class="card overflow-hidden">
                                                     <div class="card-body">
@@ -633,216 +521,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                                <div class="card overflow-hidden">
-                                                    <div class="card-body">
-                                                        <div class="row g-0">
-                                                            <div class="col-xl-3 col-lg-12 col-md-12">
-                                                                <div class="product-list">
-                                                                    <div class="product-image">
-                                                                        <ul class="icons">
-                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
-                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
-                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="br-be-0 br-te-0">
-                                                                        <a href="shop-description.html" class="">
-                                                                            <img src="../assets/images/pngs/8.jpg" alt="img" class="cover-image br-7 w-100">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
-                                                                <div class="card-body">
-                                                                    <div class="mb-3">
-                                                                        <a href="shop-description.html" class="">
-                                                                            <h3 class="fw-bold fs-30 mb-3">Stylish Rockerz 255 Ear Pods</h3>
-                                                                            <div class="mb-2 text-warning">
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
-                                                                            </div>
-                                                                        </a>
-                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
-                                                                        <form class="shop__filter">
-                                                                            <div class="row gutters-xs">
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
-                                                                                        <span class="colorinput-color bg-azure"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
-                                                                                        <span class="colorinput-color bg-indigo"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
-                                                                                        <span class="colorinput-color bg-purple"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
-                                                                <div class="card-body p-0">
-                                                                    <div class="price h3 text-center mb-5 fw-bold">$16,599</div>
-                                                                    <a href="cart.html"><span  class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</span></a>
-                                                                    <a href="wishlist.html"><span  class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                                <div class="card overflow-hidden">
-                                                    <div class="card-body">
-                                                        <div class="row g-0">
-                                                            <div class="col-xl-3 col-lg-12 col-md-12">
-                                                                <div class="product-list">
-                                                                    <div class="product-image">
-                                                                        <ul class="icons">
-                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
-                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
-                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="br-be-0 br-te-0">
-                                                                        <a href="shop-description.html" class="">
-                                                                            <img src="../assets/images/pngs/4.jpg" alt="img" class="cover-image br-7 w-100">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
-                                                                <div class="card-body">
-                                                                    <div class="mb-3">
-                                                                        <a href="shop-description.html" class="">
-                                                                            <h3 class="fw-bold fs-30 mb-3">Flower Pot for Home Decor</h3>
-                                                                            <div class="mb-2 text-warning">
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
-                                                                            </div>
-                                                                        </a>
-                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
-                                                                        <form class="shop__filter">
-                                                                            <div class="row gutters-xs">
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
-                                                                                        <span class="colorinput-color bg-azure"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
-                                                                                        <span class="colorinput-color bg-indigo"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
-                                                                                        <span class="colorinput-color bg-purple"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
-                                                                <div class="card-body p-0">
-                                                                    <div class="price h3 text-center mb-5 fw-bold">$1,299</div>
-                                                                    <a href="cart.html"><span class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</span></a>
-                                                                    <a href="wishlist.html"><span class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                                <div class="card overflow-hidden">
-                                                    <div class="card-body">
-                                                        <div class="row g-0">
-                                                            <div class="col-xl-3 col-lg-12 col-md-12">
-                                                                <div class="product-list">
-                                                                    <div class="product-image">
-                                                                        <ul class="icons">
-                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
-                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
-                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="br-be-0 br-te-0">
-                                                                        <a href="shop-description.html" class="">
-                                                                            <img src="../assets/images/pngs/3.jpg" alt="img" class="cover-image br-7 w-100">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
-                                                                <div class="card-body">
-                                                                    <div class="mb-3">
-                                                                        <a href="shop-description.html" class="">
-                                                                            <h3 class="fw-bold fs-30 mb-3">Running Shoes for men</h3>
-                                                                            <div class="mb-2 text-warning">
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star-half-o fs-18 text-warning"></i>
-                                                                                <i class="fa fa-star-o fs-18 text-warning"></i>
-                                                                            </div>
-                                                                        </a>
-                                                                        <p class="fs-16">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat,quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat </p>
-                                                                        <form class="shop__filter">
-                                                                            <div class="row gutters-xs">
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked="">
-                                                                                        <span class="colorinput-color bg-azure"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
-                                                                                        <span class="colorinput-color bg-indigo"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-auto">
-                                                                                    <label class="colorinput">
-                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
-                                                                                        <span class="colorinput-color bg-purple"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
-                                                                <div class="card-body p-0">
-                                                                    <div class="price h3 text-center mb-5 fw-bold">$6,599</div>
-                                                                    <a href="cart.html"><span class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</span></a>
-                                                                    <a href="wishlist.html"><span class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="mb-5">
                                                 <div class="float-end">
                                                     <ul class="pagination ">
@@ -897,47 +575,47 @@
 
 
 
-    <!-- JQUERY JS -->
-    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <!-- JQUERY JS -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 
-    <!-- BOOTSTRAP JS -->
-    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- BOOTSTRAP JS -->
+        <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
 
-    <!-- INPUT MASK JS-->
-    <script src="{% static 'assets/plugins/input-mask/jquery.mask.min.js' %}"></script>
+        <!-- INPUT MASK JS-->
+        <script src="{% static 'assets/plugins/input-mask/jquery.mask.min.js' %}"></script>
 
-    <!-- Ion.RangeSlider js-->
-    <script src="{% static 'assets/plugins/jquery-uislider/jquery-ui.js' %}"></script>
-    <script src="{% static 'assets/js/slider.js' %}"></script>
+        <!-- Ion.RangeSlider js-->
+        <script src="{% static 'assets/plugins/jquery-uislider/jquery-ui.js' %}"></script>
+        <script src="{% static 'assets/js/slider.js' %}"></script>
 
-    <!-- SIDE-MENU JS -->
-    <script src="{% static 'assets/plugins/sidemenu/sidemenu.js' %}"></script>
+        <!-- SIDE-MENU JS -->
+        <script src="{% static 'assets/plugins/sidemenu/sidemenu.js' %}"></script>
 
-	<!-- TypeHead js -->
-	<script src="{% static 'assets/plugins/bootstrap5-typehead/autocomplete.js' %}"></script>
-    <script src="{% static 'assets/js/typehead.js' %}"></script>
+        <!-- TypeHead js -->
+        <script src="{% static 'assets/plugins/bootstrap5-typehead/autocomplete.js' %}"></script>
+        <script src="{% static 'assets/js/typehead.js' %}"></script>
 
-    <!-- SIDEBAR JS -->
-    <script src="{% static 'assets/plugins/sidebar/sidebar.js' %}"></script>
+        <!-- SIDEBAR JS -->
+        <script src="{% static 'assets/plugins/sidebar/sidebar.js' %}"></script>
 
-    <!-- INTERNAL SELECT2 JS -->
-    <script src="{% static 'assets/plugins/select2/select2.full.min.js' %}"></script>
-    <script src="{% static 'assets/js/select2.js' %}"></script>
+        <!-- INTERNAL SELECT2 JS -->
+        <script src="{% static 'assets/plugins/select2/select2.full.min.js' %}"></script>
+        <script src="{% static 'assets/js/select2.js' %}"></script>
 
-    <!-- Perfect SCROLLBAR JS-->
-    <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
-    <script src="{% static 'assets/plugins/p-scroll/pscroll.js' %}"></script>
-    <script src="{% static 'assets/plugins/p-scroll/pscroll-1.js' %}"></script>
+        <!-- Perfect SCROLLBAR JS-->
+        <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+        <script src="{% static 'assets/plugins/p-scroll/pscroll.js' %}"></script>
+        <script src="{% static 'assets/plugins/p-scroll/pscroll-1.js' %}"></script>
 
-    <!-- Color Theme js -->
-    <script src="{% static 'assets/js/themeColors.js' %}"></script>
+        <!-- Color Theme js -->
+        <script src="{% static 'assets/js/themeColors.js' %}"></script>
 
-    <!-- Sticky js -->
-    <script src="{% static 'assets/js/sticky.js' %}"></script>
+        <!-- Sticky js -->
+        <script src="{% static 'assets/js/sticky.js' %}"></script>
 
-    <!-- CUSTOM JS-->
-    <script src="{% static 'assets/js/custom.js' %}"></script>
+        <!-- CUSTOM JS-->
+        <script src="{% static 'assets/js/custom.js' %}"></script>
 
     {% endblock javascript %}
 </body>
