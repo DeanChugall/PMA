@@ -92,7 +92,7 @@ def auction_details_view(request, zahtev_id):
     It renders a page that displays the details of a selected auction
     """
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse("users:prijava"))
 
     auction = Auction.objects.get(id=zahtev_id)
 
