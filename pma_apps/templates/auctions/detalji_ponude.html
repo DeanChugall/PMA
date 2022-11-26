@@ -286,12 +286,6 @@
 
                                 </span>
                             </h1>
-                            <div>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0)">E-Commerce</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Product Details</li>
-                                </ol>
-                            </div>
                         </div>
                         <!-- PAGE-HEADER END -->
 
@@ -375,7 +369,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            {% if user.role == "SERVIS" %}
                             <!-- ADD REVIEW CARD -->
                             <div class="col-xl-6">
                                 <div class="card">
@@ -439,7 +433,7 @@
                                 </div>
                             </div>
                             <!-- END ADD REVIEW CARD -->
-
+                            {% endif %}
                             <h3 class="p-3 mb-5">Related Products</h3>
                             <div class="col-md-6 col-xl-3">
                                 <div class="card">
