@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
+from pma_apps.auctions.forms import BidForm, CommentForm
 from pma_apps.auctions.models import Auction, Bid, Category
 from pma_apps.users.models import ServisProfile, VozacProfile
 
@@ -80,5 +83,34 @@ def category_details_view(request, category_name):
             "auctions_count": auctions.count(),
             "pages": pages,
             "title": category.category_name,
+        },
+    )
+
+
+def auction_details_view(request, zahtev_id):
+    """
+    It renders a page that displays the details of a selected auction
+    """
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+
+    auction = Auction.objects.get(id=zahtev_id)
+
+    if request.user in auction.watchers.all():
+        auction.is_watched = True
+    else:
+        auction.is_watched = False
+
+    return render(
+        request,
+        "auctions/detalji_ponude.html",
+        {
+            "categories": Category.objects.all(),
+            "auction": auction,
+            "images": auction.get_images.all(),
+            "bid_form": BidForm(),
+            "comments": auction.get_comments.all(),
+            "comment_form": CommentForm(),
+            "title": "Auction",
         },
     )

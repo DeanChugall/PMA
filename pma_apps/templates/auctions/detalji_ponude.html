@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+
+    <head>
+        <style>
+            .tblColEllipsis {
+                max-width: 150px; /* Customise it accordingly */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+        <!-- META DATA -->
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="@PMA Dashboard">
+        <meta name="author" content="@PMA Technologies Private Limited">
+        <meta name="keywords" content="Popravi Moj Auto.">
+
+        <!-- FAVICON -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}"/>
+
+        <!-- TITLE -->
+        <title>@PMA || Popravi Moj Auto ltd.</title>
+
+        <!-- BOOTSTRAP CSS -->
+        <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+
+        <!-- STYLE CSS -->
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/css/dark-style.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/css/transparent-style.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet"/>
+
+        <!--- FONT-ICONS CSS -->
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"/>
+
+        <!-- COLOR SKIN CSS -->
+        <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}"/>
+    </head>
+
+    <body class="app sidebar-mini ltr light-mode">
+
+        <!-- GLOBAL-LOADER -->
+        <div id="global-loader">
+            <img src="{% static 'assets/images/loader.svg' %}" class="loader-img" alt="Loader">
+        </div>
+        <!-- /GLOBAL-LOADER -->
+
+        <!-- PAGE -->
+        <div class="page">
+            <div class="page-main">
+
+                <!-- app-Header -->
+                <div class="app-header header sticky">
+                    <div class="container-fluid main-container">
+                        <div class="d-flex">
+                            <!-- sidebar-toggle-->
+                            <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
+                            <!-- LOGO -->
+                            <a class="logo-horizontal" href="{% url 'landing_page:landing_page' %}">
+                                <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1" alt="logo">
+                            </a>
+                            <!-- END LOGO -->
+
+                            <!-- SEARCH -->
+                            <div class="main-header-center ms-3 d-none d-lg-block">
+                                <input type="text" class="form-control" id="typehead" placeholder="Pretraga..." autocomplete="off">
+                                <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
+                            </div>
+                            <!-- END SEARCH -->
+                            <div class="d-flex order-lg-2 ms-auto header-right-icons">
+                                <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
+                                    aria-controls="navbarSupportedContent-4" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon fe fe-more-vertical"></span>
+                                </button>
+                                <div class="navbar navbar-collapse responsive-navbar p-0">
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                                        <div class="d-flex order-lg-2">
+                                            <div class="dropdown d-lg-none d-flex">
+                                                <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
+                                                    <i class="fe fe-search"></i>
+                                                </a>
+                                                <div class="dropdown-menu header-search dropdown-menu-start">
+                                                    <div class="input-group w-100 p-2">
+                                                        <input type="text" class="form-control" placeholder="Pretraži....">
+                                                        <div class="input-group-text btn btn-primary">
+                                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- CITY CHOSE -->
+                                            {% if user.role == "SERVIS" %}
+                                                <p>{{user.role}}</p>
+                                            {% else %}
+                                            {% endif %}
+                                            <!-- END CITY CHOSE -->
+
+                                            <!-- Theme-Layout DARK-LIGHT -->
+                                            <div class="d-flex country">
+                                                <a class="nav-link icon theme-layout nav-link-bg layout-setting">
+                                                    <span class="dark-layout"><i class="fe fe-moon"></i></span>
+                                                    <span class="light-layout"><i class="fe fe-sun"></i></span>
+                                                </a>
+                                            </div>
+                                            <!-- END Theme-Layout DARK-LIGHT -->
+
+                                            <!-- FULL-SCREEN -->
+                                            <div class="dropdown d-flex">
+                                                <a class="nav-link icon full-screen-link nav-link-bg">
+                                                    <i class="fe fe-minimize fullscreen-button"></i>
+                                                </a>
+                                            </div>
+                                            <!-- END FULL-SCREEN -->
+
+                                            <!-- PROFILE HEADER -->
+                                            <div class="dropdown d-flex profile-1">
+                                                {% if user.is_authenticated %}
+                                                    <a href="javascript:void(0)" data-bs-toggle="dropdown"
+                                                        class="nav-link leading-none d-flex">
+                                                        <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                        <div class="drop-heading">
+                                                            <div class="text-center">
+                                                                <h5 class="text-dark mb-0 fs-14 fw-semibold">{{ user.username }}</h5>
+                                                                <small class="text-muted">{{ user.role }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-divider m-0"></div>
+                                                        {% if user.role == "VOZAC" %}
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'users:detalji_vozaca' request.user.username  %}">
+                                                                <i class="dropdown-icon fe fe-user"></i>
+                                                                Profil
+                                                            </a>
+                                                        {% else %}
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'auto_servis:detalji_servisa' request.user.username  %}">
+                                                                <i class="dropdown-icon fe fe-user"></i>
+                                                                Profil
+                                                            </a>
+                                                        {% endif %}
+                                                        <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                                            <i class="dropdown-icon fe fe-alert-circle"></i> Odjava
+                                                        </a>
+                                                {% else %}
+                                                    <a href="{% url 'users:kreiraj_vozaca' %}"
+                                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto"
+                                                        target="_self">Registracija
+                                                    </a>
+                                                    <a href="{% url 'users:prijava' %}"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
+                                                        target="_self">Prijava
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <!-- END PROFILE HEADER -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /app-Header -->
+
+            <!--APP-SIDEBAR-->
+            <div class="sticky">
+                <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                <div class="app-sidebar">
+                    <div class="side-header">
+                        <!-- SIDE BAR LOGO -->
+                        <a class="header-brand1" href="{% url 'landing_page:landing_page' %}">
+                            <img src="{% static 'assets/images/brand/logo.png' %}"
+                                class="header-brand-img desktop-logo"
+                                alt="logo">
+                            <img src="{% static 'assets/images/brand/logo-1.png' %}"
+                                class="header-brand-img toggle-logo"
+                                alt="logo">
+                            <img src="{% static 'assets/images/brand/logo-2.png' %}"
+                                class="header-brand-img light-logo"
+                                alt="logo">
+                            <img src="{% static 'assets/images/brand/logo-3.png' %}"
+                                class="header-brand-img light-logo1"
+                                alt="logo">
+                        </a>
+                        <!-- END SIDE BAR LOGO -->
+                    </div>
+                    <div class="main-sidemenu">
+                        <div class="slide-left disabled" id="slide-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/>
+                            </svg>
+                        </div>
+                        <ul class="side-menu">
+                            <li class="sub-category">
+                                <h3>Popravi Moj Auto</h3>
+                            </li>
+                            <li class="slide">
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{% url 'ponude:ponude' %}">
+                                    <i class="side-menu__icon fe fe-pie-chart"></i>
+                                    <span class="side-menu__label">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="slide">
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{% url 'ponude:ponude' %}">
+                                    <i class="side-menu__icon fe fe-list"></i>
+                                    <span class="side-menu__label">Aktivni Zahtevi</span>
+                                </a>
+                            </li>
+                            {% if user.is_authenticated %}
+                                <li class="slide">
+                                    <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                        href="{% url 'ponude:ponude' %}">
+                                        <i class="side-menu__icon fe fe-eye"></i>
+                                        <span class="side-menu__label">Zahtevi Koje Pratim</span>
+                                    </a>
+                                </li>
+                                <li class="slide">
+                                    <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                        href="{% url 'ponude:ponude' %}">
+                                        <i class="side-menu__icon fe fe-plus-square"></i>
+                                        <span class="side-menu__label">Kreiraj Zahtev Za Ponudu</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <li class="sub-category">
+                                <h3>Zahtevi Za Ponude</h3>
+                            </li>
+                            {% for category in categories %}
+                                <li class="slide">
+                                    <a class="side-menu__item"
+                                        data-bs-toggle="slide"
+                                        href="{% url 'ponude:category_details_view' category.category_name %}">
+                                        <i class="side-menu__icon fe fe-slack"></i>
+                                        <span class="side-menu__label">{{ category }}</span>
+                                        <span class="side-menu__label">{{ category.count_active_auctions }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                        <div class="slide-right" id="slide-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- END APP-SIDEBAR-->
+            </div>
+            <!--/APP-SIDEBAR-->
+
+            <!--app-content open-->
+            <div class="main-content app-content mt-0">
+                <div class="side-app">
+
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+
+                        <!-- PAGE-HEADER -->
+                        <div class="page-header">
+                            <h1 class="page-title">Product Details</h1>
+                            <div>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0)">E-Commerce</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Product Details</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- PAGE-HEADER END -->
+
+                        <!-- ROW-1 OPEN -->
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row row-sm">
+                                            <div class="col-xl-5 col-lg-12 col-md-12">
+                                                <div class="row">
+                                                    <!-- SLIKA ZAGLAVLJA -->
+                                                    <div class="col-xl-12">
+                                                        <div class="product-carousel">
+                                                            <div id="Slider" class="carousel slide border" data-bs-ride="false">
+                                                                <div class="carousel-inner">
+                                                                    <div class="carousel-item active">
+                                                                        {% for image in images %}
+                                                                            <img class='img-fluid mx-auto d-block' src="{{ image.image.url }}" alt='Product' style='width: 200px;'>
+                                                                        {% empty %}
+                                                                            <img class='img-fluid mx-auto d-block' src="{% static 'assets/images/auctions/no-car.jpg' %}" alt='Image Not Available' style='width: 300px;'>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- END SLIKA ZAGLAVLJA -->
+                                                </div>
+                                            </div>
+                                            <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0">
+                                                <div class="mt-2 mb-4">
+                                                    <h3 class="mb-3 fw-semibold">{{ auction.title }}</h3>
+
+                                                    <!-- ZVEZDICE ZAGLAVLJA -->
+                                                    <p class="text-muted float-start me-3">
+                                                        <span class="fa fa-star text-warning"></span>
+                                                        <span class="fa fa-star text-warning"></span>
+                                                        <span class="fa fa-star text-warning"></span>
+                                                        <span class="fa fa-star-half-o text-warning"></span>
+                                                        <span class="fa fa-star-o text-warning"></span>
+                                                    </p>
+                                                    <p class="text-muted mb-4">&nbsp;</p>
+                                                    <!-- END ZVEZDICE ZAGLAVLJA -->
+
+                                                    <!-- OPIS ZAHTEVA ZAGLAVLJA -->
+                                                    <h4 class="mt-4"><b> Opis</b></h4>
+                                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
+                                                        similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+                                                    <!-- END OPIS ZAHTEVA ZAGLAVLJA -->
+
+                                                    <h3 class="mb-4"><span class="me-2 fw-bold fs-25">$299 USD/</span><span><del class="fs-18 text-muted">$599</del></span></h3>
+                                                    <div class=" mt-4 mb-5"><span class="fw-bold me-2"><small class="fw-bold me-2">Kategorija :</small></span><span class="fw-bold text-success"><small class="fw-bold me-2">{{ auction.category }}</small></span>
+                                                    <p><span class="fw-bold me-2"><small class="fw-bold me-2">Kategorija :</small></span><span class="fw-bold text-success"><small class="fw-bold me-2">{{ auction.category }}</small></span>
+                                                    <span class="fw-bold me-2"><small class="fw-bold me-2">Kategorija :</small></span><span class="fw-bold text-success"><small class="fw-bold me-2">{{ auction.category }}</small></span></p>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ADD REVIEW CARD -->
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Add Review</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-horizontal  m-t-20" action="index.html">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <input class="form-control" type="text" required="" placeholder="Username*">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <input class="form-control" type="email" required="" placeholder="Email*">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <textarea class="form-control" rows="5">Your Review*</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <a href="javascript:void(0)" class="btn btn-primary btn-rounded  waves-effect waves-light">Submit</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END ADD REVIEW CARD -->
+
+                            <!-- ADD REVIEW CARD -->
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Add Review</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-horizontal  m-t-20" action="index.html">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <input class="form-control" type="text" required="" placeholder="Username*">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <input class="form-control" type="email" required="" placeholder="Email*">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <textarea class="form-control" rows="5">Your Review*</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <a href="javascript:void(0)" class="btn btn-primary btn-rounded  waves-effect waves-light">Submit</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END ADD REVIEW CARD -->
+
+                            <h3 class="p-3 mb-5">Related Products</h3>
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="product-grid6">
+                                        <div class="product-image6 p-5">
+                                            <ul class="icons">
+                                                <li>
+                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                                                </li>
+                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                            </ul>
+                                            <a href="shop-description.html" class="bg-light">
+                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/4.jpg" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="product-content text-center">
+                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Flower Pot for Home Decor</a></h1>
+                                                <div class="mb-2 text-warning">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                    <i class="fa fa-star-o text-warning"></i>
+                                                </div>
+                                                <div class="price">$16,599<span class="ms-4">$18,299</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
+                                            <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="product-grid6">
+                                        <div class="product-image6 p-5">
+                                            <ul class="icons">
+                                                <li>
+                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                                                </li>
+                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                            </ul>
+                                            <a href="shop-description.html" class="bg-light">
+                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/6.jpg" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="product-content text-center">
+                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Black Digital Camera</a></h1>
+                                                <div class="mb-2 text-warning">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                    <i class="fa fa-star-o text-warning"></i>
+                                                </div>
+                                                <div class="price">$16,599<span class="ms-4">$56,599</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
+                                            <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="product-grid6">
+                                        <div class="product-image6 p-5">
+                                            <ul class="icons">
+                                                <li>
+                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                                                </li>
+                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                            </ul>
+                                            <a href="shop-description.html" class="bg-light">
+                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/9.jpg" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="product-content text-center">
+                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">Candy Pure Rose Water</a></h1>
+                                                <div class="mb-2 text-warning">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                    <i class="fa fa-star-o text-warning"></i>
+                                                </div>
+                                                <div class="price">$16,599<span class="ms-4">$25,599</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
+                                            <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="product-grid6">
+                                        <div class="product-image6 p-5">
+                                            <ul class="icons">
+                                                <li>
+                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                                                </li>
+                                                <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                                                <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                                            </ul>
+                                            <a href="shop-description.html" class="bg-light">
+                                                <img class="img-fluid br-7 w-100" src="../assets/images/pngs/10.jpg" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="product-content text-center">
+                                                <h1 class="title fw-bold fs-20"><a href="shop-description.html">White Tshirt for Men</a></h1>
+                                                <div class="mb-2 text-warning">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star-half-o text-warning"></i>
+                                                    <i class="fa fa-star-o text-warning"></i>
+                                                </div>
+                                                <div class="price">$16,599<span class="ms-4">$18,399</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
+                                            <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ROW-1 CLOSED -->
+                    </div>
+                    <!-- CONTAINER CLOSED -->
+                </div>
+            </div>
+            <!--app-content closed-->
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        Copyright © <span id="year"></span> <a href="javascript:void(0)">Sash</a>. Designed with <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> Spruko </a> All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER CLOSED -->
+    </div>
+
+    <!-- BACK-TO-TOP -->
+    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JQUERY JS -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="{% static 'assets/plugins/input-mask/jquery.mask.min.js' %}"></script>
+
+    <!-- SIDE-MENU JS -->
+    <script src="{% static 'assets/plugins/sidemenu/sidemenu.js' %}"></script>
+
+    <!-- TypeHead js -->
+    <script src="{% static 'assets/plugins/bootstrap5-typehead/autocomplete.js' %}"></script>
+    <script src="{% static 'assets/js/typehead.js' %}"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="{% static 'assets/plugins/sidebar/sidebar.js' %}"></script>
+
+    <!-- INTERNAL SELECT2 JS -->
+    <script src="{% static 'assets/plugins/select2/select2.full.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/plugins/p-scroll/pscroll.js' %}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+    <!-- Sticky js -->
+    <script src="{% static 'assets/js/sticky.js' %}"></script>
+
+    <!-- CUSTOM JS-->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+
+</body>
+
+</html>
