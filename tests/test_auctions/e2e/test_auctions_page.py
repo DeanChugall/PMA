@@ -11,4 +11,4 @@ def test_auctions_page_autorizovani_korisnik(
     url_landing_page = reverse("ponude:ponude")
     response = client.get(url_landing_page)
     assert response.status_code == 200
-    assertTemplateUsed(response, "auctions/auctions.html")
+    assertTemplateUsed(response, "auctions/auctions_dashboard.html")
