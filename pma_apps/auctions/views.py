@@ -56,14 +56,14 @@ def category_details_view(request, category_name):
     """
 
     category = get_object_or_404(Category, category_name=category_name)
-    auctions = Auction.objects.filter(category=category)
+    auctions = Auction.objects.filter(category=category).order_by("-date_created")
 
     for auction in auctions:
         auction.image = auction.get_images.first()
 
     # Show 3 active auctions per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions, 12)
+    paginator = Paginator(auctions, 24)
     try:
         pages = paginator.page(page)
     except PageNotAnInteger:

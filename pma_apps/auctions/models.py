@@ -47,6 +47,9 @@ class Auction(models.Model):
     watchers = models.ManyToManyField(Servis, related_name="watchlist", blank=True)
     active = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ["-date_created"]
+
     def __str__(self):
         return f"Auction #{self.id}: {self.title} ({self.creator})"
 

@@ -62,8 +62,6 @@ class Vozac(User):
 class VozacProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     vozac_id = models.IntegerField(null=True, blank=True)
-
-    slika_vozaca = ImageField(null=True, blank=True)
     broj_telefona = CharField(null=True, blank=True, max_length=100)
 
     class Meta:
