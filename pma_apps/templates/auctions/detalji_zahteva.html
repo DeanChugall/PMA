@@ -1,7 +1,7 @@
 {% extends "auctions/auctions_base.html" %}
 {% load static %}
 
-{% block title %}@PMA || Popravi Moj Auto ltd.{% endblock %}
+{% block title %} Zahtev {{ auction.title }} {% endblock %}
 
 {% block meta_data %}
     <meta charset="UTF-8">
@@ -156,13 +156,17 @@
 
                                     </div>
                                     <div class="card-footer text-center">
-                                        <a href="cart.html">
-                                            <button type="button" class="btn btn-primary mb-1">
-                                                <i class="fe fe-shopping-cart mx-2"></i>
-                                                Add to cart
+                                        <a href="javascript:void(0)">
+                                            <button type="button" class="btn btn-primary mb-1 btn-lg">
+                                                <i class="fa fa-check-square fa-1x"></i>
+                                                Prihvati Ponudu
                                             </button>
                                         </a>
-                                        <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
+                                        <a href="javascript:void(0)">
+                                            <button type="button" class="btn btn-outline-primary mb-1 btn-lg">
+                                                <i class="fa fa-phone-square fa-1x"></i> Pozovi Servis
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

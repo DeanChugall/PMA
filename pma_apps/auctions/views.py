@@ -63,6 +63,7 @@ def category_details_view(request, category_name):
 
     for auction in auctions:
         auction.image = auction.get_images.first()
+        auction.amount = auction.get_bids.first()
 
     # Show 3 active auctions per page
     page = request.GET.get("page", 1)

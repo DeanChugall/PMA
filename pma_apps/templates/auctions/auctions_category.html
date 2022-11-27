@@ -2,14 +2,14 @@
 {% load static %}
 
 
-{% block title %}@PMA || Popravi Moj Auto ltd.{% endblock %}
+{% block title %}{{ title }} {% endblock %}
 
 {% block meta_data %}
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="@PMA Technologies Private Limited">
-    <meta name="description" content="@PMA Dashboard">
+    <meta name="description" content="@PMA Kategorija Zahteva">
     <meta name="keywords" content="Popravi Moj Auto.">
 {% endblock meta_data %}
 
@@ -99,13 +99,17 @@
                                                                 <i class="fa fa-star text-warning"></i>
                                                                 <i class="fa fa-star text-warning"></i>
                                                                 <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star-half-o text-warning"></i>
-                                                                <i class="fa fa-star-o text-warning"></i>
+                                                                <i class="fa fa-star text-warning"></i>
+                                                                <i class="fa fa-star text-warning"></i>
                                                             </div>
                                                             <!-- END ZVEZDICE -->
 
                                                             <!-- CENA -->
-                                                            <div class="price">{{auction.current_bid}}<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                            {% if auction.amount.amount  == None %}
+                                                                <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                            {% else %}
+                                                                <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                            {% endif %}
                                                             <!-- END CENA -->
                                                         </div>
                                                     </div>
