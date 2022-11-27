@@ -74,13 +74,9 @@ class VozacProfile(models.Model):
 
 # flake8: noqa: F811
 @receiver(post_save, sender=Vozac)
-def create_user_profile(sender, instance, created, **kwargs):
-    print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {sender}")
+def create_vozac_profile(sender, instance, created, **kwargs):
     if created and instance.role == User.Role.VOZAC:
         VozacProfile.objects.create(user=instance)
-        print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")
-    else:
-        print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")
 
 
 # ###########################################################
@@ -121,9 +117,7 @@ class ServisProfile(models.Model):
 
 # flake8: noqa: F811
 @receiver(post_save, sender=Servis)
-def create_user_profile(sender, instance, created, **kwargs):
-    print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {sender}")
-
+def create_servis_profile(sender, instance, created, **kwargs):
     if created and instance.role == User.Role.SERVIS:
         ServisProfile.objects.create(user=instance)
         # print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")
