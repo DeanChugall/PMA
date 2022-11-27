@@ -366,7 +366,7 @@
                                                             <small class="fw-bold me-2">Zahtev Kreirao:</small>
                                                         </span>
                                                         <span class="fw-bold text-success">
-                                                            <small class="fw-bold me-2">{{ auction.creator }}</small>
+                                                            <small class="fw-bold me-2">{{ auction.creator.user }}</small>
                                                         </span>
                                                     </div>
                                                     <!-- END DETALJI ZAHTEVA -->
@@ -377,7 +377,7 @@
                                                     <!-- END OPIS ZAHTEVA ZAGLAVLJA -->
 
                                                     <h3 class="mb-4">
-                                                        <span class="me-2 fw-bold fs-25">{{auction.current_bid}} rsd</span>
+                                                        <span class="me-2 fw-bold fs-25">{{ponude_auto_servisa_zadnja_cena.amount}} rsd</span>
                                                     </h3>
                                                     <hr>
                                                 </div>

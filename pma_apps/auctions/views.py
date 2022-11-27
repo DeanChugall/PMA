@@ -98,6 +98,7 @@ def auction_details_view(request, zahtev_id):
 
     # Filtrirane ponude Auto Servisa za odredjeni zahtev za ponudu.
     ponude_auto_servisa = Bid.objects.filter(auction=auction.id)
+    ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=auction.id).first()
 
     if request.user in auction.watchers.all():
         auction.is_watched = True
@@ -116,5 +117,6 @@ def auction_details_view(request, zahtev_id):
             "comment_form": CommentForm(),
             "title": "Auction",
             "ponude_auto_servisa": ponude_auto_servisa,
+            "ponude_auto_servisa_zadnja_cena": ponude_auto_servisa_zadnja_cena,
         },
     )

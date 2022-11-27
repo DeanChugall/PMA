@@ -75,6 +75,9 @@ class Bid(models.Model):
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["-date"]
+
     def __str__(self):
         return f"Bid #{self.id}: {self.amount} on {self.auction.title}"
 
