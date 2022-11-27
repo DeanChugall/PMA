@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 
-from pma_apps.users.models import ServisProfile, VozacProfile
+from pma_apps.users.models import ServisProfile, Vozac, VozacProfile
 
 
 class Category(models.Model):
@@ -24,7 +24,7 @@ class Auction(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=800, null=True)
     creator = models.ForeignKey(
-        VozacProfile,
+        Vozac,
         on_delete=models.PROTECT,
         related_name="auction_creator",
         default=1,
