@@ -99,8 +99,6 @@ def auction_details_view(request, zahtev_id):
     # Filtrirane ponude Auto Servisa za odredjeni zahtev za ponudu.
     ponude_auto_servisa = Bid.objects.filter(auction=auction.id)
 
-    ponude_auto_servisa = Bid.objects.filter(auction=auction.id)
-
     if request.user in auction.watchers.all():
         auction.is_watched = True
     else:
@@ -108,7 +106,7 @@ def auction_details_view(request, zahtev_id):
 
     return render(
         request,
-        "auctions/detalji_ponude.html",
+        "auctions/detalji_zahteva.html",
         {
             "categories": Category.objects.all(),
             "auction": auction,
