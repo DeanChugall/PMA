@@ -20,13 +20,13 @@ class User(AbstractUser):
 
     base_role = Role.VOZAC
 
+    #: First and last name do not cover name patterns around the globe
+    role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.role = self.base_role
             return super().save(*args, **kwargs)
-
-    #: First and last name do not cover name patterns around the globe
-    role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
 
     name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
@@ -36,7 +36,7 @@ class User(AbstractUser):
         unique_together = ("email",)
 
     def __str__(self):
-        return f"{self.username} {self.role}"
+        return f"{self.username} ':' {self.role}"
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
@@ -49,6 +49,7 @@ class VozacManager(BaseUserManager):
 
 
 class Vozac(User):
+
     base_role = User.Role.VOZAC
     vozac = VozacManager()
 
@@ -74,8 +75,12 @@ class VozacProfile(models.Model):
 # flake8: noqa: F811
 @receiver(post_save, sender=Vozac)
 def create_user_profile(sender, instance, created, **kwargs):
+    print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {sender}")
     if created and instance.role == User.Role.VOZAC:
         VozacProfile.objects.create(user=instance)
+        print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")
+    else:
+        print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")
 
 
 # ###########################################################
@@ -93,7 +98,6 @@ class ServisManager(BaseUserManager):
 
 class Servis(User):
     base_role = User.Role.SERVIS
-
     servis = ServisManager()
 
     class Meta:
@@ -118,5 +122,8 @@ class ServisProfile(models.Model):
 # flake8: noqa: F811
 @receiver(post_save, sender=Servis)
 def create_user_profile(sender, instance, created, **kwargs):
+    print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {sender}")
+
     if created and instance.role == User.Role.SERVIS:
         ServisProfile.objects.create(user=instance)
+        # print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")

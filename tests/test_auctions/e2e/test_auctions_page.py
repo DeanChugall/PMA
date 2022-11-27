@@ -5,7 +5,7 @@ from pytest_django.asserts import assertTemplateUsed
 
 @pytest.mark.django_db
 def test_auctions_page_autorizovani_korisnik(
-    client, novi_vozac_autorizovan_korisnik_fixture
+    client, novi_jedan_vozac_autorizovan_korisnik_fixture
 ):
 
     url_landing_page = reverse("ponude:ponude")

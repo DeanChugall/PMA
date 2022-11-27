@@ -44,7 +44,7 @@ services:
     image: postgres
     container_name: postgres_pma_test
     ports:
-      - "5433:5433"
+      - "5432:5432"
     env_file:
       - ./.envs/.local/.postgres
 
