@@ -74,7 +74,7 @@ class VozacProfile(models.Model):
 # flake8: noqa: F811
 @receiver(post_save, sender=Vozac)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created and instance.role == "VOZAC":
+    if created and instance.role == User.Role.VOZAC:
         VozacProfile.objects.create(user=instance)
 
 
@@ -118,5 +118,5 @@ class ServisProfile(models.Model):
 # flake8: noqa: F811
 @receiver(post_save, sender=Servis)
 def create_user_profile(sender, instance, created, **kwargs):
-    if created and instance.role == "SERVIS":
+    if created and instance.role == User.Role.SERVIS:
         ServisProfile.objects.create(user=instance)
