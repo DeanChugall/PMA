@@ -2,7 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 
-from pma_apps.users.models import Servis, ServisProfile, Vozac, VozacProfile
+from pma_apps.users.models import ServisProfile, VozacProfile
 
 
 class Category(models.Model):
@@ -46,8 +46,12 @@ class Auction(models.Model):
         blank=True,
         null=True,
     )
-    buyer = models.ForeignKey(Servis, on_delete=models.PROTECT, blank=True, null=True)
-    watchers = models.ManyToManyField(Servis, related_name="watchlist", blank=True)
+    buyer = models.ForeignKey(
+        ServisProfile, on_delete=models.PROTECT, blank=True, null=True
+    )
+    watchers = models.ManyToManyField(
+        ServisProfile, related_name="watchlist", blank=True
+    )
     active = models.BooleanField(default=True)
 
     class Meta:
@@ -83,7 +87,9 @@ class Bid(models.Model):
 
 
 class Comment(models.Model):
-    vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE, related_name="get_user")
+    vozac = models.ForeignKey(
+        VozacProfile, on_delete=models.CASCADE, related_name="get_user"
+    )
     auction = models.ForeignKey(
         Auction, on_delete=models.CASCADE, related_name="get_comments"
     )
