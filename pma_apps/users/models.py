@@ -20,7 +20,6 @@ class User(AbstractUser):
 
     base_role = Role.VOZAC
 
-    #: First and last name do not cover name patterns around the globe
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
 
     def save(self, *args, **kwargs):
@@ -36,7 +35,7 @@ class User(AbstractUser):
         unique_together = ("email",)
 
     def __str__(self):
-        return f"{self.username} ':' {self.role}"
+        return f"{self.username}"
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
@@ -120,4 +119,3 @@ class ServisProfile(models.Model):
 def create_servis_profile(sender, instance, created, **kwargs):
     if created and instance.role == User.Role.SERVIS:
         ServisProfile.objects.create(user=instance)
-        # print(f"instance.role>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {instance.role}")
