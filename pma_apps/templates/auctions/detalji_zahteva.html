@@ -155,21 +155,24 @@
                                         </div>
 
                                     </div>
+
                                     <div class="card-footer text-center">
                                         <a href="javascript:void(0)">
-                                            <button type="button" class="btn btn-primary mb-1 btn-lg">
-                                                <i class="fa fa-check-square fa-1x"></i>
-                                                Prihvati Ponudu
-                                            </button>
-                                        </a>
-                                        <a href="javascript:void(0)">
-                                            <button type="button" class="btn btn-outline-primary mb-1 btn-lg">
-                                                <i class="fa fa-phone-square fa-1x"></i> Pozovi Servis
-                                            </button>
-                                        </a>
+                                            {% if auction.creator == user and auction.active %}
+                                                <button type="button" class="btn btn-primary mb-1 btn-lg  ">
+                                                    <i class="fa fa-check-square fa-1x"></i>
+                                                    Prihvati Ponudu
+                                                </button>
+                                                </a>
+                                            {% endif %}
+                                            <a href="javascript:void(0)">
+                                                <button type="button" class="btn btn-outline-primary mb-1 btn-lg  ">
+                                                    <i class="fa fa-phone-square fa-1x"></i> Pozovi Servis
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                         {% endif %}
                     {% empty %}
@@ -188,6 +191,7 @@
                     {% endfor %}
                     <!-- END SVE PONUDE ZAHTEVA -->
 
+                    <!-- VIDLJIVO SAMO SERVISERIMA -->
                     {% if user.role == "SERVIS" %}
                         <!-- ADD REVIEW CARD -->
                         <div class="col-xl-6">
@@ -400,6 +404,8 @@
                         </div>
                         </div>
                     {% endif %}
+                    <!-- END VIDLJIVO SAMO SERVISERIMA -->
+
                     <!-- ROW-1 CLOSED -->
                 </div>
                 <!-- CONTAINER CLOSED -->
