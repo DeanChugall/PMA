@@ -1,11 +1,13 @@
+from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from pma_apps.auctions.forms import BidForm, CommentForm
-from pma_apps.auctions.models import Auction, Bid, Category
+from pma_apps.auctions.forms import AuctionForm, BidForm, CommentForm, ImageForm
+from pma_apps.auctions.models import Auction, Bid, Category, Image
 from pma_apps.users.models import ServisProfile, VozacProfile
 
 User = get_user_model()
@@ -121,3 +123,63 @@ def auction_details_view(request, zahtev_id):
             "ponude_auto_servisa_zadnja_cena": ponude_auto_servisa_zadnja_cena,
         },
     )
+
+
+@login_required
+def kreiranje_zahteva_view(request):
+    """
+    It allows the user to create a new zahtev
+    """
+    image_form_set = forms.modelformset_factory(Image, form=ImageForm, extra=2)
+
+    if request.method == "POST":
+        auction_form = AuctionForm(request.POST, request.FILES)
+        image_form = image_form_set(
+            request.POST, request.FILES, queryset=Image.objects.none()
+        )
+
+        if auction_form.is_valid() and image_form.is_valid():
+            new_auction = auction_form.save(commit=False)
+            new_auction.creator = request.user
+            new_auction.save()
+
+            for auction_form in image_form.cleaned_data:
+                if auction_form:
+                    image = auction_form["image"]
+
+                    new_image = Image(auction=new_auction, image=image)
+                    new_image.save()
+
+            return render(
+                request,
+                "auctions/kreiranje_zahteva.html",
+                {
+                    "categories": Category.objects.all(),
+                    "auction_form": AuctionForm(),
+                    "image_form": image_form_set(queryset=Image.objects.none()),
+                    "title": "Create Auction",
+                    "success": True,
+                },
+            )
+        else:
+            return render(
+                request,
+                "auctions/kreiranje_zahteva.html",
+                {
+                    "categories": Category.objects.all(),
+                    "auction_form": AuctionForm(),
+                    "image_form": image_form_set(queryset=Image.objects.none()),
+                    "title": "Create Auction",
+                },
+            )
+    else:
+        return render(
+            request,
+            "auctions/kreiranje_zahteva.html",
+            {
+                "categories": Category.objects.all(),
+                "auction_form": AuctionForm(),
+                "image_form": image_form_set(queryset=Image.objects.none()),
+                "title": "Create Auction",
+            },
+        )
