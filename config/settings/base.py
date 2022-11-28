@@ -182,20 +182,48 @@ USE_TZ = True
 
 # STATIC
 # ------------------------------------------------------------------------------
-STATIC_ROOT = str(ROOT_DIR / "staticfiles")
-STATIC_URL = "/static/"
+# help: https://testdriven.io/blog/django-digitalocean-spaces/
+USE_SPACES = env.bool("USE_SPACES", True)
+# if USE_SPACES:
+# settings
+AWS_ACCESS_KEY_ID = (env.str("AWS_ACCESS_KEY_ID", default=""),)
+AWS_SECRET_ACCESS_KEY = (env.str("AWS_SECRET_ACCESS_KEY", default=""),)
+AWS_STORAGE_BUCKET_NAME = (env.str("AWS_STORAGE_BUCKET_NAME", default=""),)
+AWS_DEFAULT_ACL = "public-read"
+AWS_S3_ENDPOINT_URL = (env.str("AWS_S3_ENDPOINT_URL", default=""),)
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+# static settings
+AWS_LOCATION = "static"
+# STATIC_URL = f'https://{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/'
+STATIC_URL = f"https://ams3.digitaloceanspaces.com/{AWS_LOCATION}/"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 STATICFILES_DIRS = [str(APPS_DIR / "static")]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR / "media")
+MEDIA_ROOT = str(APPS_DIR / "mediafiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
+# else:
+#     STATIC_ROOT = str(ROOT_DIR / "staticfiles")
+#     STATIC_URL = "/static/"
+#
+#     STATICFILES_DIRS = [str(APPS_DIR / "static")]
+#     STATICFILES_FINDERS = [
+#         "django.contrib.staticfiles.finders.FileSystemFinder",
+#         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+#     ]
+#
+#     # MEDIA
+#     # ------------------------------------------------------------------------------
+#     # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+#     MEDIA_ROOT = str(APPS_DIR / "media")
+#     # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+#     MEDIA_URL = "/media/"
 
 # EMAIL_BACKEND
 # ------------------------------------------------------------------------------
