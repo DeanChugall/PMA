@@ -28,6 +28,8 @@ ALLOWED_HOSTS = [
 ]
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # APPS
 # ------------------------------------------------------------------------------
@@ -59,6 +61,8 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -71,6 +75,9 @@ MIGRATION_MODULES = {
     "landing_page": "pma_apps.contrib.landing_page.migrations",
     "pages": "pma_apps.contrib.landing_page.migrations",
 }
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.User"
@@ -90,6 +97,8 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGOUT_ON_GET = True
 
 SITE_ID = 1
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
@@ -104,12 +113,16 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # URLS
 # ------------------------------------------------------------------------------
 ROOT_URLCONF = "config.urls"
 
 WSGI_APPLICATION = "config.wsgi.application"
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -132,6 +145,8 @@ TEMPLATES = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -141,6 +156,8 @@ ADMIN_URL = "admin/"
 ADMINS = [("datatab", "info@dejan.pro")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -156,6 +173,8 @@ DATABASES = {
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -179,51 +198,37 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # STATIC
 # ------------------------------------------------------------------------------
-# help: https://testdriven.io/blog/django-digitalocean-spaces/
-USE_SPACES = env.bool("USE_SPACES", True)
-# if USE_SPACES:
-# settings
-AWS_ACCESS_KEY_ID = (env.str("AWS_ACCESS_KEY_ID", default=""),)
-AWS_SECRET_ACCESS_KEY = (env.str("AWS_SECRET_ACCESS_KEY", default=""),)
-AWS_STORAGE_BUCKET_NAME = (env.str("AWS_STORAGE_BUCKET_NAME", default=""),)
+# @see: https://testdriven.io/blog/django-digitalocean-spaces/
+# ------------------------------------------------------------------------------
+# DO_SPACE SETTINGS
+AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", default="")
+AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY", default="")
+AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME", default="")
 AWS_DEFAULT_ACL = "public-read"
-AWS_S3_ENDPOINT_URL = (env.str("AWS_S3_ENDPOINT_URL", default=""),)
+AWS_S3_ENDPOINT_URL = env.str("AWS_S3_ENDPOINT_URL", default="")
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-# static settings
-AWS_LOCATION = "static"
-# STATIC_URL = f'https://{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/'
-STATIC_URL = f"https://ams3.digitaloceanspaces.com/{AWS_LOCATION}/"
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# STATIC SETTINGS
+STATIC_ROOT = str(ROOT_DIR / "staticfiles")
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [str(APPS_DIR / "static")]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-# MEDIA
+
+# PUBLIC MEDIA SETTINGS
 # ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR / "mediafiles")
-# https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-MEDIA_URL = "/media/"
-# else:
-#     STATIC_ROOT = str(ROOT_DIR / "staticfiles")
-#     STATIC_URL = "/static/"
-#
-#     STATICFILES_DIRS = [str(APPS_DIR / "static")]
-#     STATICFILES_FINDERS = [
-#         "django.contrib.staticfiles.finders.FileSystemFinder",
-#         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-#     ]
-#
-#     # MEDIA
-#     # ------------------------------------------------------------------------------
-#     # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-#     MEDIA_ROOT = str(APPS_DIR / "media")
-#     # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
-#     MEDIA_URL = "/media/"
+PUBLIC_MEDIA_LOCATION = "media"
+MEDIA_URL = f"https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/"
+DEFAULT_FILE_STORAGE = "config.do_storages.do_storage.PublicMediaStorage"
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # EMAIL_BACKEND
 # ------------------------------------------------------------------------------
@@ -235,3 +240,5 @@ EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
 EMAIL_PORT = env.str("EMAIL_PORT", default="")
 EMAIL_USE_TLS = env.str("EMAIL_USE_TLS", default="")
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
