@@ -14,7 +14,5 @@ urlpatterns = [
     path(
         "zahtev/<str:zahtev_id>", views.auction_details_view, name="detalji_ponude_view"
     ),
-    path(
-        "zahtevi/kreiranje", views.kreiranje_zahteva_view, name="kreiranje_zahteva_view"
-    ),
+    path("zahtevi/kreiranje", views.kreiranje_zahteva_view, name="kreiranje_zahteva"),
 ]
