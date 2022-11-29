@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 
@@ -33,16 +32,10 @@ class Auction(models.Model):
         Category, on_delete=models.CASCADE, related_name="auction_category", default=1
     )
     date_created = models.DateTimeField(default=timezone.now)
-    starting_bid = models.DecimalField(
-        max_digits=7,
-        decimal_places=2,
-        validators=[MinValueValidator(0.01)],
-        default=0.01,
-    )
+
     current_bid = models.DecimalField(
         max_digits=7,
         decimal_places=2,
-        validators=[MinValueValidator(0.01)],
         blank=True,
         null=True,
     )

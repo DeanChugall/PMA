@@ -17,8 +17,6 @@ def ponude_view(request):
     """
     auctions_obj = Auction.objects.all()
 
-    expensive_auctions = Auction.objects.order_by("-starting_bid")[:4]
-
     for auction in auctions_obj:
         auction.image = auction.get_images.first()
 
@@ -39,7 +37,6 @@ def ponude_view(request):
         {
             "categories": Category.objects.all(),
             "auctions_obj": auctions_obj,
-            "expensive_auctions": expensive_auctions,
             "auctions_count": Auction.objects.all().count(),
             "bids_count": Bid.objects.all().count(),
             "categories_count": Category.objects.all().count(),
@@ -130,7 +127,7 @@ def kreiranje_zahteva_view(request):
     """
     It allows the user to create a new zahtev
     """
-    image_form_set = forms.modelformset_factory(Image, form=ImageForm, extra=2)
+    image_form_set = forms.modelformset_factory(Image, form=ImageForm, extra=1)
     if request.method == "POST":
         auction_form = AuctionForm(request.POST, request.FILES)
         image_form = image_form_set(
@@ -182,3 +179,44 @@ def kreiranje_zahteva_view(request):
                 "title": "Create Auction",
             },
         )
+
+
+def aktivni_zahtevi_view(request):
+    """
+    It renders a page that displays all the currently active auction listings
+    Active auctions are paginated: 3 per page
+    """
+    category_name = request.GET.get("category_name", None)
+    if category_name is not None:
+        auctions = Auction.objects.filter(active=True, category=category_name)
+    else:
+        auctions = Auction.objects.filter(active=True)
+
+    for auction in auctions:
+        auction.image = auction.get_images.first()
+        if request.user in auction.watchers.all():
+            auction.is_watched = True
+        else:
+            auction.is_watched = False
+
+    # Show 3 active auctions per page
+    page = request.GET.get("page", 1)
+    paginator = Paginator(auctions, 3)
+    try:
+        pages = paginator.page(page)
+    except PageNotAnInteger:
+        pages = paginator.page(1)
+    except EmptyPage:
+        pages = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        "aktivni_zahtevi.html",
+        {
+            "categories": Category.objects.all(),
+            "auctions": auctions,
+            "auctions_count": auctions.count(),
+            "pages": pages,
+            "title": "Active Auctions",
+        },
+    )

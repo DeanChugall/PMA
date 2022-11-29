@@ -14,7 +14,6 @@ class AuctionForm(forms.ModelForm):
             "title",
             "description",
             "category",
-            "starting_bid",
         ]
 
     def __init__(self, *args, **kwargs):
