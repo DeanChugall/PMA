@@ -131,7 +131,6 @@ def kreiranje_zahteva_view(request):
     It allows the user to create a new zahtev
     """
     image_form_set = forms.modelformset_factory(Image, form=ImageForm, extra=2)
-
     if request.method == "POST":
         auction_form = AuctionForm(request.POST, request.FILES)
         image_form = image_form_set(

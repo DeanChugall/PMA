@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.shortcuts import resolve_url
 from django.urls import reverse
 from django.views import generic
 
@@ -19,9 +20,10 @@ class LoginKorisnikaView(LoginView):
     template_name = "account/login.html"
     redirect_authenticated_user = True
 
-    # extra_context = None
-
-    def get_success_url(self):
+    def get_default_redirect_url(self):
+        """Return the default redirect URL."""
+        if self.next_page:
+            return resolve_url(self.next_page, "")
         return reverse("ponude:ponude")
 
 

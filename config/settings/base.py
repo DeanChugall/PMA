@@ -82,8 +82,8 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = "/ponude"
+LOGIN_URL = "/prijava"
+# LOGIN_REDIRECT_URL = "/ponude"
 LOGOUT_REDIRECT_URL = "/"
 
 AUTHENTICATION_BACKENDS = [
