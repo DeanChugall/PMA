@@ -115,6 +115,7 @@
                                                     </div>
 
                                                     <div class="card-footer text-center">
+                                                        <input type="hidden" name="next" value="{{ next }}">
                                                         <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Detalji</a>
                                                         <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)</a>
                                                     </div>

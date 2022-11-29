@@ -2,9 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, render, resolve_url
 
 from pma_apps.auctions.forms import AuctionForm, BidForm, CommentForm, ImageForm
 from pma_apps.auctions.models import Auction, Bid, Category, Image
@@ -90,12 +88,14 @@ def category_details_view(request, category_name):
     )
 
 
+@login_required
 def auction_details_view(request, zahtev_id):
     """
     It renders a page that displays the details of a selected auction
     """
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:prijava"))
+        next_page = request.GET.get("next", "/")
+        return resolve_url(next_page, "/")
 
     auction = Auction.objects.get(id=zahtev_id)
 
