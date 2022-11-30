@@ -83,7 +83,7 @@
                                                             </li>
                                                             <li></li>
                                                         </ul>
-                                                        <a href="shop-description.html" >
+                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" >
                                                             <img class="img-fluid br-7 w-100`" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
                                                         </a>
                                                     </div>

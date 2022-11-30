@@ -5,7 +5,7 @@ from pma_apps.auctions.models import Auction, Bid, Comment, Image
 
 class AuctionForm(forms.ModelForm):
     """
-    A ModelForm class for creating a new auction listing
+    A ModelForm class za kreiranje novog zahteva.
     """
 
     class Meta:
@@ -33,6 +33,7 @@ class ImageForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["image"].label = ""
         self.visible_fields()[0].field.widget.attrs["class"] = "form-control"
 
 
