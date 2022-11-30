@@ -21,6 +21,8 @@ class AuctionForm(forms.ModelForm):
         for visible in self.visible_fields():
             visible.field.widget.attrs["class"] = "form-control"
 
+        self.fields["title"].error_messages = {"required": "custom required message"}
+
 
 class ImageForm(forms.ModelForm):
     """

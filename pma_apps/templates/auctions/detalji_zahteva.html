@@ -110,7 +110,11 @@
                                             <!-- END OPIS ZAHTEVA ZAGLAVLJA -->
 
                                             <h3 class="mb-4">
-                                                <span class="me-2 fw-bold fs-25">{{ponude_auto_servisa_zadnja_cena.amount}} rsd</span>
+                                                {% if ponude_auto_servisa_zadnja_cena.amount %}
+                                                    <span class="me-2 fw-bold fs-25">{{ ponude_auto_servisa_zadnja_cena.amount }} rsd</span>
+                                                {% else %}
+                                                    <span class="me-2 fw-bold fs-25">Trenutno Nema Ponuda</span>
+                                                {% endif %}
                                             </h3>
                                             <hr>
                                         </div>

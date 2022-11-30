@@ -40,70 +40,76 @@
                             {% csrf_token %}
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">Add New Product</div>
-                                    {% if success %}
-                                        <br>
-                                        <div id='success-alert' class='alert alert-success' role='alert'>
-                                            The new auction created successfully.
+                                    <div class="card-title">Dodaj Novi Zahtev</div>
+                                </div>
+                                {% if success %}
+                                    <div class="card-body">
+                                        <div class="row mb-4">
+                                            <br>
+                                            <div id='success-alert' class='alert alert-success' role='alert'>Zahtev je uspešno postavljen!</div>
                                         </div>
-                                        {% if not message %}
-                                            <div class='alert alert-danger mb-3' role='alert'>
-                                                {{ message }}
+                                    </div>
+                                    <div class="card-footer">
+                                        <!--Row-->
+                                        <div class="row">
+                                            <div class="col-md-3"></div>
+                                            <button type='submit' class='btn btn-primary btn-lg'>Pregled Vaših Zahteva</button>
+                                        </div>
+                                        <!--End Row-->
+                                    </div>
+                                {% else %}
+
+
+                                    <div class="card-body">
+                                        <div class="row mb-4">
+                                            <label class="col-md-3 form-label">Kratak Opis Zahteva :</label>
+                                            <div class="col-md-9">
+                                                {% render_field auction_form.title class="form-control" placeholder="Product Name" %}
                                             </div>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                                <div class="card-body">
-                                    <div class="row mb-4">
-                                        <label class="col-md-3 form-label">Product Name :</label>
-                                        <div class="col-md-9">
-                                            <!--                                            <input type="text" class="form-control" placeholder="Product Name">-->
-                                            <!--                                            {{ auction_form.title|add_class:" form-control"|attr:"placeholder:Product Name"}}-->
-                                            {% render_field auction_form.title class="form-control" placeholder="Product Name" %}
                                         </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <label class="col-md-3 form-label">Categories :</label>
-                                        <div class="col-md-9">
-                                            {{ auction_form.category }}
+                                        <div class="row mb-4">
+                                            <label class="col-md-3 form-label">Odaberi Kategoriju :</label>
+                                            <div class="col-md-9">
+                                                {{ auction_form.category }}
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Row -->
-                                    <div class="row">
-                                        <label class="col-md-3 form-label mb-4">Product Description :</label>
-                                        <div class="col-md-9 mb-4">
-                                            <!--                                            {{ auction_form.description|add_class:"content"|attr:"name:example"}}-->
-                                            <!--                                            {{ auction_form.description }}-->
-                                            {% render_field auction_form.description class="form-control" placeholder="opis" %}
+                                        <!-- Row -->
+                                        <div class="row">
+                                            <label class="col-md-3 form-label mb-4">Detaljan Opis Zahteva:</label>
+                                            <div class="col-md-9 mb-4">
+                                                <!--                                            {{ auction_form.description|add_class:"content"|attr:"name:example"}}-->
+                                                <!--                                            {{ auction_form.description }}-->
+                                                {% render_field auction_form.description class="form-control" placeholder="opis" %}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--End Row-->
+                                        <!--End Row-->
 
-                                    <!--Row-->
-                                    <div class="row">
-                                        <label class="col-md-3 form-label mb-4">Product Upload :</label>
-                                        <div class="col-md-9">
-                                            {{ image_form.management_form }}
-                                            {% for form in image_form %}
-                                                {{ form.as_p }}
-                                            {% endfor %}
+                                        <!--Row-->
+                                        <div class="row">
+                                            <label class="col-md-3 form-label mb-4">Slika Vašeg Automobila:</label>
+                                            <div class="col-md-9">
+                                                {{ image_form.management_form }}
+                                                {% for form in image_form %}
+                                                    {{ form.as_p }}
+                                                {% endfor %}
+
+                                            </div>
                                         </div>
+                                        <!--End Row-->
                                     </div>
-                                    <!--End Row-->
-                                </div>
-                                <div class="card-footer">
-                                    <!--Row-->
-                                    <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-9">
-                                            <button type='submit' class='btn btn-primary'>Save</button>
-                                            <!--                                            <a href="javascript:void(0)" class="btn btn-primary">Add Product</a>-->
-                                            <a href="javascript:void(0)" class="btn btn-default float-end">Discard</a>
+                                    <div class="card-footer">
+                                        <!--Row-->
+                                        <div class="row">
+                                            <div class="col-md-3"></div>
+                                            <div class="col-md-9">
+                                                <button type='submit' class='btn btn-primary btn-lg'>Postavi</button>
+                                                <a href="{% url 'ponude:ponude' %}" class="btn btn-outline-warning float-end btn-lg">Odustani</a>
+                                            </div>
                                         </div>
+                                        <!--End Row-->
                                     </div>
-                                    <!--End Row-->
-                                </div>
+                                {% endif %}
                             </div>
                         </form>
                         <!-- END FORMA UNOSA ZAHTEVA -->
