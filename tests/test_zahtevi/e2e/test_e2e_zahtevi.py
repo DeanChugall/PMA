@@ -23,7 +23,7 @@ class TestUZahtevi:
         response = client.get(url_kreiraj_vozaca)
         assert response.status_code == 302
 
-    def test_obrisi_stan(
+    def test_obrisi_zahtev(
         self,
         client,
         jedan_zahtev_fixture,
@@ -40,9 +40,9 @@ class TestUZahtevi:
 
         response = client.delete(url_obrisi_stan)
 
-        assert response.status_code == 302
+        assert response.status_code == 302  # imamo 302 zbog get_success_url u View-u
 
-        assert reverse_lazy("ponude:ponude")
+        assert reverse_lazy("ponude:ponude")  # test get_success_url(ponude:ponude)
 
         # Proveri koliko je zahteva u bazi (treba da ima 0 zahteva)
         broj_zahteva_u_bazi = Auction.objects.all().count()

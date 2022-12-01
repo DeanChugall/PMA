@@ -186,7 +186,7 @@ def kreiranje_zahteva_view(request):
 
 
 class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
-    template_name = "ponude/obrisi_ponudu.html"
+    template_name = "ponude/obrisi_zahtev.html"
     queryset = Auction.objects.all()
     form_class = AuctionForm
     context_object_name = "zahtev"
