@@ -192,9 +192,7 @@ class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
     context_object_name = "zahtev"
 
     def get_success_url(self):
-        podaci = self.get_context_data()
-        id_stana = podaci["object"].stan.id_stana
-        return reverse_lazy("stanovi:detalji_stana", kwargs={"pk": id_stana})
+        return reverse_lazy("ponude:ponude")
 
 
 def aktivni_zahtevi_view(request):

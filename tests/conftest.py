@@ -1,5 +1,6 @@
 import pytest
 
+from pma_apps.auctions.models import Auction, Category
 from pma_apps.users.models import Servis, Vozac
 
 
@@ -40,3 +41,28 @@ def novi_jedan_vozac_autorizovan_korisnik_fixture(
     )
     client.force_login(vozac)
     return vozac
+
+
+@pytest.fixture(autouse=False)
+def jedna_kategorija_zahteva_fixture(db) -> Category:
+    kategorija = Category.objects.create(
+        category_name="MALI SERVIS",
+    )
+
+    return kategorija
+
+
+@pytest.fixture(autouse=False)
+def jedan_zahtev_fixture(
+    db, novi_jedan_vozac_autorizovan_korisnik_fixture, jedna_kategorija_zahteva_fixture
+) -> Auction:
+    zahtev = Auction.objects.create(
+        title="Pregled Kočnica GOLF 6",
+        description="Pregled Kočnica GOLF 6",
+        creator=novi_jedan_vozac_autorizovan_korisnik_fixture,
+        category=jedna_kategorija_zahteva_fixture,
+        date_created="2022-11-29T22:14:02.713Z",
+        active=True,
+    )
+
+    return zahtev

@@ -1,0 +1,257 @@
+[
+{
+    "model": "auctions.auction",
+    "pk": 17,
+    "fields": {
+        "title": "Pregled Kočnica GOLF 6",
+        "description": "Pregled Kočnica GOLF 6",
+        "creator": 1,
+        "category": 4,
+        "date_created": "2022-11-29T22:14:02.713Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 18,
+    "fields": {
+        "title": "RENO",
+        "description": "RENO",
+        "creator": 1,
+        "category": 4,
+        "date_created": "2022-11-29T22:15:55.021Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 27,
+    "fields": {
+        "title": "123",
+        "description": "weawer",
+        "creator": 1,
+        "category": 2,
+        "date_created": "2022-11-30T21:02:17.847Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 28,
+    "fields": {
+        "title": "werfawef",
+        "description": "awefwaef",
+        "creator": 1,
+        "category": 2,
+        "date_created": "2022-11-30T21:06:48.768Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 29,
+    "fields": {
+        "title": "test",
+        "description": "test",
+        "creator": 1,
+        "category": 4,
+        "date_created": "2022-11-30T21:26:58.506Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 30,
+    "fields": {
+        "title": "test",
+        "description": "etest",
+        "creator": 1,
+        "category": 5,
+        "date_created": "2022-11-30T21:33:21.001Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 31,
+    "fields": {
+        "title": "1211111111",
+        "description": "1111",
+        "creator": 1,
+        "category": 5,
+        "date_created": "2022-11-30T21:34:23.381Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 32,
+    "fields": {
+        "title": "wefawe",
+        "description": "awefawefwef",
+        "creator": 1,
+        "category": 6,
+        "date_created": "2022-11-30T21:36:05.004Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 33,
+    "fields": {
+        "title": "test",
+        "description": "test",
+        "creator": 1,
+        "category": 6,
+        "date_created": "2022-11-30T21:41:23.126Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 34,
+    "fields": {
+        "title": "test",
+        "description": "test",
+        "creator": 1,
+        "category": 6,
+        "date_created": "2022-11-30T21:42:14.979Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 35,
+    "fields": {
+        "title": "123123123",
+        "description": "123123123",
+        "creator": 1,
+        "category": 6,
+        "date_created": "2022-11-30T21:49:51.431Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 36,
+    "fields": {
+        "title": "123123123",
+        "description": "123123",
+        "creator": 1,
+        "category": 3,
+        "date_created": "2022-11-30T21:50:20.846Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 37,
+    "fields": {
+        "title": "123456",
+        "description": "456",
+        "creator": 1,
+        "category": 3,
+        "date_created": "2022-11-30T21:51:41.559Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 50,
+    "fields": {
+        "title": "sergserg",
+        "description": "sergsergse",
+        "creator": 1,
+        "category": 2,
+        "date_created": "2022-11-30T22:11:43.560Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 89,
+    "fields": {
+        "title": "earg",
+        "description": "esrg",
+        "creator": 1,
+        "category": 1,
+        "date_created": "2022-11-30T22:45:26.760Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 90,
+    "fields": {
+        "title": "aer",
+        "description": "aergaerg",
+        "creator": 1,
+        "category": 1,
+        "date_created": "2022-11-30T22:46:07.813Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+},
+{
+    "model": "auctions.auction",
+    "pk": 91,
+    "fields": {
+        "title": "aer",
+        "description": "aergaerg",
+        "creator": 1,
+        "category": 1,
+        "date_created": "2022-11-30T22:49:22.080Z",
+        "current_bid": null,
+        "buyer": null,
+        "active": true,
+        "watchers": []
+    }
+}
+]

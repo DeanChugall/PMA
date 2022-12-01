@@ -1,0 +1,86 @@
+[
+{
+    "model": "auctions.category",
+    "pk": 1,
+    "fields": {
+        "category_name": "VELIKI SERVIS"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 2,
+    "fields": {
+        "category_name": "MALI SERVIS"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 3,
+    "fields": {
+        "category_name": "KLIMA SERVIS"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 4,
+    "fields": {
+        "category_name": "KOČNICE"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 5,
+    "fields": {
+        "category_name": "MENJAČ"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 6,
+    "fields": {
+        "category_name": "AUSPUH"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 7,
+    "fields": {
+        "category_name": "ELEKTRIKA"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 8,
+    "fields": {
+        "category_name": "ELEKTRONIKA"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 9,
+    "fields": {
+        "category_name": "TRAP"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 10,
+    "fields": {
+        "category_name": "TEHNIČKI PREGLED"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 11,
+    "fields": {
+        "category_name": "LIMARIJA"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 12,
+    "fields": {
+        "category_name": "OSTALI SERVISI"
+    }
+}
+]
