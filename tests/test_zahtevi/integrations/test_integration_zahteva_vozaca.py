@@ -6,6 +6,7 @@ class TestIntegrationsZahtevaVozaca:
     def test_kreiranje_liste_zahteva_vozaca(
         self, tri_vozaca_autorizovan_korisnik_fixture, jedan_zahtev_fixture
     ):
+        # TODO: VIDETI TEST FILTERA ZAHTEVA
         svi_zahtevi = Auction.objects.all()
         eee = svi_zahtevi[0].creator.id  # noqa: F841
         rrr = Vozac.objects.all()
