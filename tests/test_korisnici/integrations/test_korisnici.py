@@ -30,6 +30,7 @@ class TestUsersAndProfiles:
         svi_vozaci_from_db = Vozac.objects.all()  # noqa
         profil_vozaca_from_db = VozacProfile.objects.all()  # noqa
         assert Vozac.objects.count() == svi_vozaci_from_db.count()  # noqa
+
         # Provera poklapanja broja profila Vozaca i korisnika Vozaca
         broj_korisnika_vozaca = svi_vozaci_from_db.count()
         broj_profila_vozaca = profil_vozaca_from_db.count()

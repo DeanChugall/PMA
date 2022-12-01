@@ -44,6 +44,37 @@ def novi_jedan_vozac_autorizovan_korisnik_fixture(
 
 
 @pytest.fixture(autouse=False)
+def tri_vozaca_autorizovan_korisnik_fixture(db, client, django_user_model) -> Vozac:
+    vozaci = Vozac.objects.bulk_create(
+        [
+            Vozac(
+                username="dex",
+                password="dex",
+                email="dex@dex.com",
+                first_name="dex",
+                last_name="dex",
+            ),
+            Vozac(
+                username="dea",
+                password="dea",
+                email="dea@dea.com",
+                first_name="dea",
+                last_name="Dejdeaan",
+            ),
+            Vozac(
+                username="vea",
+                password="vea",
+                email="vea@vea.com",
+                first_name="vea",
+                last_name="vea",
+            ),
+        ]
+    )
+    # client.force_login(vozaci)
+    return vozaci
+
+
+@pytest.fixture(autouse=False)
 def jedna_kategorija_zahteva_fixture(db) -> Category:
     kategorija = Category.objects.create(
         category_name="MALI SERVIS",

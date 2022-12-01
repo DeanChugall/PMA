@@ -7,7 +7,7 @@ from pma_apps.auctions.models import Auction
 
 class TestUZahtevi:
     @pytest.mark.django_db
-    def test_kreiraj_vozaca_autorizovani_korisnik(
+    def test_kreiraj_zahtev_autorizovani_korisnik(
         self, client, novi_jedan_vozac_autorizovan_korisnik_fixture
     ):
         url_kreiraj_vozaca = reverse("ponude:kreiranje_zahteva")
@@ -16,7 +16,7 @@ class TestUZahtevi:
         assertTemplateUsed(response, "auctions/kreiranje_zahteva.html")
 
     @pytest.mark.django_db
-    def test_kreiraj_vozaca_ne_autorizovani_korisnik(
+    def test_kreiraj_zahtev_ne_autorizovani_korisnik(
         self, client, novi_jedan_vozac_ne_autorizovan_korisnik_fixture
     ):
         url_kreiraj_vozaca = reverse("ponude:kreiranje_zahteva")
