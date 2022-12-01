@@ -1,8 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, render, resolve_url
+from django.urls import reverse_lazy
+from django.views import generic
 
 from pma_apps.auctions.forms import AuctionForm, BidForm, CommentForm, ImageForm
 from pma_apps.auctions.models import Auction, Bid, Category, Image
@@ -180,6 +183,18 @@ def kreiranje_zahteva_view(request):
                 "title": "Create Auction",
             },
         )
+
+
+class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
+    template_name = "ponude/obrisi_ponudu.html"
+    queryset = Auction.objects.all()
+    form_class = AuctionForm
+    context_object_name = "zahtev"
+
+    def get_success_url(self):
+        podaci = self.get_context_data()
+        id_stana = podaci["object"].stan.id_stana
+        return reverse_lazy("stanovi:detalji_stana", kwargs={"pk": id_stana})
 
 
 def aktivni_zahtevi_view(request):

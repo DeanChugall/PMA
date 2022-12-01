@@ -5,7 +5,6 @@ def test_root_url_for_detalji_ponude(client, db):
     """Test lista stanova API end point"""
     url = reverse("ponude:ponude")
     response = client.get(url, format="json")
-    print("RESPONSE(test_lista_stanova_API_end_point): " + str(response))
     assert response.status_code == 200
 
 
