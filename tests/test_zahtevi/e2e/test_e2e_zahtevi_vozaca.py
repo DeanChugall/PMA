@@ -3,7 +3,7 @@ from django.urls import reverse
 from pytest_django.asserts import assertTemplateUsed, assertURLEqual
 
 
-class TestZahtevi:
+class TestZahteviVozaca:
     @pytest.mark.django_db
     def test_lista_zahteva_autorizovani_vozac(
         self, client, novi_jedan_vozac_autorizovan_korisnik_fixture
@@ -14,7 +14,7 @@ class TestZahtevi:
         )
         response = client.get(url_kreiraj_vozaca)
         assert response.status_code == 200
-        assertTemplateUsed(response, "auctions/aktivni_zahtevi.html")
+        assertTemplateUsed(response, "auctions/aktivni_zahtevi_vozaca.html")
 
     @pytest.mark.django_db
     def test_lista_zahteva_ne_autorizovani_vozac(

@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}{{ title }} {% endblock %}
+{% block title %} Zahtevi: {{ user.username }} {% endblock %}
 
 {% block meta_data %}
     <meta charset="UTF-8">
@@ -74,7 +74,9 @@
                                                     <div class="product-image6 p-5">
                                                         <ul class="icons">
                                                             <li>
-                                                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye"></i></a>
+                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary">
+                                                                    <i class="fe fe-eye"></i>
+                                                                </a>
                                                             </li>
                                                             <li>
                                                                 <a href="add-product.html" class="btn btn-success">
@@ -92,7 +94,9 @@
 
                                                     <div class="card-body pt-0">
                                                         <div class="product-content text-center">
-                                                            <h1 class="title fw-bold fs-20 text-truncate"><a href="shop-description.html">{{ auction.title }}</a></h1>
+                                                            <h1 class="title fw-bold fs-20 text-truncate">
+                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                            </h1>
 
                                                             <!-- ZVEZDICE -->
                                                             <div class="mb-2 text-warning">

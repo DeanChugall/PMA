@@ -188,13 +188,27 @@ def kreiranje_zahteva_view(request):
 class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
     """Lista svih Zahteva filtrirana po polju username Vozaca"""
 
-    template_name = "auctions/aktivni_zahtevi.html"
-    queryset = Auction.objects.all()
+    template_name = "auctions/aktivni_zahtevi_vozaca.html"
+
+    def get_context_data(self, **kwargs):
+        auctions = Auction.objects.all().filter(
+            creator__username=self.kwargs["username"]
+        )
+
+        for auction in auctions:
+            auction.image = auction.get_images.first()
+            auction.amount = auction.get_bids.first()
+
+        context = {
+            "categories": Category.objects.all(),
+            "zahtevi_vozaca": auctions,
+        }
+
+        return context
 
     def get_queryset(self):
-        # TODO: VIDETI OVAJ FILTE I TESTIRATI
-        username_vozaca = self.kwargs["username"]
-        return Auction.objects.all().filter(creator__username=username_vozaca)
+        auctions = Auction.objects.all()
+        return auctions
 
 
 class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
