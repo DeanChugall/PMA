@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import ObrisiZahtevView
+from .views import ListaZahtevaVozacaView, ObrisiZahtevView
 
 app_name = "auctions"
 
@@ -19,5 +19,10 @@ urlpatterns = [
     path(
         "zahtevi/brisanje/<int:pk>/", ObrisiZahtevView.as_view(), name="obrisi_zahtev"
     ),
-    path("zahtevi/aktivni", views.aktivni_zahtevi_view, name="aktivni_zahtevi_view"),
+    path("zahtevi/aktivni", views.aktivni_zahtevi_view, name="aktivni_zahtevi"),
+    path(
+        "zahtevi/<str:username>/aktivni",
+        ListaZahtevaVozacaView.as_view(),
+        name="aktivni_zahtevi_vozaca",
+    ),
 ]

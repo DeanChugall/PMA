@@ -241,7 +241,7 @@
                                 {% if user.role == "VOZAC" %}
                                     <li class="slide">
                                         <a class="side-menu__item has-link" data-bs-toggle="slide"
-                                            href="{% url 'ponude:ponude' %}">
+                                            href="{% url 'ponude:aktivni_zahtevi_vozaca' user.username %}">
                                             <i class="side-menu__icon fe fe-eye"></i>
                                             <span class="side-menu__label">Svi Moji Zahtevi</span>
                                         </a>
