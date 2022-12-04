@@ -212,13 +212,16 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
 
 
 class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
-    template_name = "ponude/obrisi_zahtev.html"
-    queryset = Auction.objects.all()
-    form_class = AuctionForm
-    context_object_name = "zahtev"
+    model = Auction
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse_lazy("ponude:ponude")
+        return reverse_lazy(
+            "ponude:aktivni_zahtevi_vozaca",
+            kwargs={"username": self.request.user.username},
+        )
 
 
 def aktivni_zahtevi_view(request):

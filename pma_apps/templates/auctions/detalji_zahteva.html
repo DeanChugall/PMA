@@ -117,6 +117,16 @@
                                                 {% endif %}
                                             </h3>
                                             <hr>
+                                             {% if auction.creator == user %}
+                                            <div class="btn-list mt-4">
+                                                <form method="POST" action="{% url 'ponude:obrisi_zahtev' auction.id %}">
+                                                    {% csrf_token %}
+                                                    <button class="btn btn-outline-danger btn-lg" type="submit" value="DELETE" onclick="return confirm('Are you sure do you want to delete {{auction.id}}')">
+                                                        <i class="fa fa-trash-o"></i>
+                                                        Delete</button>
+                                                </form>
+                                            </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
