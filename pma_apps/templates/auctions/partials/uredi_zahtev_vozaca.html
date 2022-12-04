@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %}
+<div id="forma-zahteva">
+    <form hx-post="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
+        hx-target="#detalji-zahteva"
+        method="POST"
+        enctype="multipart/form-data"
+        hx-swap="outerHTML">
+
+        {% csrf_token %}
+        {{form|crispy}}
+
+        <input class="btn btn-primary" type="submit" hx-target="#detalji-zahteva" />
+        <a href="{{ view.get_success_url }}" class="btn btn-default">Cancel</a>
+
+    </form>
+
+</div>
