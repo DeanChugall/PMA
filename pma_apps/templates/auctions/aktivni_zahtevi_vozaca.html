@@ -71,70 +71,85 @@
                             <div class="tab-pane active" id="tab-11">
                                 <div class="row">
                                     <!-- CARD ZAHTEVA -->
-                                    {% for auction in zahtevi_vozaca %}
-                                        <div class="col-md-6 col-xl-4 col-sm-6">
-                                            <div class="card">
-                                                <div class="product-grid6">
-                                                    <!-- HOVER ICONS -->
-                                                    <div class="product-image6 p-5">
-                                                        <ul class="icons">
-                                                            <li>
-                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary">
-                                                                    <i class="fe fe-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="add-product.html" class="btn btn-success">
-                                                                    <i class="fe fe-edit"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li></li>
-                                                        </ul>
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper">
-                                                            <img class="rounded-3 img-fluid img-center img_automobil" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
-                                                        </a>
-                                                    </div>
-                                                    <!-- END HOVER ICONS -->
+                                    {% if zahtevi_vozaca %}
+                                        {% for auction in zahtevi_vozaca %}
+                                            <div class="col-md-6 col-xl-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="product-grid6">
+                                                        <!-- HOVER ICONS -->
+                                                        <div class="product-image6 p-5">
+                                                            <ul class="icons">
+                                                                <li>
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary">
+                                                                        <i class="fe fe-eye"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="add-product.html" class="btn btn-success">
+                                                                        <i class="fe fe-edit"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li></li>
+                                                            </ul>
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper">
+                                                                <img class="rounded-3 img-fluid img-center img_automobil" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                            </a>
+                                                        </div>
+                                                        <!-- END HOVER ICONS -->
 
-                                                    <div class="card-body pt-0">
-                                                        <div class="product-content text-center">
-                                                            <h1 class="title fw-bold fs-20 text-truncate">
-                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
-                                                            </h1>
+                                                        <div class="card-body pt-0">
+                                                            <div class="product-content text-center">
+                                                                <h1 class="title fw-bold fs-20 text-truncate">
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                                </h1>
 
-                                                            <!-- ZVEZDICE -->
-                                                            <div class="mb-2 text-warning">
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
+                                                                <!-- ZVEZDICE -->
+                                                                <div class="mb-2 text-warning">
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                </div>
+                                                                <!-- END ZVEZDICE -->
+
+                                                                <!-- CENA -->
+                                                                {% if auction.amount.amount  == None %}
+                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                {% else %}
+                                                                    <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                {% endif %}
+                                                                <!-- END CENA -->
                                                             </div>
-                                                            <!-- END ZVEZDICE -->
+                                                        </div>
 
-                                                            <!-- CENA -->
-                                                            {% if auction.amount.amount  == None %}
-                                                                <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
-                                                            {% else %}
-                                                                <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
-                                                            {% endif %}
-                                                            <!-- END CENA -->
+                                                        <div class="card-footer text-center">
+                                                            <input type="hidden" name="next" value="{{ next }}">
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
+                                                                <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
+                                                            </a>
+                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1 ml-auto" style="color:white">
+                                                                <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
+                                                            </a>
                                                         </div>
                                                     </div>
-
-                                                    <div class="card-footer text-center">
-                                                        <input type="hidden" name="next" value="{{ next }}">
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
-                                                            <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
-                                                        </a>
-                                                        <a href="wishlist.html" class="btn btn-outline-primary mb-1 ml-auto" style="color:white">
-                                                            <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
-                                                        </a>
+                                                </div>
+                                            </div>
+                                        {% endfor  %}
+                                    {% else %}
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="product-grid6">
+                                                    <div class="product-image6 p-5"></div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="product-content text-center">
+                                                            <h1 class="title fw-bold fs-20">{{ user.username }}, trenutno nemate zahteva za ponudu. </h1>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor  %}
+                                    {% endif %}
                                     <!-- END CARD ZAHTEVA -->
                                 </div>
                             </div>
