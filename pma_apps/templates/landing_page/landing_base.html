@@ -146,21 +146,21 @@
                                             <div class="header-nav-right d-none d-lg-flex">
                                                 {% if user.is_authenticated %}
                                                     <a href="{% url 'ponude:ponude' %}"
-                                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-xl-block d-block"
                                                         target="_self">Pozdrav {{ user.username }}
                                                     </a>
                                                     <a href="{% url 'users:odjava' %}"
-                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-xl-block d-block"
                                                         target="_self">Odjava
                                                     </a>
                                                 {% else %}
 
                                                     <a href="{% url 'users:kreiraj_vozaca' %}"
-                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto d-xl-block d-block"
                                                         target="_self">Registracija
                                                     </a>
                                                     <a href="{% url 'users:prijava' %}"
-                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-lg-none d-xl-block d-block"
+                                                        class="btn ripple btn-min w-sm btn-primary me-2 my-auto d-block"
                                                         target="_self">Prijava
                                                     </a>
                                                 {% endif %}
@@ -704,15 +704,21 @@
                                                     <div class="card-body text-dark">
                                                         <div class="statistics-info">
                                                             <div class="row">
-                                                                <div class="col-xl-6 col-lg-6 ps-0">
+
+
+
+                                                                <div class="col-xl-5 col-lg-4 ps-0">
                                                                     <div class="text-center reveal revealleft mb-3">
                                                                         <img
                                                                             src="{% static 'assets/images/landing/business-team-working-on-business-plan.png' %}"
                                                                             alt="" class="br-5">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-xl-6 col-lg-6 pe-0 my-auto">
 
+
+
+
+                                                                <div class="col-xl-6 col-lg-6 pe-0 my-auto">
                                                                     <div class="ps-5 reveal revealright">
                                                                         <h2 class="text-start fw-semibold fs-25 mb-6">
                                                                             Budućnost popravke automobila počinje danas.
