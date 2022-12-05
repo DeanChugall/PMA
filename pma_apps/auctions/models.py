@@ -65,7 +65,7 @@ class Image(models.Model):
         return f"{self.image}"
 
     def save(self, *args, **kwargs):
-        image_resize(self.image, 300, 300)
+        image_resize(self.image, 500, 500)
         super().save(*args, **kwargs)
 
 

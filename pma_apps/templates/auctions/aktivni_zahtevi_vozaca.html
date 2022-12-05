@@ -90,8 +90,8 @@
                                                             </li>
                                                             <li></li>
                                                         </ul>
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" >
-                                                            <img class="img-fluid br-7 w-100`" style="width: auto; height: 200px;" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper">
+                                                            <img class="rounded-3 img-fluid img-center img_automobil" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
                                                         </a>
                                                     </div>
                                                     <!-- END HOVER ICONS -->
@@ -124,10 +124,10 @@
 
                                                     <div class="card-footer text-center">
                                                         <input type="hidden" name="next" value="{{ next }}">
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1">
+                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
                                                             <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                         </a>
-                                                        <a href="wishlist.html" class="btn btn-outline-primary mb-1">
+                                                        <a href="wishlist.html" class="btn btn-outline-primary mb-1 ml-auto" style="color:white">
                                                             <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
                                                         </a>
                                                     </div>
