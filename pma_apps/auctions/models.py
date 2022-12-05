@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from pma_apps.users.models import ServisProfile, Vozac, VozacProfile
+from pma_apps.utils.image_resize import image_resize
 
 
 class Category(models.Model):
@@ -62,6 +63,10 @@ class Image(models.Model):
 
     def __str__(self):
         return f"{self.image}"
+
+    def save(self, *args, **kwargs):
+        image_resize(self.image, 300, 300)
+        super().save(*args, **kwargs)
 
 
 class Bid(models.Model):
