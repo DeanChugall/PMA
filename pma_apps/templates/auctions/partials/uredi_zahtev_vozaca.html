@@ -9,9 +9,8 @@
         {% csrf_token %}
         {{form|crispy}}
 
-        <input class="btn btn-primary" type="submit" hx-target="#detalji-zahteva" />
-        <a href="{{ view.get_success_url }}" class="btn btn-default">Cancel</a>
-
+        <input class="btn btn-outline-success" type="submit" hx-target="#detalji-zahteva" value="Sačuvaj"/>
+        <a href="{{ view.get_success_url }}" class="btn btn-outline-danger">Odustani</a>
     </form>
 
 </div>

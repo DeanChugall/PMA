@@ -26,7 +26,7 @@
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">eeeeeeeeeeeeeeeeee</li>
+                            <li class="breadcrumb-item active" aria-current="page">Aktivni Zahtevi Vozača</li>
                         </ol>
                     </div>
                 </div>
@@ -43,16 +43,21 @@
                                         <div class="row">
                                             <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                                                 <div class="input-group d-flex w-100 float-start">
-
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                                 <ul class="nav item2-gl-menu float-end my-2">
-                                                    <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style"><i class="fa fa-th"></i></a></li>
+                                                    <li class="border-end">
+                                                        <a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style">
+                                                            <i class="fa fa-th"></i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="col-xl-3 col-lg-12">
-                                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>Novi Zahtev</a>
+                                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2">
+                                                    <i class="fa fa-plus-square me-2"></i>Novi Zahtev
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +96,6 @@
                                                     </div>
                                                     <!-- END HOVER ICONS -->
 
-
                                                     <div class="card-body pt-0">
                                                         <div class="product-content text-center">
                                                             <h1 class="title fw-bold fs-20 text-truncate">
@@ -120,8 +124,12 @@
 
                                                     <div class="card-footer text-center">
                                                         <input type="hidden" name="next" value="{{ next }}">
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Detalji</a>
-                                                        <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)</a>
+                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1">
+                                                            <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
+                                                        </a>
+                                                        <a href="wishlist.html" class="btn btn-outline-primary mb-1">
+                                                            <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

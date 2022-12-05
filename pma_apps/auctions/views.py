@@ -228,10 +228,6 @@ def uredi_zahtev_vozaca_view(request, pk):
     auction = get_object_or_404(Auction, pk=pk)
     form = AuctionForm(request.POST or None, instance=auction)
 
-    # if auction.is_valid():
-    #     new_auction = auction.save(commit=False)
-    #     new_auction.creator = request.userss
-    #     new_auction.save()
     context = {
         "form": form,
         "auction": auction,
@@ -249,17 +245,6 @@ def uredi_zahtev_vozaca_view(request, pk):
         }
         return render(request, "auctions/partials/detalji_zahteva.html", context)
     return render(request, "auctions/partials/uredi_zahtev_vozaca.html", context)
-    # return render(request, 'auctions/partials/uredi_zahtev_vozaca.html', context)
-
-
-# def uredi_zahtev_vozaca_view(request, pk):
-#     auction = get_object_or_404(Auction, pk=pk)
-#     form = AuctionForm(instance=auction)
-#     context = {
-#         'auction': auction,
-#         'form': form
-#     }
-#     return render(request, 'auctions/partials/uredi_zahtev_vozaca.html', context)
 
 
 def aktivni_zahtevi_view(request):

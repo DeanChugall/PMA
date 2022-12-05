@@ -40,20 +40,27 @@
     <h4 class="mt-4"><b> Opis</b></h4>
     <p>{{ auction.description }}</p>
     <!-- END DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
-
-
-
     <hr>
     {% if auction.creator == user %}
-        <button
-            class="btn btn-outline-danger btn-lg"s
-            hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
-            hx-target="#detalji-zahteva"
-            hx-trigger="click">
+        <form method="POST" action="{% url 'ponude:obrisi_zahtev' auction.id %}">
+            <button
+                class="btn btn-outline-success"
+                hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
+                hx-target="#detalji-zahteva"
+                hx-trigger="click">
+                <i class="fa fa-edit"></i>
+                Uredi
+            </button>
 
-            <i class="fa fa-trash-o"></i>
-            EDIT
+            {% csrf_token %}
+            <button class="btn btn-outline-danger"
+                type="submit"
+                value="Obriši"
+                onclick="return confirm('Are you sure do you want to delete {{auction.id}}')">
+                <i class="fa fa-trash-o"></i>Obriši
+            </button>
+        </form>
 
-        </button>
+
     {% endif %}
 </div>
