@@ -54,9 +54,9 @@
                                                         <div class="carousel-inner">
                                                             <div class="carousel-item active">
                                                                 {% for image in images %}
-                                                                    <img class='img-fluid mx-auto d-block' src="{{ image.image.url }}" alt='Product' style='width: 200px;'>
+                                                                    <img class="img-fluid br-7 w-100`" style="width: 300px;; height: auto" src="{{ image.image.url }}" alt='Product'>
                                                                 {% empty %}
-                                                                    <img class='img-fluid mx-auto d-block' src="{% static 'assets/images/auctions/no-car.jpg' %}" alt='Image Not Available' style='width: 300px;'>
+                                                                    <img class="img-fluid br-7 w-100`" src="{% static 'assets/images/auctions/no-car.jpg' %}" alt='Image Not Available' style='width: 300px;'>
                                                                 {% endfor %}
                                                             </div>
                                                         </div>
