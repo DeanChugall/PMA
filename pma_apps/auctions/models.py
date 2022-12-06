@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from pma_apps.users.models import ServisProfile, Vozac, VozacProfile
+from pma_apps.users.models import ServisProfile, User, Vozac, VozacProfile
 from pma_apps.utils.image_resize import image_resize
 
 
@@ -43,9 +43,7 @@ class Auction(models.Model):
     buyer = models.ForeignKey(
         ServisProfile, on_delete=models.PROTECT, blank=True, null=True
     )
-    watchers = models.ManyToManyField(
-        ServisProfile, related_name="watchlist", blank=True
-    )
+    watchers = models.ManyToManyField(User, related_name="watchlist", blank=True)
     active = models.BooleanField(default=True)
 
     class Meta:

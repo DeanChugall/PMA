@@ -3,8 +3,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, resolve_url
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from pma_apps.auctions.forms import AuctionForm, BidForm, CommentForm, ImageForm
@@ -60,6 +61,7 @@ def category_details_view(request, category_name):
 
     category = get_object_or_404(Category, category_name=category_name)
     auctions = Auction.objects.filter(category=category).order_by("-date_created")
+    id_pracenog_zahteva = request.user.watchlist.all()
 
     for auction in auctions:
         auction.image = auction.get_images.first()
@@ -84,6 +86,7 @@ def category_details_view(request, category_name):
             "auctions_count": auctions.count(),
             "pages": pages,
             "title": category.category_name,
+            "id_pracenog_zahteva": id_pracenog_zahteva,
         },
     )
 
@@ -191,9 +194,12 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
     template_name = "auctions/aktivni_zahtevi_vozaca.html"
 
     def get_context_data(self, **kwargs):
+
         auctions = Auction.objects.all().filter(
             creator__username=self.kwargs["username"]
         )
+
+        id_pracenog_zahteva = self.request.user.watchlist.all()
 
         for auction in auctions:
             auction.image = auction.get_images.first()
@@ -213,6 +219,7 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
             "categories": Category.objects.all(),
             "zahtevi_vozaca": auctions,
             "pages": pages,
+            "id_pracenog_zahteva": id_pracenog_zahteva,
         }
 
         return context
@@ -263,6 +270,8 @@ def aktivni_zahtevi_view(request):
     It renders a page that displays all the currently active auction listings
     Active auctions are paginated: 3 per page
     """
+    id_pracenog_zahteva = request.user.watchlist.all()
+
     category_name = request.GET.get("category_name", None)
     if category_name is not None:
         auctions = Auction.objects.filter(active=True, category=category_name)
@@ -294,6 +303,67 @@ def aktivni_zahtevi_view(request):
             "auctions": auctions,
             "auctions_count": auctions.count(),
             "pages": pages,
-            "title": "Active Auctions",
+            "title": "Aktivni Zahtevi Auctions",
+            "id_pracenog_zahteva": id_pracenog_zahteva,
         },
     )
+
+
+@login_required
+def watchlist_view(request):
+    """
+    It renders a page that displays all the listings Zahteva that a
+    user has added to their watchlist Zahteva are paginated: 3 per page.
+    """
+
+    auctions = request.user.watchlist.all()
+
+    for auction in auctions:
+        auction.image = auction.get_images.first()
+
+        if request.user in auction.watchers.all():
+            auction.is_watched = True
+        else:
+            auction.is_watched = False
+
+    # Show 3 active auctions per page
+    page = request.GET.get("page", 1)
+    paginator = Paginator(auctions, 9)
+    try:
+        pages = paginator.page(page)
+    except PageNotAnInteger:
+        pages = paginator.page(1)
+    except EmptyPage:
+        pages = paginator.page(paginator.num_pages)
+
+    return render(
+        request,
+        "auctions/zahtevi_koje_pratim.html",
+        {
+            "categories": Category.objects.all(),
+            "auctions": auctions,
+            "auctions_count": auctions.count(),
+            "pages": pages,
+            "title": "Watchlist",
+        },
+    )
+
+
+@login_required
+def watchlist_edit(request, zahtev_id, reverse_method):
+    """
+    It allows the users to edit the watchlist - add and
+    remove items from the Watchlist
+    """
+
+    auction = Auction.objects.get(id=zahtev_id)
+
+    if request.user in auction.watchers.all():
+        auction.watchers.remove(request.user)
+    else:
+        auction.watchers.add(request.user)
+
+    if reverse_method == "ponude:auction_details_view":
+        return auction_details_view(request, zahtev_id)
+    else:
+        return HttpResponseRedirect(reverse(reverse_method))

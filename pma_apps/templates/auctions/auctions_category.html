@@ -25,7 +25,8 @@
                     <h1 class="page-title">Kategorija: {{ title }}</h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
                         </ol>
                     </div>
@@ -48,11 +49,15 @@
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                                 <ul class="nav item2-gl-menu float-end my-2">
-                                                    <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style"><i class="fa fa-th"></i></a></li>
+                                                    <li class="border-end"><a href="#tab-11" class="show active"
+                                                        data-bs-toggle="tab" title="List style"><i
+                                                            class="fa fa-th"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-xl-3 col-lg-12">
-                                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>Novi Zahtev</a>
+                                                <a href="{% url 'ponude:kreiranje_zahteva' %}"
+                                                    class="btn btn-primary btn-block float-end my-2"><i
+                                                        class="fa fa-plus-square me-2"></i>Novi Zahtev</a>
                                             </div>
                                         </div>
                                     </div>
@@ -75,7 +80,8 @@
                                                         <div class="product-image6 p-5">
                                                             <ul class="icons">
                                                                 <li>
-                                                                    <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye"></i></a>
+                                                                    <a href="shop-description.html" class="btn btn-primary"> <i
+                                                                        class="fe fe-eye"></i></a>
                                                                 </li>
                                                                 <li>
                                                                     <a href="add-product.html" class="btn btn-success">
@@ -84,8 +90,11 @@
                                                                 </li>
                                                                 <li></li>
                                                             </ul>
-                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" >
-                                                                <img class="img-fluid br-7 w-100`" style="width: auto; height: 200px;" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">
+                                                                <img class="img-fluid br-7 w-100`"
+                                                                    style="width: auto; height: 200px;"
+                                                                    src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                                    alt="img">
                                                             </a>
                                                         </div>
                                                         <!-- END HOVER ICONS -->
@@ -93,7 +102,8 @@
 
                                                         <div class="card-body pt-0">
                                                             <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20 text-truncate"><a href="shop-description.html">{{ auction.title }}</a></h1>
+                                                                <h1 class="title fw-bold fs-20 text-truncate"><a
+                                                                    href="shop-description.html">{{ auction.title }}</a></h1>
 
                                                                 <!-- ZVEZDICE -->
                                                                 <div class="mb-2 text-warning">
@@ -106,28 +116,33 @@
                                                                 <!-- END ZVEZDICE -->
 
                                                                 <!-- CENA -->
-                                                                {% if auction.amount.amount  == None %}
-                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                {% if auction.amount.amount == None %}
+                                                                    <div class="price">Nema Ponuda</div>
                                                                 {% else %}
-                                                                    <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                    <div class="price">{{auction.amount.amount }} rsd</div>
                                                                 {% endif %}
                                                                 <!-- END CENA -->
                                                             </div>
                                                         </div>
-
                                                         <div class="card-footer text-center">
                                                             <input type="hidden" name="next" value="{{ next }}">
-                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1">
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
+                                                                class="btn btn-primary mb-1">
                                                                 <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                             </a>
-                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1">
-                                                                <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
-                                                            </a>
+                                                            {% for pracenje in id_pracenog_zahteva %}
+                                                                {%  if pracenje.id == auction.id %}
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
+                                                                        class="btn btn-outline-primary mb-1">
+                                                                        <i class="fe fe-heart mx-2 wishlist-icon"></i>Zahtev koji pratim
+                                                                    </a>
+                                                                {% endif %}
+                                                            {% endfor %}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        {% endfor  %}
+                                        {% endfor %}
                                         {% if pages.has_other_pages %}
                                             <div class="mb-5">
                                                 <div class='d-flex justify-content-center'>
@@ -176,7 +191,8 @@
                                                     <div class="product-image6 p-5"></div>
                                                     <div class="card-body pt-0">
                                                         <div class="product-content text-center">
-                                                            <h1 class="title fw-bold fs-20">Kategorija "{{ title }}" trenutno nema zahteva.</h1>
+                                                            <h1 class="title fw-bold fs-20">Kategorija "{{ title }}" trenutno
+                                                                nema zahteva.</h1>
                                                         </div>
                                                     </div>
                                                 </div>

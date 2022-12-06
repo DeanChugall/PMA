@@ -245,7 +245,7 @@
                                 {% if user.role == "SERVIS" %}
                                     <li class="slide">
                                         <a class="side-menu__item has-link" data-bs-toggle="slide"
-                                            href="{% url 'ponude:ponude' %}">
+                                            href="{% url 'ponude:pacenje_zahteva' %}">
                                             <i class="side-menu__icon fe fe-eye"></i>
                                             <span class="side-menu__label">Zahtevi Koje Pratim</span>
                                         </a>
@@ -257,6 +257,13 @@
                                             href="{% url 'ponude:aktivni_zahtevi_vozaca' user.username %}">
                                             <i class="side-menu__icon fe fe-eye"></i>
                                             <span class="side-menu__label">Svi Moji Zahtevi</span>
+                                        </a>
+                                    </li>
+                                    <li class="slide">
+                                        <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                            href="{% url 'ponude:pacenje_zahteva' %}">
+                                            <i class="side-menu__icon fe fe-eye"></i>
+                                            <span class="side-menu__label">Zahtevi Koje Pratim</span>
                                         </a>
                                     </li>
                                 {% endif %}
@@ -282,8 +289,8 @@
                                     </a>
                                 </li>
                             {% endfor %}
-
                         </ul>
+                        <br><br><br>
                         <div class="slide-right" id="slide-right">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
                                 viewBox="0 0 24 24">

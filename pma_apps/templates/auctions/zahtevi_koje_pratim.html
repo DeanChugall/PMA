@@ -22,11 +22,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Aktivni Zahtevi Vozača [{{ user.username }}]</h1>
+                    <h1 class="page-title">Zahtevi Koje Pratim [{{ user.username }}]</h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Aktivni Zahtevi Vozača</li>
+                            <li class="breadcrumb-item active" aria-current="page">Zahtevi Koje Pratim</li>
                         </ol>
                     </div>
                 </div>
@@ -128,14 +128,6 @@
                                                             <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
                                                                 <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                             </a>
-                                                            {% for pracenje in id_pracenog_zahteva %}
-                                                                {%  if pracenje.id == auction.id %}
-                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
-                                                                        class="btn btn-outline-primary mb-1">
-                                                                        <i class="fe fe-heart mx-2 wishlist-icon"></i>Zahtev koji pratim
-                                                                    </a>
-                                                                {% endif %}
-                                                            {% endfor %}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -189,7 +181,7 @@
                                                     <div class="product-image6 p-5"></div>
                                                     <div class="card-body pt-0">
                                                         <div class="product-content text-center">
-                                                            <h1 class="title fw-bold fs-20">{{ user.username }}, trenutno nemate zahteva za ponudu. </h1>
+                                                            <h1 class="title fw-bold fs-20">{{ user.username }}, trenutno nemate zahteva koje pratite. </h1>
                                                         </div>
                                                     </div>
                                                 </div>

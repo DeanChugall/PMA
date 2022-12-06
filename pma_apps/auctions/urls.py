@@ -23,6 +23,12 @@ urlpatterns = [
         ListaZahtevaVozacaView.as_view(),
         name="aktivni_zahtevi_vozaca",
     ),
+    path("zahtevi/pracenje", views.watchlist_view, name="pacenje_zahteva"),
+    path(
+        "zahtevi/pracenje/<int:zahtev_id>/edit/<str:reverse_method>",
+        views.watchlist_edit,
+        name="pracenje_zahteva_edit",
+    ),
     # HTMX
     path(
         "zahtevi/<int:pk>/uredjivanje",

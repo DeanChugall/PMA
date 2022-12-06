@@ -38,7 +38,21 @@
                     </div>
                 </div>
                 <!-- PAGE-HEADER END -->
-
+                <!-- Watchlist -->
+                <div>
+                    {% if auction.is_watched %}
+                        <a class='btn btn-outline-danger mt-auto'
+                            href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:auction_details_view' %}">
+                            <i class="fa fa-close"></i> Ukloni sa liste praćenja
+                        </a>
+                    {% else %}
+                        <a class='btn btn-outline-success mt-auto'
+                            href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:auction_details_view' %}">
+                            <i class="fa fa-check-square"></i> Dodaj u listu koju pratim
+                        </a>
+                    {% endif %}
+                </div>
+                <br>
                 <!-- ROW-1 OPEN -->
                 <div class="row">
                     <div class="col-xl-12">
@@ -54,9 +68,15 @@
                                                         <div class="carousel-inner">
                                                             <div class="carousel-item active">
                                                                 {% for image in images %}
-                                                                    <img class="img-fluid br-7 w-100`" style="width: 300px;; height: auto" src="{{ image.image.url }}" alt='Product'>
+                                                                    <img class="img-fluid br-7 w-100`"
+                                                                        style="width: 300px;; height: auto"
+                                                                        src="{{ image.image.url }}"
+                                                                        alt='Slika Automobila'>
                                                                 {% empty %}
-                                                                    <img class="img-fluid br-7 w-100`" src="{% static 'assets/images/auctions/no-car.jpg' %}" alt='Image Not Available' style='width: 300px;'>
+                                                                    <img class="img-fluid br-7 w-100`"
+                                                                        src="{% static 'assets/images/auctions/no-car.jpg' %}"
+                                                                        alt='Image Not Available'
+                                                                        style='width: 300px;'>
                                                                 {% endfor %}
                                                             </div>
                                                         </div>

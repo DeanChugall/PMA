@@ -128,9 +128,14 @@
                                                             <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
                                                                 <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                             </a>
-                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1 ml-auto" style="color:white">
-                                                                <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
-                                                            </a>
+                                                            {% for pracenje in id_pracenog_zahteva %}
+                                                                {%  if pracenje.id == auction.id %}
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
+                                                                        class="btn btn-outline-primary mb-1">
+                                                                        <i class="fe fe-heart mx-2 wishlist-icon"></i>Zahtev koji pratim
+                                                                    </a>
+                                                                {% endif %}
+                                                            {% endfor %}
                                                         </div>
                                                     </div>
                                                 </div>
