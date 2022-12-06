@@ -25,7 +25,7 @@ def ponude_view(request):
 
     # Show 5 auctions_obj per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions_obj, 25)
+    paginator = Paginator(auctions_obj, 9)
 
     try:
         pages = paginator.page(page)
@@ -67,7 +67,7 @@ def category_details_view(request, category_name):
 
     # Show 3 active auctions per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions, 24)
+    paginator = Paginator(auctions, 9)
     try:
         pages = paginator.page(page)
     except PageNotAnInteger:
@@ -199,9 +199,20 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
             auction.image = auction.get_images.first()
             auction.amount = auction.get_bids.first()
 
+        page = self.request.GET.get("page", 1)
+        paginator = Paginator(auctions, 9)
+
+        try:
+            pages = paginator.page(page)
+        except PageNotAnInteger:
+            pages = paginator.page(1)
+        except EmptyPage:
+            pages = paginator.page(paginator.num_pages)
+
         context = {
             "categories": Category.objects.all(),
             "zahtevi_vozaca": auctions,
+            "pages": pages,
         }
 
         return context
@@ -267,7 +278,7 @@ def aktivni_zahtevi_view(request):
 
     # Show 3 active auctions per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions, 3)
+    paginator = Paginator(auctions, 9)
     try:
         pages = paginator.page(page)
     except PageNotAnInteger:
