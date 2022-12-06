@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}{{ title }} {% endblock %}
+{% block title %} Zahtevi: {{ user.username }} {% endblock %}
 
 {% block meta_data %}
     <meta charset="UTF-8">
@@ -22,11 +22,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Kategorija:</h1>
+                    <h1 class="page-title">Svi Aktivni Zahtevi</h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">eeeeeeeeeeeeeeeeee</li>
+                            <li class="breadcrumb-item active" aria-current="page">Aktivni Zahtevi</li>
                         </ol>
                     </div>
                 </div>
@@ -43,16 +43,21 @@
                                         <div class="row">
                                             <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                                                 <div class="input-group d-flex w-100 float-start">
-
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                                 <ul class="nav item2-gl-menu float-end my-2">
-                                                    <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style"><i class="fa fa-th"></i></a></li>
+                                                    <li class="border-end">
+                                                        <a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style">
+                                                            <i class="fa fa-th"></i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="col-xl-3 col-lg-12">
-                                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>Novi Zahtev</a>
+                                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2">
+                                                    <i class="fa fa-plus-square me-2"></i>Novi Zahtev
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -66,68 +71,130 @@
                             <div class="tab-pane active" id="tab-11">
                                 <div class="row">
                                     <!-- CARD ZAHTEVA -->
-                                    {% for auction in zahtevi_vozaca %}
-                                        <div class="col-md-6 col-xl-4 col-sm-6">
-                                            <div class="card">
-                                                <div class="product-grid6">
-                                                    <!-- HOVER ICONS -->
-                                                    <div class="product-image6 p-5">
-                                                        <ul class="icons">
-                                                            <li>
-                                                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye"></i></a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="add-product.html" class="btn btn-success">
-                                                                    <i class="fe fe-edit"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li></li>
-                                                        </ul>
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" >
-                                                            <img class="img-fluid br-7 w-100`" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
-                                                        </a>
-                                                    </div>
-                                                    <!-- END HOVER ICONS -->
+                                    {% if pages %}
+                                        {% for auction in pages %}
+                                            <div class="col-md-6 col-xl-4 col-sm-6">
+                                                <div class="card">
+                                                    <div class="product-grid6">
+                                                        <!-- HOVER ICONS -->
+                                                        <div class="product-image6 p-5">
+                                                            <ul class="icons">
+                                                                <li>
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary">
+                                                                        <i class="fe fe-eye"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="add-product.html" class="btn btn-success">
+                                                                        <i class="fe fe-edit"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li></li>
+                                                            </ul>
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper">
+                                                                <img class="rounded-3 img-fluid img-center img_automobil" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                            </a>
+                                                        </div>
+                                                        <!-- END HOVER ICONS -->
 
+                                                        <div class="card-body pt-0">
+                                                            <div class="product-content text-center">
+                                                                <h1 class="title fw-bold fs-20 text-truncate">
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                                </h1>
 
-                                                    <div class="card-body pt-0">
-                                                        <div class="product-content text-center">
-                                                            <h1 class="title fw-bold fs-20 text-truncate"><a href="shop-description.html">{{ auction.title }}</a></h1>
+                                                                <!-- ZVEZDICE -->
+                                                                <div class="mb-2 text-warning">
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                </div>
+                                                                <!-- END ZVEZDICE -->
 
-                                                            <!-- ZVEZDICE -->
-                                                            <div class="mb-2 text-warning">
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
-                                                                <i class="fa fa-star text-warning"></i>
+                                                                <!-- CENA -->
+                                                                {% if auction.amount.amount  == None %}
+                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                {% else %}
+                                                                    <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                {% endif %}
+                                                                <!-- END CENA -->
                                                             </div>
-                                                            <!-- END ZVEZDICE -->
+                                                        </div>
 
-                                                            <!-- CENA -->
-                                                            {% if auction.amount.amount  == None %}
-                                                                <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
-                                                            {% else %}
-                                                                <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
-                                                            {% endif %}
-                                                            <!-- END CENA -->
+                                                        <div class="card-footer text-center">
+                                                            <input type="hidden" name="next" value="{{ next }}">
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
+                                                                <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
+                                                            </a>
+                                                            <a href="wishlist.html" class="btn btn-outline-primary mb-1 ml-auto" style="color:white">
+                                                                <i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)
+                                                            </a>
                                                         </div>
                                                     </div>
-
-                                                    <div class="card-footer text-center">
-                                                        <input type="hidden" name="next" value="{{ next }}">
-                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Detalji</a>
-                                                        <a href="wishlist.html" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2 wishlist-icon"></i>Posmatraj (Prati)</a>
+                                                </div>
+                                            </div>
+                                        {% endfor  %}
+                                        {% if pages.has_other_pages %}
+                                            <div class="mb-5">
+                                                <div class='d-flex justify-content-center'>
+                                                    <ul class='pagination'>
+                                                        {% if pages.has_previous %}
+                                                            <li class='page-item'>
+                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>
+                                                                    &laquo;
+                                                                </a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li class='page-item disabled'>
+                                                                <a class='page-link' href='#'>&laquo;</a>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% for i in pages.paginator.page_range %}
+                                                            {% if pages.number == i %}
+                                                                <li class='page-item active'>
+                                                                    <a class='page-link' href='#'>{{ i }}</a>
+                                                                </li>
+                                                            {% else %}
+                                                                <li class='page-item'>
+                                                                    <a class='page-link' href='?page={{ i }}'>{{ i }}</a>
+                                                                </li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        {% if pages.has_next %}
+                                                            <li class='page-item'>
+                                                                <a class='page-link' href='?page={{ pages.next_page_number }}'>
+                                                                    &raquo;
+                                                                </a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li class='page-item disabled'>
+                                                                <a class='page-link' href='#'>&raquo;</a>
+                                                            </li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="product-grid6">
+                                                    <div class="product-image6 p-5"></div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="product-content text-center">
+                                                            <h1 class="title fw-bold fs-20">{{ user.username }}, trenutno nemate zahteva za ponudu. </h1>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor  %}
+                                    {% endif %}
                                     <!-- END CARD ZAHTEVA -->
                                 </div>
                             </div>
                             <!-- END CARD PREGLED U KOCKICAMA -->
-
                         </div>
                         <!-- COL-END -->
                     </div>

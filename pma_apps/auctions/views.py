@@ -288,7 +288,7 @@ def aktivni_zahtevi_view(request):
 
     return render(
         request,
-        "aktivni_zahtevi.html",
+        "auctions/aktivni_zahtevi.html",
         {
             "categories": Category.objects.all(),
             "auctions": auctions,
