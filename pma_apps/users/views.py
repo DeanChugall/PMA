@@ -5,6 +5,7 @@ from django.shortcuts import resolve_url
 from django.urls import reverse
 from django.views import generic
 
+from pma_apps.auctions.models import Category
 from pma_apps.users.forms import DetaljiVozacaForm, KreirajVozacaForm, UlogujVozacaForm
 from pma_apps.users.models import Vozac
 
@@ -36,20 +37,44 @@ class KreirajVozacaView(generic.CreateView):
         return reverse("users:prijava")
 
 
-class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
+class DetaljiVozacaView(LoginRequiredMixin, generic.UpdateView):
     template_name = "vozaci/detalji-vozaca.html"
+    form_class = DetaljiVozacaForm
     queryset = Vozac.objects.all()
     context_object_name = "detalji_vozaca"
 
     slug_field = "username"
     slug_url_kwarg = "username"
 
+    def get_context_data(self, **kwargs):
+
+        vozac = Vozac.objects.all().filter(username=self.kwargs["username"]).first()
+
+        context = {
+            "categories": Category.objects.all(),
+            "detalji_vozaca": vozac,
+        }
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.queryset = self.get_object()
+        return super().post(request, *args, **kwargs)
+
 
 class UrediVozacaView(LoginRequiredMixin, generic.UpdateView):
     template_name = "vozaci/detalji-vozaca.html"
-    queryset = Vozac.objects.all()
+    # queryset = Vozac.objects.all()
     form_class = DetaljiVozacaForm
     context_object_name = "uredi_vozaca"
+
+    #
+    # def get(self, request, *args, **kwargs):
+    #     self.queryset = self.get_object()
+    #     return super().get(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        self.queryset = self.get_object()
+        return super().post(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse("auctions:ponude")

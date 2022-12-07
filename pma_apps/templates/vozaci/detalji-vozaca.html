@@ -1,54 +1,354 @@
-{% load static %}
+{% extends "vozaci/base-vozaci.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Profil: {{ user.username }} {% endblock %}
 
-{% if object == request.user %}
-    {% block title %}User: {{ detalji_vozaca.username }}{% endblock %}
+{% block meta_data %}
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="@PMA Technologies Private Limited">
+    <meta name="description" content="@PMA Kategorija Zahteva">
+    <meta name="keywords" content="Popravi Moj Auto.">
+{% endblock meta_data %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>TEEEEEEEEST DETALJI VOZACA</h1>
-                <h2>{{ detalji_vozaca.username }}</h2>
-                <p>{{ detalji_vozaca.name }}</p>
-                <p>{{ detalji_vozaca.username }}</p>
-                <p>{{ detalji_vozaca.id }}</p>
-                <p>{{ detalji_vozaca.email }}</p>
+{% block app_content %}
+    <!--app-content open-->
+    <div class="main-content app-content mt-0">
+        <div class="side-app">
+
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+
+                <!-- PAGE-HEADER -->
+                <div class="page-header">
+                    <h1 class="page-title">Uređivanje Profila: {{ detalji_vozaca.username }}</h1>
+                    <div>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Uredjivanje Profila</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- PAGE-HEADER END -->
+
+                <!-- ROW-1 OPEN -->
+                <div class="row">
+                    <!-- PROMENA PROFILA -->
+                    <div class="col-xl-12">
+                        <!-- EDIT PROFILA -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Uređivanje Profila</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Email adresa:</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="email"
+                                                placeholder="{{ detalji_vozaca.email }}"
+                                                disabled readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Korisničko Ime:</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="username"
+                                                placeholder="{{ detalji_vozaca.username }}"
+                                                disabled readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Broj Telefona:</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="telefon"
+                                                value="{{ detalji_vozaca.vozacprofile.broj_telefona }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Ime:</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="ime"
+                                                value="{{ detalji_vozaca.first_name}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Prezime:</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="prezime"
+                                                value="{{ detalji_vozaca.last_name}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-end">
+                                <a href="javascript:void(0)" class="btn btn-success my-1">Save</a>
+                                <a href="javascript:void(0)" class="btn btn-danger my-1">Cancel</a>
+                            </div>
+                        </div>
+                        <!-- END EDIT PROFILA -->
+
+                        <!-- EDIT AUTOMOBILA -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Uređivanje Automobila</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="form-label">VIN Broj:</label>
+                                        <input class="form-control" placeholder="npr: WAUZZZ4BZWN049194">
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Marka:</label>
+                                            <input type="text" class="form-control" id="marka_auta" placeholder="npr: Renault">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Model:</label>
+                                            <input type="text" class="form-control" id="modela_auta" placeholder="npr: Scenic II">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Godište Automobila:</label>
+                                            <select class="form-control select2 form-select">
+                                                <option value="1">2023</option>
+                                                <option value="1">2022</option>
+                                                <option value="1">2021</option>
+                                                <option value="1">2020</option>
+                                                <option value="1">2019</option>
+                                                <option value="1">2018</option>
+                                                <option value="2">2017</option>
+                                                <option value="3">2016</option>
+                                                <option value="4">2015</option>
+                                                <option value="5">2014</option>
+                                                <option value="6">2013</option>
+                                                <option value="7">2102</option>
+                                                <option value="8">2012</option>
+                                                <option value="9">2011</option>
+                                                <option value="10">2010</option>
+                                                <option value="11">2009</option>
+                                                <option value="12">2008</option>
+                                                <option value="13">2007</option>
+                                                <option value="14">2006</option>
+                                                <option value="15">2005</option>
+                                                <option value="16">2004</option>
+                                                <option value="17">2003</option>
+                                                <option value="18">2002</option>
+                                                <option value="19">2001</option>
+                                                <option value="20">1999</option>
+                                                <option value="21">1998</option>
+                                                <option value="22">1997</option>
+                                                <option value="23">1996</option>
+                                                <option value="24">1995</option>
+                                                <option value="25">1994</option>
+                                                <option value="26">1993</option>
+                                                <option value="27">1992</option>
+                                                <option value="28">1991</option>
+                                                <option value="29">1990</option>
+                                                <option value="30">1989</option>
+                                                <option value="31">1988</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Vrsta Goriva:</label>
+                                            <select class="form-control select2 form-select">
+                                                <option value="dizel">Dizel</option>
+                                                <option value="benzin">Benzin</option>
+                                                <option value="hibrid">Hibrid</option>
+                                                <option value="ev">EV</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Kilometraža:</label>
+                                            <input type="text" class="form-control" id="kilometraza" placeholder="npr: 156.500 km">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Zapremina Motora:</label>
+                                            <input type="text" class="form-control" id="zapremina_motora" placeholder="npr: 1890 ccm">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Snaga Motora:</label>
+                                            <input type="text" class="form-control" id="snaga_motora" placeholder="npr: 120 KS  ili 80 KW">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-end">
+                                <a href="javascript:void(0)" class="btn btn-success my-1">Save</a>
+                                <a href="javascript:void(0)" class="btn btn-danger my-1">Cancel</a>
+                            </div>
+                        </div>
+                        <!-- END EDIT AUTOMOBILA -->
+
+                        <!-- EDIT NOTIFIKACIJE -->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Notifications</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Updates Automatically</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Allow Location Map</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Show Contacts</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Show Notfication</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Show Tasks Statistics</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Show Email Notification</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title">Privacy and Security</div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Allow Others to see my profile</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Make my profile Public</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Security Alert</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Passcode and Face ID</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Two Step Verification</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group mg-b-10">
+                                            <label class="custom-switch ps-0">
+                                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
+                                                <span class="custom-switch-indicator me-3"></span>
+                                                <span class="custom-switch-description mg-l-10">Always Sign In</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END EDIT NOTIFIKACIJE -->
+
+                        <!-- BRISANJE NALOGA -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Delete Account</div>
+                            </div>
+                            <div class="card-body">
+                                <p>Its Advisable for you to request your data to be sent to your Email.</p>
+                                <label class="custom-control custom-checkbox mb-0">
+                                    <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+                                    <span class="custom-control-label">Yes, Send my data to my Email.</span>
+                                </label>
+                            </div>
+                            <div class="card-footer text-end">
+                                <a href="javascript:void(0)" class="btn btn-primary my-1">Deactivate</a>
+                                <a href="javascript:void(0)" class="btn btn-danger my-1">Delete Account</a>
+                            </div>
+                        </div>
+                        <!-- END BRISANJE NALOGA -->
+
+                    </div>
+                    <!-- END PROMENA PROFILA -->
+                </div>
+                <!-- ROW-1 CLOSED -->
+
             </div>
-        </div>
-
-
-        <div class="form-group col-md-6 mb-0">
-            <p> email Name:{{ detalji_vozaca.email}}</p>
-            <p>base_role:{{ detalji_vozaca.base_role}}</p>
-            <p>first_name:{{ detalji_vozaca.first_name}}</p>
-            <p>vozac_id:{{ detalji_vozaca.vozacprofile.vozac_id}}</p>
-            <p>slika_vozaca:{{ detalji_vozaca.vozacprofile.slika_vozaca}}</p>
-        </div>
-
-        <!-- Action buttons -->
-        <div class="row">
-
-            <div class="col-sm-12">
-                <a class="btn btn-primary" href="{% url 'landing_page:landing_page' %}" role="button">My Info</a>
-                <!-- Your Stuff: Custom user template urls -->
-            </div>
+            <!--CONTAINER CLOSED -->
 
         </div>
-
-
-        <div class="mx-auto" style="width: 800px;">
-            <form method='post'>
-                {% csrf_token %}
-                {{ form|crispy }}
-                <br />
-                <button class="btn btn-success btn-lg" type='submit'
-                    onclick="return confirm('Da li želite da sačuvate izmene za kupca: {{ uredi_kupca.ime_prezime }}?')">
-                    Sačuvaj
-                </button>
-
-            </form>
-        </div>
-        <!-- End Action buttons -->
-{% endif %}
-
-</div>
+    </div>
+    <!--app-content open-->
+    </div>
+{% endblock app_content %}
