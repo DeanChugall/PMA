@@ -52,6 +52,7 @@ def ponude_view(request):
     )
 
 
+@login_required
 def category_details_view(request, category_name):
     """
     Clicking on the name of any category takes the user to a page that
@@ -242,6 +243,7 @@ class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
         )
 
 
+@login_required
 def uredi_zahtev_vozaca_view(request, pk):
     auction = get_object_or_404(Auction, pk=pk)
     form = AuctionForm(request.POST or None, instance=auction)
@@ -265,6 +267,7 @@ def uredi_zahtev_vozaca_view(request, pk):
     return render(request, "auctions/partials/uredi_zahtev_vozaca.html", context)
 
 
+@login_required
 def aktivni_zahtevi_view(request):
     """
     It renders a page that displays all the currently active auction listings
