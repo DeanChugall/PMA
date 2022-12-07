@@ -1,0 +1,813 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2022-11-27T22:10:54.156Z",
+    "user": 2,
+    "content_type": 17,
+    "object_id": "1",
+    "object_repr": "Auction #1: TEST ZAHTEV 1 (vozac1 ':' VOZAC)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2022-11-27T22:11:03.479Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "1",
+    "object_repr": "images/golf-6_tAR4YLW.jpeg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2022-11-27T22:11:18.341Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "Bid #1: 123 on TEST ZAHTEV 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2022-11-27T22:11:26.475Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "Bid #2: 456 on TEST ZAHTEV 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2022-11-27T23:04:45.349Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "3",
+    "object_repr": "Bid #3: 123 on TEST ZAHTEV 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2022-11-27T23:05:16.274Z",
+    "user": 2,
+    "content_type": 17,
+    "object_id": "2",
+    "object_repr": "Auction #2: Tehnicki pregled CLIO (vozac1)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2022-11-27T23:05:35.362Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "2",
+    "object_repr": "images/scenic_B7SoxD8.jpg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2022-11-27T23:16:57.228Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "4",
+    "object_repr": "Bid #4: 4444 on TEST ZAHTEV 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2022-11-27T23:18:02.596Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "5",
+    "object_repr": "Bid #5: 45 on Tehnicki pregled CLIO",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2022-11-28T19:49:53.948Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "2",
+    "object_repr": "images/scenic_B7SoxD8.jpg",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2022-11-28T19:49:53.959Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "1",
+    "object_repr": "images/golf-6_tAR4YLW.jpeg",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2022-11-28T19:50:03.073Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "3",
+    "object_repr": "images/golf-6.jpeg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2022-11-28T20:20:48.639Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "3",
+    "object_repr": "images/golf-6.jpeg",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2022-11-28T20:20:56.739Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "4",
+    "object_repr": "images/golf-6.jpeg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2022-11-28T20:23:40.376Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "4",
+    "object_repr": "images/golf-6.jpeg",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2022-11-28T20:23:49.007Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "5",
+    "object_repr": "images/scenic.jpg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2022-11-30T23:04:15.013Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "6",
+    "object_repr": "Bid #6: 1234 on aer",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2022-12-01T22:05:48.608Z",
+    "user": 2,
+    "content_type": 20,
+    "object_id": "19",
+    "object_repr": "images/1-golf-6_GOIrhvS.jpg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2022-12-01T22:06:04.032Z",
+    "user": 2,
+    "content_type": 17,
+    "object_id": "91",
+    "object_repr": "Auction #91: aer (vozac1)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lxqkqlg9vep9jpnj4s233rvxjgkyy4jf",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnr39qmpOcMlj9rHECOFCcV4u4QKQW0b2bei4W4rS1sg5YwFXZmgp1-txTzg_oOyj3228zz3NdlSnxX-EEHv86FnpfD_TtocbRvDTabaLTyWChZUA5T1UCgTM7Fa2Gtt9qhxloRpRLOW6lJIoGBkiCx9we_bjbB:1p2i1T:PQYSJaJ8ES4nAyYpDaDbxO_eXonA17hwrAT3D0VplWE",
+    "expire_date": "2022-12-21T00:10:51.012Z"
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$M4iUhrKaUMJBZSWwv0COuY$1vhhkrvDIERgSWrhavs8eeTvlTZNfdNN5L9IBiKN2Wk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vozac1",
+    "email": "vozac1@vozac1.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-11-27T15:31:38.945Z",
+    "role": "VOZAC",
+    "name": "",
+    "first_name": "vozac1",
+    "last_name": "vozac1",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$xGCDLjUH5iHNDfrRl8LhRa$OfG/lXx7A0UiCte+ZkCMcuTj/jilgZOgm8t7qhdpXys=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "datatab",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2022-11-27T21:13:45.554Z",
+    "role": "VOZAC",
+    "name": "",
+    "first_name": "",
+    "last_name": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$IEWtPTw1d3Xf9h0X2856yI$K/EkPnKqzIQii194FbdTElWfXatdx777PhILRuX7tK0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "servis1",
+    "email": "servis1@servis1.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-11-27T21:19:41.180Z",
+    "role": "SERVIS",
+    "name": "",
+    "first_name": "servis1",
+    "last_name": "servis1",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$M4iUhrKaUMJBZSWwv0COuY$1vhhkrvDIERgSWrhavs8eeTvlTZNfdNN5L9IBiKN2Wk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vozac2",
+    "email": "vozac2@vozac2.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-11-27T21:28:34.985Z",
+    "role": "VOZAC",
+    "name": "",
+    "first_name": "",
+    "last_name": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "!5pQWgOcUuh5UthUfU21gt6iBiMYQLmiWyTyVUJrD",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vozac3",
+    "email": "vozac3@vozac3.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-11-27T21:40:34.171Z",
+    "role": "VOZAC",
+    "name": "",
+    "first_name": "",
+    "last_name": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "!Uf5hpV81xSRjlLKsGpC5LpxQDybLsZEwwzfnBdUB",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "servi5",
+    "email": "servi5@servi5.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-11-27T21:41:11.057Z",
+    "role": "SERVIS",
+    "name": "",
+    "first_name": "",
+    "last_name": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "vozac_id": 1,
+    "broj_telefona": "+381631369098"
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 2,
+  "fields": {
+    "user": 6,
+    "vozac_id": 2,
+    "broj_telefona": "+381631369098"
+  }
+},
+{
+  "model": "users.servisprofile",
+  "pk": 1,
+  "fields": {
+    "user": 3,
+    "servis_id": null,
+    "slika_servisa": ""
+  }
+},
+{
+  "model": "users.servisprofile",
+  "pk": 2,
+  "fields": {
+    "user": 7,
+    "servis_id": null,
+    "slika_servisa": ""
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "VELIKI SERVIS"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "MALI SERVIS"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "KLIMA SERVIS"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "KOČNICE"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "MENJAČ"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 6,
+  "fields": {
+    "category_name": "AUSPUH"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 7,
+  "fields": {
+    "category_name": "ELEKTRIKA"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 8,
+  "fields": {
+    "category_name": "ELEKTRONIKA"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 9,
+  "fields": {
+    "category_name": "TRAP"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 10,
+  "fields": {
+    "category_name": "TEHNIČKI PREGLED"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 11,
+  "fields": {
+    "category_name": "LIMARIJA"
+  }
+},
+{
+  "model": "auctions.category",
+  "pk": 12,
+  "fields": {
+    "category_name": "OSTALI SERVISI"
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 124,
+  "fields": {
+    "title": "1-DATATAB",
+    "description": "1-DATATAB",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-04T18:44:46.497Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 125,
+  "fields": {
+    "title": "1-DATATAB",
+    "description": "1-DATATAB",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-04T18:45:42.951Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 126,
+  "fields": {
+    "title": "1-DATATAB",
+    "description": "1-DATATAB",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-04T18:45:58.112Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 127,
+  "fields": {
+    "title": "1-DATATAB",
+    "description": "1-DATATAB",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-04T18:46:16.818Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 128,
+  "fields": {
+    "title": "ererrerererer",
+    "description": "erwerwerwer",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-04T18:46:55.328Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 162,
+  "fields": {
+    "title": "werwer",
+    "description": "werwer",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-05T23:54:05.697Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 163,
+  "fields": {
+    "title": "sergs",
+    "description": "egserg",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-05T23:54:22.297Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 164,
+  "fields": {
+    "title": "nytdht",
+    "description": "ryhdtyh",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-05T23:54:36.746Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": [
+      3
+    ]
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 165,
+  "fields": {
+    "title": "sergh",
+    "description": "erthreth",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-05T23:55:00.430Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": [
+      3
+    ]
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 166,
+  "fields": {
+    "title": "ytdjdty",
+    "description": "jtdyjdty",
+    "creator": 2,
+    "category": 1,
+    "date_created": "2022-12-05T23:55:14.831Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": [
+      3
+    ]
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 167,
+  "fields": {
+    "title": "Clio MK4 VELIKI SERVIS",
+    "description": "Clio MK4 VELIKI SERVIS",
+    "creator": 5,
+    "category": 1,
+    "date_created": "2022-12-06T05:51:57.201Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": [
+      3,
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 168,
+  "fields": {
+    "title": "test empty",
+    "description": "test empty",
+    "creator": 5,
+    "category": 1,
+    "date_created": "2022-12-06T20:03:12.486Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": [
+      3,
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 169,
+  "fields": {
+    "title": "test",
+    "description": "test",
+    "creator": 1,
+    "category": 1,
+    "date_created": "2022-12-06T20:38:45.687Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": [
+      3,
+      1
+    ]
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 33,
+  "fields": {
+    "auction": 124,
+    "image": "images/1-golf-6_vUVOKIT.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 34,
+  "fields": {
+    "auction": 125,
+    "image": "images/1-golf-6_TwpBKxs.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 35,
+  "fields": {
+    "auction": 126,
+    "image": "images/1-golf-6_eOige7K.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 36,
+  "fields": {
+    "auction": 127,
+    "image": "images/1-golf-6_U1Pu8ql.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 37,
+  "fields": {
+    "auction": 128,
+    "image": "images/Clio_verka_wwKQdg3.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 68,
+  "fields": {
+    "auction": 162,
+    "image": "images/1-a-merc-test_0TzkNyI.jpeg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 69,
+  "fields": {
+    "auction": 163,
+    "image": "images/FIAT-500-L_5WBe7dG.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 70,
+  "fields": {
+    "auction": 164,
+    "image": "images/peugeot_tz03Yat.jpeg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 71,
+  "fields": {
+    "auction": 165,
+    "image": "images/1-scenic-reno_3KWtgxy.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 72,
+  "fields": {
+    "auction": 166,
+    "image": "images/Clio_verka_k4fP32w.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 73,
+  "fields": {
+    "auction": 167,
+    "image": "images/Clio-Mk4-2013-1-_znHsLmp.jpg"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 7,
+  "fields": {
+    "auction": 169,
+    "servis": 1,
+    "amount": "234.00",
+    "date": "2022-12-04T23:54:39.258Z"
+  }
+}
+]
