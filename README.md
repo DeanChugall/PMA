@@ -24,7 +24,7 @@
 ---
 
 ## Inicijalizacija svih podataka ukoliko mora da se obriše DB:
-
+[@see reference](https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata)
 - <b>Čuvanje svih podataka iz DB-a (fixtures):</b>
 - - Prvo se ode u DIR: ``` tests/fixtures_from_db ```
 - - Pa iz to dir-a komanda ispod:
@@ -35,4 +35,3 @@
 
 - <b>Učitavanje inicijalnih podataka u novu bazu:</b>
 - - ``` python ../../manage.py loaddata pma-data.json ```
-

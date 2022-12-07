@@ -64,6 +64,15 @@ class VozacProfile(models.Model):
     vozac_id = models.IntegerField(null=True, blank=True)
     broj_telefona = CharField(null=True, blank=True, max_length=100)
 
+    # Automobil Vozaca
+    vin = CharField(null=True, blank=True, max_length=100)
+    marka = CharField(null=True, blank=True, max_length=100)
+    modell = CharField(null=True, blank=True, max_length=100)
+    godiste = CharField(null=True, blank=True, max_length=100)
+    kilometraza = CharField(null=True, blank=True, max_length=100)
+    zapremina_motora = CharField(null=True, blank=True, max_length=100)
+    snaga_motora = CharField(null=True, blank=True, max_length=100)
+
     class Meta:
         db_table: str = "vozaci"
         verbose_name: str = "Vozac"

@@ -1,7 +1,7 @@
 import pytest
 
 from pma_apps.auctions.models import Auction, Category
-from pma_apps.users.models import Servis, Vozac
+from pma_apps.users.models import Servis, Vozac, VozacProfile
 
 
 @pytest.fixture(autouse=False)
@@ -41,6 +41,27 @@ def novi_jedan_vozac_autorizovan_korisnik_fixture(
     )
     client.force_login(vozac)
     return vozac
+
+
+@pytest.fixture(autouse=False)
+def novi_jedan_vozac_sa_autom_autorizovan_korisnik_fixture(
+    db, django_user_model, novi_jedan_vozac_autorizovan_korisnik_fixture
+) -> VozacProfile:
+
+    VozacProfile.objects.update(
+        user=novi_jedan_vozac_autorizovan_korisnik_fixture,
+        broj_telefona="Dejan",
+        vin="WAUZZZ4BZWN049194",
+        marka="Renault",
+        modell="cenic II",
+        godiste="2012",
+        kilometraza="195.500",
+        zapremina_motora="1900 ccm",
+        snaga_motora="120 KS",
+    )
+
+    profil_vozaca = VozacProfile.objects.first()
+    return profil_vozaca
 
 
 @pytest.fixture(autouse=False)
