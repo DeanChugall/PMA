@@ -74,7 +74,8 @@
                                                 type="text"
                                                 class="form-control"
                                                 id="telefon"
-                                                value="{{ detalji_vozaca.vozacprofile.broj_telefona }}">
+                                                value="{{ detalji_vozaca.vozacprofile.broj_telefona }}"
+                                                placeholder="Boj Telefona">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-2">
@@ -84,7 +85,8 @@
                                                 type="text"
                                                 class="form-control"
                                                 id="ime"
-                                                value="{{ detalji_vozaca.first_name}}">
+                                                value="{{ detalji_vozaca.first_name}}"
+                                                placeholder="Ime">
                                         </div>
                                     </div>
 
@@ -95,7 +97,8 @@
                                                 type="text"
                                                 class="form-control"
                                                 id="prezime"
-                                                value="{{ detalji_vozaca.last_name}}">
+                                                value="{{ detalji_vozaca.last_name}}"
+                                                placeholder="Prezime">
                                         </div>
                                     </div>
                                 </div>
@@ -117,18 +120,31 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="form-label">VIN Broj:</label>
-                                        <input class="form-control" placeholder="npr: WAUZZZ4BZWN049194">
+                                        <input
+                                            class="form-control"
+                                            value="{{ profil_vozaca.vin }}"
+                                            placeholder="primer: WAUZZZ4BZWN049194">
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label class="form-label">Marka:</label>
-                                            <input type="text" class="form-control" id="marka_auta" placeholder="npr: Renault">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="marka_auta"
+                                                value="{{ profil_vozaca.marka }}"
+                                                placeholder="primer: Renault">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label class="form-label">Model:</label>
-                                            <input type="text" class="form-control" id="modela_auta" placeholder="npr: Scenic II">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="modela_auta"
+                                                value="{{ profil_vozaca.modell }}"
+                                                placeholder="primer: Scenic II">
                                         </div>
                                     </div>
                                 </div>
@@ -137,6 +153,7 @@
                                         <div class="col-md-4 mb-2">
                                             <label class="form-label">Godište Automobila:</label>
                                             <select class="form-control select2 form-select">
+                                                <option value="default">{{ profil_vozaca.godiste }}</option>
                                                 <option value="1">2023</option>
                                                 <option value="1">2022</option>
                                                 <option value="1">2021</option>
@@ -178,6 +195,7 @@
                                         <div class="col-md-4 mb-2">
                                             <label class="form-label">Vrsta Goriva:</label>
                                             <select class="form-control select2 form-select">
+                                                <option value="default">{{ profil_vozaca.vrsta_goriva }}</option>
                                                 <option value="dizel">Dizel</option>
                                                 <option value="benzin">Benzin</option>
                                                 <option value="hibrid">Hibrid</option>
@@ -186,7 +204,12 @@
                                         </div>
                                         <div class="col-md-4 mb-2">
                                             <label class="form-label">Kilometraža:</label>
-                                            <input type="text" class="form-control" id="kilometraza" placeholder="npr: 156.500 km">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="kilometraza"
+                                                value="{{ profil_vozaca.kilometraza }}"
+                                                placeholder="primer: 156.500 km">
                                         </div>
                                     </div>
                                 </div>
@@ -194,13 +217,23 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label class="form-label">Zapremina Motora:</label>
-                                            <input type="text" class="form-control" id="zapremina_motora" placeholder="npr: 1890 ccm">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="zapremina_motora"
+                                                value="{{ profil_vozaca.zapremina_motora }}"
+                                                placeholder="primer: 1890 ccm">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label class="form-label">Snaga Motora:</label>
-                                            <input type="text" class="form-control" id="snaga_motora" placeholder="npr: 120 KS  ili 80 KW">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="snaga_motora"
+                                                value="{{ profil_vozaca.snaga_motora }}"
+                                                placeholder="primer: 120 KS  ili 80 KW">
                                         </div>
                                     </div>
                                 </div>

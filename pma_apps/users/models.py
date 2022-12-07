@@ -60,6 +60,12 @@ class Vozac(User):
 
 
 class VozacProfile(models.Model):
+    class VrstaGoriva(models.TextChoices):
+        DIZEL = "Dizel", "Dizel"
+        BENZIN = "Benzin", "Benzin"
+        HIBRID = "Hibrid", "Hibrid"
+        EV = "EV", "EV"
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     vozac_id = models.IntegerField(null=True, blank=True)
     broj_telefona = CharField(null=True, blank=True, max_length=100)
@@ -72,6 +78,9 @@ class VozacProfile(models.Model):
     kilometraza = CharField(null=True, blank=True, max_length=100)
     zapremina_motora = CharField(null=True, blank=True, max_length=100)
     snaga_motora = CharField(null=True, blank=True, max_length=100)
+    vrsta_goriva = models.CharField(
+        max_length=20, choices=VrstaGoriva.choices, default=VrstaGoriva.DIZEL
+    )
 
     class Meta:
         db_table: str = "vozaci"

@@ -7,7 +7,7 @@ from django.views import generic
 
 from pma_apps.auctions.models import Category
 from pma_apps.users.forms import DetaljiVozacaForm, KreirajVozacaForm, UlogujVozacaForm
-from pma_apps.users.models import Vozac
+from pma_apps.users.models import Vozac, VozacProfile
 
 User = get_user_model()
 
@@ -49,10 +49,12 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.UpdateView):
     def get_context_data(self, **kwargs):
 
         vozac = Vozac.objects.all().filter(username=self.kwargs["username"]).first()
+        profil_vozaca = VozacProfile.objects.all().filter(user_id=vozac.id).first()
 
         context = {
             "categories": Category.objects.all(),
             "detalji_vozaca": vozac,
+            "profil_vozaca": profil_vozaca,
         }
 
         return context
