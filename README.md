@@ -20,3 +20,19 @@
 - Ciscenje svi paketa iz PIP-a: ```pip freeze | xargs pip uninstall -y```
 - Pre-Commit run: ```pre-commit run```
 - HTML pre-commit: ```djhtml -i pma_apps/templates/.```
+
+---
+
+## Inicijalizacija svih podataka ukoliko mora da se obriše DB:
+
+- <b>Čuvanje svih podataka iz DB-a (fixtures):</b>
+- - Prvo se ode u DIR: ``` tests/fixtures_from_db ```
+- - Pa iz to dir-a komanda ispod:
+
+```bash
+  python ../../manage.py dumpdata --exclude auth.permission --exclude contenttypes  --indent 2 > pma-data.json
+```
+
+- <b>Učitavanje inicijalnih podataka u novu bazu:</b>
+- - ``` python ../../manage.py loaddata pma-data.json ```
+
