@@ -86,7 +86,9 @@
                                             <!-- END SLIKA ZAGLAVLJA -->
                                         </div>
                                     </div>
+                                    <!-- DETALJI ZAHTEVA -->
                                     {% include 'auctions/partials/detalji_zahteva.html' with object=auction %}
+                                    <!-- END DETALJI ZAHTEVA -->
                                 </div>
                             </div>
                         </div>
@@ -163,7 +165,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                         {% endif %}
                     {% empty %}
                         <div class="col-xl-12">
@@ -247,6 +248,7 @@
                         </div>
                         <!-- END ADD REVIEW CARD -->
 
+                        <!-- PREPORUCENI ZAHTEVI -->
                         <h3 class="p-3 mb-5">Related Products</h3>
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
@@ -392,6 +394,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- END PREPORUCENI ZAHTEVI -->
                         </div>
                     {% endif %}
                     <!-- END VIDLJIVO SAMO SERVISERIMA -->

@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
+{% extends "vozaci/base-vozaci.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Profil: {{ user.username }} {% endblock %}
 
-    </body>
-</html>
+{% block meta_data %}
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="@PMA Technologies Private Limited">
+    <meta name="description" content="@PMA Kategorija Zahteva">
+    <meta name="keywords" content="Popravi Moj Auto.">
+{% endblock meta_data %}
+
+{% block app_content %}
+    <!--app-content open-->
+    <div class="main-content app-content mt-0">
+        <div class="side-app">
+
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+
+                <!-- PAGE-HEADER -->
+                <div class="page-header">
+                    <h1 class="page-title">Uređivanje Profila: {{ detalji_vozaca.username }}</h1>
+                    <div>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Uredjivanje Profila</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- PAGE-HEADER END -->
+
+                <!-- DETALJI PROFILA VOZACA -->
+                <div class="row">
+                    {% include 'vozaci/partials/partials-uredi-profil-vozaca.html' %}
+                </div>
+                <!-- END DETALJI PROFILA VOZACA -->
+
+            </div>
+            <!--CONTAINER CLOSED -->
+
+        </div>
+    </div>
+    <!--app-content open-->
+    </div>
+{% endblock app_content %}

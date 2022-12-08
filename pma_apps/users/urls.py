@@ -5,6 +5,7 @@ from pma_apps.users.views import (
     DetaljiVozacaView,
     KreirajVozacaView,
     LoginKorisnikaView,
+    UrediVozacaView,
 )
 
 app_name = "users"
@@ -21,5 +22,10 @@ urlpatterns = [
         "detalji-vozaca/<str:username>/",
         DetaljiVozacaView.as_view(),
         name="detalji_vozaca",
+    ),
+    path(
+        "izmena-profila-vozaca/<str:username>/",
+        UrediVozacaView.as_view(),
+        name="izmena_profila_vozaca",
     ),
 ]
