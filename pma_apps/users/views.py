@@ -64,19 +64,19 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.UpdateView):
         return super().post(request, *args, **kwargs)
 
 
-class UrediVozacaView(LoginRequiredMixin, generic.UpdateView):
-    template_name = "vozaci/detalji-vozaca.html"
-    # queryset = Vozac.objects.all()
-    form_class = DetaljiVozacaForm
-    context_object_name = "uredi_vozaca"
-
-    #
-    # def get(self, request, *args, **kwargs):
-    #     self.queryset = self.get_object()
-    #     return super().get(request, *args, **kwargs)
-    def post(self, request, *args, **kwargs):
-        self.queryset = self.get_object()
-        return super().post(request, *args, **kwargs)
-
-    def get_success_url(self):
-        return reverse("auctions:ponude")
+# class UrediVozacaView(LoginRequiredMixin, generic.UpdateView):
+#     template_name = "vozaci/detalji-vozaca.html"
+#     # queryset = Vozac.objects.all()
+#     form_class = DetaljiVozacaForm
+#     context_object_name = "uredi_vozaca"
+#
+#     #
+#     # def get(self, request, *args, **kwargs):
+#     #     self.queryset = self.get_object()
+#     #     return super().get(request, *args, **kwargs)
+#     def post(self, request, *args, **kwargs):
+#         self.queryset = self.get_object()
+#         return super().post(request, *args, **kwargs)
+#
+#     def get_success_url(self):
+#         return reverse("auctions:ponude")
