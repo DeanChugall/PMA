@@ -10,80 +10,9 @@
         </div>
          <form action='' class="ogin100-form validate-form" method='POST' enctype='multipart/form-data'>
              {% csrf_token %}
-             {{ form.as_p }}
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="form-group">
-                        <label class="form-label">Email adresa:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="email"
-                            placeholder="{{ detalji_vozaca.email }}"
-                            disabled readonly>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="form-group">
-                        <label class="form-label">Korisničko Ime:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="username"
-                            value="{{ detalji_vozaca.username }}"
-                            disabled readonly>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="form-group">
-                        <label class="form-label">Broj Telefona:</label>
-                        {% with field=detalji_vozaca.vozacprofile.broj_telefona  %}
-                        {% render_field form.broj_telefona class="form-control" placeholder="Boj Telefona" value=field %}
-                        {% endwith %}
-                        {{ form.errors }}
-<!--                        <input-->
-<!--                            type="text"-->
-<!--                            class="form-control"-->
-<!--                            id="telefon"-->
-<!--                            value="{{ detalji_vozaca.vozacprofile.broj_telefona }}"-->
-<!--                            placeholder="Broj Telefona">-->
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="form-group">
-                        <label class="form-label">Ime:</label>
-                        {% with field=user.first_name  %}
-                        {% render_field form.broj_telefona class="form-control" placeholder="Ime" value=field %}
-                        {% endwith %}
-                        {{ form.errors }}
-<!--                        <input-->
-<!--                            type="text"-->
-<!--                            class="form-control"-->
-<!--                            id="ime"-->
-<!--                            value="{{ detalji_vozaca.first_name}}"-->
-<!--                            placeholder="Ime"-->
-<!--                            disabled readonly>-->
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-2">
-                    <div class="form-group">
-                        <label class="form-label">Prezime:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="prezime"
-                            value="{{ detalji_vozaca.last_name}}"
-                            placeholder="Prezime"
-                            disabled readonly>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+             {{ detalji_vozaca.last_name}}
+             {{ detalji_vozaca.as_p }}
+             {{detalji_vozaca.errors}}
         <div class="card-footer text-end">
             <button type='submit' class='btn btn-success btn-lg'>Postavi</button>
             <a href="javascript:void(0)" class="btn btn-success my-1" type='submit'>Sačuvaj</a>

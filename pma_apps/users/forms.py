@@ -13,6 +13,26 @@ from pma_apps.users.models import Vozac, VozacProfile
 User = get_user_model()
 
 
+class UserAdminChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = User
+
+
+class UserAdminCreationForm(UserCreationForm):
+    """
+    Form for User Creation in the Admin Area.
+    """
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = [
+            "username",
+        ]
+        error_messages = {
+            "username": {"unique": _("This username has already been taken.")}
+        }
+
+
 class UlogujVozacaForm(AuthenticationForm):
     username = UsernameField(
         label=_(""),
@@ -79,6 +99,20 @@ class DetaljiVozacaForm(forms.ModelForm):
 
 
 class UrediVozacaForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = [
+            "role",
+            "last_name",
+            "first_name",
+            "email",
+            "username",
+        ]
+
+
+class UrediProfilVozacaForm(forms.ModelForm):
     broj_telefona = forms.CharField(
         required=False, help_text="broj_telefona*", label=""
     )
@@ -91,23 +125,3 @@ class UrediVozacaForm(forms.ModelForm):
         fields = [
             "broj_telefona",
         ]
-
-
-class UserAdminChangeForm(UserChangeForm):
-    class Meta(UserChangeForm.Meta):
-        model = User
-
-
-class UserAdminCreationForm(UserCreationForm):
-    """
-    Form for User Creation in the Admin Area.
-    """
-
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = [
-            "username",
-        ]
-        error_messages = {
-            "username": {"unique": _("This username has already been taken.")}
-        }

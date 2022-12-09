@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import resolve_url
+from django.shortcuts import get_object_or_404, redirect, render, resolve_url
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
@@ -10,6 +10,7 @@ from pma_apps.users.forms import (
     DetaljiVozacaForm,
     KreirajVozacaForm,
     UlogujVozacaForm,
+    UrediProfilVozacaForm,
     UrediVozacaForm,
 )
 from pma_apps.users.models import Vozac, VozacProfile
@@ -63,6 +64,35 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
         }
 
         return context
+
+
+def profil_vozaca_update_view(request, username):
+    vozac = get_object_or_404(Vozac, username=username)
+    vozac_profile = get_object_or_404(VozacProfile, user_id=vozac.id)
+    # vozac = request.user
+    vozac_form = UrediVozacaForm(request.POST or None, instance=vozac)
+
+    vozac_profile_form = UrediProfilVozacaForm(
+        request.POST or None, instance=vozac_profile
+    )
+
+    if request.method == "POST":
+        if vozac_form.is_valid() and vozac_profile_form.is_valid():
+            vozac_form_new = vozac_form.save(commit=False)
+            vozac_form_new.last_name = vozac.last_name
+            print(f"LAST NAME VOZAC: {vozac.last_name}")
+            vozac_form_new.save()
+            # vozac.vozacprofile.save()
+
+            return redirect("users:izmena_profila_vozaca", vozac.username)
+
+    context = {
+        "categories": Category.objects.all(),
+        "detalji_vozaca": vozac_form,
+        "detalji_profila_vozaca": vozac_profile_form,
+    }
+
+    return render(request, "vozaci/uredi-vozaca.html", context)
 
 
 class UrediVozacaView(LoginRequiredMixin, generic.UpdateView):
