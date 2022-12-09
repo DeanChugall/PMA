@@ -27,7 +27,6 @@ class User(AbstractUser):
             self.role = self.base_role
             return super().save(*args, **kwargs)
 
-    name = CharField(_("Name of User"), blank=True, max_length=255)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
     last_name = CharField(_("last_name"), blank=True, max_length=255)
 
@@ -87,6 +86,9 @@ class VozacProfile(models.Model):
         verbose_name: str = "Vozac"
         verbose_name_plural: str = "Vozaci"
         ordering = ["-vozac_id"]
+
+    def get_absolute_url(self):
+        return reverse("users:detalji_vozaca", args=[str(self.username)])
 
 
 # flake8: noqa: F811

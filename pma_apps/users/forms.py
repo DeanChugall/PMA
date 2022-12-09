@@ -8,7 +8,7 @@ from django.contrib.auth.forms import (
 )
 from django.utils.translation import gettext_lazy as _
 
-from pma_apps.users.models import Vozac
+from pma_apps.users.models import Vozac, VozacProfile
 
 User = get_user_model()
 
@@ -71,19 +71,26 @@ class DetaljiVozacaForm(forms.ModelForm):
         model = Vozac
         fields = [
             "role",
-            "name",
             "last_name",
+            "first_name",
             "email",
             "username",
         ]
 
 
-class UrediVozaciForm(forms.ModelForm):
-    email = forms.EmailField()
+class UrediVozacaForm(forms.ModelForm):
+    broj_telefona = forms.CharField(
+        required=False, help_text="broj_telefona*", label=""
+    )
+    vin = forms.CharField(required=False, help_text="vin*", label="")
+    marka = forms.CharField(required=False, help_text="marka", label="")
+    first_name = forms.CharField(required=False, help_text="first_name", label="")
 
     class Meta:
-        model = Vozac
-        fields = ["first_name", "last_name", "email"]
+        model = VozacProfile
+        fields = [
+            "broj_telefona",
+        ]
 
 
 class UserAdminChangeForm(UserChangeForm):
@@ -100,7 +107,6 @@ class UserAdminCreationForm(UserCreationForm):
         model = User
         fields = [
             "username",
-            "name",
         ]
         error_messages = {
             "username": {"unique": _("This username has already been taken.")}

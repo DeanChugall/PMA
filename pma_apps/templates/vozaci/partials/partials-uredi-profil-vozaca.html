@@ -1,11 +1,16 @@
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
 <!-- PROMENA PROFILA -->
 <div class="col-xl-12">
 
     <!-- EDIT PROFILA -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Uređivanje Profila</h3>
+            <h3 class="card-title">Osnovni Podaci</h3>
         </div>
+         <form action='' class="ogin100-form validate-form" method='POST' enctype='multipart/form-data'>
+             {% csrf_token %}
+             {{ form.as_p }}
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-md-12">
@@ -35,25 +40,32 @@
                 <div class="col-md-4 mb-2">
                     <div class="form-group">
                         <label class="form-label">Broj Telefona:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="telefon"
-                            value="{{ detalji_vozaca.vozacprofile.broj_telefona }}"
-                            placeholder="Boj Telefona"
-                            disabled readonly>
+                        {% with field=detalji_vozaca.vozacprofile.broj_telefona  %}
+                        {% render_field form.broj_telefona class="form-control" placeholder="Boj Telefona" value=field %}
+                        {% endwith %}
+                        {{ form.errors }}
+<!--                        <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            id="telefon"-->
+<!--                            value="{{ detalji_vozaca.vozacprofile.broj_telefona }}"-->
+<!--                            placeholder="Broj Telefona">-->
                     </div>
                 </div>
                 <div class="col-md-4 mb-2">
                     <div class="form-group">
                         <label class="form-label">Ime:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="ime"
-                            value="{{ detalji_vozaca.first_name}}"
-                            placeholder="Ime"
-                            disabled readonly>
+                        {% with field=user.first_name  %}
+                        {% render_field form.broj_telefona class="form-control" placeholder="Ime" value=field %}
+                        {% endwith %}
+                        {{ form.errors }}
+<!--                        <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            id="ime"-->
+<!--                            value="{{ detalji_vozaca.first_name}}"-->
+<!--                            placeholder="Ime"-->
+<!--                            disabled readonly>-->
                     </div>
                 </div>
 
@@ -73,9 +85,12 @@
 
         </div>
         <div class="card-footer text-end">
-            <a href="javascript:void(0)" class="btn btn-success my-1">Sačuvaj</a>
-            <a href="javascript:void(0)" class="btn btn-danger my-1">Odustani</a>
+            <button type='submit' class='btn btn-success btn-lg'>Postavi</button>
+            <a href="javascript:void(0)" class="btn btn-success my-1" type='submit'>Sačuvaj</a>
+            <a href="{% url 'users:detalji_vozaca' request.user.username  %}" class="btn btn-danger my-1">Odustani</a>
         </div>
+        </form>
+
     </div>
     <!-- END EDIT PROFILA -->
 

@@ -4,16 +4,16 @@ from pytest_django.asserts import assertTemplateUsed, assertURLEqual
 
 
 @pytest.mark.django_db
-def test_edit_detalji_vozaca_url_autorizovani_korisnik(
+def test_izmena_profila_vozaca_url_autorizovani_korisnik(
     client, novi_jedan_vozac_autorizovan_korisnik_fixture
 ):
     url_kreiraj_vozaca = reverse(
-        "users:detalji_vozaca",
+        "users:izmena_profila_vozaca",
         args=[novi_jedan_vozac_autorizovan_korisnik_fixture.username],
     )
     response = client.get(url_kreiraj_vozaca)
     assert response.status_code == 200
-    assertTemplateUsed(response, "vozaci/detalji-vozaca.html")
+    assertTemplateUsed(response, "vozaci/uredi-vozaca.html")
 
 
 @pytest.mark.django_db

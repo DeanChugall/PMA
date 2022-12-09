@@ -14,7 +14,6 @@ class DetaljiServisKorisnikaForm(forms.ModelForm):
         model = Servis
         fields = [
             "role",
-            "name",
             "last_name",
             "email",
             "username",
