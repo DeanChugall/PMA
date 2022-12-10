@@ -1,7 +1,6 @@
 {% extends "auctions/auctions_base.html" %}
 {% load static %}
 
-
 {% block title %}{{ title }} {% endblock %}
 
 {% block meta_data %}
@@ -44,20 +43,22 @@
                                         <div class="row">
                                             <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
                                                 <div class="input-group d-flex w-100 float-start">
-
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                                 <ul class="nav item2-gl-menu float-end my-2">
-                                                    <li class="border-end"><a href="#tab-11" class="show active"
-                                                        data-bs-toggle="tab" title="List style"><i
-                                                            class="fa fa-th"></i></a></li>
+                                                    <li class="border-end">
+                                                        <a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style">
+                                                            <i class="fa fa-th"></i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="col-xl-3 col-lg-12">
                                                 <a href="{% url 'ponude:kreiranje_zahteva' %}"
-                                                    class="btn btn-primary btn-block float-end my-2"><i
-                                                        class="fa fa-plus-square me-2"></i>Novi Zahtev</a>
+                                                   class="btn btn-primary btn-block float-end my-2">
+                                                    <i class="fa fa-plus-square me-2"></i>Novi Zahtev
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -80,15 +81,10 @@
                                                         <div class="product-image6 p-5">
                                                             <ul class="icons">
                                                                 <li>
-                                                                    <a href="shop-description.html" class="btn btn-primary"> <i
-                                                                        class="fe fe-eye"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="add-product.html" class="btn btn-success">
-                                                                        <i class="fe fe-edit"></i>
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary">
+                                                                        <i class="fe fe-eye"></i>
                                                                     </a>
                                                                 </li>
-                                                                <li></li>
                                                             </ul>
                                                             <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">
                                                                 <img class="img-fluid br-7 w-100`"
@@ -102,8 +98,9 @@
 
                                                         <div class="card-body pt-0">
                                                             <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20 text-truncate"><a
-                                                                    href="shop-description.html">{{ auction.title }}</a></h1>
+                                                                <h1 class="title fw-bold fs-20 text-truncate">
+                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                                </h1>
 
                                                                 <!-- ZVEZDICE -->
                                                                 <div class="mb-2 text-warning">
@@ -119,7 +116,7 @@
                                                                 {% if auction.amount.amount == None %}
                                                                     <div class="price">Nema Ponuda</div>
                                                                 {% else %}
-                                                                    <div class="price">{{auction.amount.amount }} rsd</div>
+                                                                    <div class="price">{{ auction.amount.amount }} rsd</div>
                                                                 {% endif %}
                                                                 <!-- END CENA -->
                                                             </div>
@@ -127,7 +124,7 @@
                                                         <div class="card-footer text-center">
                                                             <input type="hidden" name="next" value="{{ next }}">
                                                             <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
-                                                                class="btn btn-primary mb-1">
+                                                               class="btn btn-primary mb-1">
                                                                 <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                             </a>
                                                             {% for pracenje in id_pracenog_zahteva %}
@@ -149,9 +146,7 @@
                                                     <ul class='pagination'>
                                                         {% if pages.has_previous %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>
-                                                                    &laquo;
-                                                                </a>
+                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>&laquo;</a>
                                                             </li>
                                                         {% else %}
                                                             <li class='page-item disabled'>
@@ -191,8 +186,7 @@
                                                     <div class="product-image6 p-5"></div>
                                                     <div class="card-body pt-0">
                                                         <div class="product-content text-center">
-                                                            <h1 class="title fw-bold fs-20">Kategorija "{{ title }}" trenutno
-                                                                nema zahteva.</h1>
+                                                            <h1 class="title fw-bold fs-20">Kategorija "{{ title }}" trenutno nema zahteva.</h1>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,7 +197,6 @@
                                 </div>
                             </div>
                             <!-- END CARD PREGLED U KOCKICAMA -->
-
                         </div>
                         <!-- COL-END -->
                     </div>

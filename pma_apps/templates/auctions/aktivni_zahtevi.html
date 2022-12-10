@@ -1,7 +1,6 @@
 {% extends "auctions/auctions_base.html" %}
 {% load static %}
 
-
 {% block title %} Zahtevi: {{ user.username }} {% endblock %}
 
 {% block meta_data %}
@@ -82,11 +81,6 @@
                                                                 <li>
                                                                     <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary">
                                                                         <i class="fe fe-eye"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="add-product.html" class="btn btn-success">
-                                                                        <i class="fe fe-edit"></i>
                                                                     </a>
                                                                 </li>
                                                                 <li></li>
