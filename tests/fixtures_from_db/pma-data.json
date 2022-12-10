@@ -248,10 +248,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "lxqkqlg9vep9jpnj4s233rvxjgkyy4jf",
+  "pk": "9fvcgq703gecok4ts63krocvkd4xbpfz",
   "fields": {
-    "session_data": ".eJxVjDsOwjAQBe_iGlnr39qmpOcMlj9rHECOFCcV4u4QKQW0b2bei4W4rS1sg5YwFXZmgp1-txTzg_oOyj3228zz3NdlSnxX-EEHv86FnpfD_TtocbRvDTabaLTyWChZUA5T1UCgTM7Fa2Gtt9qhxloRpRLOW6lJIoGBkiCx9we_bjbB:1p2i1T:PQYSJaJ8ES4nAyYpDaDbxO_eXonA17hwrAT3D0VplWE",
-    "expire_date": "2022-12-21T00:10:51.012Z"
+    "session_data": ".eJxVjMsOwiAQRf-FtSHAIA-X7vsNBJhBqgaS0q6M_65NutDtPefcFwtxW2vYBi1hRnZhUrDT75hiflDbCd5ju3Wee1uXOfFd4QcdfOpIz-vh_h3UOOq3tmejpaDkc5TowQoEjSVnp11BCc46JQm0AQKvrVIg0DifckQjhS2OvT_vdjdQ:1p3ntL:Mx9gIO9OEQpvMxREnDjSQPy43hyLjFS0j5UXL75Y4ZE",
+    "expire_date": "2022-12-24T00:38:59.437Z"
   }
 },
 {
@@ -275,7 +275,6 @@
     "is_active": true,
     "date_joined": "2022-11-27T15:31:38.945Z",
     "role": "VOZAC",
-    "name": "",
     "first_name": "vozac1",
     "last_name": "vozac1",
     "groups": [],
@@ -295,7 +294,6 @@
     "is_active": true,
     "date_joined": "2022-11-27T21:13:45.554Z",
     "role": "VOZAC",
-    "name": "",
     "first_name": "",
     "last_name": "",
     "groups": [],
@@ -315,7 +313,6 @@
     "is_active": true,
     "date_joined": "2022-11-27T21:19:41.180Z",
     "role": "SERVIS",
-    "name": "",
     "first_name": "servis1",
     "last_name": "servis1",
     "groups": [],
@@ -335,7 +332,6 @@
     "is_active": true,
     "date_joined": "2022-11-27T21:28:34.985Z",
     "role": "VOZAC",
-    "name": "",
     "first_name": "",
     "last_name": "",
     "groups": [],
@@ -355,7 +351,6 @@
     "is_active": true,
     "date_joined": "2022-11-27T21:40:34.171Z",
     "role": "VOZAC",
-    "name": "",
     "first_name": "",
     "last_name": "",
     "groups": [],
@@ -375,9 +370,65 @@
     "is_active": true,
     "date_joined": "2022-11-27T21:41:11.057Z",
     "role": "SERVIS",
-    "name": "",
     "first_name": "",
     "last_name": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$4d8zZCuHo94v7Xd4e4QxEF$3y28rltzgPWbe7yGEdApnJJfeLViQebgITG0Auqseoc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vozac4",
+    "email": "vozac4@vozac4.net",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-08T23:28:33.253Z",
+    "role": "VOZAC",
+    "first_name": "Dejanr",
+    "last_name": "Čugalj",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$R4ZcXxMEedfR7NRQBPLpbN$cHhNIg9YqvO69CJz4wRHe88EQjY8jCjPysTySybnZGQ=",
+    "last_login": "2022-12-09T23:02:29.202Z",
+    "is_superuser": false,
+    "username": "vozac5",
+    "email": "vozac5@vozac5.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-09T23:02:23.711Z",
+    "role": "VOZAC",
+    "first_name": "TEst Vozac IME 5",
+    "last_name": "TEst Vozac PREZIME  5",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$gaRBQZ9xqrw0rbDMQAorNS$tS+sbrSqnFagn9Z+yh56yWIL0xf9PrzTnAnx7oop5Is=",
+    "last_login": "2022-12-10T00:38:59.431Z",
+    "is_superuser": false,
+    "username": "jovan",
+    "email": "jovan@jovan.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-10T00:38:52.245Z",
+    "role": "VOZAC",
+    "first_name": "Jovan",
+    "last_name": "Jovan Prezime",
     "groups": [],
     "user_permissions": []
   }
@@ -388,7 +439,15 @@
   "fields": {
     "user": 1,
     "vozac_id": 1,
-    "broj_telefona": "+381631369098"
+    "broj_telefona": "+381631369098",
+    "vin": "WAUZZZ4BZWN049194",
+    "marka": "Renault",
+    "modell": "Scenic II",
+    "godiste": "2012",
+    "kilometraza": "125.000",
+    "zapremina_motora": "1890 ccm",
+    "snaga_motora": "80 KW",
+    "vrsta_goriva": "Dizel"
   }
 },
 {
@@ -397,7 +456,66 @@
   "fields": {
     "user": 6,
     "vozac_id": 2,
-    "broj_telefona": "+381631369098"
+    "broj_telefona": "+381631369098",
+    "vin": "WAUZZZ4BZWN049194",
+    "marka": "Renault",
+    "modell": "Scenic II",
+    "godiste": "2013",
+    "kilometraza": "195.500",
+    "zapremina_motora": "1890 ccm",
+    "snaga_motora": "80 KW",
+    "vrsta_goriva": "Hibrid"
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 3,
+  "fields": {
+    "user": 8,
+    "vozac_id": null,
+    "broj_telefona": "+38163 163 90 99",
+    "vin": "WAUZZZ4BZWN04919422222",
+    "marka": null,
+    "modell": null,
+    "godiste": null,
+    "kilometraza": null,
+    "zapremina_motora": null,
+    "snaga_motora": null,
+    "vrsta_goriva": "Dizel"
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 4,
+  "fields": {
+    "user": 9,
+    "vozac_id": null,
+    "broj_telefona": "+381631369099",
+    "vin": "WAUZZZ4BZWN049194",
+    "marka": "Renault",
+    "modell": "SCNEIC II",
+    "godiste": "2007",
+    "kilometraza": "156,345 km",
+    "zapremina_motora": "1890 ccm",
+    "snaga_motora": "110 KS",
+    "vrsta_goriva": "Hibrid"
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 5,
+  "fields": {
+    "user": 10,
+    "vozac_id": null,
+    "broj_telefona": "234234234",
+    "vin": "1",
+    "marka": "2",
+    "modell": "3",
+    "godiste": "2022",
+    "kilometraza": "4",
+    "zapremina_motora": "5",
+    "snaga_motora": "6",
+    "vrsta_goriva": "Benzin"
   }
 },
 {
@@ -654,7 +772,8 @@
     "buyer": null,
     "active": true,
     "watchers": [
-      3
+      3,
+      1
     ]
   }
 },
@@ -696,20 +815,32 @@
 },
 {
   "model": "auctions.auction",
-  "pk": 169,
+  "pk": 170,
   "fields": {
-    "title": "test",
-    "description": "test",
-    "creator": 1,
+    "title": "tes",
+    "description": "tesdt",
+    "creator": 8,
     "category": 1,
-    "date_created": "2022-12-06T20:38:45.687Z",
+    "date_created": "2022-12-09T21:12:48.308Z",
     "current_bid": null,
     "buyer": null,
     "active": true,
-    "watchers": [
-      3,
-      1
-    ]
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 172,
+  "fields": {
+    "title": "Citroen",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "creator": 10,
+    "category": 1,
+    "date_created": "2022-12-10T01:19:36.248Z",
+    "current_bid": null,
+    "buyer": null,
+    "active": true,
+    "watchers": []
   }
 },
 {
@@ -801,13 +932,19 @@
   }
 },
 {
-  "model": "auctions.bid",
-  "pk": 7,
+  "model": "auctions.image",
+  "pk": 74,
   "fields": {
-    "auction": 169,
-    "servis": 1,
-    "amount": "234.00",
-    "date": "2022-12-04T23:54:39.258Z"
+    "auction": 170,
+    "image": "images/Clio-Mk4-2013-1-_nBCZHs8.jpg"
+  }
+},
+{
+  "model": "auctions.image",
+  "pk": 76,
+  "fields": {
+    "auction": 172,
+    "image": "images/Citroen.jpg"
   }
 }
 ]

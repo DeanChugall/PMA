@@ -40,12 +40,9 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Ime:</label>
-                            {% with ime=detalji_vozaca.first_name  %}
-                                {% render_field detalji_vozaca.first_name class="form-control" placeholder="Ime" value=ime %}
-                            {% endwith %}
+                            {% render_field detalji_vozaca.first_name class="form-control" placeholder="Ime" %}
                         </div>
                     </div>
-
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Prezime:</label>
@@ -158,7 +155,6 @@
                 </a>
             </div>
         </div>
-    </div>
     <!-- END EDIT AUTOMOBILA -->
 
     <!-- EDIT NOTIFIKACIJE -->

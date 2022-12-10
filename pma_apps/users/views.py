@@ -47,7 +47,6 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
     template_name = "vozaci/detalji-vozaca.html"
     form_class = DetaljiVozacaForm
     queryset = Vozac.objects.all()
-    context_object_name = "detalji_vozaca"
 
     slug_field = "username"
     slug_url_kwarg = "username"
@@ -77,7 +76,6 @@ def profil_vozaca_update_view(request, username):
 
     if request.method == "POST":
         if vozac_form.is_valid() and vozac_profile_form.is_valid():
-            print(f"LAST NAME VOZAC >>>: {vozac.last_name}")
             vozac.save()
             vozac_profile.save()
 

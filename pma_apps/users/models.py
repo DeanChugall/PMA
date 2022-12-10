@@ -90,7 +90,6 @@ class VozacProfile(models.Model):
         blank=True,
         max_length=20,
         choices=VrstaGoriva.choices,
-        default=VrstaGoriva.DIZEL,
     )
 
     class Meta:
