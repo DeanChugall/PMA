@@ -43,6 +43,14 @@ class KreirajVozacaView(generic.CreateView):
         return reverse("users:prijava")
 
 
+class ObrisiVozacaView(LoginRequiredMixin, generic.DeleteView):
+    model = User
+    queryset = User.objects.all()
+
+    def get_success_url(self):
+        return reverse("landing_page:landing_page")
+
+
 class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
     template_name = "vozaci/detalji-vozaca.html"
     form_class = DetaljiVozacaForm
@@ -85,6 +93,7 @@ def profil_vozaca_update_view(request, username):
         "categories": Category.objects.all(),
         "detalji_vozaca": vozac_form,
         "detalji_profila_vozaca": vozac_profile_form,
+        "vozac_obj": vozac,
     }
 
     return render(request, "vozaci/uredi-vozaca.html", context)

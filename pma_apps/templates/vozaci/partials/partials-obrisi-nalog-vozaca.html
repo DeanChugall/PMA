@@ -1,0 +1,31 @@
+<form action="{% url 'users:brisanje_vozaca' user.id  %}"
+    class="ogin100-form validate-form"
+    method='POST'
+    enctype='multipart/form-data'>
+    <div class="modal fade" id="obrisiModal" tabindex="-1" aria-labelledby="obrisiModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="obrisiModalLabel">Brisanje Zahteva</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <h5><b>{{ user.username }}</b>, da li ste sigurni da želite da obrišete Vaš korisnički nalog?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"
+                        class="btn btn-outline-danger">
+                        <i class="fa fa-trash-o"></i>&nbsp;Obriši
+                    </button>
+                    <button type="button"
+                        class="btn btn-outline-success"
+                        data-bs-dismiss="modal">
+                        <i class="fa fa-close"></i>&nbsp;Odustani
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

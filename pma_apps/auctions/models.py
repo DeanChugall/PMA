@@ -25,7 +25,7 @@ class Auction(models.Model):
     description = models.TextField(max_length=800, null=True)
     creator = models.ForeignKey(
         Vozac,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="auction_creator",
         default=1,
     )

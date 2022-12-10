@@ -5,6 +5,7 @@ from pma_apps.users.views import (
     DetaljiVozacaView,
     KreirajVozacaView,
     LoginKorisnikaView,
+    ObrisiVozacaView,
     profil_vozaca_update_view,
 )
 
@@ -27,5 +28,10 @@ urlpatterns = [
         "izmena-profila-vozaca/<str:username>/",
         profil_vozaca_update_view,
         name="izmena_profila_vozaca",
+    ),
+    path(
+        "brisanje-vozaca/<int:pk>/",
+        ObrisiVozacaView.as_view(),
+        name="brisanje_vozaca",
     ),
 ]

@@ -190,7 +190,8 @@
             </div>
         </div>
         <div class="card-footer text-end">
-            <a href="{% url 'users:izmena_profila_vozaca' user.username %}#automobil" class="btn btn-outline-success my-1">
+            <a href="{% url 'users:izmena_profila_vozaca' user.username %}#automobil"
+                class="btn btn-outline-success my-1">
                 <i class="fa fa-edit"></i>&nbsp;Izmeni
             </a>
         </div>
@@ -218,42 +219,48 @@
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled
+                                readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Allow Location Map</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked=""
+                                disabled readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Show Contacts</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked=""
+                                disabled readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Show Notfication</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled
+                                readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Show Tasks Statistics</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked=""
+                                disabled readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Show Email Notification</span>
                         </label>
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije" class="btn btn-outline-success my-1">
+                    <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije"
+                        class="btn btn-outline-success my-1">
                         <i class="fa fa-edit"></i>&nbsp;Izmeni
                     </a>
                 </div>
@@ -267,49 +274,56 @@
                 <div class="card-body">
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked=""
+                                disabled readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Allow Others to see my profile</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled
+                                readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Make my profile Public</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled
+                                readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Security Alert</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked=""
+                                disabled readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Passcode and Face ID</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" disabled
+                                readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Two Step Verification</span>
                         </label>
                     </div>
                     <div class="form-group mg-b-10">
                         <label class="custom-switch ps-0">
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="" disabled readonly>
+                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked=""
+                                disabled readonly>
                             <span class="custom-switch-indicator me-3"></span>
                             <span class="custom-switch-description mg-l-10">Always Sign In</span>
                         </label>
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije" class="btn btn-outline-success my-1">
+                    <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije"
+                        class="btn btn-outline-success my-1">
                         <i class="fa fa-edit"></i>&nbsp;Izmeni
                     </a>
                 </div>
@@ -317,5 +331,41 @@
         </div>
     </div>
     <!-- END EDIT NOTIFIKACIJE -->
+
+    <div class="col-lg-12">
+        <!-- BRISANJE NALOGA -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Delete Account</div>
+            </div>
+            <div class="card-body">
+                <p>Its Advisable for you to request your data to be sent to your Email.</p>
+                <label class="custom-control custom-checkbox mb-0">
+                    <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        name="example-checkbox1"
+                        value="option1" checked>
+                    <span class="custom-control-label">Yes, Send my data to my Email.</span>
+                </label>
+            </div>
+
+            <!-- Modal BRISANJE NALOGA -->
+            {% include 'vozaci/partials/partials-obrisi-nalog-vozaca.html' %}
+            <!-- END Modal BRISANJE NALOGA -->
+            <div class="card-footer text-end">
+                <button class="btn btn-outline-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#obrisiModal"
+                    type="button"
+                    value="Obriši">
+                    <i class="fa fa-trash-o"></i>&nbsp;Brisanje Naloga
+                </button>
+            </div>
+
+        </div>
+        <!-- END BRISANJE NALOGA -->
+    </div>
+
 </div>
 <!-- END PROMENA PROFILA -->
