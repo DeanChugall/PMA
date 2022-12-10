@@ -99,10 +99,8 @@ class DetaljiVozacaForm(forms.ModelForm):
 
 
 class UrediVozacaForm(forms.ModelForm):
-    email = forms.EmailField()
-
     class Meta:
-        model = User
+        model = Vozac
         fields = [
             "role",
             "last_name",
@@ -110,18 +108,22 @@ class UrediVozacaForm(forms.ModelForm):
             "email",
             "username",
         ]
+        widgets = {
+            "role": forms.TextInput(attrs={"type": "hidden"}),
+        }
 
 
 class UrediProfilVozacaForm(forms.ModelForm):
-    broj_telefona = forms.CharField(
-        required=False, help_text="broj_telefona*", label=""
-    )
-    vin = forms.CharField(required=False, help_text="vin*", label="")
-    marka = forms.CharField(required=False, help_text="marka", label="")
-    first_name = forms.CharField(required=False, help_text="first_name", label="")
-
     class Meta:
         model = VozacProfile
         fields = [
             "broj_telefona",
+            "vin",
+            "marka",
+            "modell",
+            "vrsta_goriva",
+            "kilometraza",
+            "godiste",
+            "snaga_motora",
+            "zapremina_motora",
         ]

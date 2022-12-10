@@ -11,6 +11,8 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from pma_apps.utils.godista_automobila import GodisteAutomobila
+
 
 class User(AbstractUser):
     class Role(models.TextChoices):
@@ -21,14 +23,15 @@ class User(AbstractUser):
     base_role = Role.VOZAC
 
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
+    first_name = CharField(_("first_name"), blank=True, max_length=255)
+    last_name = CharField(_("last_name"), blank=True, max_length=255)
 
     def save(self, *args, **kwargs):
         if not self.pk:
             self.role = self.base_role
             return super().save(*args, **kwargs)
-
-    first_name = CharField(_("first_name"), blank=True, max_length=255)
-    last_name = CharField(_("last_name"), blank=True, max_length=255)
+        else:
+            return super().save(*args, **kwargs)
 
     class Meta:
         unique_together = ("email",)
@@ -58,6 +61,9 @@ class Vozac(User):
         return "Only for VOZACe"
 
 
+# ###########################################################
+# ##################### VOZACI ##############################
+# ###########################################################
 class VozacProfile(models.Model):
     class VrstaGoriva(models.TextChoices):
         DIZEL = "Dizel", "Dizel"
@@ -73,12 +79,18 @@ class VozacProfile(models.Model):
     vin = CharField(null=True, blank=True, max_length=100)
     marka = CharField(null=True, blank=True, max_length=100)
     modell = CharField(null=True, blank=True, max_length=100)
-    godiste = CharField(null=True, blank=True, max_length=100)
+    godiste = CharField(
+        null=True, blank=True, max_length=100, choices=GodisteAutomobila.choices
+    )
     kilometraza = CharField(null=True, blank=True, max_length=100)
     zapremina_motora = CharField(null=True, blank=True, max_length=100)
     snaga_motora = CharField(null=True, blank=True, max_length=100)
     vrsta_goriva = models.CharField(
-        max_length=20, choices=VrstaGoriva.choices, default=VrstaGoriva.DIZEL
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=VrstaGoriva.choices,
+        default=VrstaGoriva.DIZEL,
     )
 
     class Meta:
@@ -99,9 +111,7 @@ def create_vozac_profile(sender, instance, created, **kwargs):
 
 
 # ###########################################################
-# ###########################################################
-# ###########################################################
-# ###########################################################
+# ##################### SERVISI #############################
 # ###########################################################
 
 

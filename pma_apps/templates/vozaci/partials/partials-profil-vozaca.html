@@ -74,7 +74,9 @@
 
         </div>
         <div class="card-footer text-end">
-            <a href="{% url 'users:izmena_profila_vozaca' user.username  %}" class="btn btn-outline-success my-1">Izmeni</a>
+            <a href="{% url 'users:izmena_profila_vozaca' user.username  %}" class="btn btn-outline-success my-1">
+                <i class="fa fa-edit"></i>&nbsp;Izmeni
+            </a>
         </div>
     </div>
     <!-- END EDIT PROFILA -->
@@ -90,7 +92,7 @@
                 <div class="form-group">
                     <label class="form-label">VIN Broj:</label>
                     <input
-                        class="form-control"
+                        class="form-control form-control-lg"
                         value="{{ profil_vozaca.vin }}"
                         placeholder="primer: WAUZZZ4BZWN049194"
                         disabled readonly>
@@ -220,7 +222,9 @@
 
         </div>
         <div class="card-footer text-end">
-            <a href="javascript:void(0)" class="btn btn-outline-success my-1">Izmeni</a>
+            <a href="{% url 'users:izmena_profila_vozaca' user.username  %}" class="btn btn-outline-success my-1">
+                <i class="fa fa-edit"></i>&nbsp;Izmeni
+            </a>
         </div>
     </div>
     <!-- END EDIT AUTOMOBILA -->
@@ -332,19 +336,6 @@
     </div>
     <!-- END EDIT NOTIFIKACIJE -->
 
-    <!-- BRISANJE NALOGA -->
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title">Brisanje Naloga</div>
-        </div>
-        <div class="card-body">
-            <p>Potpuno brisanje naloga i svih podataka vezanih za isti.</p>
-        </div>
-        <div class="card-footer text-end">
-            <a href="javascript:void(0)" class="btn btn-danger my-1">Brisanje Naloga</a>
-        </div>
-    </div>
-    <!-- END BRISANJE NALOGA -->
 
 </div>
 <!-- END PROMENA PROFILA -->
