@@ -15,6 +15,11 @@ class AuctionForm(forms.ModelForm):
             "description",
             "category",
         ]
+        labels = {
+            "title": "Naslov Zahteva",
+            "description": "Opis Zahteva",
+            "category": "Kategorija Zahteva",
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
