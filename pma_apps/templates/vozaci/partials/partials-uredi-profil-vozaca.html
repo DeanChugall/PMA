@@ -65,7 +65,7 @@
         <!-- END EDIT PROFILA -->
 
         <!-- EDIT AUTOMOBILA -->
-        <div class="card">
+        <div class="card" id="automobil">
             <div class="card-header">
                 <h3 class="card-title">Uređivanje Automobila</h3>
             </div>
@@ -150,7 +150,7 @@
                 <button type='submit' class='btn btn-success my-1'>
                     <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
                 </button>
-                <a href="{% url 'users:detalji_vozaca' request.user.username  %}" class="btn btn-danger my-1">
+                <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1">
                     <i class="fa fa-trash-o"></i>&nbsp;Odustani
                 </a>
             </div>
@@ -158,110 +158,7 @@
         <!-- END EDIT AUTOMOBILA -->
 
         <!-- EDIT NOTIFIKACIJE -->
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Notifications</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Updates Automatically</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Allow Location Map</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Show Contacts</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Show Notfication</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Show Tasks Statistics</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Show Email Notification</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Privacy and Security</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Allow Others to see my profile</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Make my profile Public</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Security Alert</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Passcode and Face ID</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Two Step Verification</span>
-                            </label>
-                        </div>
-                        <div class="form-group mg-b-10">
-                            <label class="custom-switch ps-0">
-                                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked="">
-                                <span class="custom-switch-indicator me-3"></span>
-                                <span class="custom-switch-description mg-l-10">Always Sign In</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'vozaci/partials/partials-notifikacije-sigurnost.html' %}
         <!-- END EDIT NOTIFIKACIJE -->
 
         <!-- BRISANJE NALOGA -->
