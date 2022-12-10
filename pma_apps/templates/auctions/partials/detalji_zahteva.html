@@ -1,7 +1,6 @@
 <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0" id="detalji-zahteva">
     <div class="mt-2 mb-4">
         <h3 class="mb-3 fw-semibold">{{ auction.title }}</h3>
-
         <!-- ZVEZDICE ZAGLAVLJA -->
         <p class="text-muted float-start me-3">
             <span class="fa fa-star text-warning"></span>
@@ -14,7 +13,6 @@
         <!-- END ZVEZDICE ZAGLAVLJA -->
 
         <!-- DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
-
         <div class=" mt-4 mb-5">
             <span class="fw-bold me-2">
                 <small class="fw-bold me-2">Kategorija:</small>
@@ -43,6 +41,32 @@
     <hr>
     {% if auction.creator == user %}
         <form method="POST" action="{% url 'ponude:obrisi_zahtev' auction.id %}">
+            <!-- Modal -->
+            <div class="modal fade" id="obrisiModal" tabindex="-1" aria-labelledby="obrisiModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="obrisiModalLabel">Brisanje Zahteva</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <h5>Da li ste sigurni da želite da obrišete zahtev: [{{auction.title}}] ?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                class="btn btn-outline-danger">
+                                <i class="fa fa-trash-o"></i>&nbsp;Obriši
+                            </button>
+                            <button type="button"
+                                class="btn btn-outline-success"
+                                data-bs-dismiss="modal">
+                                <i class="fa fa-close"></i>&nbsp;Odustani
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button
                 class="btn btn-outline-success"
                 hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
@@ -51,15 +75,13 @@
                 <i class="fa fa-edit"></i>&nbsp;Izmeni
             </button>
 
-            {% csrf_token %}
             <button class="btn btn-outline-danger float-end"
-                type="submit"
-                value="Obriši"
-                onclick="return confirm('Da li ste sigurni da želite da obrišete zahtev [{{auction.id}}] ?')">
+                data-bs-toggle="modal"
+                data-bs-target="#obrisiModal"
+                type="button"
+                value="Obriši">
                 <i class="fa fa-trash-o"></i>&nbsp;Obriši
             </button>
         </form>
-
-
     {% endif %}
 </div>
