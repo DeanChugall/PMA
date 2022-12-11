@@ -26,7 +26,13 @@ class User(AbstractUser):
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
     last_name = CharField(_("last_name"), blank=True, max_length=255)
-    grad = CharField(null=False, blank=False, max_length=100, choices=Gradovi.choices)
+    grad = CharField(
+        null=False,
+        blank=False,
+        max_length=100,
+        choices=Gradovi.choices,
+        default=Gradovi.beograd,
+    )
     is_first_login = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
