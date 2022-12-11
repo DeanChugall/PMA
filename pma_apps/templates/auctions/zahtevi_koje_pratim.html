@@ -44,20 +44,22 @@
                                                 <div class="input-group d-flex w-100 float-start">
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                                                <ul class="nav item2-gl-menu float-end my-2">
-                                                    <li class="border-end">
-                                                        <a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style">
-                                                            <i class="fa fa-th"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-12">
-                                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2">
-                                                    <i class="fa fa-plus-square me-2"></i>Novi Zahtev
-                                                </a>
-                                            </div>
+                                            {% if user.role == "VOZAC" %}
+                                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                                    <ul class="nav item2-gl-menu float-end my-2">
+                                                        <li class="border-end">
+                                                            <a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style">
+                                                                <i class="fa fa-th"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-12">
+                                                    <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block float-end my-2">
+                                                        <i class="fa fa-plus-square me-2"></i>Novi Zahtev
+                                                    </a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
