@@ -248,10 +248,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "heahj8npobzude34gtf6ni2rm9v5r1xo",
+  "pk": "0mk64ln2aum8ui9m097nwn1mx83gjsny",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hAKAxSX7j0DmYGpVA0kpV0Z765NutDtf-_9l4i4rSVunZc4Z3EWgxan35EwPbjuJN-x3ppMra7LTHJX5EG7vLbMz8vh_h0U7OVbW5_Ij6SUM2isNwYYHYEFF8AheFbaAWcaVYABWBuaLPCkbPCkE5N4fwDhUTdz:1p47oe:yfBRZI6UuysmYGUEpcKS9lw9wnaMt1C-JEjd7dBOPWw",
-    "expire_date": "2022-12-24T21:55:28.777Z"
+    "session_data": ".eJxVjEEOwiAQRe_C2hAKAxSX7j0DmYGpVA0kpV0Z765NutDtf-_9l4i4rSVunZc4Z3EWgxan35EwPbjuJN-x3ppMra7LTHJX5EG7vLbMz8vh_h0U7OVbW5_Ij6SUM2isNwYYHYEFF8AheFbaAWcaVYABWBuaLPCkbPCkE5N4fwDhUTdz:1p49xR:MUDfnFMnlA0O00pLonzuQWGJIOpE2AFl8TD6cUZIHAQ",
+    "expire_date": "2022-12-25T00:12:41.845Z"
   }
 },
 {
@@ -277,6 +277,7 @@
     "role": "VOZAC",
     "first_name": "",
     "last_name": "",
+    "is_first_login": true,
     "groups": [],
     "user_permissions": []
   }
@@ -296,6 +297,7 @@
     "role": "SERVIS",
     "first_name": "servis1",
     "last_name": "servis1",
+    "is_first_login": true,
     "groups": [],
     "user_permissions": []
   }
@@ -304,7 +306,7 @@
   "model": "users.user",
   "pk": 6,
   "fields": {
-    "password": "!5pQWgOcUuh5UthUfU21gt6iBiMYQLmiWyTyVUJrD",
+    "password": "pbkdf2_sha256$390000$s2y2t1hjlCH1i9y3oVnVLO$Bz85eOIDYyG4Hev1tvHUC4/uqnZ8f2c4xRV+eXvIfuk=",
     "last_login": null,
     "is_superuser": false,
     "username": "vozac3",
@@ -315,6 +317,7 @@
     "role": "VOZAC",
     "first_name": "",
     "last_name": "",
+    "is_first_login": true,
     "groups": [],
     "user_permissions": []
   }
@@ -334,6 +337,7 @@
     "role": "SERVIS",
     "first_name": "",
     "last_name": "",
+    "is_first_login": true,
     "groups": [],
     "user_permissions": []
   }
@@ -343,7 +347,7 @@
   "pk": 9,
   "fields": {
     "password": "pbkdf2_sha256$390000$R4ZcXxMEedfR7NRQBPLpbN$cHhNIg9YqvO69CJz4wRHe88EQjY8jCjPysTySybnZGQ=",
-    "last_login": "2022-12-09T23:02:29.202Z",
+    "last_login": null,
     "is_superuser": false,
     "username": "vozac5",
     "email": "vozac5@vozac5.com",
@@ -353,6 +357,7 @@
     "role": "VOZAC",
     "first_name": "TEst Vozac IME 5",
     "last_name": "TEst Vozac PREZIME  5",
+    "is_first_login": true,
     "groups": [],
     "user_permissions": []
   }
@@ -362,7 +367,7 @@
   "pk": 11,
   "fields": {
     "password": "pbkdf2_sha256$390000$s2y2t1hjlCH1i9y3oVnVLO$Bz85eOIDYyG4Hev1tvHUC4/uqnZ8f2c4xRV+eXvIfuk=",
-    "last_login": "2022-12-10T21:54:03.686Z",
+    "last_login": null,
     "is_superuser": false,
     "username": "vozac1",
     "email": "vozac1@vozac1.com",
@@ -372,6 +377,7 @@
     "role": "VOZAC",
     "first_name": "Dea",
     "last_name": "vozac1",
+    "is_first_login": true,
     "groups": [],
     "user_permissions": []
   }
@@ -381,7 +387,7 @@
   "pk": 12,
   "fields": {
     "password": "pbkdf2_sha256$390000$h8NwGEBCaW2GoIoUSo6jEQ$EeFLVmhj/HXPUrQWU9G3QaV4d5S0m/cscJ/6HCaRiNw=",
-    "last_login": "2022-12-10T21:55:28.770Z",
+    "last_login": "2022-12-11T00:12:41.841Z",
     "is_superuser": false,
     "username": "jovan",
     "email": "jovan@jovan.com",
@@ -391,6 +397,7 @@
     "role": "VOZAC",
     "first_name": "Jovan Ime",
     "last_name": "Jovan Prezime",
+    "is_first_login": false,
     "groups": [],
     "user_permissions": []
   }
