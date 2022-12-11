@@ -110,10 +110,10 @@
                                                                 <!-- END ZVEZDICE -->
 
                                                                 <!-- CENA -->
-                                                                {% if auction.amount.amount  == None %}
+                                                                {% if auction.current_bid  == None %}
                                                                     <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
                                                                 {% else %}
-                                                                    <div class="price">{{auction.amount.amount }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
+                                                                    <div class="price">{{auction.current_bid }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
                                                                 {% endif %}
                                                                 <!-- END CENA -->
                                                             </div>

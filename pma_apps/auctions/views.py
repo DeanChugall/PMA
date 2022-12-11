@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -274,8 +276,10 @@ def aktivni_zahtevi_view(request):
     Active auctions are paginated: 3 per page
     """
     id_pracenog_zahteva = request.user.watchlist.all()
+    # ponude_auto_servisa = Bid.objects.filter(auction=auction.id)
 
     category_name = request.GET.get("category_name", None)
+
     if category_name is not None:
         auctions = Auction.objects.filter(active=True, category=category_name)
     else:
@@ -370,3 +374,40 @@ def watchlist_edit(request, zahtev_id, reverse_method):
         return auction_details_view(request, zahtev_id)
     else:
         return HttpResponseRedirect(reverse(reverse_method))
+
+
+# SERVISERI
+@login_required
+def ponuda_zahteva(request, zahtev_id):
+    """
+    It allows the signed-in users to bid on the item
+    """
+    auction = Auction.objects.get(id=zahtev_id)
+    amount = Decimal(request.POST["amount"])
+
+    auction.current_bid = amount
+    form = BidForm(request.POST)
+    if form.is_valid():
+
+        new_bid = form.save(commit=False)
+        new_bid.auction = auction
+        new_bid.servis = request.user
+        new_bid.save()
+        auction.save()
+
+        return HttpResponseRedirect(
+            reverse("ponude:detalji_ponude_view", args=[zahtev_id])
+        )
+    else:
+        return render(
+            request,
+            "auctions/detalji_zahteva.html",
+            {
+                "categories": Category.objects.all(),
+                "auction": auction,
+                "images": auction.get_images.all(),
+                "form": BidForm(),
+                "error_min_value": True,
+                "title": "Auction",
+            },
+        )

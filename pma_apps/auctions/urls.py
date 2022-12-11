@@ -29,6 +29,8 @@ urlpatterns = [
         views.watchlist_edit,
         name="pracenje_zahteva_edit",
     ),
+    # BIDDING
+    path("zahtevi/<str:zahtev_id>/ponuda", views.ponuda_zahteva, name="ponuda_zahteva"),
     # HTMX
     path(
         "zahtevi/<int:pk>/uredjivanje",

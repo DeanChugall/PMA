@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from pma_apps.users.models import ServisProfile, User, Vozac, VozacProfile
+from pma_apps.users.models import User, VozacProfile
 from pma_apps.utils.image_resize import image_resize
 
 
@@ -24,7 +24,7 @@ class Auction(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=800, null=True)
     creator = models.ForeignKey(
-        Vozac,
+        User,
         on_delete=models.CASCADE,
         related_name="auction_creator",
         default=1,
@@ -40,9 +40,7 @@ class Auction(models.Model):
         blank=True,
         null=True,
     )
-    buyer = models.ForeignKey(
-        ServisProfile, on_delete=models.PROTECT, blank=True, null=True
-    )
+    buyer = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
     watchers = models.ManyToManyField(User, related_name="watchlist", blank=True)
     active = models.BooleanField(default=True)
 
@@ -71,7 +69,7 @@ class Bid(models.Model):
     auction = models.ForeignKey(
         Auction, on_delete=models.CASCADE, related_name="get_bids"
     )
-    servis = models.ForeignKey(ServisProfile, on_delete=models.CASCADE)
+    servis = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     date = models.DateTimeField(auto_now=True)
 

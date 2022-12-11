@@ -1,10 +1,18 @@
 [
 {
   "model": "sessions.session",
-  "pk": "m5ah5f0lbtemr0shcrnj0olhon3wona9",
+  "pk": "3x8xw7tp6wlbq3ulxo09jsvxo6db4ewy",
   "fields": {
-    "session_data": ".eJxVjDsOwyAQRO9CHSFYMKCU6XMGtLtAcBKB5E9l5e6xJRdJN5r3ZjYRcV1qXOc8xTGJq3Di8tsR8iu3A6QntkeX3NsyjSQPRZ50lvee8vt2un8HFee6rymA18TgjckAqqgSCJ1njRaTM8QDWc3MewwDDAmoFLC8R6coeC0-X-scN-g:1p4Bw2:Rl-sKH58eEDMPhGaBd9qUW5YjZL9LK3Tj3gxfSuFzck",
-    "expire_date": "2022-12-25T02:19:22.882Z"
+    "session_data": ".eJxVjEEOwiAQRe_C2pABKgWX7j0DGYZBqgaS0q6Md7dNutDte-__twi4LiWsnecwJXERgzj9soj05LqL9MB6b5JaXeYpyj2Rh-3y1hK_rkf7d1Cwl23tIToDPCDms9MpU0YfvVejtqAM0wYtm-xIewdR26ys0hqAIqHzMIrPF-IEN3E:1p4Vir:fFSvqccQYMUTn4t4V8wN66_VO2UJmC-tRa6T_5EFjFA",
+    "expire_date": "2022-12-25T23:27:05.715Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dukmavkdmnexw9vdqh20j6upytrssmlc",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAGOhRcuu8ZyAygVA0kpV0Z765NutDtf-_9lwi0rSVsPS9hTuIsQJx-N6b4yHUH6U711mRsdV1mlrsiD9rl1FJ-Xg7376BQL986osPIxnIyztiBwJPTcfQqesyQAEATKWdMRhwHe80aHKNTChnZWxbvD8vxNws:1p4VHN:D8leHv0y7mpEmyow3neZK2oCOfCy0i6iDPZV4jc_X8I",
+    "expire_date": "2022-12-25T22:58:41.721Z"
   }
 },
 {
@@ -19,59 +27,17 @@
   "model": "users.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$390000$ytXf3dRF73SvrOnDFl0wFS$OE3VVQsc42AbjjPFcoifUFz9QVBquX0SDIT3HbLKK14=",
-    "last_login": null,
-    "is_superuser": true,
-    "username": "datatab",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2022-12-11T00:56:15.903Z",
-    "role": "VOZAC",
-    "first_name": "",
-    "last_name": "",
-    "grad": "",
-    "is_first_login": true,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "users.user",
-  "pk": 3,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$kiWJDOKvxoKCtMtkzl6KL5$9pwT+oV5v2Bm7oXc/6O6op4V5742NBf/tPlJmi+Pvfs=",
-    "last_login": "2022-12-11T01:47:24.886Z",
-    "is_superuser": false,
-    "username": "vozac1",
-    "email": "vozac@vozac.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2022-12-11T01:07:33.097Z",
-    "role": "VOZAC",
-    "first_name": "vozac1",
-    "last_name": "vozac1 PREZIME",
-    "grad": "Beograd",
-    "is_first_login": false,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "users.user",
-  "pk": 4,
-  "fields": {
-    "password": "pbkdf2_sha256$390000$IRRe2etbt20TdDY1YFpAAm$y5wU1Ni4Fagzpr2MWAK2xZyy6+raqNuBKzCyeJ8qBXI=",
-    "last_login": "2022-12-11T01:49:00.542Z",
+    "password": "pbkdf2_sha256$390000$Yzeey1vqm0HIKa5Kt0v1iO$N6Drir8Adn5DYHyFY6WNkO/lZnR/HqpeZh55YoDYxTU=",
+    "last_login": "2022-12-11T23:11:52.145Z",
     "is_superuser": false,
     "username": "jovan",
     "email": "jovan@jovan.com",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2022-12-11T01:44:23.592Z",
+    "date_joined": "2022-12-11T22:56:19.289Z",
     "role": "VOZAC",
-    "first_name": "Jovan IME",
-    "last_name": "Jovan PREZIME",
+    "first_name": "jovan",
+    "last_name": "jovan",
     "grad": "Beograd",
     "is_first_login": false,
     "groups": [],
@@ -80,20 +46,20 @@
 },
 {
   "model": "users.user",
-  "pk": 5,
+  "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$390000$B2GcMpNVKHPfmyVyclhgtM$cKc2bprrYj/KGAO51pKge0Gw1q4YEjwsQK2LwFFOib8=",
-    "last_login": "2022-12-11T01:51:46.293Z",
+    "password": "pbkdf2_sha256$390000$PXXEZ8map9qUIPtFAoV89P$ZbuBU57RFZc5TESbEjORwiDCWCJFnX3sq7nImtFg5ao=",
+    "last_login": "2022-12-11T23:12:00.953Z",
     "is_superuser": false,
-    "username": "vozac2",
-    "email": "vozac2@vozac2.com",
+    "username": "servis1",
+    "email": "servis1@servis1.com",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2022-12-11T01:51:39.894Z",
-    "role": "VOZAC",
-    "first_name": "vozac2",
-    "last_name": "vozac2",
-    "grad": "Novi Sad",
+    "date_joined": "2022-12-11T22:57:24.778Z",
+    "role": "SERVIS",
+    "first_name": "servis1",
+    "last_name": "servis1",
+    "grad": "Beograd",
     "is_first_login": false,
     "groups": [],
     "user_permissions": []
@@ -101,20 +67,20 @@
 },
 {
   "model": "users.user",
-  "pk": 6,
+  "pk": 4,
   "fields": {
-    "password": "pbkdf2_sha256$390000$BIY1DUaG3ePGfb7Nm5mbY8$vopbXHADd7e5lwZF0T+Tc/kfENGjFUVFV3ddHSdSzrw=",
-    "last_login": "2022-12-11T02:19:22.877Z",
+    "password": "pbkdf2_sha256$390000$SA4E0aVGUZCoOHXgnAk6Nm$5BhdRXNSD7C4s1GeHlbCqOSy2yLOVyOD9/ZQ/kH8b9c=",
+    "last_login": "2022-12-11T23:27:05.690Z",
     "is_superuser": false,
-    "username": "servis1",
-    "email": "servis1@servis1.com",
+    "username": "servis2",
+    "email": "servis2@servis2.com",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2022-12-11T02:11:39.145Z",
+    "date_joined": "2022-12-11T23:26:56.191Z",
     "role": "SERVIS",
-    "first_name": "servis1",
-    "last_name": "servis1",
-    "grad": "",
+    "first_name": "servis2",
+    "last_name": "servis2",
+    "grad": "Beograd",
     "is_first_login": false,
     "groups": [],
     "user_permissions": []
@@ -122,57 +88,33 @@
 },
 {
   "model": "users.vozacprofile",
-  "pk": 2,
+  "pk": 1,
   "fields": {
-    "user": 3,
-    "broj_telefona": "+381631369099",
-    "vin": "WAUZZZ4BZWN049194",
-    "marka": "Renault",
-    "modell": "SCNEIC II",
-    "godiste": "2012",
-    "kilometraza": "156,345 km",
-    "zapremina_motora": "1900 ccm",
-    "snaga_motora": "110 KS",
-    "vrsta_goriva": "Dizel"
-  }
-},
-{
-  "model": "users.vozacprofile",
-  "pk": 3,
-  "fields": {
-    "user": 4,
-    "broj_telefona": "+381 63 111 222 333",
-    "vin": "WAUZZZ4BZWN049194",
-    "marka": "Volkswagen",
-    "modell": "Passat",
-    "godiste": "2012",
-    "kilometraza": "156,345 km",
-    "zapremina_motora": "1900 ccm",
-    "snaga_motora": "110 KS",
-    "vrsta_goriva": "Dizel"
-  }
-},
-{
-  "model": "users.vozacprofile",
-  "pk": 4,
-  "fields": {
-    "user": 5,
-    "broj_telefona": null,
-    "vin": "WAUZZZ4BZWN049194",
-    "marka": "Citroen",
-    "modell": "cc",
-    "godiste": "2013",
-    "kilometraza": "200.000 km",
-    "zapremina_motora": "1900 ccm",
-    "snaga_motora": "110 KS",
-    "vrsta_goriva": "Benzin"
+    "user": 1,
+    "broj_telefona": "+381 63 136 90 99",
+    "vin": null,
+    "marka": null,
+    "modell": null,
+    "godiste": null,
+    "kilometraza": null,
+    "zapremina_motora": null,
+    "snaga_motora": null,
+    "vrsta_goriva": null
   }
 },
 {
   "model": "users.servisprofile",
   "pk": 1,
   "fields": {
-    "user": 6,
+    "user": 2,
+    "slika_servisa": ""
+  }
+},
+{
+  "model": "users.servisprofile",
+  "pk": 2,
+  "fields": {
+    "user": 4,
     "slika_servisa": ""
   }
 },
@@ -264,50 +206,48 @@
   "model": "auctions.auction",
   "pk": 1,
   "fields": {
-    "title": "VW Passat VELIKI SERIVS",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "creator": 3,
+    "title": "ewrweR",
+    "description": "AWETWE",
+    "creator": 1,
     "category": 1,
-    "date_created": "2022-12-11T01:28:13.726Z",
-    "current_bid": null,
+    "date_created": "2022-12-11T22:56:50.710Z",
+    "current_bid": "56.00",
     "buyer": null,
     "active": true,
-    "watchers": [
-      3,
-      5
-    ]
+    "watchers": []
   }
 },
 {
   "model": "auctions.auction",
   "pk": 2,
   "fields": {
-    "title": "PASSAT",
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-    "creator": 4,
+    "title": "rtgsrtg",
+    "description": "strhtrh",
+    "creator": 1,
     "category": 1,
-    "date_created": "2022-12-11T01:50:18.037Z",
-    "current_bid": null,
+    "date_created": "2022-12-11T22:57:01.439Z",
+    "current_bid": "23.00",
     "buyer": null,
     "active": true,
-    "watchers": [
-      4
-    ]
+    "watchers": []
   }
 },
 {
   "model": "auctions.auction",
   "pk": 3,
   "fields": {
-    "title": "Citroen MALI SERVIS",
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-    "creator": 5,
-    "category": 2,
-    "date_created": "2022-12-11T01:52:20.988Z",
-    "current_bid": null,
+    "title": "srthsr",
+    "description": "thrsthsrt",
+    "creator": 1,
+    "category": 1,
+    "date_created": "2022-12-11T22:57:11.992Z",
+    "current_bid": "345.00",
     "buyer": null,
     "active": true,
-    "watchers": []
+    "watchers": [
+      2,
+      4
+    ]
   }
 },
 {
@@ -315,7 +255,7 @@
   "pk": 1,
   "fields": {
     "auction": 1,
-    "image": "images/passat_vTxklAw.jpg"
+    "image": "images/Clio-Mk4-2013-1-_rJrLo9r.jpg"
   }
 },
 {
@@ -323,7 +263,7 @@
   "pk": 2,
   "fields": {
     "auction": 2,
-    "image": "images/VW_Passat_B8_Limousine_2.0_TDI_Highline.jpg"
+    "image": "images/Citroen_buWtinl.jpg"
   }
 },
 {
@@ -331,7 +271,97 @@
   "pk": 3,
   "fields": {
     "auction": 3,
-    "image": "images/Citroen_ZBO29x3.jpg"
+    "image": "images/passat_d9Z7dI5.jpg"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 1,
+  "fields": {
+    "auction": 3,
+    "servis": 2,
+    "amount": "3454.00",
+    "date": "2022-12-11T22:57:39.786Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 2,
+  "fields": {
+    "auction": 3,
+    "servis": 2,
+    "amount": "4000.00",
+    "date": "2022-12-11T22:58:12.573Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 3,
+  "fields": {
+    "auction": 2,
+    "servis": 2,
+    "amount": "45.00",
+    "date": "2022-12-11T23:12:40.930Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 4,
+  "fields": {
+    "auction": 2,
+    "servis": 2,
+    "amount": "324.00",
+    "date": "2022-12-11T23:21:59.060Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 5,
+  "fields": {
+    "auction": 2,
+    "servis": 2,
+    "amount": "23.00",
+    "date": "2022-12-11T23:25:27.651Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 6,
+  "fields": {
+    "auction": 3,
+    "servis": 4,
+    "amount": "324.00",
+    "date": "2022-12-11T23:27:17.860Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 7,
+  "fields": {
+    "auction": 3,
+    "servis": 4,
+    "amount": "345.00",
+    "date": "2022-12-11T23:38:02.689Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 8,
+  "fields": {
+    "auction": 1,
+    "servis": 4,
+    "amount": "345.00",
+    "date": "2022-12-11T23:40:23.856Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 9,
+  "fields": {
+    "auction": 1,
+    "servis": 4,
+    "amount": "56.00",
+    "date": "2022-12-11T23:41:15.411Z"
   }
 }
 ]
