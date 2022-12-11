@@ -12,6 +12,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from pma_apps.utils.godista_automobila import GodisteAutomobila
+from pma_apps.utils.gradovi import Gradovi
 
 
 class User(AbstractUser):
@@ -25,6 +26,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
     last_name = CharField(_("last_name"), blank=True, max_length=255)
+    grad = CharField(null=False, blank=False, max_length=100, choices=Gradovi.choices)
     is_first_login = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
@@ -73,7 +75,6 @@ class VozacProfile(models.Model):
         EV = "EV", "EV"
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    vozac_id = models.IntegerField(null=True, blank=True)
     broj_telefona = CharField(null=True, blank=True, max_length=100)
 
     # Automobil Vozaca
@@ -97,7 +98,7 @@ class VozacProfile(models.Model):
         db_table: str = "vozaci"
         verbose_name: str = "Vozac"
         verbose_name_plural: str = "Vozaci"
-        ordering = ["-vozac_id"]
+        ordering = ["-user"]
 
     def get_absolute_url(self):
         return reverse("users:detalji_vozaca", args=[str(self.username)])
@@ -132,14 +133,13 @@ class Servis(User):
 
 class ServisProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    servis_id = models.IntegerField(null=True, blank=True)
     slika_servisa = ImageField(null=True, blank=True)
 
     class Meta:
         db_table: str = "servisi"
         verbose_name: str = "Servis"
         verbose_name_plural: str = "Servisi"
-        ordering = ["-servis_id"]
+        ordering = ["-user"]
 
 
 # flake8: noqa: F811

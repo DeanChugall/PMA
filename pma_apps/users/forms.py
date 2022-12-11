@@ -77,6 +77,7 @@ class KreirajVozacaForm(UserCreationForm):
         fields = [
             "first_name",
             "last_name",
+            "grad",
             "username",
             "email",
             "password1",
@@ -104,6 +105,7 @@ class UrediVozacaForm(forms.ModelForm):
         fields = [
             "role",
             "last_name",
+            "grad",
             "first_name",
             "email",
             "username",

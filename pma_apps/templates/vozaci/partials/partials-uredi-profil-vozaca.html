@@ -16,14 +16,24 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Grad:</label>
+                            <select class="form-control select2 form-select" name="grad">
+                            {% for grad in detalji_vozaca.grad %}
+                                {% render_field grad %}
+                            {% endfor %}
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Email adresa:</label>
-
                             {% render_field detalji_vozaca.email class="form-control" placeholder="Email"  %}
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Korisničko Ime:</label>
                             {% render_field detalji_vozaca.username class="form-control" placeholder="Username" readonly="readonly" %}

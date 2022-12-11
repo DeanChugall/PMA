@@ -8,7 +8,19 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
+                <div class="col-md-4 mb-2">
+                    <div class="form-group">
+                        <label class="form-label">Grad:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="grad"
+                            value="{{ detalji_vozaca.grad }}"
+                            placeholder="Grad"
+                            disabled readonly>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
                     <div class="form-group">
                         <label class="form-label">Email adresa:</label>
                         <input
@@ -20,7 +32,7 @@
                             disabled readonly>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12">
+                <div class="col-md-4 mb-2">
                     <div class="form-group">
                         <label class="form-label">Korisničko Ime:</label>
                         <input
@@ -58,7 +70,6 @@
                             disabled readonly>
                     </div>
                 </div>
-
                 <div class="col-md-4 mb-2">
                     <div class="form-group">
                         <label class="form-label">Prezime:</label>
@@ -322,18 +333,10 @@
         <!-- BRISANJE NALOGA -->
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Delete Account</div>
+                <div class="card-title">Brisanje Korisničkog Naloga</div>
             </div>
             <div class="card-body">
-                <p>Its Advisable for you to request your data to be sent to your Email.</p>
-                <label class="custom-control custom-checkbox mb-0">
-                    <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        name="example-checkbox1"
-                        value="option1" checked>
-                    <span class="custom-control-label">Yes, Send my data to my Email.</span>
-                </label>
+                <p>Potpuno brisanje korisničkog naloga '<b>{{ detalji_vozaca.username }}</b>', takođe i svih podataka vezanih za isti!</p>
             </div>
 
             <!-- Modal BRISANJE NALOGA -->

@@ -76,6 +76,13 @@
                             {% render_field form.last_name class="input100 border-start-0 ms-0 form-control" placeholder="Prezime" %}
                         </div>
                         <div class="wrap-input100 validate-input input-group"
+                             data-bs-validate="Valid email is required: ex@abc.xyz">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="mdi mdi-account" aria-hidden="true"></i>
+                            </a>
+                            {% render_field form.grad class="input100 border-start-0 ms-0 form-control" placeholder="Grad" %}
+                        </div>
+                        <div class="wrap-input100 validate-input input-group"
                             data-bs-validate="Valid email is required: ex@abc.xyz">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
