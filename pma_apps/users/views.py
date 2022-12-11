@@ -30,7 +30,9 @@ class LoginKorisnikaView(LoginView):
     def get_default_redirect_url(self):
         """
         Return the default redirect URL ka dashboard-u ako je Vozac vec bio ulogovan pre.
-        Vrati redirect URL ka izmeni profila ako je Vozac prvi put logovan.
+        - Vrati redirect URL ka izmeni profila ako je Vozac prvi put logovan.
+        - Vrati redirect URL ka izmeni profila ako je SERVIS prvi put logovan.
+
         """
         context = {}
         user = self.request.user
@@ -38,7 +40,10 @@ class LoginKorisnikaView(LoginView):
             context["isFirstTime"] = "isFirstTime"
             user.is_first_login = False
             user.save()
-            return reverse("users:detalji_vozaca", args=[user.username])
+            if user.role == User.Role.VOZAC:
+                return reverse("users:detalji_vozaca", args=[user.username])
+            elif user.role == User.Role.SERVIS:
+                return reverse("auto_servis:detalji_servisa", args=[user.username])
         return reverse("ponude:ponude")
 
 
