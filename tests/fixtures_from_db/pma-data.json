@@ -1,10 +1,10 @@
 [
 {
   "model": "sessions.session",
-  "pk": "xxwejcddwflagcmbvxdtgtleqsig1lwn",
+  "pk": "m5ah5f0lbtemr0shcrnj0olhon3wona9",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hBgYAou3XsGMjBUqoYmpV0Z765NutDtf-_9l4i0rTVuvSxxYnEWTpx-t0T5UdoO-E7tNss8t3WZktwVedAurzOX5-Vw_w4q9fqtR2O0B8c-WDDBIg6Dc8gqeQZAn4M2nK0Gdi4rM1pAAm0VJOUxEaF4fwCg3jZR:1p4BVK:2RJmTuxLnW83T1kdwtbBk4fXiMRhOH_DyQqR6ccpBMo",
-    "expire_date": "2022-12-25T01:51:46.301Z"
+    "session_data": ".eJxVjDsOwyAQRO9CHSFYMKCU6XMGtLtAcBKB5E9l5e6xJRdJN5r3ZjYRcV1qXOc8xTGJq3Di8tsR8iu3A6QntkeX3NsyjSQPRZ50lvee8vt2un8HFee6rymA18TgjckAqqgSCJ1njRaTM8QDWc3MewwDDAmoFLC8R6coeC0-X-scN-g:1p4Bw2:Rl-sKH58eEDMPhGaBd9qUW5YjZL9LK3Tj3gxfSuFzck",
+    "expire_date": "2022-12-25T02:19:22.882Z"
   }
 },
 {
@@ -100,6 +100,27 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$BIY1DUaG3ePGfb7Nm5mbY8$vopbXHADd7e5lwZF0T+Tc/kfENGjFUVFV3ddHSdSzrw=",
+    "last_login": "2022-12-11T02:19:22.877Z",
+    "is_superuser": false,
+    "username": "servis1",
+    "email": "servis1@servis1.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-11T02:11:39.145Z",
+    "role": "SERVIS",
+    "first_name": "servis1",
+    "last_name": "servis1",
+    "grad": "",
+    "is_first_login": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "users.vozacprofile",
   "pk": 2,
   "fields": {
@@ -145,6 +166,14 @@
     "zapremina_motora": "1900 ccm",
     "snaga_motora": "110 KS",
     "vrsta_goriva": "Benzin"
+  }
+},
+{
+  "model": "users.servisprofile",
+  "pk": 1,
+  "fields": {
+    "user": 6,
+    "slika_servisa": ""
   }
 },
 {
