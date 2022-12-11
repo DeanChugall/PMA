@@ -13,7 +13,6 @@ class GodisteAutomobila(models.TextChoices):
     godiste_2015 = "2015", "2015"
     godiste_2014 = "2014", "2014"
     godiste_2013 = "2013", "2013"
-    godiste_2102 = "2102", "2102"
     godiste_2012 = "2012", "2012"
     godiste_2011 = "2011", "2011"
     godiste_2010 = "2010", "2010"
