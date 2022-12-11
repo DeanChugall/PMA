@@ -88,7 +88,7 @@ class VozacProfile(models.Model):
     marka = CharField(null=True, blank=True, max_length=100)
     modell = CharField(null=True, blank=True, max_length=100)
     godiste = CharField(
-        null=True, blank=True, max_length=100, choices=GodisteAutomobila.choices
+        null=True, blank=True, max_length=5, choices=GodisteAutomobila.choices
     )
     kilometraza = CharField(null=True, blank=True, max_length=100)
     zapremina_motora = CharField(null=True, blank=True, max_length=100)
