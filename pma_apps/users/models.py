@@ -25,6 +25,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.VOZAC)
     first_name = CharField(_("first_name"), blank=True, max_length=255)
     last_name = CharField(_("last_name"), blank=True, max_length=255)
+    is_first_login = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -43,6 +44,9 @@ class User(AbstractUser):
         return reverse("users:detail", kwargs={"username": self.username})
 
 
+# ###########################################################
+# ##################### VOZACI ##############################
+# ###########################################################
 class VozacManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
@@ -58,12 +62,9 @@ class Vozac(User):
         proxy = True
 
     def welcome(self):
-        return "Only for VOZACe"
+        return Vozac.objects.get(id=self.id).last_login
 
 
-# ###########################################################
-# ##################### VOZACI ##############################
-# ###########################################################
 class VozacProfile(models.Model):
     class VrstaGoriva(models.TextChoices):
         DIZEL = "Dizel", "Dizel"
@@ -112,8 +113,6 @@ def create_vozac_profile(sender, instance, created, **kwargs):
 # ###########################################################
 # ##################### SERVISI #############################
 # ###########################################################
-
-
 class ServisManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)

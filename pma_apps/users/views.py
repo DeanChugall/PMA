@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404, redirect, render, resolve_url
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import generic
 
@@ -28,9 +28,17 @@ class LoginKorisnikaView(LoginView):
     redirect_authenticated_user = True
 
     def get_default_redirect_url(self):
-        """Return the default redirect URL."""
-        if self.next_page:
-            return resolve_url(self.next_page, "")
+        """
+        Return the default redirect URL ka dashboard-u ako je Vozac vec bio ulogovan pre.
+        Vrati redirect URL ka izmeni profila ako je Vozac prvi put logovan.
+        """
+        context = {}
+        user = self.request.user
+        if user.is_first_login:
+            context["isFirstTime"] = "isFirstTime"
+            user.is_first_login = False
+            user.save()
+            return reverse("users:detalji_vozaca", args=[user.username])
         return reverse("ponude:ponude")
 
 
@@ -60,7 +68,6 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
-
         vozac = Vozac.objects.all().filter(username=self.kwargs["username"]).first()
         profil_vozaca = VozacProfile.objects.all().filter(user_id=vozac.id).first()
 
