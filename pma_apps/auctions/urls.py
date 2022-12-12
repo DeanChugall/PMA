@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import ListaZahtevaVozacaView, ObrisiZahtevView
+from .views import ListaZahtevaVozacaView, ObrisiPonuduZahtevaView, ObrisiZahtevView
 
 app_name = "auctions"
 
@@ -29,16 +29,21 @@ urlpatterns = [
         views.watchlist_edit,
         name="pracenje_zahteva_edit",
     ),
-    # BIDDING
-    path(
-        "zahtevi/<str:zahtev_id>/ponuda",
-        views.ponuda_zahteva_view,
-        name="ponuda_zahteva_view",
-    ),
     # HTMX
     path(
         "zahtevi/<int:pk>/uredjivanje",
         views.uredi_zahtev_vozaca_view,
         name="uredi_zahtev_vozaca",
+    ),
+    # PONUDE SERVISERA
+    path(
+        "zahtevi/<str:zahtev_id>/ponuda",
+        views.ponuda_zahteva_view,
+        name="ponuda_zahteva",
+    ),
+    path(
+        "zahtevi/<int:pk>/brisanje-ponude",
+        ObrisiPonuduZahtevaView.as_view(),
+        name="obrisi_ponudu_zahteva",
     ),
 ]

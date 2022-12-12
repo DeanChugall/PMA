@@ -127,7 +127,7 @@
                                 <div class='card-header'>
                                     <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
                                 </div>
-                                <form action="{% url 'ponude:ponuda_zahteva_view' auction.id %}" method='POST'>
+                                <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" method='POST'>
                                     {% csrf_token %}
                                     <div class='card-body'>
                                         <!-- Product price-->
@@ -160,7 +160,7 @@
                     <!-- END PONUDE ZA ZAHTEV -->
 
                     <!-- LISTING SVIH PONUDE ZAHTEVA SERISA -->
-                    <div class="border-top my-3"></div>
+                    <div class="border-top my-3" id="listing-ponuda-zahteva"></div>
                     <h3 class="p-3 mb-2">Listing Ponuda Zahteva</h3>
                     {% include 'auctions/partials/partials_listing_ponuda_zahteva.html' %}
                     <!-- END LISTING SVIH PONUDE ZAHTEVA SERISA -->
