@@ -1,5 +1,6 @@
 {% extends "auctions/auctions_base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %} Zahtev {{ auction.title }} {% endblock %}
 
@@ -97,34 +98,34 @@
                     </div>
 
                     <!-- POSLEDNJA CENA -->
-                    <div class="col-xl-6">
-                        <div class="card h-100">
-                            <div class='card-header'>
-                                <h5 class="p-0 mb-0">Poslednja Ponuđena Cena Servisa</h5>
-                            </div>
-                            <div class="product-grid6">
-                                <div class="product-image6 p-5"></div>
-                                <div class="card-body pt-0">
-                                    <div class="product-content text-center">
-                                        {% if ponude_auto_servisa_zadnja_cena.amount %}
-                                            <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis }}</h1>
-                                            <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.amount }} rsd</h1>
-                                        {% else %}
-                                            <h1 class="title fw-bold fs-20">Nema cene za ovaj zahtev. </h1>
-                                        {% endif %}
+                    {% if user.role == "SERVIS" %}
+                        <div class="col-xl-6">
+                            <div class="card h-100">
+                                <div class='card-header'>
+                                    <div class="card-title">Poslednja Ponuđena Cena Servisa</div>
+                                </div>
+                                <div class="product-grid6">
+                                    <div class="product-image6 p-5"></div>
+                                    <div class="card-body pt-0">
+                                        <div class="product-content text-center">
+                                            {% if ponude_auto_servisa_zadnja_cena.amount %}
+                                                <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis }}</h1>
+                                                <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.amount }} rsd</h1>
+                                            {% else %}
+                                                <h1 class="title fw-bold fs-20">Nema cene za ovaj zahtev. </h1>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- END POSLEDNJA CENA -->
+                        <!-- END POSLEDNJA CENA -->
 
-                    <!-- PONUDE ZA ZAHTEV -->
-                    {% if user.role == "SERVIS" %}
+                        <!-- PONUDE ZA ZAHTEV -->
                         <div class='col-xl-6'>
                             <div class='card mb-4 h-100'>
                                 <div class='card-header'>
-                                    <h5 class="p-0 mb-0">{{ ponude_auto_servisa_zadnja_cena.servis  }}, Vaša ponuda ovde!</h5>
+                                    <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
                                 </div>
                                 <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" method='POST'>
                                     {% csrf_token %}
@@ -134,7 +135,7 @@
                                             {% if auction.current_bid is None %}
                                                 {% if auction.creator != user %}
                                                     <div class='alert alert-secondary' role='alert'>
-                                                        Place the first bid on this auction.
+                                                        Budite prvi Servis koji će postaviti ponudu za ovaj zahtev!
                                                     </div>
                                                 {% endif %}
                                             {% elif auction.buyer is not None %}
@@ -145,17 +146,12 @@
                                                 {% endif %}
                                             {% endif %}
 
-                                            <div class='form-group'>
-
-                                                <div class='form-group'>
-                                                    {{ bid_form }}
+                                            <div class='form-group mt-2'>
+                                                {% render_field bid_form.amount class="form-control form-control-lg" placeholder="Vaša cena ovde..." %}
+                                                <div class="mt-1">
+                                                    <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0'>Postavi Ponudu</button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card-footer text-sm-right">
-                                            <button type='submit' class='btn btn-primary'>
-                                                Place a bid
-                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -164,7 +160,8 @@
                     <!-- END PONUDE ZA ZAHTEV -->
 
                     <!-- LISTING SVIH PONUDE ZAHTEVA SERISA -->
-                    <h3 class="p-3 mb-5">Listing Ponuda Zahteva</h3>
+                    <div class="border-top my-3"></div>
+                    <h3 class="p-3 mb-2">Listing Ponuda Zahteva</h3>
                     {% include 'auctions/partials/partials_listing_ponuda_zahteva.html' %}
                     <!-- END LISTING SVIH PONUDE ZAHTEVA SERISA -->
 
@@ -226,7 +223,7 @@
                                             </div>
                                         </div>
                                         <div class="">
-                                            <a href="javascript:void(0)" class="btn btn-primary btn-rounded  waves-effect waves-light">Submit</a>
+                                            <a href="javascript:void(0)" class="btn btn-primary btn-rounded waves-effect waves-light">Submit</a>
                                         </div>
                                     </form>
                                 </div>
