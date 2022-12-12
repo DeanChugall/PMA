@@ -1,0 +1,71 @@
+{% for ponuda in ponude_auto_servisa %}
+    {% if user.role == "VOZAC" or user.role == "SERVIS"%}
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="product-grid6">
+                    <div class="product-image6 p-5">
+                        <ul class="icons">
+                            <li>
+                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                            </li>
+                            <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
+                            <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="product-content text-center">
+                            <h1 class="title fw-bold fs-20">
+                                <a href="shop-description.html">{{ ponuda.servis }}</a>
+                            </h1>
+                            <div class="mb-2 text-warning">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                            </div>
+                            <div class="price">{{ ponuda.amount }} rsd<span class="ms-4"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-footer text-center">
+                    {% if auction.creator == user and auction.active %}
+                        <a href="javascript:void(0)">
+                            <button type="button" class="btn btn-primary mb-1 btn-lg  ">
+                                <i class="fa fa-check-square fa-1x"></i> Prihvati Ponudu
+                            </button>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <button type="button" class="btn btn-outline-primary mb-1 btn-lg  ">
+                                <i class="fa fa-phone-square fa-1x"></i> Pozovi Servis
+                            </button>
+                        </a>
+                    {% endif %}
+                    {% if ponuda.servis == user and auction.active %}
+                        <a href="javascript:void(0)">
+                            <button type="button" class="btn btn-outline-primary mb-1 btn-lg  ">
+                                <i class="fa fa-phone-square fa-1x"></i> Obriši Ponudu
+                            </button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% empty %}
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="product-grid6">
+                <div class="product-image6 p-5"></div>
+                <div class="card-body pt-0">
+                    <div class="product-content text-center">
+                        <h1 class="title fw-bold fs-20">Trenutno nema ponuda za ovaj zahtev. </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
