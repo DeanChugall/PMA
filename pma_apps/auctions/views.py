@@ -378,7 +378,7 @@ def watchlist_edit(request, zahtev_id, reverse_method):
 
 # SERVISERI
 @login_required
-def ponuda_zahteva(request, zahtev_id):
+def ponuda_zahteva_view(request, zahtev_id):
     """
     It allows the signed-in users to bid on the item
     """
@@ -410,4 +410,16 @@ def ponuda_zahteva(request, zahtev_id):
                 "error_min_value": True,
                 "title": "Auction",
             },
+        )
+
+
+class ObrisiPonuduZahtevaView(LoginRequiredMixin, generic.DeleteView):
+    model = Bid
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy(
+            "ponude:ponude",
         )

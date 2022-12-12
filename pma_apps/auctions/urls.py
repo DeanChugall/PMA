@@ -30,7 +30,11 @@ urlpatterns = [
         name="pracenje_zahteva_edit",
     ),
     # BIDDING
-    path("zahtevi/<str:zahtev_id>/ponuda", views.ponuda_zahteva, name="ponuda_zahteva"),
+    path(
+        "zahtevi/<str:zahtev_id>/ponuda",
+        views.ponuda_zahteva_view,
+        name="ponuda_zahteva_view",
+    ),
     # HTMX
     path(
         "zahtevi/<int:pk>/uredjivanje",
