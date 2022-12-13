@@ -17,7 +17,7 @@ class Category(models.Model):
 
     @property
     def count_active_auctions(self):
-        return Auction.objects.filter(category=self).count()
+        return Auction.objects.filter(category=self).filter(active=True).count()
 
 
 class Auction(models.Model):

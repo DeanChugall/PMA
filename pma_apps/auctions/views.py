@@ -63,7 +63,11 @@ def category_details_view(request, category_name):
     """
 
     category = get_object_or_404(Category, category_name=category_name)
-    auctions = Auction.objects.filter(category=category).order_by("-date_created")
+    auctions = (
+        Auction.objects.filter(category=category)
+        .filter(active=True)
+        .order_by("-date_created")
+    )
     id_pracenog_zahteva = request.user.watchlist.all()
 
     for auction in auctions:
@@ -191,6 +195,27 @@ def kreiranje_zahteva_view(request):
         )
 
 
+def prihvati_ponudu_zahteva_view(request, pk):
+    """
+    Zatvaranje zahteva Vozaca tako sto se prihvata ponuda Servisa.
+    """
+    ponuda = Bid.objects.get(id=pk)
+    zahtev = ponuda.auction
+
+    if request.user == zahtev.creator:
+        zahtev.active = False
+        zahtev.buyer = (
+            Bid.objects.filter(auction=zahtev).filter(id=ponuda.id).last().servis
+        )
+        zahtev.current_bid = ponuda.amount
+        zahtev.save()
+
+        return HttpResponseRedirect(
+            reverse("ponude:detalji_ponude_view", args=[zahtev.pk])
+        )
+    return HttpResponseRedirect(reverse("ponude:detalji_ponude_view", args=[zahtev.pk]))
+
+
 class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
     """Lista svih Zahteva filtrirana po polju username Vozaca"""
 
@@ -233,10 +258,10 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
 
 
 class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
+    form_class = BidForm
+    context_object_name = "brisanje_zahteva"
+    success_message = " Uspešno obrisan zahtev."
     model = Auction
-
-    def get(self, request, *args, **kwargs):
-        return self.post(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse_lazy(
@@ -253,7 +278,6 @@ def uredi_zahtev_vozaca_view(request, pk):
     context = {
         "form": form,
         "auction": auction,
-        "title": "Create Auction",
     }
     if form.is_valid():
         ispravljen_zahtev = form.save(commit=False)
@@ -263,7 +287,6 @@ def uredi_zahtev_vozaca_view(request, pk):
         context = {
             "form": form,
             "auction": auction,
-            "title": "Create Auction",
         }
         return render(request, "auctions/partials/detalji_zahteva.html", context)
     return render(request, "auctions/partials/uredi_zahtev_vozaca.html", context)

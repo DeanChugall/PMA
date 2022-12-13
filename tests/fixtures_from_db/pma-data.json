@@ -9,10 +9,10 @@
 },
 {
   "model": "sessions.session",
-  "pk": "dukmavkdmnexw9vdqh20j6upytrssmlc",
+  "pk": "of34gd3y80zmedodnzljtl5u7q22uz40",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hAGOhRcuu8ZyAygVA0kpV0Z765NutDtf-_9lwi0rSVsPS9hTuIsQJx-N6b4yHUH6U711mRsdV1mlrsiD9rl1FJ-Xg7376BQL986osPIxnIyztiBwJPTcfQqesyQAEATKWdMRhwHe80aHKNTChnZWxbvD8vxNws:1p4VHN:D8leHv0y7mpEmyow3neZK2oCOfCy0i6iDPZV4jc_X8I",
-    "expire_date": "2022-12-25T22:58:41.721Z"
+    "session_data": ".eJxVjEEOwiAQRe_C2hBKB6bj0r1nIDCAVA0kpV0Z765NutDtf-_9l3B-W4vbelrcHMVZWHH63YLnR6o7iHdfb01yq-syB7kr8qBdXltMz8vh_h0U38u3htGwHVANgdCq0VrUQGZSGSONIXFC1KQ4A4VJZ20QMjEwKDCesjLi_QGqOjak:1p4u2i:SthR45RyjXiEDmnV-Rx3ygHi5J4u1oXNNdtuvzkzk2A",
+    "expire_date": "2022-12-27T01:25:12.028Z"
   }
 },
 {
@@ -28,7 +28,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$Yzeey1vqm0HIKa5Kt0v1iO$N6Drir8Adn5DYHyFY6WNkO/lZnR/HqpeZh55YoDYxTU=",
-    "last_login": "2022-12-11T23:11:52.145Z",
+    "last_login": "2022-12-13T01:04:24.085Z",
     "is_superuser": false,
     "username": "jovan",
     "email": "jovan@jovan.com",
@@ -49,7 +49,7 @@
   "pk": 2,
   "fields": {
     "password": "pbkdf2_sha256$390000$PXXEZ8map9qUIPtFAoV89P$ZbuBU57RFZc5TESbEjORwiDCWCJFnX3sq7nImtFg5ao=",
-    "last_login": "2022-12-11T23:12:00.953Z",
+    "last_login": "2022-12-13T01:20:05.355Z",
     "is_superuser": false,
     "username": "servis1",
     "email": "servis1@servis1.com",
@@ -70,7 +70,7 @@
   "pk": 4,
   "fields": {
     "password": "pbkdf2_sha256$390000$SA4E0aVGUZCoOHXgnAk6Nm$5BhdRXNSD7C4s1GeHlbCqOSy2yLOVyOD9/ZQ/kH8b9c=",
-    "last_login": "2022-12-11T23:27:05.690Z",
+    "last_login": "2022-12-13T01:24:27.204Z",
     "is_superuser": false,
     "username": "servis2",
     "email": "servis2@servis2.com",
@@ -87,11 +87,85 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$iwP7NN4nmfcX3Ahkrpp0uF$cnnk1SsKeIBYxC+AppvuvznkvqDuHAleHpnNeSEQFGY=",
+    "last_login": "2022-12-12T23:08:26.071Z",
+    "is_superuser": false,
+    "username": "vozac1",
+    "email": "vozac1@vozac1.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-12T23:08:22.337Z",
+    "role": "VOZAC",
+    "first_name": "vozac1",
+    "last_name": "vozac1",
+    "grad": "Beograd",
+    "is_first_login": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$xJMDedMbifHlz3dG3cfchg$eO4rBO9qSYKT/4ri3cZBsaHR17GCQmWX1emGmn1LHu0=",
+    "last_login": "2022-12-13T01:25:12.021Z",
+    "is_superuser": false,
+    "username": "srdjan",
+    "email": "srdjan@srdjan.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-13T01:09:47.957Z",
+    "role": "VOZAC",
+    "first_name": "srdjan",
+    "last_name": "srdjan",
+    "grad": "Novi Sad",
+    "is_first_login": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "users.vozacprofile",
   "pk": 1,
   "fields": {
     "user": 1,
     "broj_telefona": "+381 63 136 90 99",
+    "vin": null,
+    "marka": null,
+    "modell": null,
+    "godiste": null,
+    "kilometraza": null,
+    "zapremina_motora": null,
+    "snaga_motora": null,
+    "vrsta_goriva": null
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 3,
+  "fields": {
+    "user": 5,
+    "broj_telefona": null,
+    "vin": null,
+    "marka": null,
+    "modell": null,
+    "godiste": null,
+    "kilometraza": null,
+    "zapremina_motora": null,
+    "snaga_motora": null,
+    "vrsta_goriva": null
+  }
+},
+{
+  "model": "users.vozacprofile",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "broj_telefona": null,
     "vin": null,
     "marka": null,
     "modell": null,
@@ -211,7 +285,7 @@
     "creator": 1,
     "category": 1,
     "date_created": "2022-12-11T22:56:50.710Z",
-    "current_bid": "56.00",
+    "current_bid": "14000.00",
     "buyer": null,
     "active": true,
     "watchers": []
@@ -219,14 +293,14 @@
 },
 {
   "model": "auctions.auction",
-  "pk": 2,
+  "pk": 4,
   "fields": {
-    "title": "rtgsrtg",
-    "description": "strhtrh",
+    "title": "FIAT 500L VELIKI SERVIS",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     "creator": 1,
     "category": 1,
-    "date_created": "2022-12-11T22:57:01.439Z",
-    "current_bid": "23.00",
+    "date_created": "2022-12-12T20:15:31.206Z",
+    "current_bid": null,
     "buyer": null,
     "active": true,
     "watchers": []
@@ -234,20 +308,49 @@
 },
 {
   "model": "auctions.auction",
-  "pk": 3,
+  "pk": 5,
   "fields": {
-    "title": "srthsr",
-    "description": "thrsthsrt",
+    "title": "RENAULT SCENIC II - VELIKI SERVIS",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
     "creator": 1,
     "category": 1,
-    "date_created": "2022-12-11T22:57:11.992Z",
-    "current_bid": "345.00",
-    "buyer": null,
-    "active": true,
+    "date_created": "2022-12-12T20:31:40.702Z",
+    "current_bid": "12890.00",
+    "buyer": 2,
+    "active": false,
     "watchers": [
-      2,
-      4
+      2
     ]
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 6,
+  "fields": {
+    "title": "RENAULT GRAND SCENIC II VELIKI SERVIS",
+    "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+    "creator": 6,
+    "category": 1,
+    "date_created": "2022-12-13T01:11:49.161Z",
+    "current_bid": "14000.00",
+    "buyer": 4,
+    "active": false,
+    "watchers": []
+  }
+},
+{
+  "model": "auctions.auction",
+  "pk": 7,
+  "fields": {
+    "title": "RENAULT GRAND SCENIC II VELIKI SERVIS",
+    "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+    "creator": 6,
+    "category": 1,
+    "date_created": "2022-12-13T01:19:43.709Z",
+    "current_bid": "19000.00",
+    "buyer": null,
+    "active": true,
+    "watchers": []
   }
 },
 {
@@ -260,108 +363,94 @@
 },
 {
   "model": "auctions.image",
-  "pk": 2,
+  "pk": 4,
   "fields": {
-    "auction": 2,
-    "image": "images/Citroen_buWtinl.jpg"
+    "auction": 4,
+    "image": "images/FIAT-500-L_KpxNldy.jpg"
   }
 },
 {
   "model": "auctions.image",
-  "pk": 3,
-  "fields": {
-    "auction": 3,
-    "image": "images/passat_d9Z7dI5.jpg"
-  }
-},
-{
-  "model": "auctions.bid",
-  "pk": 1,
-  "fields": {
-    "auction": 3,
-    "servis": 2,
-    "amount": "3454.00",
-    "date": "2022-12-11T22:57:39.786Z"
-  }
-},
-{
-  "model": "auctions.bid",
-  "pk": 2,
-  "fields": {
-    "auction": 3,
-    "servis": 2,
-    "amount": "4000.00",
-    "date": "2022-12-11T22:58:12.573Z"
-  }
-},
-{
-  "model": "auctions.bid",
-  "pk": 3,
-  "fields": {
-    "auction": 2,
-    "servis": 2,
-    "amount": "45.00",
-    "date": "2022-12-11T23:12:40.930Z"
-  }
-},
-{
-  "model": "auctions.bid",
-  "pk": 4,
-  "fields": {
-    "auction": 2,
-    "servis": 2,
-    "amount": "324.00",
-    "date": "2022-12-11T23:21:59.060Z"
-  }
-},
-{
-  "model": "auctions.bid",
   "pk": 5,
   "fields": {
-    "auction": 2,
-    "servis": 2,
-    "amount": "23.00",
-    "date": "2022-12-11T23:25:27.651Z"
+    "auction": 5,
+    "image": "images/1-scenic-reno_JIztwCS.jpg"
   }
 },
 {
-  "model": "auctions.bid",
+  "model": "auctions.image",
   "pk": 6,
   "fields": {
-    "auction": 3,
-    "servis": 4,
-    "amount": "324.00",
-    "date": "2022-12-11T23:27:17.860Z"
+    "auction": 6,
+    "image": "images/renault_grand-scenic__459477912f.jpg"
   }
 },
 {
-  "model": "auctions.bid",
+  "model": "auctions.image",
   "pk": 7,
   "fields": {
-    "auction": 3,
-    "servis": 4,
-    "amount": "345.00",
-    "date": "2022-12-11T23:38:02.689Z"
+    "auction": 7,
+    "image": "images/renault_grand-scenic__459477912f_p9hslFQ.jpg"
   }
 },
 {
   "model": "auctions.bid",
-  "pk": 8,
+  "pk": 35,
   "fields": {
-    "auction": 1,
-    "servis": 4,
-    "amount": "345.00",
-    "date": "2022-12-11T23:40:23.856Z"
+    "auction": 5,
+    "servis": 2,
+    "amount": "12890.00",
+    "date": "2022-12-13T01:03:37.958Z"
   }
 },
 {
   "model": "auctions.bid",
-  "pk": 9,
+  "pk": 37,
+  "fields": {
+    "auction": 6,
+    "servis": 2,
+    "amount": "12000.00",
+    "date": "2022-12-13T01:13:07.644Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 38,
+  "fields": {
+    "auction": 6,
+    "servis": 4,
+    "amount": "14000.00",
+    "date": "2022-12-13T01:13:35.614Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 39,
+  "fields": {
+    "auction": 7,
+    "servis": 2,
+    "amount": "18990.00",
+    "date": "2022-12-13T01:20:22.641Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 40,
+  "fields": {
+    "auction": 7,
+    "servis": 4,
+    "amount": "19000.00",
+    "date": "2022-12-13T01:24:39.140Z"
+  }
+},
+{
+  "model": "auctions.bid",
+  "pk": 41,
   "fields": {
     "auction": 1,
     "servis": 4,
-    "amount": "56.00",
-    "date": "2022-12-11T23:41:15.411Z"
+    "amount": "14000.00",
+    "date": "2022-12-13T01:24:56.109Z"
   }
 }
 ]

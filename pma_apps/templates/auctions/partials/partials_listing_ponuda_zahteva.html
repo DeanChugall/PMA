@@ -25,10 +25,11 @@
 
                 </div>
 
+                <!-- PRIHVATI PONUDU -->
                 <div class="card-footer text-center">
                     {% if auction.creator == user and auction.active %}
-                        <a href="javascript:void(0)">
-                            <button type="button" class="btn btn-primary mb-1 btn-lg  ">
+                        <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}">
+                            <button type="button" class="btn btn-primary mb-1 btn-lg">
                                 <i class="fa fa-check-square fa-1x"></i> Prihvati Ponudu
                             </button>
                         </a>
@@ -38,6 +39,8 @@
                             </button>
                         </a>
                     {% endif %}
+                    <!-- END PRIHVATI PONUDU -->
+
                     <!-- BRISANJE PONUDE ZAHTEVA-->
                     {% if ponuda.servis == user and auction.active %}
                         <form method="POST" action="{% url 'ponude:obrisi_ponudu_zahteva' ponuda.id %}">

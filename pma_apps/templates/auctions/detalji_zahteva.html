@@ -98,7 +98,7 @@
                     </div>
 
                     <!-- POSLEDNJA CENA -->
-                    {% if user.role == "SERVIS" %}
+                    {% if user.role == "SERVIS" and auction.active %}
                         <div class="col-xl-6">
                             <div class="card h-100">
                                 <div class='card-header'>
@@ -156,6 +156,33 @@
                                     </form>
                                 </div>
                             </div>
+                    {% elif auction.active == False and auction.buyer is not None %}
+                        <div class='row'>
+                            <!-- Comments -->
+                            <div class='col-xl-12'>
+                                <div class='card mb-4'>
+                                    <div class='card-header'>
+                                        <i class='fas fa-comments'></i>
+                                        Auction Details
+                                    </div>
+                                    <div class='card-body'>
+                                        {% if auction.creator == user %}
+                                            <div class='alert alert-success' role='alert'>
+                                                Zahtev je već rezervisan: <strong>{{ auction.buyer }}</strong> za <strong>&euro;{{ auction.current_bid }} rsd</strong>.
+                                            </div>
+                                        {% elif auction.buyer == user %}
+                                            <div class='alert alert-success' role='alert'>
+                                                Čestitamo, Vša ponuda je prihvaćen:  <strong>{{ auction.title }} za {{ auction.current_bid }} rsd</strong>.
+                                            </div>
+                                        {% else %}
+                                            <div class='alert alert-warning' role='alert'>
+                                                This item has already been sold.
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endif %}
                     <!-- END PONUDE ZA ZAHTEV -->
 
@@ -250,7 +277,9 @@
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="product-content text-center">
-                                            <h1 class="title fw-bold fs-20"><a href="shop-description.html">Flower Pot for Home Decor</a></h1>
+                                            <h1 class="title fw-bold fs-20">
+                                                <a href="shop-description.html">Flower Pot for Home Decor</a>
+                                            </h1>
                                             <div class="mb-2 text-warning">
                                                 <i class="fa fa-star text-warning"></i>
                                                 <i class="fa fa-star text-warning"></i>
@@ -263,8 +292,16 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
-                                        <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
+                                        <a href="cart.html">
+                                            <button type="button" class="btn btn-primary mb-1">
+                                                <i class="fe fe-shopping-cart mx-2"></i>Add to cart
+                                            </button>
+                                        </a>
+                                        <a href="wishlist.html">
+                                            <button type="button" class="btn btn-outline-primary mb-1">
+                                                <i class="fe fe-heart mx-2"></i>Add to wishlist
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
