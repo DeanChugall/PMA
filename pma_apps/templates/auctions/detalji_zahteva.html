@@ -141,7 +141,7 @@
                                             {% elif auction.buyer is not None %}
                                                 {% if auction.creator == user %}
                                                     <div class='alert alert-secondary' role='alert'>
-                                                        The item sold to <strong>{{ auction.buyer }}</strong> for <strong>&euro;{{ auction.current_bid }}</strong>.
+                                                        Zahtev je već odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
                                                     </div>
                                                 {% endif %}
                                             {% endif %}
@@ -162,21 +162,20 @@
                             <div class='col-xl-12'>
                                 <div class='card mb-4'>
                                     <div class='card-header'>
-                                        <i class='fas fa-comments'></i>
-                                        Auction Details
+                                        <i class='fa fa-comments'></i>&nbsp;Detalji Zahteva
                                     </div>
                                     <div class='card-body'>
                                         {% if auction.creator == user %}
                                             <div class='alert alert-success' role='alert'>
-                                                Zahtev je već rezervisan: <strong>{{ auction.buyer }}</strong> za <strong>&euro;{{ auction.current_bid }} rsd</strong>.
+                                                Zahtev je već odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
                                             </div>
                                         {% elif auction.buyer == user %}
                                             <div class='alert alert-success' role='alert'>
-                                                Čestitamo, Vša ponuda je prihvaćen:  <strong>{{ auction.title }} za {{ auction.current_bid }} rsd</strong>.
+                                                Čestitamo, Vaša ponuda je prihvaćena:  <strong>{{ auction.title }} za {{ auction.current_bid }} rsd</strong>.
                                             </div>
                                         {% else %}
                                             <div class='alert alert-warning' role='alert'>
-                                                This item has already been sold.
+                                                Zahtev je već odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
                                             </div>
                                         {% endif %}
                                     </div>

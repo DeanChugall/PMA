@@ -443,5 +443,29 @@ class ObrisiPonuduZahtevaView(LoginRequiredMixin, generic.DeleteView):
 
     model = Bid
 
+    def form_valid(self, form):
+        """
+        Da bi se postavila pravilna cena poslednje ponude zahteva na html template,
+        potrebno je prvo proveriti da li uopste ima ponuda posle brisanje, ako ima
+        postavi zadnju ucitanu cenu servisera, a ukoliko nema, postavi cenu na 0.
+
+        :param form: BidForm()
+        :return: Detalji Zahteva
+        """
+        success_url = self.get_success_url()
+
+        self.object.delete()  # Obrisi Ponudu
+
+        # Get all Ponude za this Zahtev.
+        sve_ponude_zahteva = Bid.objects.all().filter(auction_id=self.object.auction.id)
+
+        if sve_ponude_zahteva.count() > 0:
+            self.object.auction.current_bid = sve_ponude_zahteva.first().amount
+        else:
+            self.object.auction.current_bid = 0
+        self.object.auction.save()
+
+        return HttpResponseRedirect(success_url)
+
     def get_success_url(self):
         return reverse_lazy("ponude:detalji_ponude_view", args=[self.object.auction.id])
