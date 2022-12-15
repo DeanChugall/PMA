@@ -12,6 +12,11 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from config.do_storages.do_storage import (
+    AutoServisMediaStorage,
+    PublicMediaStorage,
+    StaticStorage,
+)
 from pma_apps.utils.godista_automobila import GodisteAutomobila
 from pma_apps.utils.gradovi import Gradovi
 from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa
@@ -151,6 +156,14 @@ class ServisProfile(models.Model):
     otvoreno_do = models.TimeField(null=True, blank=True)
     otvoreno_od = models.TimeField(null=True, blank=True)
 
+    slika_logo_servisa = models.FileField(
+        storage=AutoServisMediaStorage(), null=True, blank=True
+    )
+
+    slika_servisa = models.FileField(
+        storage=AutoServisMediaStorage(), null=True, blank=True
+    )
+
     ime_servisa = models.CharField(
         max_length=250,
         null=True,
@@ -202,7 +215,7 @@ class ServisProfile(models.Model):
 
     def average_rating(self) -> float:
         return (
-            RatingServisa.objects.filter(user=self).aggregate(Avg("rating"))[
+            RatingServisa.objects.filter(servis=self).aggregate(Avg("rating"))[
                 "rating__avg"
             ]
             or 0

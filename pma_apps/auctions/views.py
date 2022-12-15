@@ -146,7 +146,7 @@ def detalji_zahteva_view(request, zahtev_id):
 @login_required
 def kreiranje_zahteva_view(request):
     """
-    It allows the user to create a new zahtev
+    It allows the Vozaca to create a new zahtev
     """
     image_form_set = forms.modelformset_factory(Image, form=ImageForm, extra=1)
 
@@ -175,7 +175,6 @@ def kreiranje_zahteva_view(request):
                     "categories": Category.objects.all(),
                     "auction_form": AuctionForm(),
                     "image_form": image_form_set(queryset=Image.objects.none()),
-                    "title": "Create Auction",
                     "success": True,
                 },
             )
@@ -187,7 +186,6 @@ def kreiranje_zahteva_view(request):
                     "categories": Category.objects.all(),
                     "auction_form": AuctionForm(),
                     "image_form": image_form_set(queryset=Image.objects.none()),
-                    "title": "Create Auction",
                 },
             )
     else:
@@ -198,7 +196,6 @@ def kreiranje_zahteva_view(request):
                 "categories": Category.objects.all(),
                 "auction_form": AuctionForm(),
                 "image_form": image_form_set(queryset=Image.objects.none()),
-                "title": "Create Auction",
             },
         )
 

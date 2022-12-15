@@ -36,6 +36,7 @@ class KreirajServisKorisnikaForm(UserCreationForm):
         fields = [
             "first_name",
             "last_name",
+            "grad",
             "username",
             "email",
             "password1",

@@ -10,3 +10,9 @@ class PublicMediaStorage(S3Boto3Storage):
     location = "media"
     default_acl = "public-read"
     file_overwrite = False
+
+
+class AutoServisMediaStorage(S3Boto3Storage):
+    location = "slike-servisa"
+    default_acl = "public-read"
+    file_overwrite = False

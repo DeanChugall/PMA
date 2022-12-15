@@ -5,7 +5,7 @@ from django.views import generic
 
 from pma_apps.auctions.models import Auction, Bid, Category
 from pma_apps.auto_servisi.forms import KreirajServisKorisnikaForm
-from pma_apps.users.models import Servis
+from pma_apps.users.models import Servis, ServisProfile
 
 
 class KreirajServisKorisnikaView(generic.CreateView):
@@ -24,6 +24,18 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
 
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_context_data(self, **kwargs):
+        servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
+        profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
+
+        context = {
+            "categories": Category.objects.all(),
+            "servis": servis,
+            "profil_servisa": profil_servisa,
+        }
+
+        return context
 
 
 class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
