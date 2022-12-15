@@ -49,7 +49,6 @@ def ponude_view(request):
             "users_count": VozacProfile.objects.all().count(),
             "servisa_count": ServisProfile.objects.all().count(),
             "pages": pages,
-            "title": "Dashboard",
         },
     )
 
@@ -99,7 +98,7 @@ def category_details_view(request, category_name):
 
 
 @login_required
-def auction_details_view(request, zahtev_id):
+def detalji_zahteva_view(request, zahtev_id):
     """
     It renders a page that displays the details of a selected auction
     """
@@ -107,30 +106,38 @@ def auction_details_view(request, zahtev_id):
         next_page = request.GET.get("next", "/")
         return resolve_url(next_page, "/")
 
-    auction = Auction.objects.get(id=zahtev_id)
+    zahtevi = Auction.objects.get(id=zahtev_id)
 
     # Filtrirane ponude Auto Servisa za odredjeni zahtev za ponudu.
-    ponude_auto_servisa = Bid.objects.filter(auction=auction.id)
-    ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=auction.id).first()
+    ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
+    ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
-    if request.user in auction.watchers.all():
-        auction.is_watched = True
+    # TODO: OVDE IMPLEMENTIRATI LOGICKI FILTER(podudaranje sa gradom servisera i vozaca)
+    # TODO: PREPORUCENIH ZAHTEVA SERVISIMA
+    preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:4]
+
+    for zahtev in preporuceni_zahtevi_servisima:
+        zahtev.image = zahtev.get_images.first()
+        zahtev.amount = zahtev.get_bids.first()
+
+    if request.user in zahtevi.watchers.all():
+        zahtevi.is_watched = True
     else:
-        auction.is_watched = False
+        zahtevi.is_watched = False
 
     return render(
         request,
         "auctions/detalji_zahteva.html",
         {
             "categories": Category.objects.all(),
-            "auction": auction,
-            "images": auction.get_images.all(),
+            "auction": zahtevi,
+            "images": zahtevi.get_images.all(),
             "bid_form": BidForm(),
-            "comments": auction.get_comments.all(),
+            "comments": zahtevi.get_comments.all(),
             "comment_form": CommentForm(),
-            "title": "Auction",
             "ponude_auto_servisa": ponude_auto_servisa,
             "ponude_auto_servisa_zadnja_cena": ponude_auto_servisa_zadnja_cena,
+            "preporuceni_zahtevi_servisima": preporuceni_zahtevi_servisima,
         },
     )
 
@@ -393,8 +400,8 @@ def watchlist_edit(request, zahtev_id, reverse_method):
     else:
         auction.watchers.add(request.user)
 
-    if reverse_method == "ponude:auction_details_view":
-        return auction_details_view(request, zahtev_id)
+    if reverse_method == "ponude:detalji_zahteva_view":
+        return detalji_zahteva_view(request, zahtev_id)
     else:
         return HttpResponseRedirect(reverse(reverse_method))
 

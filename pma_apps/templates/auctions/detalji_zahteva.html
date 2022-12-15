@@ -44,12 +44,12 @@
                 <div>
                     {% if auction.is_watched %}
                         <a class='btn btn-outline-danger mt-auto'
-                            href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:auction_details_view' %}">
+                            href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:detalji_zahteva_view' %}">
                             <i class="fa fa-close"></i> Ukloni sa liste praćenja
                         </a>
                     {% else %}
                         <a class='btn btn-outline-success mt-auto'
-                            href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:auction_details_view' %}">
+                            href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:detalji_zahteva_view' %}">
                             <i class="fa fa-check-square"></i> Dodaj u listu koju pratim
                         </a>
                     {% endif %}
@@ -97,8 +97,8 @@
                         </div>
                     </div>
 
-                    <!-- POSLEDNJA CENA -->
                     {% if user.role == "SERVIS" and auction.active %}
+                        <!-- POSLEDNJA CENA -->
                         <div class="col-xl-6">
                             <div class="card h-100">
                                 <div class='card-header'>
@@ -121,7 +121,7 @@
                         </div>
                         <!-- END POSLEDNJA CENA -->
 
-                        <!-- PONUDE ZA ZAHTEV -->
+                        <!-- UNOS CENE PONUDE ZA ZAHTEV -->
                         <div class='col-xl-6'>
                             <div class='card mb-4 h-100'>
                                 <div class='card-header'>
@@ -175,15 +175,15 @@
                                             </div>
                                         {% else %}
                                             <div class='alert alert-warning' role='alert'>
-                                                Zahtev je već odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
+                                                Zahtev je već odobren <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
                                             </div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- END UNS CENE PONUDE ZA ZAHTEV -->
                     {% endif %}
-                    <!-- END PONUDE ZA ZAHTEV -->
 
                     <!-- LISTING SVIH PONUDE ZAHTEVA SERISA -->
                     <div class="border-top my-3" id="listing-ponuda-zahteva"></div>
@@ -194,163 +194,62 @@
                     <!-- VIDLJIVO SAMO SERVISERIMA -->
                     {% if user.role == "SERVIS" %}
 
-                        <!-- PREPORUCENI ZAHTEVI -->
+                        <!-- PREPORUCENI ZAHTEVI SERVISIMA -->
                         <h3 class="p-3 mb-5">Vidi Još Neke Zahteve</h3>
-                        <div class="col-md-6 col-xl-3">
-                            <div class="card">
-                                <div class="product-grid6">
-                                    <div class="product-image6 p-5">
-                                        <ul class="icons">
-                                            <li>
-                                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
-                                            </li>
-                                            <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                            <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                        </ul>
-                                        <a href="shop-description.html" class="bg-light">
-                                            <img class="img-fluid br-7 w-100" src="../assets/images/pngs/4.jpg" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="product-content text-center">
-                                            <h1 class="title fw-bold fs-20">
-                                                <a href="shop-description.html">Flower Pot for Home Decor</a>
-                                            </h1>
-                                            <div class="mb-2 text-warning">
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star-half-o text-warning"></i>
-                                                <i class="fa fa-star-o text-warning"></i>
-                                            </div>
-                                            <div class="price">$16,599<span class="ms-4">$18,299</span>
+                        {% for poporuceni_zahtev in preporuceni_zahtevi_servisima %}
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card">
+                                    <div class="product-grid6">
+                                        <div class="product-image6 p-5">
+                                            <ul class="icons">
+                                                <li>
+                                                    <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                                                </li>
+                                            </ul>
+                                            <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="bg-light">
+                                                <img class="img-fluid br-7 w-100`"
+                                                    style="width: auto; height: 200px;"
+                                                    src="{{ poporuceni_zahtev.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="product-content text-center">
+                                                <h1 class="title fw-bold fs-20">
+                                                    <a href="shop-description.html">Flower Pot for Home Decor</a>
+                                                </h1>
+                                                <div class="mb-2 text-warning">
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                    <i class="fa fa-star text-warning"></i>
+                                                </div>
+                                                <!-- CENA -->
+                                                {% if poporuceni_zahtev.amount.amount == None %}
+                                                    <div class="price">Nema Ponuda</div>
+                                                {% else %}
+                                                    <div class="price">{{ poporuceni_zahtev.amount.amount }} rsd</div>
+                                                {% endif %}
+                                                <!-- END CENA -->
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="cart.html">
-                                            <button type="button" class="btn btn-primary mb-1">
-                                                <i class="fe fe-shopping-cart mx-2"></i>Add to cart
-                                            </button>
-                                        </a>
-                                        <a href="wishlist.html">
-                                            <button type="button" class="btn btn-outline-primary mb-1">
-                                                <i class="fe fe-heart mx-2"></i>Add to wishlist
-                                            </button>
-                                        </a>
+                                        <div class="card-footer text-center">
+                                            <a href="cart.html">
+                                                <button type="button" class="btn btn-primary mb-1">
+                                                    <i class="fe fe-shopping-cart mx-2"></i>Add to cart
+                                                </button>
+                                            </a>
+                                            <a href="wishlist.html">
+                                                <button type="button" class="btn btn-outline-primary mb-1">
+                                                    <i class="fe fe-heart mx-2"></i>Add to wishlist
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3">
-                            <div class="card">
-                                <div class="product-grid6">
-                                    <div class="product-image6 p-5">
-                                        <ul class="icons">
-                                            <li>
-                                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
-                                            </li>
-                                            <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                            <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                        </ul>
-                                        <a href="shop-description.html" class="bg-light">
-                                            <img class="img-fluid br-7 w-100" src="../assets/images/pngs/6.jpg" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="product-content text-center">
-                                            <h1 class="title fw-bold fs-20"><a href="shop-description.html">Black Digital Camera</a></h1>
-                                            <div class="mb-2 text-warning">
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star-half-o text-warning"></i>
-                                                <i class="fa fa-star-o text-warning"></i>
-                                            </div>
-                                            <div class="price">$16,599<span class="ms-4">$56,599</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
-                                        <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3">
-                            <div class="card">
-                                <div class="product-grid6">
-                                    <div class="product-image6 p-5">
-                                        <ul class="icons">
-                                            <li>
-                                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
-                                            </li>
-                                            <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                            <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                        </ul>
-                                        <a href="shop-description.html" class="bg-light">
-                                            <img class="img-fluid br-7 w-100" src="../assets/images/pngs/9.jpg" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="product-content text-center">
-                                            <h1 class="title fw-bold fs-20"><a href="shop-description.html">Candy Pure Rose Water</a></h1>
-                                            <div class="mb-2 text-warning">
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star-half-o text-warning"></i>
-                                                <i class="fa fa-star-o text-warning"></i>
-                                            </div>
-                                            <div class="price">$16,599<span class="ms-4">$25,599</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
-                                        <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3">
-                            <div class="card">
-                                <div class="product-grid6">
-                                    <div class="product-image6 p-5">
-                                        <ul class="icons">
-                                            <li>
-                                                <a href="shop-description.html" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
-                                            </li>
-                                            <li><a href="add-product.html" class="btn btn-success"><i  class="fe fe-edit"></i></a></li>
-                                            <li><a href="javascript:void(0)" class="btn btn-danger"><i class="fe fe-x"></i></a></li>
-                                        </ul>
-                                        <a href="shop-description.html" class="bg-light">
-                                            <img class="img-fluid br-7 w-100" src="../assets/images/pngs/10.jpg" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="product-content text-center">
-                                            <h1 class="title fw-bold fs-20"><a href="shop-description.html">White Tshirt for Men</a></h1>
-                                            <div class="mb-2 text-warning">
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star text-warning"></i>
-                                                <i class="fa fa-star-half-o text-warning"></i>
-                                                <i class="fa fa-star-o text-warning"></i>
-                                            </div>
-                                            <div class="price">$16,599<span class="ms-4">$18,399</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="cart.html"><button type="button" class="btn btn-primary mb-1"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</button></a>
-                                        <a href="wishlist.html"><button type="button" class="btn btn-outline-primary mb-1"><i class="fe fe-heart mx-2"></i>Add to wishlist</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END PREPORUCENI ZAHTEVI -->
+                        {% endfor %}
+                        <!-- END PREPORUCENI ZAHTEVI SERVISIMA -->
                         </div>
 
                     {% endif %}
