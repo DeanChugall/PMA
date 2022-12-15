@@ -5,10 +5,11 @@ Kreiranje Korisnika putem Django PROXY nacina.
 
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.db.models import CharField, ImageField
+from django.db.models import Avg, CharField, ImageField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from pma_apps.utils.godista_automobila import GodisteAutomobila
@@ -46,11 +47,11 @@ class User(AbstractUser):
     class Meta:
         unique_together = ("email",)
 
-    def __str__(self):
-        return f"{self.username}"
-
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
+
+    def __str__(self):
+        return f"{self.username}"
 
 
 # ###########################################################
@@ -150,13 +151,63 @@ class ServisProfile(models.Model):
     otvoreno_do = models.TimeField(null=True, blank=True)
     otvoreno_od = models.TimeField(null=True, blank=True)
 
+    ime_servisa = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
     opis_servisa = models.TextField(null=True, blank=True)
+
+    adresa_servisa = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
+    # Za rejting polje
+    header = models.CharField(max_length=100, default="Header")
 
     class Meta:
         db_table: str = "servisi"
         verbose_name: str = "Servis"
         verbose_name_plural: str = "Servisi"
         ordering = ["-user"]
+
+    def average_rating(self) -> float:
+        return (
+            RatingServisa.objects.filter(user=self).aggregate(Avg("rating"))[
+                "rating__avg"
+            ]
+            or 0
+        )
+
+    def __str__(self):
+        return (
+            f"Profil Servisa #"
+            f"{self.id}: {self.user.username} on {self.ime_servisa}: {self.adresa_servisa}"
+            f"{self.header}: {self.average_rating()}"
+        )
+
+
+class RatingServisa(models.Model):
+    """
+    Referenca @see: https://medium.com/geekculture/django-implementing-star-rating-e1deff03bb1c
+    """
+
+    vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE)
+    servis = models.ForeignKey(ServisProfile, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
+    datum_kreiranja_rating = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table: str = "rating_servisa"
+        verbose_name: str = "Rejting Servisa"
+        verbose_name_plural: str = "Rejting Servisa"
+        ordering = ["-datum_kreiranja_rating"]
+
+    def __str__(self):
+        return f"{self.servis.header}: {self.rating}"
 
 
 class SlikeServisa(models.Model):
@@ -177,6 +228,27 @@ class SlikeServisa(models.Model):
     # def save(self, *args, **kwargs):
     #     image_resize(self.image, 500, 500)
     #     super().save(*args, **kwargs)
+
+
+class KomentariVozacaZaServis(models.Model):
+    vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE)
+    servis = models.ForeignKey(
+        Servis, on_delete=models.CASCADE, related_name="get_comments"
+    )
+    komentar = models.TextField(max_length=500)
+    datum_kreiranja = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table: str = "komentari_vozaca_za_servis"
+        verbose_name: str = "Komentari Vozaca Za Servise"
+        verbose_name_plural: str = "Komentar Vozaca Za Servis"
+        ordering = ["-datum_kreiranja"]
+
+    def __str__(self):
+        return f"Komentar Vozaca# {self.id}: {self.vozac.user.username} on {self.servis.ime_servisa}: {self.komentar}"
+
+    def get_creation_date(self):
+        return self.datum_kreiranja.strftime("%B %d %Y")
 
 
 # flake8: noqa: F811
