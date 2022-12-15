@@ -263,10 +263,10 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
 
 
 class ObrisiZahtevView(LoginRequiredMixin, generic.DeleteView):
-    form_class = BidForm
+    model = Auction
+
     context_object_name = "brisanje_zahteva"
     success_message = " Uspešno obrisan zahtev."
-    model = Auction
 
     def get_success_url(self):
         return reverse_lazy(
