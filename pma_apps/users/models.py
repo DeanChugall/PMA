@@ -167,6 +167,27 @@ class ServisProfile(models.Model):
 
     datum_osnivanja = models.DateTimeField(null=True, blank=True)
 
+    facebook_link = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+    youtube_link = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+    twitter_link = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+    linkedin_link = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
     # Za rejting polje
     header = models.CharField(max_length=100, default="Header")
 
