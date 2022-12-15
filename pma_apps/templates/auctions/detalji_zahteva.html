@@ -191,9 +191,10 @@
                     {% include 'auctions/partials/partials_listing_ponuda_zahteva.html' %}
                     <!-- END LISTING SVIH PONUDE ZAHTEVA SERISA -->
 
+
                     <!-- VIDLJIVO SAMO SERVISERIMA -->
                     {% if user.role == "SERVIS" %}
-
+                        <div class="border-top my-3" id="preporucene-ponude-zahteva"></div>
                         <!-- PREPORUCENI ZAHTEVI SERVISIMA -->
                         <h3 class="p-3 mb-5">Vidi Još Neke Zahteve</h3>
                         {% for poporuceni_zahtev in preporuceni_zahtevi_servisima %}
@@ -214,8 +215,8 @@
                                         </div>
                                         <div class="card-body pt-0">
                                             <div class="product-content text-center">
-                                                <h1 class="title fw-bold fs-20">
-                                                    <a href="shop-description.html">Flower Pot for Home Decor</a>
+                                                <h1 class="title fw-bold fs-20 text-truncate">
+                                                    <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}">{{ poporuceni_zahtev.title }}</a>
                                                 </h1>
                                                 <div class="mb-2 text-warning">
                                                     <i class="fa fa-star text-warning"></i>
@@ -234,16 +235,19 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="cart.html">
-                                                <button type="button" class="btn btn-primary mb-1">
-                                                    <i class="fe fe-shopping-cart mx-2"></i>Add to cart
-                                                </button>
+                                            <input type="hidden" name="next" value="{{ next }}">
+                                            <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}"
+                                                class="btn btn-primary mb-1">
+                                                <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                             </a>
-                                            <a href="wishlist.html">
-                                                <button type="button" class="btn btn-outline-primary mb-1">
-                                                    <i class="fe fe-heart mx-2"></i>Add to wishlist
-                                                </button>
-                                            </a>
+                                            {% for pracenje in id_pracenog_zahteva %}
+                                                {%  if pracenje.id == poporuceni_zahtev.id %}
+                                                    <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}"
+                                                        class="btn btn-outline-primary mb-1">
+                                                        <i class="fe fe-heart mx-2 wishlist-icon"></i>Zahtev koji pratim
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>

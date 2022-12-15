@@ -108,6 +108,8 @@ def detalji_zahteva_view(request, zahtev_id):
 
     zahtevi = Auction.objects.get(id=zahtev_id)
 
+    id_pracenog_zahteva = request.user.watchlist.all()
+
     # Filtrirane ponude Auto Servisa za odredjeni zahtev za ponudu.
     ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
@@ -138,6 +140,7 @@ def detalji_zahteva_view(request, zahtev_id):
             "ponude_auto_servisa": ponude_auto_servisa,
             "ponude_auto_servisa_zadnja_cena": ponude_auto_servisa_zadnja_cena,
             "preporuceni_zahtevi_servisima": preporuceni_zahtevi_servisima,
+            "id_pracenog_zahteva": id_pracenog_zahteva,
         },
     )
 
