@@ -165,6 +165,8 @@ class ServisProfile(models.Model):
         blank=True,
     )
 
+    datum_osnivanja = models.DateTimeField(null=True, blank=True)
+
     # Za rejting polje
     header = models.CharField(max_length=100, default="Header")
 
@@ -173,6 +175,9 @@ class ServisProfile(models.Model):
         verbose_name: str = "Servis"
         verbose_name_plural: str = "Servisi"
         ordering = ["-user"]
+
+    def get_datum_osnivanja(self):
+        return self.datum_kreiranja.strftime("%Y")
 
     def average_rating(self) -> float:
         return (
