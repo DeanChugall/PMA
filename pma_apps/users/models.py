@@ -13,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 
 from pma_apps.utils.godista_automobila import GodisteAutomobila
 from pma_apps.utils.gradovi import Gradovi
+from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa
 
 
 class User(AbstractUser):
@@ -139,13 +140,43 @@ class Servis(User):
 
 class ServisProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    slika_servisa = ImageField(null=True, blank=True)
+    radni_dan = models.CharField(
+        max_length=50,
+        choices=RadniDaniServisa.choices,
+        default=RadniDaniServisa.ponedeljak,
+        null=True,
+        blank=True,
+    )
+    otvoreno_do = models.TimeField(null=True, blank=True)
+    otvoreno_od = models.TimeField(null=True, blank=True)
+
+    opis_servisa = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table: str = "servisi"
         verbose_name: str = "Servis"
         verbose_name_plural: str = "Servisi"
         ordering = ["-user"]
+
+
+class SlikeServisa(models.Model):
+    servis = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="get_slika_servisa"
+    )
+    slika_servisa = models.ImageField(upload_to="slike_servisa/")
+
+    def __str__(self):
+        return f"{self.slika_servisa}"
+
+    class Meta:
+        db_table: str = "slike_servisa"
+        verbose_name: str = "Slike Servisa"
+        verbose_name_plural: str = "Slika Servisa"
+        ordering = ["-slika_servisa"]
+
+    # def save(self, *args, **kwargs):
+    #     image_resize(self.image, 500, 500)
+    #     super().save(*args, **kwargs)
 
 
 # flake8: noqa: F811
