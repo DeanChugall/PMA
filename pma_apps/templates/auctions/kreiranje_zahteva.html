@@ -63,11 +63,11 @@
                                         <div class="row mb-4">
                                             <label class="col-md-3 form-label">Kratak Opis Zahteva :</label>
                                             <div class="col-md-9">
-                                                {% render_field auction_form.title class="form-control" placeholder="Product Name" %}
+                                                {% render_field auction_form.title class="form-control" placeholder="Kratak Opis Zahteva..." %}
                                             </div>
                                         </div>
                                         <div class="row mb-4">
-                                            <label class="col-md-3 form-label">Odaberi Kategoriju :</label>
+                                            <label class="col-md-3 form-label">Kategorija Zahteva :</label>
                                             <div class="col-md-9">
                                                 {{ auction_form.category }}
                                             </div>
@@ -79,7 +79,7 @@
                                             <div class="col-md-9 mb-4">
                                                 <!--                                            {{ auction_form.description|add_class:"content"|attr:"name:example"}}-->
                                                 <!--                                            {{ auction_form.description }}-->
-                                                {% render_field auction_form.description class="form-control" placeholder="opis" %}
+                                                {% render_field auction_form.description class="form-control" placeholder="Detaljan Opis Zahteva..." %}
                                             </div>
                                         </div>
                                         <!--End Row-->

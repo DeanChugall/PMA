@@ -40,6 +40,6 @@ DATABASES = {
         "USER": env.str("POSTGRES_USER_TEST", default="pma_database"),
         "PASSWORD": env.str("POSTGRES_PASSWORD_TEST", default="pma_database"),
         "HOST": env.str("POSTGRES_HOST_TEST", default="0.0.0.0"),
-        "PORT": env.str("POSTGRES_PORT_TEST", default="5432"),
+        "PORT": env.str("POSTGRES_PORT_TEST", default="5433"),
     }
 }
