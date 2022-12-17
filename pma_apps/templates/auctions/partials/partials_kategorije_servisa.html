@@ -1,0 +1,295 @@
+{% load static i18n %}
+<div class="section pb-0" id="ponude">
+    <div class="container">
+        <div class="row">
+            <h4 class="text-center fw-semibold">Kategorije zahteva za ponudu servisa</h4>
+            <span class="landing-title"></span>
+            <h2 class="fw-semibold text-center mb-7">... postavi svoj zahtev za ponudu u
+                jednu
+                od
+                kategorija ...</h2>
+
+            <div class="row text-center services-statistics landing-statistics">
+                <!-- VELIKI SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'VELIKI SERVIS' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-primary-transparent">
+                                <div>
+                                    <img src="{% static 'assets/images/landing/web/veliki-servis.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Veliki Servis</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Veliki Servis</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END VELIKI SERVIS KARTICA -->
+
+                <!-- MALI SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'MALI SERVIS' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-secondary-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/mali-servis.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Mali Servis</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Mali
+                                            Servis</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END MALI SERVIS KARTICA -->
+
+                <!-- KLIMA SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'KLIMA SERVIS' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-success-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/klima.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Klima Servis</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Klima
+                                            Servis</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END KLIMA SERVIS KARTICA -->
+
+                <!-- KOCNICE SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'KOČNICE' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-danger-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/kocnice.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Kočnice</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Kočnice</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END KOCNICE SERVIS KARTICA -->
+
+                <!-- MENJAC SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'MENJAČ' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-secondary-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/menjac.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Menjač</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Menjač</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END MENJAC SERVIS KARTICA -->
+
+                <!-- AUSPUH SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'AUSPUH' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-success-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/auspuh.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Auspuh</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Auspuh</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END AUSPUH SERVIS KARTICA -->
+
+                <!-- ELEKTRIKA SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'ELEKTRIKA' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-danger-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/elektrika.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Elektrika</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Elektrika</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END ELEKTRIKA SERVIS KARTICA -->
+
+                <!-- ELEKTRONIKA SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'ELEKTRONIKA' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-primary-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/elektronika.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Elektronika</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">
+                                            Elektronika</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END ELEKTRONIKA SERVIS KARTICA -->
+
+                <!-- TRAP SERVIS KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'TRAP' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-success-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/trap.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Trap</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Trap</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END TRAP SERVIS KARTICA -->
+
+                <!-- TEHNICKI KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'TEHNIČKI PREGLED' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-danger-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/tehnicki.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Tehnički</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Tehnički
+                                            Pregled</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END TEHNICKI KARTICA -->
+
+                <!-- LIMARIJA KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'LIMARIJA' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-primary-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/limarija.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Limarija</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Limarija</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END LIMARIJA KARTICA -->
+
+                <!-- OSTALO KARTICA -->
+                <div class="col-xl-3 col-md-6 col-lg-6">
+                    <a href="{% url 'ponude:category_details_view' 'OSTALI SERVISI' %}" style="color:rgb(255,255,255);">
+                        <div class="card">
+                            <div class="card-body bg-secondary-transparent">
+                                <div>
+                                    <img
+                                        src="{% static 'assets/images/landing/web/ostalo.png' %}">
+                                </div>
+                                <div class="test-body text-center">
+                                    <h1 class=" mb-0">
+                                        <span class="fw-semibold">Ostalo</span>
+                                    </h1>
+                                    <div class="counter-text">
+                                        <h5 class="font-weight-normal mb-0 ">Ostalo</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END OSTALO KARTICA -->
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
