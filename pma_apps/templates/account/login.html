@@ -48,14 +48,12 @@
                         class="header-brand-img" alt=""></a>
                 </div>
             </div>
-            <div class="container-login100">
-                <div class="wrap-login100 p-6">
-                    <form class="ogin100-form validate-form" method="POST"
-                        action="{% url 'users:prijava' %}">
-                        {% csrf_token %}
-                        <span class="login100-form-title pb-5">
-                            Prijava Korisnika
-                        </span>
+            <form class="ogin100-form validate-form" method="POST" action="{% url 'users:prijava' %}">
+                {% csrf_token %}
+                <div class="container-login100">
+                    <div class="wrap-login100 p-6">
+
+                        <span class="login100-form-title pb-5">Prijava Korisnika</span>
                         <div class="panel panel-primary">
                             <div class="tab-menu-heading">
                                 <div class="tabs-menu1">
@@ -130,9 +128,10 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
+
             <!-- CONTAINER CLOSED -->
         </div>
     </div>
