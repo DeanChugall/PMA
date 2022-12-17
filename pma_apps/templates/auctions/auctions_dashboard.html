@@ -239,7 +239,7 @@
                                                                             <td class="text-center">
                                                                                 <div class="mt-0 mt-sm-2 d-block">
                                                                                     <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                                                                                        {{ auction.title }}
+                                                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
                                                                                     </span>
                                                                                 </div>
                                                                             </td>
