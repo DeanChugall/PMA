@@ -20,6 +20,13 @@
                             </div>
                             <div class="price">{{ ponuda.amount }} rsd<span class="ms-4"></span>
                             </div>
+                            {% if ponuda.opis_ponude %}
+                                <div class="price">{{ ponuda.opis_ponude }}<span class="ms-4"></span>
+                                </div>
+                            {% else %}
+                                <div class="price">Nema Opisa Ponude<span class="ms-4"></span>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
 

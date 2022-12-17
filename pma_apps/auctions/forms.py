@@ -74,7 +74,10 @@ class BidForm(forms.ModelForm):
 
     class Meta:
         model = Bid
-        fields = ["amount"]
+        fields = [
+            "amount",
+            "opis_ponude",
+        ]
         widgets = {
             "comment": forms.NumberInput(
                 attrs={
