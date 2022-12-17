@@ -86,6 +86,8 @@ class VozacProfile(models.Model):
         DIZEL = "Dizel", "Dizel"
         BENZIN = "Benzin", "Benzin"
         HIBRID = "Hibrid", "Hibrid"
+        TNG = "Benzin + Gas (TNG)", "Benzin + Gas (TNG)"
+        CNG = "Benzin + Metan (CNG)", "Benzin + Metan (CNG)"
         EV = "EV", "EV"
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -108,6 +110,7 @@ class VozacProfile(models.Model):
         blank=True,
         max_length=20,
         choices=VrstaGoriva.choices,
+        default=VrstaGoriva.DIZEL,
     )
 
     class Meta:
