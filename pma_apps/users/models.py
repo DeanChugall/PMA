@@ -19,6 +19,7 @@ from config.do_storages.do_storage import (
 )
 from pma_apps.utils.godista_automobila import GodisteAutomobila
 from pma_apps.utils.gradovi import Gradovi
+from pma_apps.utils.marke_automobila import MarkeAutomobila
 from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa
 
 
@@ -92,7 +93,9 @@ class VozacProfile(models.Model):
 
     # Automobil Vozaca
     vin = CharField(null=True, blank=True, max_length=100)
-    marka = CharField(null=True, blank=True, max_length=100)
+    marka = CharField(
+        null=True, blank=True, max_length=50, choices=MarkeAutomobila.choices
+    )
     modell = CharField(null=True, blank=True, max_length=100)
     godiste = CharField(
         null=True, blank=True, max_length=5, choices=GodisteAutomobila.choices
