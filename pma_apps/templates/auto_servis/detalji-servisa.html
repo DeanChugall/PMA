@@ -45,8 +45,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="btn-profile">
-                                                        <button class="btn btn-primary mt-1 mb-1"> <i class="fa fa-rss"></i> <span>Follow</span></button>
-                                                        <button class="btn btn-secondary mt-1 mb-1"> <i class="fa fa-envelope"></i> <span>Message</span></button>
+                                                        <a href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}"
+                                                            class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
+                                                            target="_self">
+                                                            <i class="fe fe-edit"></i> Izmeni Profil Servisa
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

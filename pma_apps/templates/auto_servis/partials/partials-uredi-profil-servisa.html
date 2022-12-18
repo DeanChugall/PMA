@@ -8,8 +8,7 @@
         {% csrf_token %}
         {{ detalji_servisa.role }}
 
-
-        <!-- EDIT PROFILA -->
+        <!-- EDIT PROFILA VLASNIKA SERVISA -->
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Osnovni Podaci Vlasnika Servisa</h3>
@@ -67,14 +66,14 @@
                 <button type='submit' class='btn btn-success my-1'>
                     <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
                 </button>
-                <a href="{% url 'users:detalji_vozaca' request.user.username  %}" class="btn btn-danger my-1">
+                <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
                     <i class="fa fa-trash-o"></i>&nbsp;Odustani
                 </a>
             </div>
         </div>
-        <!-- END EDIT PROFILA -->
+        <!-- ENFD EDIT PROFILA VLASNIKA SERVISA -->
 
-        <!-- EDIT AUTOMOBILA -->
+        <!-- EDIT PROFILA AUTO SERVISA -->
         <div class="card" id="automobil">
             <div class="card-header">
                 <h3 class="card-title">Uređivanje Automobila</h3>
@@ -165,7 +164,7 @@
                 </a>
             </div>
         </div>
-        <!-- END EDIT AUTOMOBILA -->
+        <!-- END EDIT PROFILA AUTO SERVISA -->
 
         <!-- EDIT NOTIFIKACIJE -->
         {% include 'vozaci/partials/partials-notifikacije-sigurnost.html' %}
