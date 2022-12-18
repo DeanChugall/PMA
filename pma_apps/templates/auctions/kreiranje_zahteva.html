@@ -51,9 +51,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <!--Row-->
-                                        <div class="d-grid gap-2 col-6 mx-auto">
-                                            <a href="{% url 'ponude:aktivni_zahtevi_vozaca' user.username %}" class="btn btn-primary btn-lg">Pregled Vaših Zahteva</a>
-                                        </div>
+                                        <a href="{% url 'ponude:aktivni_zahtevi_vozaca' user.username %}" class="btn btn-primary btn-lg">Pregled Vaših Zahteva</a>
                                         <!--End Row-->
                                     </div>
                                 {% else %}
