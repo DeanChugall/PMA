@@ -9,7 +9,7 @@
                     <div class="card-body pt-0">
                         <div class="product-content text-center">
                             <h1 class="title fw-bold fs-20">
-                                <a href="shop-description.html">{{ ponuda.servis }}</a>
+                                <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.username  %}">{{ ponuda.servis }}</a>
                             </h1>
                             <div class="mb-2 text-warning">
                                 <i class="fa fa-star text-warning"></i>
