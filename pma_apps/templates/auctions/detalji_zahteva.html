@@ -200,19 +200,22 @@
                         <!-- PREPORUCENI ZAHTEVI SERVISIMA -->
                         <h3 class="p-3 mb-5">Vidi Još Neke Zahteve</h3>
                         {% for poporuceni_zahtev in preporuceni_zahtevi_servisima %}
-                            <div class="col-md-6 col-xl-3">
+                            <div class="col-md-6 col-xl-4 col-sm-6">
                                 <div class="card">
                                     <div class="product-grid6">
                                         <div class="product-image6 p-5">
                                             <ul class="icons">
                                                 <li>
-                                                    <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="btn btn-primary"> <i class="fe fe-eye ">  </i> </a>
+                                                    <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="btn btn-primary">
+                                                        <i class="fe fe-eye "></i>
+                                                    </a>
                                                 </li>
                                             </ul>
                                             <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="bg-light">
                                                 <img class="img-fluid br-7 w-100`"
                                                     style="width: auto; height: 200px;"
-                                                    src="{{ poporuceni_zahtev.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                    src="{{ poporuceni_zahtev.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                    alt="img">
                                             </a>
                                         </div>
                                         <div class="card-body pt-0">
@@ -257,7 +260,6 @@
                         {% endfor %}
                         <!-- END PREPORUCENI ZAHTEVI SERVISIMA -->
                         </div>
-
                     {% endif %}
                     <!-- END VIDLJIVO SAMO SERVISERIMA -->
 
