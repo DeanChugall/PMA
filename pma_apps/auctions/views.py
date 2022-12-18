@@ -114,7 +114,7 @@ def detalji_zahteva_view(request, zahtev_id):
     ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
-    preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:4]
+    preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:3]
 
     for zahtev in preporuceni_zahtevi_servisima:
         zahtev.image = zahtev.get_images.first()

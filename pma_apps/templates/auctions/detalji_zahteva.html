@@ -211,9 +211,8 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="bg-light">
+                                            <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="img-wrapper">
                                                 <img class="img-fluid br-7 w-100`"
-                                                    style="width: auto; height: 200px;"
                                                     src="{{ poporuceni_zahtev.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
                                                     alt="img">
                                             </a>
