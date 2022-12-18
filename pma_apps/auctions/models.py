@@ -30,8 +30,9 @@ class Auction(models.Model):
         default=1,
     )
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name="auction_category", default=1
+        Category, on_delete=models.CASCADE, related_name="auction_category"
     )
+
     date_created = models.DateTimeField(default=timezone.now)
 
     current_bid = models.DecimalField(

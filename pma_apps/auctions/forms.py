@@ -1,6 +1,6 @@
 from django import forms
 
-from pma_apps.auctions.models import Auction, Bid, Comment, Image
+from pma_apps.auctions.models import Auction, Bid, Category, Comment, Image
 
 
 class AuctionForm(forms.ModelForm):
@@ -23,6 +23,11 @@ class AuctionForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.fields["category"] = forms.ModelChoiceField(
+            empty_label="Odaberite Kategoriju Servisa", queryset=Category.objects.all()
+        )
+
         for visible in self.visible_fields():
             visible.field.widget.attrs["class"] = "form-control"
 
