@@ -1,0 +1,176 @@
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+<!-- PROMENA PROFILA -->
+<div class="col-xl-12">
+    {{ detalji_servisa.errors }}
+    {{ detalji_profila_servisa.errors }}
+    <form action='' class="ogin100-form validate-form" method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ detalji_servisa.role }}
+
+
+        <!-- EDIT PROFILA -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Osnovni Podaci Vlasnika Servisa</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Grad:</label>
+                            <select class="form-control select2 form-select" name="grad">
+                                {% for grad in detalji_servisa.grad %}
+                                    {% render_field grad %}
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Email adresa:</label>
+                            {% render_field detalji_servisa.email class="form-control" placeholder="Email"  %}
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Korisničko Ime:</label>
+                            {% render_field detalji_servisa.username class="form-control" placeholder="Username" readonly="readonly" %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Broj Telefona:</label>
+                            {% render_field detalji_profila_servisa.broj_telefona_servisa class="form-control" placeholder="Broj Telefona" %}
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Ime:</label>
+                            {% render_field detalji_servisa.first_name class="form-control" placeholder="Ime" %}
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Prezime:</label>
+                            {% render_field detalji_servisa.last_name class="form-control" placeholder="Prezime" %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer text-end">
+                {{ form.errors }}
+                <button type='submit' class='btn btn-success my-1'>
+                    <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                </button>
+                <a href="{% url 'users:detalji_vozaca' request.user.username  %}" class="btn btn-danger my-1">
+                    <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                </a>
+            </div>
+        </div>
+        <!-- END EDIT PROFILA -->
+
+        <!-- EDIT AUTOMOBILA -->
+        <div class="card" id="automobil">
+            <div class="card-header">
+                <h3 class="card-title">Uređivanje Automobila</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- VIN BROJ -->
+                    <div class="form-group">
+                        <label class="form-label">VIN Broj:</label>
+                        {% render_field detalji_profila_vozaca.vin class="form-control form-control-lg" placeholder="primer: WAUZZZ4BZWN049194" %}
+                    </div>
+                    <!-- END VIN BROJ -->
+
+                    <!-- MARKA AUTOMOBILA -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Marka:</label>
+                            {% render_field detalji_profila_vozaca.marka class="form-control" placeholder="primer: Renault" %}
+                        </div>
+                    </div>
+                    <!-- END MARKA AUTOMOBILA -->
+
+                    <!-- MODEL AUTOMOBILA -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Model:</label>
+                            {% render_field detalji_profila_vozaca.modell class="form-control" placeholder="primer: Scenic II" %}
+                        </div>
+                    </div>
+                    <!-- END MODEL AUTOMOBILA -->
+
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <!-- Godište Automobila -->
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label">Godište Automobila:</label>
+                            <select class="form-control select2 form-select" name="godiste">
+                                {% for godiste in detalji_profila_vozaca.godiste %}
+                                    {% render_field godiste %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!-- END Godište Automobila -->
+
+                        <!-- Vrsta Goriva -->
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label">Vrsta Goriva:</label>
+                            <select class="form-control form-select" name="vrsta_goriva">
+                                {% for vrsta_goriva in detalji_profila_vozaca.vrsta_goriva %}
+                                    {% render_field vrsta_goriva %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!-- END Vrsta Goriva -->
+
+                        <!-- Kilometraža -->
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label">Kilometraža:</label>
+                            {% render_field detalji_profila_vozaca.kilometraza class="form-control" placeholder="primer: 156.500 km" %}
+                        </div>
+                        <!-- END Kilometraža -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Zapremina Motora:</label>
+                            {% render_field detalji_profila_vozaca.zapremina_motora class="form-control" placeholder="primer: 1890 ccm" %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Snaga Motora:</label>
+                            {% render_field detalji_profila_vozaca.snaga_motora class="form-control" placeholder="primer: 120 KS  ili 80 KW" %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer text-end">
+                {{ form.errors }}
+                <button type='submit' class='btn btn-success my-1'>
+                    <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                </button>
+                <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1">
+                    <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                </a>
+            </div>
+        </div>
+        <!-- END EDIT AUTOMOBILA -->
+
+        <!-- EDIT NOTIFIKACIJE -->
+        {% include 'vozaci/partials/partials-notifikacije-sigurnost.html' %}
+        <!-- END EDIT NOTIFIKACIJE -->
+    </form>
+
+</div>
+<!-- END PROMENA PROFILA -->

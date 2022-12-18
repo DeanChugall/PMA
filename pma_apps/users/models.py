@@ -169,6 +169,7 @@ class ServisProfile(models.Model):
     slika_servisa = models.FileField(
         storage=AutoServisMediaStorage(), null=True, blank=True
     )
+    broj_telefona_servisa = CharField(null=True, blank=True, max_length=100)
 
     ime_servisa = models.CharField(
         max_length=250,
@@ -208,7 +209,12 @@ class ServisProfile(models.Model):
     )
 
     # Za rejting polje
-    header = models.CharField(max_length=100, default="Header")
+    header = models.CharField(
+        max_length=100,
+        default="Header",
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         db_table: str = "servisi"

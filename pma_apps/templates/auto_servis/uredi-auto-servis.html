@@ -13,5 +13,35 @@
 {% endblock meta_data %}
 
 {% block app_content %}
+    <!--app-content open-->
+    <div class="main-content app-content mt-0">
+        <div class="side-app">
 
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+
+                <!-- PAGE-HEADER -->
+                <div class="page-header">
+                    <h1 class="page-title">Izmena Profila Servisa: {{ user.username }}</h1>
+                    <div>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Uredjivanje Profila SERVISA</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- PAGE-HEADER END -->
+
+                <!-- DETALJI PROFILA VOZACA -->
+                <div class="row">
+                    {% include 'auto_servis/partials/partials-uredi-profil-servisa.html' %}
+                </div>
+                <!-- END DETALJI PROFILA VOZACA -->
+
+            </div>
+            <!--CONTAINER CLOSED -->
+
+        </div>
+    </div>
+    <!--app-content open-->
 {% endblock app_content %}

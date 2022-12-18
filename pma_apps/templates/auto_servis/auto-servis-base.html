@@ -167,6 +167,11 @@
                                                                 <i class="dropdown-icon fe fe-user"></i>
                                                                 Profil Servisa
                                                             </a>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}">
+                                                                <i class="dropdown-icon fe fe-user"></i>
+                                                                Uredi Profil Servisa
+                                                            </a>
                                                         {% endif %}
                                                         <a class="dropdown-item" href="{% url 'account_logout' %}">
                                                             <i class="dropdown-icon fe fe-alert-circle"></i> Odjava

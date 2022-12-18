@@ -1,10 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import generic
 
 from pma_apps.auctions.models import Auction, Bid, Category
-from pma_apps.auto_servisi.forms import KreirajServisKorisnikaForm
+from pma_apps.auto_servisi.forms import (
+    KreirajServisKorisnikaForm,
+    UrediProfilServisaForm,
+    UrediServisForm,
+)
 from pma_apps.users.models import Servis, ServisProfile
 
 
@@ -36,6 +41,32 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
         }
 
         return context
+
+
+def profil_servisa_update_view(request, username):
+    servis = get_object_or_404(Servis, username=username)
+    servis_form = UrediServisForm(request.POST or None, instance=servis)
+
+    servis_profile = get_object_or_404(ServisProfile, user_id=servis.id)
+    servis_profile_form = UrediProfilServisaForm(
+        request.POST or None, instance=servis_profile
+    )
+
+    if request.method == "POST":
+        if servis_form.is_valid() and servis_profile_form.is_valid():
+            servis.save()
+            servis_profile.save()
+
+            return redirect("auto_servis:detalji_servisa", servis.username)
+
+    context = {
+        "categories": Category.objects.all(),
+        "detalji_servisa": servis_form,
+        "detalji_profila_servisa": servis_profile_form,
+        "vozac_obj": servis,
+    }
+
+    return render(request, "auto_servis/uredi-auto-servis.html", context)
 
 
 class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):

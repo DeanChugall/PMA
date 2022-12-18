@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from pma_apps.users.models import Servis
+from pma_apps.users.models import Servis, ServisProfile
 
 User = get_user_model()
 
@@ -41,4 +41,42 @@ class KreirajServisKorisnikaForm(UserCreationForm):
             "email",
             "password1",
             "password2",
+        ]
+
+
+class UrediServisForm(forms.ModelForm):
+    class Meta:
+        model = Servis
+        fields = [
+            "role",
+            "last_name",
+            "grad",
+            "first_name",
+            "email",
+            "username",
+        ]
+        widgets = {
+            "role": forms.TextInput(attrs={"type": "hidden"}),
+        }
+
+
+class UrediProfilServisaForm(forms.ModelForm):
+    class Meta:
+        model = ServisProfile
+        fields = [
+            "radni_dan",
+            "otvoreno_do",
+            "otvoreno_od",
+            "slika_logo_servisa",
+            "broj_telefona_servisa",
+            "slika_servisa",
+            "ime_servisa",
+            "opis_servisa",
+            "adresa_servisa",
+            "datum_osnivanja",
+            "facebook_link",
+            "youtube_link",
+            "twitter_link",
+            "linkedin_link",
+            "header",
         ]
