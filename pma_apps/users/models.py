@@ -39,7 +39,7 @@ class User(AbstractUser):
         blank=False,
         max_length=100,
         choices=Gradovi.choices,
-        default=Gradovi.beograd,
+        default=Gradovi.BEOGRAD,
     )
     is_first_login = models.BooleanField(default=True)
 

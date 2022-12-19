@@ -73,7 +73,7 @@ class Bid(models.Model):
     servis = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     date = models.DateTimeField(auto_now=True)
-    opis_ponude = models.TextField(max_length=100, blank=True, null=True)
+    opis_ponude = models.TextField(max_length=800, blank=True, null=True)
 
     class Meta:
         ordering = ["-date"]
