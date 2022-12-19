@@ -23,7 +23,6 @@
                                     {% render_field grad %}
                                 {% endfor %}
                             </select>
-
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
@@ -76,31 +75,76 @@
         <!-- EDIT PROFILA AUTO SERVISA -->
         <div class="card" id="automobil">
             <div class="card-header">
-                <h3 class="card-title">Uređivanje Automobila</h3>
+                <h3 class="card-title">Uređivanje Profila Auto Servisa</h3>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <!-- VIN BROJ -->
-                    <div class="form-group">
-                        <label class="form-label">VIN Broj:</label>
-                        {% render_field detalji_profila_vozaca.vin class="form-control form-control-lg" placeholder="primer: WAUZZZ4BZWN049194" %}
-                    </div>
-                    <!-- END VIN BROJ -->
-
-                    <!-- MARKA AUTOMOBILA -->
-                    <div class="col-lg-6 col-md-12">
+                    <!-- NAZIV AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Marka:</label>
-                            {% render_field detalji_profila_vozaca.marka class="form-control" placeholder="primer: Renault" %}
+                            <label class="form-label">Naziv Auto Servisa</label>
+                            {% render_field detalji_profila_servisa.ime_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." %}
                         </div>
                     </div>
-                    <!-- END MARKA AUTOMOBILA -->
+                    <!-- END NAZIV AUTO SERVISA -->
+
+                    <!-- RADNO VREME OD PON-PET -->
+                    <div class="col-md-2 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Radno Vreme OD: Ponedeljak - Petak</label>
+                            <select class="form-control form-control-lg" name="otvoreno_od_ponedeljak_petak">
+                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_ponedeljak_petak %}
+                                    {% render_field radno_vreme_radni_dan %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- END RADNO VREME OD PON-PET -->
+
+                    <!-- RADNO VREME DO PON-PET -->
+                    <div class="col-md-2 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Radno Vreme DO: Ponedeljak - Petak</label>
+                            <select class="form-control form-control-lg" name="otvoreno_do_ponedeljak_petak">
+                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_ponedeljak_petak %}
+                                    {% render_field radno_vreme_radni_dan %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- END RADNO VREME DO PON-PET -->
+
+                    <!-- RADNO VREME OD SUBOTA -->
+                    <div class="col-md-2 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Radno Vreme OD: Subota</label>
+                            <select class="form-control form-control-lg" name="otvoreno_od_subota">
+                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_subota %}
+                                    {% render_field radno_vreme_radni_dan %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- END RADNO VREME OD SUBOTA -->
+
+                    <!-- RADNO VREME DO SUBOTA -->
+                    <div class="col-md-2 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Radno Vreme DO: Ponedeljak - Petak</label>
+                            <select class="form-control form-control-lg" name="otvoreno_do_subota">
+                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_subota %}
+                                    {% render_field radno_vreme_radni_dan %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- END RADNO VREME DO SUBOTA -->
 
                     <!-- MODEL AUTOMOBILA -->
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
-                            <label class="form-label">Model:</label>
-                            {% render_field detalji_profila_vozaca.modell class="form-control" placeholder="primer: Scenic II" %}
+                            <label class="form-label">OTVORENO OD:</label>
+                            {% render_field detalji_profila_vozaca.otvoreno_od class="form-control" placeholder="mm/dd/yyyy" %}
                         </div>
                     </div>
                     <!-- END MODEL AUTOMOBILA -->
@@ -165,6 +209,155 @@
             </div>
         </div>
         <!-- END EDIT PROFILA AUTO SERVISA -->
+
+        <!-- EDIT RADNO VREME AUTO SERVISA -->
+        <div class="row" id="radno_vreme_servisa">
+            <!-- RADNO VREME PON-PET -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Radno Vreme: Ponedeljak-Petak</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- RADNO VREME OD PON-PET -->
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Ponedeljak - Petak *(od)</label>
+                                    <select class="form-control form-control-lg" name="otvoreno_od_ponedeljak_petak">
+                                        {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_ponedeljak_petak %}
+                                            {% render_field radno_vreme_radni_dan %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END RADNO VREME OD PON-PET -->
+
+                            <!-- RADNO VREME DO PON-PET -->
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Ponedeljak - Petak *(do)</label>
+                                    <select class="form-control form-control-lg" name="otvoreno_do_ponedeljak_petak">
+                                        {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_ponedeljak_petak %}
+                                            {% render_field radno_vreme_radni_dan %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END RADNO VREME DO PON-PET -->
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        {{ form.errors }}
+                        <button type='submit' class='btn btn-success my-1'>
+                            <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                        </button>
+                        <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
+                            <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END RADNO VREME PON-PET -->
+
+            <!-- RADNO VREME SUBOTA -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Radno Vreme: Subota</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- RADNO VREME OD SUBOTA -->
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label"> Subota *(od)</label>
+                                    <select class="form-control form-control-lg" name="otvoreno_od_subota">
+                                        {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_subota %}
+                                            {% render_field radno_vreme_radni_dan %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END RADNO VREME OD SUBOTA -->
+
+                            <!-- RADNO VREME DO SUBOTA -->
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Subota *(do)</label>
+                                    <select class="form-control form-control-lg" name="otvoreno_do_subota">
+                                        {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_subota %}
+                                            {% render_field radno_vreme_radni_dan %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END RADNO VREME DO SUBOTA -->
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        {{ form.errors }}
+                        <button type='submit' class='btn btn-success my-1'>
+                            <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                        </button>
+                        <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
+                            <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END RADNO VREME SUBOTA -->
+
+            <!-- RADNO VREME NEDELJA -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Radno Vreme: Nedelja</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- RADNO VREME OD  NEDELJA -->
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Nedelja *(od)</label>
+                                    <select class="form-control form-control-lg" name="otvoreno_od_nedelja">
+                                        {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_nedelja %}
+                                            {% render_field radno_vreme_radni_dan %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END RADNO VREME OD NEDELJA -->
+
+                            <!-- RADNO VREME DO NEDELJA -->
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Nedelja *(do)</label>
+                                    <select class="form-control form-control-lg" name="otvoreno_do_nedelja">
+                                        {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_nedelja %}
+                                            {% render_field radno_vreme_radni_dan %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END RADNO VREME DO NEDELJA -->
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        {{ form.errors }}
+                        <button type='submit' class='btn btn-success my-1'>
+                            <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                        </button>
+                        <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
+                            <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END RADNO VREME NEDELJA -->
+        </div>
+        <!-- END EDIT RADNO VREME AUTO SERVISA -->
+
 
         <!-- EDIT NOTIFIKACIJE -->
         {% include 'vozaci/partials/partials-notifikacije-sigurnost.html' %}

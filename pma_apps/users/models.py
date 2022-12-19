@@ -21,7 +21,7 @@ from config.do_storages.do_storage import (
 from pma_apps.utils.godista_automobila import GodisteAutomobila
 from pma_apps.utils.gradovi import Gradovi
 from pma_apps.utils.marke_automobila import MarkeAutomobila
-from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa
+from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa, RadniSatiServisa
 
 
 class User(AbstractUser):
@@ -175,8 +175,53 @@ class ServisProfile(models.Model):
         null=True,
         blank=True,
     )
-    otvoreno_do = models.TimeField(null=True, blank=True)
-    otvoreno_od = models.TimeField(null=True, blank=True)
+
+    otvoreno_od_ponedeljak_petak = models.CharField(
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=RadniSatiServisa.choices,
+        default=RadniSatiServisa.OSAM,
+    )
+    otvoreno_do_ponedeljak_petak = models.CharField(
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=RadniSatiServisa.choices,
+        default=RadniSatiServisa.SESNAEST,
+    )
+
+    otvoreno_od_subota = models.CharField(
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=RadniSatiServisa.choices,
+        default=RadniSatiServisa.OSAM,
+    )
+
+    otvoreno_do_subota = models.CharField(
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=RadniSatiServisa.choices,
+        default=RadniSatiServisa.SESNAEST,
+    )
+
+    otvoreno_od_nedelja = models.CharField(
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=RadniSatiServisa.choices,
+        default=RadniSatiServisa.NEARADAN_DAN,
+    )
+
+    otvoreno_do_nedelja = models.CharField(
+        null=True,
+        blank=True,
+        max_length=20,
+        choices=RadniSatiServisa.choices,
+        default=RadniSatiServisa.NEARADAN_DAN,
+    )
 
     slika_logo_servisa = models.FileField(
         storage=AutoServisMediaStorage(), null=True, blank=True

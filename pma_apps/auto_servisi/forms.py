@@ -65,11 +65,15 @@ class UrediProfilServisaForm(forms.ModelForm):
         model = ServisProfile
         fields = [
             "radni_dan",
-            "otvoreno_do",
-            "otvoreno_od",
+            "otvoreno_od_ponedeljak_petak",
+            "otvoreno_do_ponedeljak_petak",
+            "otvoreno_od_subota",
+            "otvoreno_do_subota",
+            "otvoreno_od_nedelja",
+            "otvoreno_do_nedelja",
             "slika_logo_servisa",
-            "broj_telefona_servisa",
             "slika_servisa",
+            "broj_telefona_servisa",
             "ime_servisa",
             "opis_servisa",
             "adresa_servisa",

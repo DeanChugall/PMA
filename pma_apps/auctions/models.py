@@ -71,7 +71,7 @@ class Bid(models.Model):
         Auction, on_delete=models.CASCADE, related_name="get_bids"
     )
     servis = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=7, decimal_places=2)
+    amount = models.PositiveBigIntegerField(blank=False, null=False)
     date = models.DateTimeField(auto_now=True)
     opis_ponude = models.TextField(max_length=800, blank=True, null=True)
 
