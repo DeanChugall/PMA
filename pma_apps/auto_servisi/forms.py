@@ -72,6 +72,7 @@ class UrediProfilServisaForm(forms.ModelForm):
             "otvoreno_od_nedelja",
             "otvoreno_do_nedelja",
             "slika_logo_servisa",
+            "specijalizovan_za_marku",
             "slika_servisa",
             "broj_telefona_servisa",
             "ime_servisa",
