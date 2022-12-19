@@ -248,6 +248,10 @@ class ServisProfile(models.Model):
 
     datum_osnivanja = models.DateTimeField(null=True, blank=True)
 
+    specijalizovan_za_marku = CharField(
+        null=True, blank=True, max_length=50, choices=MarkeAutomobila.choices
+    )
+
     facebook_link = models.CharField(
         max_length=250,
         null=True,
