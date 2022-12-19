@@ -2,6 +2,7 @@
 
 Kreiranje Korisnika putem Django PROXY nacina.
 """
+import re
 
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
@@ -119,6 +120,21 @@ class VozacProfile(models.Model):
         verbose_name_plural: str = "Vozaci"
         ordering = ["-user"]
 
+    @property
+    def get_grad_vozaca(self):
+        """Returns grad Vozaca izostavljene geografske koordinate."""
+        return self.user.grad.split("|")[0]
+
+    @property
+    def get_grad_vozaca_latitude(self):
+        """Returns grad Vozaca LATITUDE."""
+        return self.user.grad.split("|")[1]
+
+    @property
+    def get_grad_vozaca_longitude(self):
+        """Returns grad Vozaca LONGITUDE."""
+        return self.user.grad.split("|")[2]
+
     def get_absolute_url(self):
         return reverse("users:detalji_vozaca", args=[str(self.username)])
 
@@ -224,6 +240,21 @@ class ServisProfile(models.Model):
 
     def get_datum_osnivanja(self):
         return self.datum_kreiranja.strftime("%Y")
+
+    @property
+    def get_grad_servisa(self):
+        """Returns grad Vozaca izostavljene geografske koordinate."""
+        return self.user.grad.split("|")[0]
+
+    @property
+    def get_grad_servisa_latitude(self):
+        """Returns grad Vozaca LATITUDE."""
+        return self.user.grad.split("|")[1]
+
+    @property
+    def get_grad_servisa_longitude(self):
+        """Returns grad Vozaca LONGITUDE."""
+        return self.user.grad.split("|")[2]
 
     def average_rating(self) -> float:
         return (

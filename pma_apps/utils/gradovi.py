@@ -3,7 +3,7 @@ from django.db import models
 
 class Gradovi(models.TextChoices):
     BEOGRAD = "Beograd|44.820556|20.462222", "Beograd"
-    NOVI_SAD = "Novi Sad", "Novi Sad"
+    NOVI_SAD = "Novi Sad|45.262231|19.851858", "Novi Sad"
     NIS = "Niš|43.324600|21.903000", "Niš"
     ADA = "Ada|45.800000|20.133333", "Ada"
     ALEKSANDROVAC = "Aleksandrovac|43.460800|21.053881", "Aleksandrovac"
