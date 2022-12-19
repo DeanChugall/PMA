@@ -168,13 +168,6 @@ class Servis(User):
 
 class ServisProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    radni_dan = models.CharField(
-        max_length=50,
-        choices=RadniDaniServisa.choices,
-        default=RadniDaniServisa.ponedeljak,
-        null=True,
-        blank=True,
-    )
 
     otvoreno_od_ponedeljak_petak = models.CharField(
         null=True,

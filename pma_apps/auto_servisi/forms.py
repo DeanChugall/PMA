@@ -64,7 +64,6 @@ class UrediProfilServisaForm(forms.ModelForm):
     class Meta:
         model = ServisProfile
         fields = [
-            "radni_dan",
             "otvoreno_od_ponedeljak_petak",
             "otvoreno_do_ponedeljak_petak",
             "otvoreno_od_subota",
