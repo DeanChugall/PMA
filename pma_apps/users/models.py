@@ -184,6 +184,47 @@ class ServisProfile(models.Model):
         blank=True,
     )
 
+    grad_auto_servisa = CharField(
+        null=True,
+        blank=True,
+        max_length=100,
+        choices=Gradovi.choices,
+        default=Gradovi.BEOGRAD,
+    )
+
+    slika_logo_servisa = models.FileField(
+        storage=AutoServisMediaStorage(), null=True, blank=True
+    )
+
+    slika_servisa = models.FileField(
+        storage=AutoServisMediaStorage(), null=True, blank=True
+    )
+
+    broj_telefona_vlasnika = CharField(null=True, blank=True, max_length=100)
+    broj_telefona_servisa = CharField(null=True, blank=True, max_length=100)
+
+    ime_servisa = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
+    opis_servisa = models.TextField(null=True, blank=True)
+
+    adresa_servisa = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
+    datum_osnivanja = models.CharField(
+        null=True, blank=True, max_length=5, choices=GodisteAutomobila.choices
+    )
+
+    specijalizovan_za_marku = CharField(
+        null=True, blank=True, max_length=50, choices=MarkeAutomobila.choices
+    )
+
     otvoreno_od_ponedeljak_petak = models.CharField(
         null=True,
         blank=True,
@@ -229,35 +270,6 @@ class ServisProfile(models.Model):
         max_length=20,
         choices=RadniSatiServisa.choices,
         default=RadniSatiServisa.NEARADAN_DAN,
-    )
-
-    slika_logo_servisa = models.FileField(
-        storage=AutoServisMediaStorage(), null=True, blank=True
-    )
-
-    slika_servisa = models.FileField(
-        storage=AutoServisMediaStorage(), null=True, blank=True
-    )
-    broj_telefona_servisa = CharField(null=True, blank=True, max_length=100)
-
-    ime_servisa = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-
-    opis_servisa = models.TextField(null=True, blank=True)
-
-    adresa_servisa = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-
-    datum_osnivanja = models.DateTimeField(null=True, blank=True)
-
-    specijalizovan_za_marku = CharField(
-        null=True, blank=True, max_length=50, choices=MarkeAutomobila.choices
     )
 
     facebook_link = models.CharField(

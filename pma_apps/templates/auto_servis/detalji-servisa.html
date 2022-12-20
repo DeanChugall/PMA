@@ -38,8 +38,12 @@
                                                         </div>
                                                         <div class="profile-img-content text-dark text-start">
                                                             <div class="text-dark">
-                                                                <h3 class="h3 mb-2">{{ profil_servisa.ime_servisa }}</h3>
-                                                                <h5 class="text-muted">Web Developer</h5>
+                                                                {% if  profil_servisa.ime_servisa %}
+                                                                    <h3 class="h3 mb-2">{{ profil_servisa.ime_servisa }}</h3>
+                                                                {% else %}
+                                                                    <h3 class="h3 mb-2">Ime Servisa Nije Unešeno!</h3>
+                                                                {% endif %}
+                                                                <h5 class="text-muted">{{ user.username }}</h5>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -39,7 +39,7 @@
                 <button type='submit' class='btn btn-success my-1'>
                     <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
                 </button>
-                <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1">
+                <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
                     <i class="fa fa-trash-o"></i>&nbsp;Odustani
                 </a>
             </div>
@@ -85,7 +85,7 @@
                 <button type='submit' class='btn btn-success my-1'>
                     <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
                 </button>
-                <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1">
+                <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
                     <i class="fa fa-trash-o"></i>&nbsp;Odustani
                 </a>
             </div>

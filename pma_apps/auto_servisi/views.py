@@ -53,16 +53,22 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
 
 
 def profil_servisa_update_view(request, username):
+
+    # Slike Auto Servisa
     slika_auto_servisa_form_set = forms.modelformset_factory(
         SlikeServisa, form=ImageServisaForm, extra=1
     )
+
+    # Logo Auto Servisa
     slika_logoa_form_set = forms.modelformset_factory(
         SlikaLogoServisa, form=ImageLogoaServisaForm, extra=1
     )
 
+    # Servis obj.
     servis = get_object_or_404(Servis, username=username)
     servis_form = UrediServisForm(request.POST or None, instance=servis)
 
+    # Profil Servisa obj.
     servis_profile = get_object_or_404(ServisProfile, user_id=servis.id)
     servis_profile_form = UrediProfilServisaForm(
         request.POST or None, instance=servis_profile
