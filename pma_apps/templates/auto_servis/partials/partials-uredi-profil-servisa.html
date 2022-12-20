@@ -88,122 +88,31 @@
                     </div>
                     <!-- END NAZIV AUTO SERVISA -->
 
-                    <!-- RADNO VREME OD PON-PET -->
-                    <div class="col-md-2 mb-2">
+                    <!-- SLIKA LOGO SERVISA -->
+                    <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Radno Vreme OD: Ponedeljak - Petak</label>
-                            <select class="form-control form-control-lg" name="otvoreno_od_ponedeljak_petak">
-                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_ponedeljak_petak %}
-                                    {% render_field radno_vreme_radni_dan %}
-                                {% endfor %}
-                            </select>
+                            <label class="form-label">Logo Auto Servisa</label>
+                            {% render_field detalji_profila_servisa.slika_logo_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." %}
                         </div>
                     </div>
-                    <!-- END RADNO VREME OD PON-PET -->
+                    <!-- END SLIKA LOGO SERVISA -->
 
-                    <!-- RADNO VREME DO PON-PET -->
-                    <div class="col-md-2 mb-2">
+                    <!-- SLIKA SERVISA -->
+                    <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Radno Vreme DO: Ponedeljak - Petak</label>
-                            <select class="form-control form-control-lg" name="otvoreno_do_ponedeljak_petak">
-                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_ponedeljak_petak %}
-                                    {% render_field radno_vreme_radni_dan %}
-                                {% endfor %}
-                            </select>
+                            <label class="form-label">Slika Auto Servisa</label>
+                            {% render_field detalji_profila_servisa.slika_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." %}
                         </div>
                     </div>
-                    <!-- END RADNO VREME DO PON-PET -->
-
-                    <!-- RADNO VREME OD SUBOTA -->
-                    <div class="col-md-2 mb-2">
-                        <div class="form-group">
-                            <label class="form-label">Radno Vreme OD: Subota</label>
-                            <select class="form-control form-control-lg" name="otvoreno_od_subota">
-                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_od_subota %}
-                                    {% render_field radno_vreme_radni_dan %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- END RADNO VREME OD SUBOTA -->
-
-                    <!-- RADNO VREME DO SUBOTA -->
-                    <div class="col-md-2 mb-2">
-                        <div class="form-group">
-                            <label class="form-label">Radno Vreme DO: Ponedeljak - Petak</label>
-                            <select class="form-control form-control-lg" name="otvoreno_do_subota">
-                                {% for radno_vreme_radni_dan in detalji_profila_servisa.otvoreno_do_subota %}
-                                    {% render_field radno_vreme_radni_dan %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- END RADNO VREME DO SUBOTA -->
-
-                    <!-- MODEL AUTOMOBILA -->
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">OTVORENO OD:</label>
-                            {% render_field detalji_profila_vozaca.otvoreno_od class="form-control" placeholder="mm/dd/yyyy" %}
-                        </div>
-                    </div>
-                    <!-- END MODEL AUTOMOBILA -->
-
+                    <!-- END SLIKA SERVISA -->
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <!-- Godište Automobila -->
-                        <div class="col-md-4 mb-2">
-                            <label class="form-label">Godište Automobila:</label>
-                            <select class="form-control select2 form-select" name="godiste">
-                                {% for godiste in detalji_profila_vozaca.godiste %}
-                                    {% render_field godiste %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <!-- END Godište Automobila -->
-
-                        <!-- Vrsta Goriva -->
-                        <div class="col-md-4 mb-2">
-                            <label class="form-label">Vrsta Goriva:</label>
-                            <select class="form-control form-select" name="vrsta_goriva">
-                                {% for vrsta_goriva in detalji_profila_vozaca.vrsta_goriva %}
-                                    {% render_field vrsta_goriva %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <!-- END Vrsta Goriva -->
-
-                        <!-- Kilometraža -->
-                        <div class="col-md-4 mb-2">
-                            <label class="form-label">Kilometraža:</label>
-                            {% render_field detalji_profila_vozaca.kilometraza class="form-control" placeholder="primer: 156.500 km" %}
-                        </div>
-                        <!-- END Kilometraža -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Zapremina Motora:</label>
-                            {% render_field detalji_profila_vozaca.zapremina_motora class="form-control" placeholder="primer: 1890 ccm" %}
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Snaga Motora:</label>
-                            {% render_field detalji_profila_vozaca.snaga_motora class="form-control" placeholder="primer: 120 KS  ili 80 KW" %}
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="card-footer text-end">
                 {{ form.errors }}
                 <button type='submit' class='btn btn-success my-1'>
                     <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
                 </button>
-                <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1">
+                <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
                     <i class="fa fa-trash-o"></i>&nbsp;Odustani
                 </a>
             </div>
@@ -360,7 +269,7 @@
 
 
         <!-- EDIT NOTIFIKACIJE -->
-        {% include 'vozaci/partials/partials-notifikacije-sigurnost.html' %}
+        {% include 'auto_servis/partials/partials-notifikacije-sigurnost-servisi.html' %}
         <!-- END EDIT NOTIFIKACIJE -->
     </form>
 
