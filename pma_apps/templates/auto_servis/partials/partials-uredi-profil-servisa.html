@@ -89,10 +89,14 @@
                     <!-- END NAZIV AUTO SERVISA -->
 
                     <!-- SLIKA LOGO SERVISA -->
+
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Logo Auto Servisa</label>
-                            {% render_field detalji_profila_servisa.slika_logo_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." %}
+                            {{ image_form.management_form }}
+                            {% for form in slika_logoa_form %}
+                                {{ form.as_p }}
+                            {% endfor %}
                         </div>
                     </div>
                     <!-- END SLIKA LOGO SERVISA -->
@@ -101,7 +105,10 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Slika Auto Servisa</label>
-                            {% render_field detalji_profila_servisa.slika_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." %}
+                            {{ slike_servisa_form.management_form }}
+                            {% for form in slike_servisa_form %}
+                                {{ form.as_p }}
+                            {% endfor %}
                         </div>
                     </div>
                     <!-- END SLIKA SERVISA -->

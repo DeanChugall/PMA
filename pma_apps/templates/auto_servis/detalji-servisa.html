@@ -30,14 +30,15 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="row">
                                                 <div class="panel profile-cover">
-                                                    <div class="profile-cover__action bg-img"></div>
+                                                    <div class="profile-cover__action bg-img">
+                                                    </div>
                                                     <div class="profile-cover__img">
                                                         <div class="profile-img-1">
-                                                            <img src="../assets/images/users/21.jpg" alt="img">
+                                                            <img src="{{ slika_logo_servisa.slika_logo_servisa.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
                                                         </div>
                                                         <div class="profile-img-content text-dark text-start">
                                                             <div class="text-dark">
-                                                                <h3 class="h3 mb-2">Percy Kewshun</h3>
+                                                                <h3 class="h3 mb-2">{{ profil_servisa.ime_servisa }}</h3>
                                                                 <h5 class="text-muted">Web Developer</h5>
                                                             </div>
                                                         </div>

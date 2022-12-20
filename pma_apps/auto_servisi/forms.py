@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from pma_apps.users.models import Servis, ServisProfile
+from pma_apps.users.models import Servis, ServisProfile, SlikaLogoServisa, SlikeServisa
 
 User = get_user_model()
 
@@ -84,3 +84,33 @@ class UrediProfilServisaForm(forms.ModelForm):
             "linkedin_link",
             "header",
         ]
+
+
+class ImageServisaForm(forms.ModelForm):
+    """
+    A ModelForm class for adding an image to the auction
+    """
+
+    class Meta:
+        model = SlikeServisa
+        fields = ["slika_servisa"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["slika_servisa"].label = ""
+        self.visible_fields()[0].field.widget.attrs["class"] = "form-control"
+
+
+class ImageLogoaServisaForm(forms.ModelForm):
+    """
+    A ModelForm class for adding an image to the auction
+    """
+
+    class Meta:
+        model = SlikaLogoServisa
+        fields = ["slika_logo_servisa"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["slika_logo_servisa"].label = ""
+        self.visible_fields()[0].field.widget.attrs["class"] = "form-control"

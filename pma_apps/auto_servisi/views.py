@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
@@ -6,11 +7,13 @@ from django.views import generic
 
 from pma_apps.auctions.models import Auction, Bid, Category
 from pma_apps.auto_servisi.forms import (
+    ImageLogoaServisaForm,
+    ImageServisaForm,
     KreirajServisKorisnikaForm,
     UrediProfilServisaForm,
     UrediServisForm,
 )
-from pma_apps.users.models import Servis, ServisProfile
+from pma_apps.users.models import Servis, ServisProfile, SlikaLogoServisa, SlikeServisa
 
 
 class KreirajServisKorisnikaView(generic.CreateView):
@@ -33,17 +36,30 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
+        slika_profila_servisa = SlikeServisa.objects.all().filter(servis=servis).first()
+        slika_logo_servisa = (
+            SlikaLogoServisa.objects.all().filter(servis=servis).first()
+        )
 
         context = {
             "categories": Category.objects.all(),
             "servis": servis,
             "profil_servisa": profil_servisa,
+            "slika_profila_servisa": slika_profila_servisa,
+            "slika_logo_servisa": slika_logo_servisa,
         }
 
         return context
 
 
 def profil_servisa_update_view(request, username):
+    slika_auto_servisa_form_set = forms.modelformset_factory(
+        SlikeServisa, form=ImageServisaForm, extra=1
+    )
+    slika_logoa_form_set = forms.modelformset_factory(
+        SlikaLogoServisa, form=ImageLogoaServisaForm, extra=1
+    )
+
     servis = get_object_or_404(Servis, username=username)
     servis_form = UrediServisForm(request.POST or None, instance=servis)
 
@@ -53,9 +69,39 @@ def profil_servisa_update_view(request, username):
     )
 
     if request.method == "POST":
-        if servis_form.is_valid() and servis_profile_form.is_valid():
+
+        slika_servisa_image_form = slika_auto_servisa_form_set(
+            request.POST, request.FILES, queryset=SlikeServisa.objects.none()
+        )
+
+        slika_logoa_image_form = slika_logoa_form_set(
+            request.POST, request.FILES, queryset=SlikaLogoServisa.objects.none()
+        )
+
+        if (
+            servis_form.is_valid()
+            and servis_profile_form.is_valid()
+            and slika_servisa_image_form.is_valid()
+            and slika_logoa_image_form.is_valid()
+        ):
             servis.save()
             servis_profile.save()
+
+            for servis_form in slika_servisa_image_form.cleaned_data:
+                if servis_form:
+                    image = servis_form["slika_servisa"]
+
+                    new_image = SlikeServisa(servis=servis, slika_servisa=image)
+                    new_image.save()
+
+            for servis_form in slika_logoa_image_form.cleaned_data:
+                if servis_form:
+                    image = servis_form["slika_logo_servisa"]
+
+                    new_image = SlikaLogoServisa(
+                        servis=servis, slika_logo_servisa=image
+                    )
+                    new_image.save()
 
             return redirect("auto_servis:detalji_servisa", servis.username)
 
@@ -64,6 +110,12 @@ def profil_servisa_update_view(request, username):
         "detalji_servisa": servis_form,
         "detalji_profila_servisa": servis_profile_form,
         "vozac_obj": servis,
+        "slike_servisa_form": slika_auto_servisa_form_set(
+            queryset=SlikeServisa.objects.none()
+        ),
+        "slika_logoa_form": slika_logoa_form_set(
+            queryset=SlikaLogoServisa.objects.none()
+        ),
     }
 
     return render(request, "auto_servis/uredi-auto-servis.html", context)

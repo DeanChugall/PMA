@@ -172,6 +172,18 @@ class ServisProfile(models.Model):
     aktivan_servis = models.BooleanField(default=True)
     verifikovan_servis = models.BooleanField(default=False)
 
+    pib_servisa = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True,
+    )
+
+    maticni_broj_servisa = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True,
+    )
+
     otvoreno_od_ponedeljak_petak = models.CharField(
         null=True,
         blank=True,
@@ -350,11 +362,29 @@ class SlikeServisa(models.Model):
         db_table: str = "slike_servisa"
         verbose_name: str = "Slike Servisa"
         verbose_name_plural: str = "Slika Servisa"
-        ordering = ["-slika_servisa"]
+        ordering = ["-id"]
 
-    # def save(self, *args, **kwargs):
-    #     image_resize(self.image, 500, 500)
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+
+class SlikaLogoServisa(models.Model):
+    servis = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="get_slika_logo_servisa"
+    )
+    slika_logo_servisa = models.ImageField(upload_to="slike_logo_servisa/")
+
+    def __str__(self):
+        return f"{self.slika_logo_servisa}"
+
+    class Meta:
+        db_table: str = "slika_logo_servisa"
+        verbose_name: str = "Slika Logo Servisa"
+        verbose_name_plural: str = "Slika Logo Servisa"
+        ordering = ["-id"]
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
 
 class KomentariVozacaZaServis(models.Model):

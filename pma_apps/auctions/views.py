@@ -408,7 +408,7 @@ def watchlist_edit(request, zahtev_id, reverse_method):
 @login_required
 def ponuda_zahteva_view(request, zahtev_id):
     """
-    View za postavljanje Ponuda za Zahtev.
+    View za postavljanje Ponuda Servisera na Zahtev Vozaca.
     """
     auction = Auction.objects.get(id=zahtev_id)
     amount = Decimal(request.POST["amount"].replace(",", "."))
