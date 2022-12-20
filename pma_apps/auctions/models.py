@@ -36,7 +36,7 @@ class Auction(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
 
     current_bid = models.DecimalField(
-        max_digits=7,
+        max_digits=10,
         decimal_places=2,
         blank=True,
         null=True,
@@ -71,9 +71,11 @@ class Bid(models.Model):
         Auction, on_delete=models.CASCADE, related_name="get_bids"
     )
     servis = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.PositiveBigIntegerField(blank=False, null=False)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=False, null=False
+    )
     date = models.DateTimeField(auto_now=True)
-    opis_ponude = models.TextField(max_length=800, blank=True, null=True)
+    opis_ponude = models.TextField(max_length=400, blank=True, null=True)
 
     class Meta:
         ordering = ["-date"]

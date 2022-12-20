@@ -28,6 +28,9 @@ ALLOWED_HOSTS = [
 ]
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
+
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = True
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 

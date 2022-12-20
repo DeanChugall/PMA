@@ -169,6 +169,9 @@ class Servis(User):
 class ServisProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    aktivan_servis = models.BooleanField(default=True)
+    verifikovan_servis = models.BooleanField(default=False)
+
     otvoreno_od_ponedeljak_petak = models.CharField(
         null=True,
         blank=True,

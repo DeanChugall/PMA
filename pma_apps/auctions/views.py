@@ -411,7 +411,7 @@ def ponuda_zahteva_view(request, zahtev_id):
     View za postavljanje Ponuda za Zahtev.
     """
     auction = Auction.objects.get(id=zahtev_id)
-    amount = Decimal(request.POST["amount"])
+    amount = Decimal(request.POST["amount"].replace(",", "."))
 
     auction.current_bid = amount
     form = BidForm(request.POST)
