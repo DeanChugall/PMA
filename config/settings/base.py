@@ -31,6 +31,10 @@ ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
 
 USE_THOUSAND_SEPARATOR = True
 THOUSAND_SEPARATOR = True
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
