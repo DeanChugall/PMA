@@ -34,7 +34,7 @@ THOUSAND_SEPARATOR = True
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
