@@ -237,12 +237,17 @@
                                                     <button class="btn btn-md btn-success ms-auto"><i class="fa fa-share ms-1"></i> Sačuvaj Utisak</button>
                                                 </div>
                                             </form>
-                                        {% else %}
+                                        {% elif reviews %}
                                             <h4><i class="fe fe-activity text-primary mx-2"></i><strong>Utisci Vozača:</strong></h4>
+                                        {% else %}
+                                            <div class="card border p-0 shadow-none">
+                                                <div class="card-body">
+                                                    <h4><i class="fe fe-activity text-primary mx-2"></i><strong>Trenutno nema utisaka Vozača!</strong></h4>
+                                                </div>
+                                            </div>
                                         {% endif %}
                                     </div>
                                 </div>
-
                                 {% for review in reviews %}
                                     <div class="card border p-0 shadow-none">
                                         <div class="card-body">
