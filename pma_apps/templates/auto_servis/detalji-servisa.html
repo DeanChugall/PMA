@@ -47,13 +47,15 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="btn-profile">
-                                                        <a href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}"
-                                                            class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
-                                                            target="_self">
-                                                            <i class="fe fe-edit"></i> Izmeni Profil Servisa
-                                                        </a>
-                                                    </div>
+                                                    {% if user.role == "SERVIS" %}
+                                                        <div class="btn-profile">
+                                                            <a href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}"
+                                                                class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
+                                                                target="_self">
+                                                                <i class="fe fe-edit"></i> Izmeni Profil Servisa
+                                                            </a>
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                             <div class="row">
