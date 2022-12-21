@@ -47,7 +47,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {% if user.role == "SERVIS" %}
+                                                    {% if user.role == "SERVIS" and servis == user %}
                                                         <div class="btn-profile">
                                                             <a href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}"
                                                                 class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
