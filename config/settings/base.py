@@ -35,6 +35,8 @@ THOUSAND_SEPARATOR = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False
+
+CSRF_TRUSTED_ORIGINS = ["https://0.0.0.0:8000", "https://pma-7x5sd.ondigitalocean.app"]
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
