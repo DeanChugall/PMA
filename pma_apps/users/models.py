@@ -6,7 +6,7 @@ import re
 
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.db.models import Avg, CharField, ImageField
+from django.db.models import Avg, CharField, Count, ImageField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
@@ -325,19 +325,29 @@ class ServisProfile(models.Model):
         """Returns grad Vozaca LONGITUDE."""
         return self.user.grad.split("|")[2]
 
-    def average_rating(self) -> float:
-        return (
-            RatingServisa.objects.filter(servis=self).aggregate(Avg("rating"))[
-                "rating__avg"
-            ]
-            or 0
+    def averageReview(self):
+        reviews = RatingServisa.objects.filter(servis=self, status=True).aggregate(
+            average=Avg("rating")
         )
+        avg = 0
+        if reviews["average"] is not None:
+            avg = float(reviews["average"])
+        rounded_avg = round(avg, 2)
+        return rounded_avg
+
+    def countReview(self):
+        reviews = RatingServisa.objects.filter(servis=self, status=True).aggregate(
+            count=Count("id")
+        )
+        count = 0
+        if reviews["count"] is not None:
+            count = int(reviews["count"])
+        return count
 
     def __str__(self):
         return (
             f"Profil Servisa #"
             f"{self.id}: {self.user.username} on {self.ime_servisa}: {self.adresa_servisa}"
-            f"{self.header}: {self.average_rating()}"
         )
 
 
@@ -346,19 +356,24 @@ class RatingServisa(models.Model):
     Referenca @see: https://medium.com/geekculture/django-implementing-star-rating-e1deff03bb1c
     """
 
-    vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE)
     servis = models.ForeignKey(ServisProfile, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=0)
-    datum_kreiranja_rating = models.DateTimeField(default=timezone.now)
+    vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100, blank=True)
+    review = models.TextField(max_length=500, blank=True)
+    rating = models.FloatField()
+    ip = models.CharField(max_length=20, blank=True)
+    status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         db_table: str = "rating_servisa"
         verbose_name: str = "Rejting Servisa"
         verbose_name_plural: str = "Rejting Servisa"
-        ordering = ["-datum_kreiranja_rating"]
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.servis.header}: {self.rating}"
+        return self.subject
 
 
 class SlikeServisa(models.Model):

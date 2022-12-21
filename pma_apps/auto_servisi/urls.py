@@ -7,6 +7,8 @@ from pma_apps.auto_servisi.views import (
     profil_servisa_update_view,
 )
 
+from . import views
+
 app_name = "auto_servisi"
 
 urlpatterns = [
@@ -27,5 +29,10 @@ urlpatterns = [
         "ponude_servisa/<str:username>/",
         ListaPonudaServisaView.as_view(),
         name="sve_ponude_servisa",
+    ),
+    path(
+        "submit_review/<int:profil_servisa_id>/",
+        views.submit_review,
+        name="submit_review",
     ),
 ]

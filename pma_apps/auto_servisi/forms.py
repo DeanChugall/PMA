@@ -2,7 +2,13 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from pma_apps.users.models import Servis, ServisProfile, SlikaLogoServisa, SlikeServisa
+from pma_apps.users.models import (
+    RatingServisa,
+    Servis,
+    ServisProfile,
+    SlikaLogoServisa,
+    SlikeServisa,
+)
 
 User = get_user_model()
 
@@ -118,3 +124,9 @@ class ImageLogoaServisaForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["slika_logo_servisa"].label = ""
         self.visible_fields()[0].field.widget.attrs["class"] = "form-control"
+
+
+class RatingServisaForm(forms.ModelForm):
+    class Meta:
+        model = RatingServisa
+        fields = ["subject", "review", "rating"]

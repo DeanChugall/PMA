@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
@@ -10,10 +11,18 @@ from pma_apps.auto_servisi.forms import (
     ImageLogoaServisaForm,
     ImageServisaForm,
     KreirajServisKorisnikaForm,
+    RatingServisaForm,
     UrediProfilServisaForm,
     UrediServisForm,
 )
-from pma_apps.users.models import Servis, ServisProfile, SlikaLogoServisa, SlikeServisa
+from pma_apps.users.models import (
+    RatingServisa,
+    Servis,
+    ServisProfile,
+    SlikaLogoServisa,
+    SlikeServisa,
+    Vozac,
+)
 
 
 class KreirajServisKorisnikaView(generic.CreateView):
@@ -34,6 +43,7 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
+        # TODO Proslediti broj ponuda servisa
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
         slika_profila_servisa = SlikeServisa.objects.all().filter(servis=servis).first()
@@ -41,12 +51,20 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
             SlikaLogoServisa.objects.all().filter(servis=servis).first()
         )
 
+        # Broj ponuda Servisa
+        broj_ponuda_servisa = Bid.objects.all().filter(servis=servis).count()
+
+        # Uzmi sve utiske
+        reviews = RatingServisa.objects.filter(servis_id=profil_servisa.id, status=True)
+
         context = {
             "categories": Category.objects.all(),
             "servis": servis,
+            "broj_ponuda_servisa": broj_ponuda_servisa,
             "profil_servisa": profil_servisa,
             "slika_profila_servisa": slika_profila_servisa,
             "slika_logo_servisa": slika_logo_servisa,
+            "reviews": reviews,
         }
 
         return context
@@ -205,3 +223,29 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         queryset = Servis.objects.all()
         return queryset
+
+
+def submit_review(request, profil_servisa_id):
+    url = request.META.get("HTTP_REFERER")
+    if request.method == "POST":
+        try:
+            reviews = RatingServisa.objects.get(
+                vozac_id=request.user.id, servis_id=profil_servisa_id
+            )
+            form = RatingServisaForm(request.POST, instance=reviews)
+            form.save()
+            messages.success(request, "Thank you! Your review has been updated.")
+            return redirect(url)
+        except RatingServisa.DoesNotExist:
+            form = RatingServisaForm(request.POST)
+            if form.is_valid():
+                data = RatingServisa()
+                data.subject = form.cleaned_data["subject"]
+                data.rating = form.cleaned_data["rating"]
+                data.review = form.cleaned_data["review"]
+                data.ip = request.META.get("REMOTE_ADDR")
+                data.servis = ServisProfile.objects.get(user=profil_servisa_id)
+                data.vozac = Vozac.objects.get(id=request.user.id)
+                data.save()
+                messages.success(request, "Thank you! Your review has been submitted.")
+                return redirect(url)
