@@ -20,6 +20,7 @@ from config.do_storages.do_storage import (
 )
 from pma_apps.utils.godista_automobila import GodisteAutomobila
 from pma_apps.utils.gradovi import Gradovi
+from pma_apps.utils.image_resize import image_resize
 from pma_apps.utils.marke_automobila import MarkeAutomobila
 from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa, RadniSatiServisa
 
@@ -390,7 +391,7 @@ class RatingServisa(models.Model):
 
 class SlikeServisa(models.Model):
     servis = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="get_slika_servisa"
+        Servis, on_delete=models.CASCADE, related_name="get_slika_servisa"
     )
     slika_servisa = models.ImageField(upload_to="slike_servisa/")
 
@@ -404,6 +405,7 @@ class SlikeServisa(models.Model):
         ordering = ["-id"]
 
     def save(self, *args, **kwargs):
+        image_resize(self.slika_servisa, 500, 500)
         super().save(*args, **kwargs)
 
 
@@ -423,6 +425,7 @@ class SlikaLogoServisa(models.Model):
         ordering = ["-id"]
 
     def save(self, *args, **kwargs):
+        image_resize(self.slika_logo_servisa, 500, 500)
         super().save(*args, **kwargs)
 
 

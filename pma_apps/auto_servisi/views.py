@@ -46,7 +46,7 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
         # TODO Proslediti broj ponuda servisa
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
-        slika_profila_servisa = SlikeServisa.objects.all().filter(servis=servis).first()
+        slika_servisa = SlikeServisa.objects.all().filter(servis=servis)[:1]
         slika_logo_servisa = (
             SlikaLogoServisa.objects.all().filter(servis=servis).first()
         )
@@ -62,7 +62,7 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
             "servis": servis,
             "broj_ponuda_servisa": broj_ponuda_servisa,
             "profil_servisa": profil_servisa,
-            "slika_profila_servisa": slika_profila_servisa,
+            "slika_servisa": slika_servisa,
             "slika_logo_servisa": slika_logo_servisa,
             "reviews": reviews,
         }

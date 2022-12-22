@@ -60,20 +60,27 @@
                                                     {% endif %}
                                                 </div>
                                             </div>
+                                            <!-- SOCIAL PROFILE SERVISA -->
                                             <div class="row">
                                                 <div class="px-0 px-sm-4">
                                                     <div class="social social-profile-buttons mt-5 float-end">
                                                         <div class="mt-3">
-                                                            <a class="social-icon text-primary" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
-                                                            <a class="social-icon text-primary" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
-                                                            <a class="social-icon text-primary" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
-                                                            <a class="social-icon text-primary" href="javascript:void(0)"><i class="fa fa-rss"></i></a>
-                                                            <a class="social-icon text-primary" href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                                                            <a class="social-icon text-primary" href="https://myaccount.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a>
+                                                            {% if profil_servisa.facebook_link %}
+                                                                <a class="social-icon text-primary" href="{{ profil_servisa.facebook_link }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                            {% elif profil_servisa.twitter_link %}
+                                                                <a class="social-icon text-primary" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                            {% elif profil_servisa.youtube_link %}
+                                                                <a class="social-icon text-primary" href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>
+                                                            {% elif profil_servisa.linkedin_link %}
+                                                                <a class="social-icon text-primary" href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                            {% else %}
+                                                                <br>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- END SOCIAL PROFILE SERVISA -->
                                         </div>
                                     </div>
                                 </div>
@@ -81,10 +88,24 @@
                         </div>
                         <!-- END HEADER PROFILA SERVISA -->
 
-
-                        <!-- STATISTIKA I BIOGRAFIJA -->
+                        <!-- STATISTIKA, SLIKA I BIOGRAFIJA -->
                         <div class="row">
                             <div class="col-xl-4">
+                                <!-- SLIKA SERVISA -->
+                                {% for image in slika_servisa %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src="{{ image.slika_servisa.url }}" class="img-fluid rounded-3 ">
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- END SLIKA SERVISA -->
+
                                 <!-- STATISTIKA -->
                                 <div class="card">
                                     <div class="card-body">
@@ -205,7 +226,7 @@
                                 </div>
                                 <!-- END BIOGRAFIJA -->
                             </div>
-                            <!-- END STATISTIKA I BIOGRAFIJA -->
+                            <!-- END STATISTIKA, SLIKA I BIOGRAFIJA -->
 
                             <!-- RATING STAR AND REVIEW -->
                             <div class="col-xl-8">
