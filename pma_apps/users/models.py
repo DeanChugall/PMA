@@ -209,6 +209,18 @@ class ServisProfile(models.Model):
         blank=True,
     )
 
+    slogan_servisa = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
+    email_servisa = models.EmailField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
     opis_servisa = models.TextField(null=True, blank=True)
 
     adresa_servisa = models.CharField(

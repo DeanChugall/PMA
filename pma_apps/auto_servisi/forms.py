@@ -85,6 +85,8 @@ class UrediProfilServisaForm(forms.ModelForm):
             "broj_telefona_servisa",
             "broj_telefona_vlasnika",
             "ime_servisa",
+            "slogan_servisa",
+            "email_servisa",
             "opis_servisa",
             "adresa_servisa",
             "datum_osnivanja",

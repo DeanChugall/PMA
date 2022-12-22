@@ -15,9 +15,10 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                    <!-- MESTO PREBIVALISTA VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Grad:</label>
+                            <label class="form-label">Mesto Prebilavišta:</label>
                             <select class="form-control select2 form-select" name="grad">
                                 {% for grad in detalji_servisa.grad %}
                                     {% render_field grad %}
@@ -25,38 +26,53 @@
                             </select>
                         </div>
                     </div>
+                    <!-- END MESTO PREBIVALISTA VLASNIKA SERVISA -->
+
+                    <!-- EMAIL ADRESA VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Email adresa:</label>
                             {% render_field detalji_servisa.email class="form-control" placeholder="Email"  %}
                         </div>
                     </div>
+                    <!-- END EMAIL ADRESA VLASNIKA SERVISA -->
+
+                    <!-- KORISNICKO IME VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Korisničko Ime:</label>
                             {% render_field detalji_servisa.username class="form-control" placeholder="Username" readonly="readonly" %}
                         </div>
                     </div>
+                    <!-- END KORISNICKO IME VLASNIKA SERVISA -->
                 </div>
                 <div class="row">
+                    <!-- TELEFON VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Telefon:</label>
                             {% render_field detalji_profila_servisa.broj_telefona_vlasnika class="form-control" placeholder="Broj Telefona" %}
                         </div>
                     </div>
+                    <!-- END TELEFON VLASNIKA SERVISA -->
+
+                    <!-- IME VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Ime:</label>
                             {% render_field detalji_servisa.first_name class="form-control" placeholder="Ime" %}
                         </div>
                     </div>
+                    <!-- END IME VLASNIKA SERVISA -->
+
+                    <!-- PREZIME VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Prezime:</label>
                             {% render_field detalji_servisa.last_name class="form-control" placeholder="Prezime" %}
                         </div>
                     </div>
+                    <!-- END PREZIME VLASNIKA SERVISA -->
                 </div>
 
             </div>
@@ -88,14 +104,14 @@
                     </div>
                     <!-- END NAZIV AUTO SERVISA -->
 
-                    <!-- ADRESA AUTO SERVISA -->
+                    <!-- SLOGAN AUTO SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Adresa Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.adresa_servisa class="form-control form-control-lg" placeholder="Adresa Servisa nije uneta..." %}
+                            <label class="form-label">Slogan Auto Servisa:</label>
+                            {% render_field detalji_profila_servisa.slogan_servisa class="form-control form-control-lg" placeholder="Slogan Servisa nije uneta..." %}
                         </div>
                     </div>
-                    <!-- END ADRESA AUTO SERVISA -->
+                    <!-- END SLOGAN AUTO SERVISA -->
 
                     <!-- GRAD AUTO SERVISA -->
                     <div class="col-md-4 mb-2">
@@ -106,14 +122,14 @@
                     </div>
                     <!-- END GRAD AUTO SERVISA -->
 
-                    <!-- DATUM OSNIVANJA AUTO SERVISA -->
+                    <!-- ADRESA AUTO SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Datum Osnivanja Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.datum_osnivanja class="form-control form-control-lg" placeholder="Datum Osnivanja Servisa nije unet..." %}
+                            <label class="form-label">Adresa Auto Servisa:</label>
+                            {% render_field detalji_profila_servisa.adresa_servisa class="form-control form-control-lg" placeholder="Adresa Servisa nije uneta..." %}
                         </div>
                     </div>
-                    <!-- END DATUM OSNIVANJA AUTO SERVISA -->
+                    <!-- END ADRESA AUTO SERVISA -->
 
                     <!-- BROJ TELEFONA AUTO SERVISA -->
                     <div class="col-md-4 mb-2">
@@ -123,6 +139,24 @@
                         </div>
                     </div>
                     <!-- END BROJ TELEFONA AUTO SERVISA -->
+
+                    <!-- EMAIL AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">E-mail Auto Servisa:</label>
+                            {% render_field detalji_profila_servisa.email_servisa class="form-control form-control-lg" placeholder="Email Servisa nije uneta..." %}
+                        </div>
+                    </div>
+                    <!-- END EMAIL AUTO SERVISA -->
+
+                    <!-- DATUM OSNIVANJA AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Datum Osnivanja Auto Servisa:</label>
+                            {% render_field detalji_profila_servisa.datum_osnivanja class="form-control form-control-lg" placeholder="Datum Osnivanja Servisa nije unet..." %}
+                        </div>
+                    </div>
+                    <!-- END DATUM OSNIVANJA AUTO SERVISA -->
 
                     <!-- PIB AUTO SERVISA -->
                     <div class="col-md-4 mb-2">
