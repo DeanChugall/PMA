@@ -43,7 +43,7 @@ def ponude_view(request):
         {
             "categories": Category.objects.all(),
             "auctions_obj": auctions_obj,
-            "auctions_count": Auction.objects.all().count(),
+            "auctions_count": Auction.objects.filter(active=True).count(),
             "bids_count": Bid.objects.all().count(),
             "categories_count": Category.objects.all().count(),
             "users_count": VozacProfile.objects.all().count(),
@@ -112,6 +112,8 @@ def detalji_zahteva_view(request, zahtev_id):
 
     # Filtrirane ponude Auto Servisa za odredjeni zahtev za ponudu.
     ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
+    # print(f"servis profile: {ponude_auto_servisa[0].servis.id}")
+    # profil_servisa = ServisProfile.objects.filter(user_id=ponude_auto_servisa.fil.servis)
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
     preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:3]
@@ -413,13 +415,15 @@ def ponuda_zahteva_view(request, zahtev_id):
     auction = Auction.objects.get(id=zahtev_id)
     amount = Decimal(request.POST["amount"].replace(",", "."))
 
+    profil_servisa = ServisProfile.objects.get(user_id=request.user.id)
+
     auction.current_bid = amount
     form = BidForm(request.POST)
     if form.is_valid():
 
         new_bid = form.save(commit=False)
         new_bid.auction = auction
-        new_bid.servis = request.user
+        new_bid.servis = profil_servisa
         new_bid.save()
         auction.save()
 

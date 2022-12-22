@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from pma_apps.users.models import User, VozacProfile
+from pma_apps.users.models import ServisProfile, User, VozacProfile
 from pma_apps.utils.image_resize import image_resize
 
 
@@ -70,7 +70,7 @@ class Bid(models.Model):
     auction = models.ForeignKey(
         Auction, on_delete=models.CASCADE, related_name="get_bids"
     )
-    servis = models.ForeignKey(User, on_delete=models.CASCADE)
+    servis = models.ForeignKey(ServisProfile, on_delete=models.CASCADE)
     amount = models.DecimalField(
         max_digits=10, decimal_places=2, blank=False, null=False
     )

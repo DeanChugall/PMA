@@ -110,7 +110,11 @@
                                     <div class="card-body pt-0">
                                         <div class="product-content text-center">
                                             {% if ponude_auto_servisa_zadnja_cena.amount %}
-                                                <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis }}</h1>
+                                                {% if ponude_auto_servisa_zadnja_cena.servis.ime_servisa %}
+                                                    <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis.ime_servisa }}</h1>
+                                                {% else %}
+                                                    <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis.username }}</h1>
+                                                {% endif %}
                                                 <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.amount }} rsd</h1>
                                             {% else %}
                                                 <h1 class="title fw-bold fs-20">Nema cene za ovaj zahtev. </h1>
@@ -142,7 +146,7 @@
                                             {% elif auction.buyer is not None %}
                                                 {% if auction.creator == user %}
                                                     <div class='alert alert-secondary' role='alert'>
-                                                        Zahtev je već odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
+                                                        Zahtev je odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
                                                     </div>
                                                 {% endif %}
                                             {% endif %}
@@ -169,8 +173,9 @@
                                     <div class='card-body'>
                                         {% if auction.creator == user %}
                                             <div class='alert alert-success' role='alert'>
-                                                Zahtev je već odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
-                                            </div>
+                                                Zahtev je odobren servisu: <strong>
+                                                    <a href="{% url 'auto_servis:detalji_servisa' auction.buyer.username  %}">{{ auction.buyer }}</a>
+                                                </strong> za <strong>{{ auction.current_bid }} rsd</strong>.</div>
                                         {% elif auction.buyer == user %}
                                             <div class='alert alert-success' role='alert'>
                                                 Čestitamo, Vaša ponuda je prihvaćena:  <strong>{{ auction.title }} za {{ auction.current_bid }} rsd</strong>.

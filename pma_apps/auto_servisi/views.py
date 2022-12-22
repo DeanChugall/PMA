@@ -52,7 +52,7 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
         )
 
         # Broj ponuda Servisa
-        broj_ponuda_servisa = Bid.objects.all().filter(servis=servis).count()
+        broj_ponuda_servisa = Bid.objects.all().filter(servis=profil_servisa).count()
 
         # Uzmi sve utiske
         reviews = RatingServisa.objects.filter(servis_id=profil_servisa.id, status=True)
@@ -151,7 +151,9 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
 
-        ponude = Bid.objects.all().filter(servis_id=self.request.user.id)
+        profil_servisa = ServisProfile.objects.get(user_id=self.request.user.id)
+
+        ponude = Bid.objects.all().filter(servis=profil_servisa)
 
         id_pracenog_zahteva = self.request.user.watchlist.all()
 

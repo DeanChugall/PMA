@@ -8,9 +8,15 @@
                     </div>
                     <div class="card-body pt-0">
                         <div class="product-content text-center">
-                            <h1 class="title fw-bold fs-20">
-                                <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.username  %}">{{ ponuda.servis }}</a>
-                            </h1>
+                            {% if ponuda.servis.ime_servisa %}
+                                <h1 class="title fw-bold fs-20">
+                                    <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username  %}">{{ ponuda.servis.ime_servisa }}</a>
+                                </h1>
+                            {% else %}
+                                <h1 class="title fw-bold fs-20">
+                                    <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username  %}">{{ ponuda.servis.user.username }}</a>
+                                </h1>
+                            {% endif %}
                             <div class="mb-2 text-warning">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -49,7 +55,7 @@
                     <!-- END PRIHVATI PONUDU -->
 
                     <!-- BRISANJE PONUDE ZAHTEVA-->
-                    {% if ponuda.servis == user and auction.active %}
+                    {% if ponuda.servis.user == user and auction.active %}
                         <form method="POST" action="{% url 'ponude:obrisi_ponudu_zahteva' ponuda.id %}">
                             <!-- Modal -->
                             <div class="modal fade" id="obrisiPonuduModal" tabindex="-1" aria-labelledby="obrisiPonuduModalLabel" aria-hidden="true">
