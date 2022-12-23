@@ -4,7 +4,7 @@
 {% block title %} Auto Servis: {{ user.username }} {% endblock %}
 
 {% block meta_data %}
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns="http://www.w3.org/1999/html">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="@PMA Technologies Private Limited">
@@ -295,20 +295,33 @@
                                                         <small class="text-muted">{{review.updated_at}}</small>
                                                     </div>
                                                 </div>
-                                                <div class="ms-auto">
-                                                    <div class="dropdown show">
-                                                        <a class="new option-dots" href="JavaScript:void(0);" data-bs-toggle="dropdown">
-                                                            <span class=""><i class="fe fe-more-vertical"></i></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="javascript:void(0)">Delete Post</a>
+                                                <!-- BRISANJE UTISKA -->
+                                                {% if review.vozac == user %}
+                                                    <div class="ms-auto">
+                                                        <div class="dropdown show">
+                                                            <a class="new option-dots" href="JavaScript:void(0);" data-bs-toggle="dropdown">
+                                                                <span class=""><i class="fe fe-more-vertical"></i></span>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <form action='{% url "auto_servis:obrisi_utisak_servisa" review.id %}'
+                                                                    class="ogin100-form validate-form"
+                                                                    method='POST'>
+                                                                    {% csrf_token %}
+                                                                    <button class="btn btn-outline-danger btn-sm btn-block"
+                                                                        type="submit"
+                                                                        value="Obriši {{ review.id }}">
+                                                                        <i class="fa fa-trash-o"></i>&nbsp;Obriši Utisak
+                                                                    </button>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                {% endif %}
+                                                <!-- END BRISANJE UTISKA -->
                                             </div>
                                             <div class="mt-4">
                                                 <h4 class="fw-semibold mt-3">{{ review.subject }}</h4>
-                                                <p class="mb-0">{{review.review}}
+                                                <p class="mb-0">{{ review.review }}
                                                 </p>
                                             </div>
                                         </div>

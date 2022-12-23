@@ -249,5 +249,15 @@ def submit_review(request, profil_servisa_id):
                 data.servis = ServisProfile.objects.get(user=profil_servisa_id)
                 data.vozac = Vozac.objects.get(id=request.user.id)
                 data.save()
-                messages.success(request, "Thank you! Your review has been submitted.")
+                messages.success(request, "Hvala! Vaš utisak je uspešno postavljen.")
                 return redirect(url)
+
+
+class ObrisiReviewVozacaView(LoginRequiredMixin, generic.DeleteView):
+    model = RatingServisa
+
+    context_object_name = "obrisi_utisak_servisa"
+    success_message = " Uspešno obrisan utisak."
+
+    def get_success_url(self):
+        return self.request.META.get("HTTP_REFERER")
