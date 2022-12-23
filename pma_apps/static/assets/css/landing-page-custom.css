@@ -1,0 +1,30 @@
+.tblColEllipsis {
+    max-width: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.img-wrapper {
+    position: relative;
+    padding-bottom: 60%;
+    overflow: hidden;
+    width: 100%;
+}
+
+.img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-toggler-icon {
+    padding-left: 70px !important;
+    padding-right: 20px !important;
+}
+.app-sidebar__toggle {
+    padding-left: 20px !important;
+    padding-right: 70px !important;
+}
