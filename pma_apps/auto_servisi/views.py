@@ -155,6 +155,10 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
 
         ponude = Bid.objects.all().filter(servis=profil_servisa)
 
+        prihvacene_ponude = Auction.objects.all().filter(
+            buyer__username=self.kwargs["username"]
+        )
+
         id_pracenog_zahteva = self.request.user.watchlist.all()
 
         for auction in ponude:
@@ -176,6 +180,7 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
             "zahtevi_vozaca": ponude,
             "pages": pages,
             "id_pracenog_zahteva": id_pracenog_zahteva,
+            "prihvacene_ponude": prihvacene_ponude,
         }
 
         return context
@@ -186,25 +191,30 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
 
 
 class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
-    """
-    Not in use for now ..... Za listing svih ponuda koje je Serviser dobio.
-    """
-
-    template_name = "auto_servis/sve-ponude-jednog-servisa.html"
+    template_name = "auto_servis/sve-prihvacene-ponude-servisa.html"
     context_object_name = "sve_ponude_servisa"
 
     def get_context_data(self, **kwargs):
 
-        auctions = Auction.objects.all().filter(buyer__username=self.kwargs["username"])
+        profil_servisa = ServisProfile.objects.get(user_id=self.request.user.id)
+
+        # sve ponude ali isto tako i samo one koje su prihvacene.
+        # To je za prikaz u sekciji listinga svih prihvacenih ponuda.
+        ponude = (
+            Bid.objects.all()
+            .filter(servis=profil_servisa)
+            .select_related("auction")
+            .filter(auction__buyer__username=self.kwargs["username"])
+        )
 
         id_pracenog_zahteva = self.request.user.watchlist.all()
 
-        for auction in auctions:
-            auction.image = auction.get_images.first()
-            auction.amount = auction.get_bids.first()
+        for auction in ponude:
+            auction.image = auction.auction.get_images.first()
+            auction.amount = auction.auction.get_bids.first()
 
         page = self.request.GET.get("page", 1)
-        paginator = Paginator(auctions, 9)
+        paginator = Paginator(ponude, 9)
 
         try:
             pages = paginator.page(page)
@@ -215,7 +225,7 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
 
         context = {
             "categories": Category.objects.all(),
-            "zahtevi_vozaca": auctions,
+            "zahtevi_vozaca": ponude,
             "pages": pages,
             "id_pracenog_zahteva": id_pracenog_zahteva,
         }

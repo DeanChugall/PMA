@@ -212,7 +212,7 @@ def prihvati_ponudu_zahteva_view(request, pk):
     if request.user == zahtev.creator:
         zahtev.active = False
         zahtev.buyer = (
-            Bid.objects.filter(auction=zahtev).filter(id=ponuda.id).last().servis
+            Bid.objects.filter(auction=zahtev).filter(id=ponuda.id).last().servis.user
         )
         zahtev.current_bid = ponuda.amount
         zahtev.save()

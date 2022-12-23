@@ -4,6 +4,7 @@ from pma_apps.auto_servisi.views import (
     DetaljiServisaView,
     KreirajServisKorisnikaView,
     ListaPonudaServisaView,
+    ListaPrihvacenihPonudaServisaView,
     ObrisiReviewVozacaView,
     profil_servisa_update_view,
 )
@@ -30,6 +31,11 @@ urlpatterns = [
         "ponude_servisa/<str:username>/",
         ListaPonudaServisaView.as_view(),
         name="sve_ponude_servisa",
+    ),
+    path(
+        "prihvacene_ponude_servisa/<str:username>/",
+        ListaPrihvacenihPonudaServisaView.as_view(),
+        name="sve_prihvacene_ponude_servisa",
     ),
     path(
         "submit_review/<int:profil_servisa_id>/",
