@@ -65,19 +65,22 @@
                                                 <div class="px-0 px-sm-4">
                                                     <div class="social social-profile-buttons mt-5 float-end">
                                                         <div class="mt-3">
+                                                            {% if profil_servisa.web_site_servisa %}
+                                                                <a class="social-icon text-white" href="https://{{ profil_servisa.web_site_servisa }}" target="_blank"><i class="fa fa-globe"></i></a>
+                                                            {% endif %}
                                                             {% if profil_servisa.twitter_link %}
-                                                                <a class="social-icon text-primary" href="https://{{ profil_servisa.twitter_link }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                <a class="social-icon text-white" href="https://{{ profil_servisa.twitter_link }}" target="_blank"><i class="fa fa-twitter"></i></a>
                                                             {% endif %}
                                                             {% if profil_servisa.facebook_link %}
-                                                                <a class="social-icon text-primary" href="https://{{ profil_servisa.facebook_link }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                <a class="social-icon text-white" href="https://{{ profil_servisa.facebook_link }}" target="_blank"><i class="fa fa-facebook"></i></a>
                                                             {% endif %}
 
                                                             {% if profil_servisa.youtube_link %}
-                                                                <a class="social-icon text-primary" href="https://{{ profil_servisa.youtube_link.url }}" target="_blank"><i class="fa fa-youtube"></i></a>
+                                                                <a class="social-icon text-white" href="https://{{ profil_servisa.youtube_link.url }}" target="_blank"><i class="fa fa-youtube"></i></a>
                                                             {% endif %}
 
                                                             {% if profil_servisa.linkedin_link %}
-                                                                <a class="social-icon text-primary" href="https://{{ profil_servisa.linkedin_link }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                <a class="social-icon text-white" href="https://{{ profil_servisa.linkedin_link }}" target="_blank"><i class="fa fa-linkedin"></i></a>
                                                             {% endif %}
                                                             <br>
                                                         </div>

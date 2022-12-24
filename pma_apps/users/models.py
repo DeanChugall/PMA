@@ -281,23 +281,29 @@ class ServisProfile(models.Model):
         default=RadniSatiServisa.NEARADAN_DAN,
     )
 
+    web_site_servisa = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+    )
+
     facebook_link = models.CharField(
-        max_length=250,
+        max_length=100,
         null=True,
         blank=True,
     )
     youtube_link = models.CharField(
-        max_length=250,
+        max_length=100,
         null=True,
         blank=True,
     )
     twitter_link = models.CharField(
-        max_length=250,
+        max_length=100,
         null=True,
         blank=True,
     )
     linkedin_link = models.CharField(
-        max_length=250,
+        max_length=100,
         null=True,
         blank=True,
     )

@@ -88,6 +88,7 @@ class UrediProfilServisaForm(forms.ModelForm):
             "opis_servisa",
             "adresa_servisa",
             "datum_osnivanja",
+            "web_site_servisa",
             "facebook_link",
             "youtube_link",
             "twitter_link",

@@ -9,7 +9,7 @@
         {{ detalji_servisa.role }}
 
         <!-- EDIT PROFILA VLASNIKA SERVISA -->
-        <div class="card">
+        <div class="card  text-white bg-indigo-darkest">
             <div class="card-header">
                 <h3 class="card-title">Osnovni Podaci Vlasnika Servisa</h3>
             </div>
@@ -86,10 +86,10 @@
                 </a>
             </div>
         </div>
-        <!-- ENFD EDIT PROFILA VLASNIKA SERVISA -->
+        <!-- END EDIT PROFILA VLASNIKA SERVISA -->
 
         <!-- EDIT PROFILA AUTO SERVISA -->
-        <div class="card" id="automobil">
+        <div class="card" id="profil_auto_servisa">
             <div class="card-header">
                 <h3 class="card-title">Uređivanje Profila Auto Servisa</h3>
             </div>
@@ -184,43 +184,37 @@
                         </div>
                     </div>
                     <!-- END SPECIJALIZOVAN ZA  AUTO SERVISA -->
-
-                    <!-- FACEBOOK LINK AUTO SERVISA -->
-                    <div class="col-md-4 mb-2">
+                </div>
+                <div class="row">
+                    <!-- OPIS AUTO SERVISA -->
+                    <div class="col-md-12 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Facebook Link:</label>
-                            {% render_field detalji_profila_servisa.facebook_link class="form-control" placeholder="Facebook Link Servisa nije unet..." %}
+                            <label class="form-label">Opis Servisa </label>
+                            {% render_field detalji_profila_servisa.opis_servisa class="form-control" placeholder="Opis Servisa nije unet...*(max 400 karaktera)" %}
                         </div>
                     </div>
-                    <!-- END FACEBOOK LINK AUTO SERVISA -->
+                    <!-- END OPIS AUTO SERVISA -->
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                {{ form.errors }}
+                <button type='submit' class='btn btn-success my-1'>
+                    <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                </button>
+                <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
+                    <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                </a>
+            </div>
+        </div>
+        <!-- END EDIT PROFILA AUTO SERVISA -->
 
-                    <!-- YOUTUBE LINK AUTO SERVISA -->
-                    <div class="col-md-4 mb-2">
-                        <div class="form-group">
-                            <label class="form-label">Youtube Link: <small>*( bez 'https://' )</small></label>
-                            {% render_field detalji_profila_servisa.youtube_link class="form-control" placeholder="Youtube Link Servisa nije unet..." %}
-                        </div>
-                    </div>
-                    <!-- END YOUTUBE LINK AUTO SERVISA -->
-
-                    <!-- TWITTER LINK AUTO SERVISA -->
-                    <div class="col-md-4 mb-2">
-                        <div class="form-group">
-                            <label class="form-label">Twitter Link: <small>*( bez 'https://' )</small></label>
-                            {% render_field detalji_profila_servisa.twitter_link class="form-control" placeholder="Twitter Link Servisa nije unet..." %}
-                        </div>
-                    </div>
-                    <!-- END TWITTER LINK AUTO SERVISA -->
-
-                    <!-- LINKEDIN LINK AUTO SERVISA -->
-                    <div class="col-md-4 mb-2">
-                        <div class="form-group">
-                            <label class="form-label">LinkedIn Link: <small>*( bez 'https://' )</small></label>
-                            {% render_field detalji_profila_servisa.linkedin_link class="form-control" placeholder="LinkedIn Link Servisa nije unet..." %}
-                        </div>
-                    </div>
-                    <!-- END LINKEDIN LINK AUTO SERVISA -->
-
+        <!-- EDIT SLIKA AUTO SERVISA -->
+        <div class="card text-white bg-indigo-darkest" id="slike_auto_servisa">
+            <div class="card-header">
+                <h3 class="card-title">Uređivanje Slika Auto Servisa</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
                     <!-- SLIKA LOGO SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
@@ -244,15 +238,6 @@
                         </div>
                     </div>
                     <!-- END SLIKA SERVISA -->
-
-                    <!-- OPIS AUTO SERVISA -->
-                    <div class="col-md-12 mb-2">
-                        <div class="form-group">
-                            <label class="form-label">Opis Servisa </label>
-                            {% render_field detalji_profila_servisa.opis_servisa class="form-control" placeholder="Opis Servisa nije unet...*(max 400 karaktera)" %}
-                        </div>
-                    </div>
-                    <!-- END OPIS AUTO SERVISA -->
                 </div>
             </div>
             <div class="card-footer text-end">
@@ -265,7 +250,7 @@
                 </a>
             </div>
         </div>
-        <!-- END EDIT PROFILA AUTO SERVISA -->
+        <!-- END SLIKA PROFILA AUTO SERVISA -->
 
         <!-- EDIT RADNO VREME AUTO SERVISA -->
         <div class="row" id="radno_vreme_servisa">
@@ -415,11 +400,77 @@
         </div>
         <!-- END EDIT RADNO VREME AUTO SERVISA -->
 
+        <!-- EDIT SOCIAL PROFILA AUTO SERVISA -->
+        <div class="card text-white bg-indigo-darkest" id="social_auto_servisa">
+            <div class="card-header card-header-color">
+                <h3 class="card-title text-white">Social Profil Auto Servisa</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- WEB SITE AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Website Servisa: <small>*( bez 'https://' )</small></label>
+                            {% render_field detalji_profila_servisa.web_site_servisa class="form-control" placeholder="Website Servisa nije unet..." %}
+                        </div>
+                    </div>
+                    <!-- END WEB SITE AUTO SERVISA -->
+
+                    <!-- FACEBOOK LINK AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Facebook Link: <small>*( bez 'https://' )</small></label>
+                            {% render_field detalji_profila_servisa.facebook_link class="form-control" placeholder="Facebook Link Servisa nije unet..." %}
+                        </div>
+                    </div>
+                    <!-- END FACEBOOK LINK AUTO SERVISA -->
+
+                    <!-- YOUTUBE LINK AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Youtube Link: <small>*( bez 'https://' )</small></label>
+                            {% render_field detalji_profila_servisa.youtube_link class="form-control" placeholder="Youtube Link Servisa nije unet..." %}
+                        </div>
+                    </div>
+                    <!-- END YOUTUBE LINK AUTO SERVISA -->
+
+                    <!-- TWITTER LINK AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">Twitter Link: <small>*( bez 'https://' )</small></label>
+                            {% render_field detalji_profila_servisa.twitter_link class="form-control" placeholder="Twitter Link Servisa nije unet..." %}
+                        </div>
+                    </div>
+                    <!-- END TWITTER LINK AUTO SERVISA -->
+
+                    <!-- LINKEDIN LINK AUTO SERVISA -->
+                    <div class="col-md-4 mb-2">
+                        <div class="form-group">
+                            <label class="form-label">LinkedIn Link: <small>*( bez 'https://' )</small></label>
+                            {% render_field detalji_profila_servisa.linkedin_link class="form-control" placeholder="LinkedIn Link Servisa nije unet..." %}
+                        </div>
+                    </div>
+                    <!-- END LINKEDIN LINK AUTO SERVISA -->
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                {{ form.errors }}
+                <button type='submit' class='btn btn-success my-1'>
+                    <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                </button>
+                <a href="{% url 'auto_servis:detalji_servisa' request.user.username  %}" class="btn btn-danger my-1">
+                    <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                </a>
+            </div>
+        </div>
+        <!-- END EDIT SOCIAL PROFILA AUTO SERVISA -->
+
         <!-- EDIT NOTIFIKACIJE -->
         {% include 'auto_servis/partials/partials-notifikacije-sigurnost-servisi.html' %}
         <!-- END EDIT NOTIFIKACIJE -->
-    </form>
-    <div class="col-lg-12">
+
+        <div class="row" id="brisanje_naloga">
+            <div class="col-lg-12">
         <!-- BRISANJE NALOGA -->
         <div class="card">
             <div class="card-header">
@@ -445,5 +496,8 @@
         </div>
         <!-- END BRISANJE NALOGA -->
     </div>
+        </div>
+    </form>
+
 </div>
 <!-- END PROMENA PROFILA -->
