@@ -93,7 +93,7 @@
                                                                     <div class="br-be-0 br-te-0">
                                                                         <a href="{% url 'auto_servis:detalji_servisa' servis.user.username  %}" class="">
                                                                             <img class="cover-image br-7 w-100"
-                                                                                src="{{ servis.slika_logo_servisa.slika_logo_servisa.url|default:'/static/assets/images/auctions/nema-servis-slike.jpg' }}"
+                                                                                src="{{ servis.slika_logo_servisa.slika_logo_servisa.url|default:'/static/assets/images/auto-servisi/nema-servis-slike.jpg' }}"
                                                                                 alt="img">
                                                                         </a>
                                                                     </div>
@@ -157,7 +157,13 @@
                                                                         <div class="price h3 text-center mb-5 fw-bold">{{ servis.user.get_grad_servisa }}</div>
                                                                     {% endif %}
                                                                     <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil</a>
-                                                                    <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block"><i class="fe fe-phone-call mx-2"></i>Pozovi Servis</a>
+                                                                    {% if servis.broj_telefona_servisa %}
+                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block"><i class="fe fe-phone-call mx-2"></i>Pozovi Servis</a>
+                                                                    {% elif servis.broj_telefona_vlasnika %}
+                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block"><i class="fe fe-phone-call mx-2"></i>Pozovi Servis</a>
+                                                                    {% else %}
+                                                                        <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-primary btn-block"><i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!</a>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                         </div>
