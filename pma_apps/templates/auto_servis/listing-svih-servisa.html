@@ -82,6 +82,7 @@
                                                 <div class="card overflow-hidden">
                                                     <div class="card-body">
                                                         <div class="row g-0">
+                                                            <!-- SLIKA SERVISA -->
                                                             <div class="col-xl-3 col-lg-12 col-md-12">
                                                                 <div class="product-list">
                                                                     <div class="product-image">
@@ -99,6 +100,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- END SLIKA SERVISA -->
+
+                                                            <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
                                                             <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
                                                                 <div class="card-body">
                                                                     <div class="mb-3">
@@ -118,54 +122,102 @@
                                                                             </div>
                                                                         </a>
                                                                         <hr/>
-                                                                        {% if servis.opis_servisa %}
-                                                                            <p class="fs-16">{{ servis.opis_servisa }} </p>
+                                                                        {% if servis.slogan_servisa %}
+                                                                            <p class="fs-16">{{ servis.slogan_servisa }} </p>
                                                                         {% else %}
-                                                                            <p class="fs-16">nema opisa </p>
+                                                                            <p class="fs-16">...nema slogana servisa...</p>
                                                                         {% endif %}
                                                                         <div class="row">
                                                                             <div class="px-0 px-sm-4">
+                                                                                <!-- POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
+                                                                                <div class="card-body p-0 d-lg-none">
+                                                                                    {% if servis.grad_auto_servisa %}
+                                                                                        <div class="price h3 text-center mb-5 fw-bold">{{ servis.get_grad_servisa }}</div>
+                                                                                    {% else %}
+                                                                                        <div class="price h3 text-center mb-5 fw-bold">{{ servis.user.get_grad_servisa }}</div>
+                                                                                    {% endif %}
+                                                                                    <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
+                                                                                        <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
+                                                                                    </a>
+                                                                                    {% if servis.broj_telefona_servisa %}
+                                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                                                            <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                                                                        </a>
+                                                                                    {% elif servis.broj_telefona_vlasnika %}
+                                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                                                            <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                                                                        </a>
+                                                                                    {% else %}
+                                                                                        <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-primary btn-block">
+                                                                                            <i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!
+                                                                                        </a>
+                                                                                    {% endif %}
+                                                                                </div>
+                                                                                <!-- END POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
+
+                                                                                <!-- SOCIAL ICONS SERVISA -->
                                                                                 <div class="social social-profile-buttons mt-5 float-end">
                                                                                     <div class="mt-3">
                                                                                         {% if servis.twitter_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.twitter_link }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.twitter_link }}" target="_blank">
+                                                                                                <i class="fa fa-twitter"></i>
+                                                                                            </a>
                                                                                         {% endif %}
                                                                                         {% if servis.facebook_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.facebook_link }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.facebook_link }}" target="_blank">
+                                                                                                <i class="fa fa-facebook"></i>
+                                                                                            </a>
                                                                                         {% endif %}
 
                                                                                         {% if servis.youtube_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.youtube_link.url }}" target="_blank"><i class="fa fa-youtube"></i></a>
+                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.youtube_link.url }}" target="_blank">
+                                                                                                <i class="fa fa-youtube"></i>
+                                                                                            </a>
                                                                                         {% endif %}
 
                                                                                         {% if servis.linkedin_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.linkedin_link }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.linkedin_link }}" target="_blank">
+                                                                                                <i class="fa fa-linkedin"></i>
+                                                                                            </a>
                                                                                         {% endif %}
                                                                                         <br>
                                                                                     </div>
                                                                                 </div>
+                                                                                <!-- END SOCIAL ICONS SERVISA -->
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                            <!-- END IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
+
+                                                            <!-- POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA VELIKIM REZOLUCIJAMA -->
+                                                            <div class="col-xl-3 col-lg-12 col-md-1 my-auto d-none d-lg-block">
                                                                 <div class="card-body p-0">
                                                                     {% if servis.grad_auto_servisa %}
                                                                         <div class="price h3 text-center mb-5 fw-bold">{{ servis.get_grad_servisa }}</div>
                                                                     {% else %}
                                                                         <div class="price h3 text-center mb-5 fw-bold">{{ servis.user.get_grad_servisa }}</div>
                                                                     {% endif %}
-                                                                    <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil</a>
+                                                                    <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
+                                                                        <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
+                                                                    </a>
                                                                     {% if servis.broj_telefona_servisa %}
-                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block"><i class="fe fe-phone-call mx-2"></i>Pozovi Servis</a>
+                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                                            <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                                                        </a>
                                                                     {% elif servis.broj_telefona_vlasnika %}
-                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block"><i class="fe fe-phone-call mx-2"></i>Pozovi Servis</a>
+                                                                        <a href="tel: {{ servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                                            <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                                                        </a>
                                                                     {% else %}
-                                                                        <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-primary btn-block"><i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!</a>
+                                                                        <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-primary btn-block">
+                                                                            <i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!
+                                                                        </a>
                                                                     {% endif %}
                                                                 </div>
                                                             </div>
+                                                            <!-- END POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA VELIKIM REZOLUCIJAMA -->
                                                         </div>
                                                     </div>
                                                 </div>
