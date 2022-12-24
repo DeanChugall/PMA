@@ -108,7 +108,7 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Slogan Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.slogan_servisa class="form-control form-control-lg" placeholder="Slogan Servisa nije uneta..." %}
+                            {% render_field detalji_profila_servisa.slogan_servisa class="form-control form-control-lg" placeholder="Slogan Servisa nije uneta...*(max 100 karaktera)" %}
                         </div>
                     </div>
                     <!-- END SLOGAN AUTO SERVISA -->
@@ -248,8 +248,8 @@
                     <!-- OPIS AUTO SERVISA -->
                     <div class="col-md-12 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Opis Servisa</label>
-                            {% render_field detalji_profila_servisa.opis_servisa class="form-control" placeholder="Opis Servisa nije unet..." %}
+                            <label class="form-label">Opis Servisa </label>
+                            {% render_field detalji_profila_servisa.opis_servisa class="form-control" placeholder="Opis Servisa nije unet...*(max 400 karaktera)" %}
                         </div>
                     </div>
                     <!-- END OPIS AUTO SERVISA -->

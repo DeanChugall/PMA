@@ -46,9 +46,9 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
         # TODO Proslediti broj ponuda servisa
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
-        slika_servisa = SlikeServisa.objects.all().filter(servis=servis)[:1]
+        slika_servisa = SlikeServisa.objects.all().filter(servis=profil_servisa)[:1]
         slika_logo_servisa = (
-            SlikaLogoServisa.objects.all().filter(servis=servis).first()
+            SlikaLogoServisa.objects.all().filter(servis=profil_servisa).first()
         )
 
         # Broj ponuda Servisa
@@ -115,7 +115,7 @@ def profil_servisa_update_view(request, username):
                 if servis_form:
                     image = servis_form["slika_servisa"]
 
-                    new_image = SlikeServisa(servis=servis, slika_servisa=image)
+                    new_image = SlikeServisa(servis=servis_profile, slika_servisa=image)
                     new_image.save()
 
             for servis_form in slika_logoa_image_form.cleaned_data:
@@ -123,7 +123,7 @@ def profil_servisa_update_view(request, username):
                     image = servis_form["slika_logo_servisa"]
 
                     new_image = SlikaLogoServisa(
-                        servis=servis, slika_logo_servisa=image
+                        servis=servis_profile, slika_logo_servisa=image
                     )
                     new_image.save()
 
@@ -143,6 +143,44 @@ def profil_servisa_update_view(request, username):
     }
 
     return render(request, "auto_servis/uredi-auto-servis.html", context)
+
+
+class ListaSvihServisaView(LoginRequiredMixin, generic.ListView):
+    template_name = "auto_servis/listing-svih-servisa.html"
+    context_object_name = "lista_svih_servisa"
+
+    def get_context_data(self, **kwargs):
+
+        profil_servisa = ServisProfile.objects.all()
+
+        # reviews = RatingServisa.objects.filter(servis_id=profil_servisa.id, status=True)
+
+        # Get Last uploaded logo image for Servis
+        for servis in profil_servisa:
+            servis.slika_logo_servisa = servis.get_slika_logo_servisa.first()
+            servis.rating = servis.averageReview
+
+        page = self.request.GET.get("page", 1)
+        paginator = Paginator(profil_servisa, 3)
+
+        try:
+            pages = paginator.page(page)
+        except PageNotAnInteger:
+            pages = paginator.page(1)
+        except EmptyPage:
+            pages = paginator.page(paginator.num_pages)
+
+        context = {
+            "profil_servisa": profil_servisa,
+            "categories": Category.objects.all(),
+            "pages": pages,
+        }
+
+        return context
+
+    def get_queryset(self):
+        queryset = ServisProfile.objects.all()
+        return queryset
 
 
 class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):

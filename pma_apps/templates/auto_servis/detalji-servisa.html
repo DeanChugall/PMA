@@ -45,7 +45,7 @@
                                                                 {% else %}
                                                                     <h3 class="h3 mb-2">Naziv Auto Servisa nije unet!</h3>
                                                                 {% endif %}
-                                                                <h5 class="text-muted">{{ user.username }}</h5>
+                                                                <h5 class="text-muted">{{ profil_servisa.user.username }}</h5>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -281,7 +281,7 @@
                                                         <div class=""><img alt="" class="rounded-circle avatar avatar-md" src="{% static 'assets/images/auto-servisi/review-avatar.png' %}"></div>
                                                     </div>
                                                     <div class="media-body">
-                                                        <div class="rating-star">
+                                                        <div class="rating-star m-1">
                                                             <span>
                                                                 <i class="fa fa-star{% if review.rating < 0.5 %}-o{% elif review.rating >= 0.5 and review.rating < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
                                                                 <i class="fa fa-star{% if review.rating < 1.5 %}-o{% elif review.rating >= 1.5 and review.rating < 2 %}-half-o {% endif %}" aria-hidden="true"></i>

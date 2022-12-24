@@ -1,0 +1,225 @@
+{% extends "auto_servis/auto-servis-base.html" %}
+{% load static %}
+
+{% block title %} Zahtevi: {{ user.username }} {% endblock %}
+
+{% block meta_data %}
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="@PMA Technologies Private Limited">
+    <meta name="description" content="@PMA Kategorija Zahteva">
+    <meta name="keywords" content="Popravi Moj Auto.">
+{% endblock meta_data %}
+
+{% block app_content %}
+    <!--app-content open-->
+    <div class="main-content app-content mt-0">
+        <div class="side-app">
+
+            <!-- CONTAINER -->
+            <div class="main-container container-fluid">
+
+                <!-- PAGE-HEADER -->
+                <div class="page-header">
+                    <h1 class="page-title">Pregled Svih Auto Servisa</h1>
+                    <div>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Lista Svih Auto Servisa </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- PAGE-HEADER END -->
+
+                <!-- ROW-1 OPEN -->
+                <div class="row row-cards">
+
+                    <!-- COL-END -->
+                    <div class="col-xl-12 col-lg-8">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card p-0">
+                                    <div class="card-body p-4">
+                                        <div class="row">
+                                            <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
+                                                <div class="input-group d-flex w-100 float-start">
+                                                    <input type="text" class="form-control border-end-0 my-2" placeholder="Search ...">
+                                                    <button class="btn input-group-text bg-transparent border-start-0 text-muted my-2">
+                                                        <i class="fe fe-search text-muted" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                                <ul class="nav item2-gl-menu float-end my-2">
+                                                    <li class="border-end"><a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style"><i class="fa fa-th"></i></a></li>
+                                                    <li><a href="#tab-12" data-bs-toggle="tab" class="" title="Grid"><i class="fa fa-list"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-12">
+                                                <a href="add-product.html" class="btn btn-primary btn-block float-end my-2"><i class="fa fa-plus-square me-2"></i>New Product</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="tab-12">
+                                <div class="row">
+                                    {% if pages %}
+                                        {% for servis in pages %}
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="card overflow-hidden">
+                                                    <div class="card-body">
+                                                        <div class="row g-0">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12">
+                                                                <div class="product-list">
+                                                                    <div class="product-image">
+                                                                        <ul class="icons">
+                                                                            <li><a href="shop-description.html" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                                                            <li><a href="add-product.html" class="btn btn-success"><i class="fe fe-edit text-white "></i></a></li>
+                                                                            <li><a href="wishlist.html" class="btn btn-danger"><i class="fe fe-x text-white"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <h1>{{ lista_svih_slika_servisa }}</h1>
+                                                                    <div class="br-be-0 br-te-0">
+                                                                        <a href="{% url 'auto_servis:detalji_servisa' servis.user.username  %}" class="">
+                                                                            <img class="cover-image br-7 w-100"
+                                                                                src="{{ servis.slika_logo_servisa.slika_logo_servisa.url|default:'/static/assets/images/auctions/nema-servis-slike.jpg' }}"
+                                                                                alt="img">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <a href="{% url 'auto_servis:detalji_servisa' servis.user.username  %}" class="">
+                                                                            {% if servis.ime_servisa %}
+                                                                                <h3 class="fw-bold fs-30 mb-3">{{ servis.ime_servisa }}</h3>
+                                                                            {% else %}
+                                                                                <h3 class="fw-bold fs-30 mb-3">{{ servis.user.username}}</h3>
+                                                                            {% endif %}
+                                                                            <div class="mb-2 text-warning">
+                                                                                <i class="fa fa-star{% if servis.averageReview < 0.5 %}-o{% elif servis.averageReview >= 0.5 and servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                                                <i class="fa fa-star{% if servis.averageReview < 1.5 %}-o{% elif servis.averageReview >= 1.5 and servis.averageReview < 2 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                                                <i class="fa fa-star{% if servis.averageReview < 2.5 %}-o{% elif servis.averageReview >= 2.5 and servis.averageReview < 3 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                                                <i class="fa fa-star{% if servis.averageReview < 3.5 %}-o{% elif servis.averageReview >= 3.5 and servis.averageReview < 4 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                                                <i class="fa fa-star{% if servis.averageReview < 4.5 %}-o{% elif servis.averageReview >= 4.5 and servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                                                &nbsp;{{ servis.averageReview }} / 5
+                                                                            </div>
+                                                                        </a>
+                                                                        <hr/>
+                                                                        {% if servis.opis_servisa %}
+                                                                            <p class="fs-16">{{ servis.opis_servisa }} </p>
+                                                                        {% else %}
+                                                                            <p class="fs-16">nema opisa </p>
+                                                                        {% endif %}
+                                                                        <form class="shop__filter">
+                                                                            <div class="row gutters-xs">
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="azure" class="colorinput-input" checked>
+                                                                                        <span class="colorinput-color bg-azure"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="indigo" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-indigo"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-auto">
+                                                                                    <label class="colorinput">
+                                                                                        <input type="checkbox" name="color" value="purple" class="colorinput-input">
+                                                                                        <span class="colorinput-color bg-purple"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 my-auto">
+                                                                <div class="card-body p-0">
+                                                                    <div class="price h3 text-center mb-5 fw-bold">$599</div>
+                                                                    <a href="cart.html" class="btn btn-primary btn-block"><i class="fe fe-shopping-cart mx-2"></i>Add to cart</a>
+                                                                    <a href="wishlist.html" class="btn btn-outline-primary btn-block mt-2"><i class="fe fe-heart mx-2 wishlist-icon"></i>Add to wishlist</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor  %}
+                                        {% if pages.has_other_pages %}
+                                            <div class="mb-5">
+                                                <div class='d-flex justify-content-center'>
+                                                    <ul class='pagination'>
+                                                        {% if pages.has_previous %}
+                                                            <li class='page-item'>
+                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>
+                                                                    &laquo;
+                                                                </a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li class='page-item disabled'>
+                                                                <a class='page-link' href='#'>&laquo;</a>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% for i in pages.paginator.page_range %}
+                                                            {% if pages.number == i %}
+                                                                <li class='page-item active'>
+                                                                    <a class='page-link' href='#'>{{ i }}</a>
+                                                                </li>
+                                                            {% else %}
+                                                                <li class='page-item'>
+                                                                    <a class='page-link' href='?page={{ i }}'>{{ i }}</a>
+                                                                </li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        {% if pages.has_next %}
+                                                            <li class='page-item'>
+                                                                <a class='page-link' href='?page={{ pages.next_page_number }}'>
+                                                                    &raquo;
+                                                                </a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li class='page-item disabled'>
+                                                                <a class='page-link' href='#'>&raquo;</a>
+                                                            </li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="product-grid6">
+                                                    <div class="product-image6 p-5"></div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="product-content text-center">
+                                                            <h1 class="title fw-bold fs-20">Trenutno nema registrovanih Auto Servisa. </h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COL-END -->
+                    </div>
+                    <!-- ROW-1 CLOSED -->
+                </div>
+                <!-- ROW-1 END -->
+            </div>
+            <!-- CONTAINER CLOSED -->
+        </div>
+    </div>
+    <!--app-content closed-->
+{% endblock app_content %}

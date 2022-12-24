@@ -193,14 +193,6 @@ class ServisProfile(models.Model):
         default=Gradovi.BEOGRAD,
     )
 
-    slika_logo_servisa = models.FileField(
-        storage=AutoServisMediaStorage(), null=True, blank=True
-    )
-
-    slika_servisa = models.FileField(
-        storage=AutoServisMediaStorage(), null=True, blank=True
-    )
-
     broj_telefona_vlasnika = CharField(null=True, blank=True, max_length=100)
     broj_telefona_servisa = CharField(null=True, blank=True, max_length=100)
 
@@ -211,7 +203,7 @@ class ServisProfile(models.Model):
     )
 
     slogan_servisa = models.CharField(
-        max_length=250,
+        max_length=100,
         null=True,
         blank=True,
     )
@@ -222,7 +214,7 @@ class ServisProfile(models.Model):
         blank=True,
     )
 
-    opis_servisa = models.TextField(null=True, blank=True)
+    opis_servisa = models.TextField(max_length=800, null=True, blank=True)
 
     adresa_servisa = models.CharField(
         max_length=250,
@@ -321,23 +313,24 @@ class ServisProfile(models.Model):
         ordering = ["-user"]
 
     def get_datum_osnivanja(self):
-        return self.datum_kreiranja.strftime("%Y")
+        return self.datum_osnivanja.strftime("%Y")
 
     @property
     def get_grad_servisa(self):
         """Returns grad Vozaca izostavljene geografske koordinate."""
-        return self.user.grad.split("|")[0]
+        return self.grad_auto_servisa.split("|")[0]
 
     @property
     def get_grad_servisa_latitude(self):
         """Returns grad Vozaca LATITUDE."""
-        return self.user.grad.split("|")[1]
+        return self.grad_auto_servisa.split("|")[1]
 
     @property
     def get_grad_servisa_longitude(self):
         """Returns grad Vozaca LONGITUDE."""
-        return self.user.grad.split("|")[2]
+        return self.grad_auto_servisa.split("|")[2]
 
+    @property
     def averageReview(self):
         reviews = RatingServisa.objects.filter(servis=self, status=True).aggregate(
             average=Avg("rating")
@@ -348,6 +341,7 @@ class ServisProfile(models.Model):
         rounded_avg = round(avg, 2)
         return rounded_avg
 
+    @property
     def countReview(self):
         reviews = RatingServisa.objects.filter(servis=self, status=True).aggregate(
             count=Count("id")
@@ -369,7 +363,9 @@ class RatingServisa(models.Model):
     Referenca @see: https://medium.com/geekculture/django-implementing-star-rating-e1deff03bb1c
     """
 
-    servis = models.ForeignKey(ServisProfile, on_delete=models.CASCADE)
+    servis = models.ForeignKey(
+        ServisProfile, on_delete=models.CASCADE, related_name="get_servis_rating"
+    )
     vozac = models.ForeignKey(Vozac, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100, blank=True)
     review = models.TextField(max_length=500, blank=True)
@@ -391,7 +387,7 @@ class RatingServisa(models.Model):
 
 class SlikeServisa(models.Model):
     servis = models.ForeignKey(
-        Servis, on_delete=models.CASCADE, related_name="get_slika_servisa"
+        ServisProfile, on_delete=models.CASCADE, related_name="get_slika_servisa"
     )
     slika_servisa = models.ImageField(upload_to="slike_servisa/")
 
@@ -411,7 +407,7 @@ class SlikeServisa(models.Model):
 
 class SlikaLogoServisa(models.Model):
     servis = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="get_slika_logo_servisa"
+        ServisProfile, on_delete=models.CASCADE, related_name="get_slika_logo_servisa"
     )
     slika_logo_servisa = models.ImageField(upload_to="slike_logo_servisa/")
 

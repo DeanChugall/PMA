@@ -5,6 +5,7 @@ from pma_apps.auto_servisi.views import (
     KreirajServisKorisnikaView,
     ListaPonudaServisaView,
     ListaPrihvacenihPonudaServisaView,
+    ListaSvihServisaView,
     ObrisiReviewVozacaView,
     profil_servisa_update_view,
 )
@@ -14,6 +15,9 @@ from . import views
 app_name = "auto_servisi"
 
 urlpatterns = [
+    path(
+        "lista-svih-servisa/", ListaSvihServisaView.as_view(), name="lista_svih_servisa"
+    ),
     path(
         "kreiraj_servis/", KreirajServisKorisnikaView.as_view(), name="kreiraj_servis"
     ),
