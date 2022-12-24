@@ -206,6 +206,7 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
         for auction in ponude:
             auction.image = auction.auction.get_images.first()
             auction.amount = auction.auction.get_bids.first()
+            auction.prihvacena_cena = auction.auction.current_bid
 
         page = self.request.GET.get("page", 1)
         paginator = Paginator(ponude, 9)
@@ -254,6 +255,7 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
         for auction in ponude:
             auction.image = auction.auction.get_images.first()
             auction.amount = auction.auction.get_bids.first()
+            auction.prihvacena_cena = auction.auction.current_bid
 
         page = self.request.GET.get("page", 1)
         paginator = Paginator(ponude, 9)

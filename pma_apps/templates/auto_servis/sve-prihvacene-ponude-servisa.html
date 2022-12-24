@@ -94,9 +94,9 @@
 
                                                                 <!-- CENA -->
                                                                 {% if auction.amount  == None %}
-                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.auction.prethodna_ponuda}}</span></div>
+                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.auction.prethodna_ponuda}}</span></div>dsf
                                                                 {% else %}
-                                                                    <div class="price">{{ auction.amount.amount }} rsd<span class="ms-4">{{ auction.auction.prethodna_ponuda }}</span></div>
+                                                                    <div class="price">{{ auction.auction.current_bid }} rsd<span class="ms-4">{{ auction.auction.prethodna_ponuda }}</span></div>
                                                                 {% endif %}
                                                                 <!-- END CENA -->
                                                             </div>

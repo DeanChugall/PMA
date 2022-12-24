@@ -112,8 +112,6 @@ def detalji_zahteva_view(request, zahtev_id):
 
     # Filtrirane ponude Auto Servisa za odredjeni zahtev za ponudu.
     ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
-    # print(f"servis profile: {ponude_auto_servisa[0].servis.id}")
-    # profil_servisa = ServisProfile.objects.filter(user_id=ponude_auto_servisa.fil.servis)
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
     preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:3]
@@ -121,6 +119,7 @@ def detalji_zahteva_view(request, zahtev_id):
     for zahtev in preporuceni_zahtevi_servisima:
         zahtev.image = zahtev.get_images.first()
         zahtev.amount = zahtev.get_bids.first()
+        zahtev.prihvacena_cena = zahtev.current_bid
 
     if request.user in zahtevi.watchers.all():
         zahtevi.is_watched = True

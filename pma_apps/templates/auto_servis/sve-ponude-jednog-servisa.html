@@ -81,24 +81,6 @@
                                                                 <h1 class="title fw-bold fs-20 text-truncate">
                                                                     <a href="{% url 'ponude:detalji_ponude_view' auction.auction.id %}">{{ auction.auction.title }}</a>
                                                                 </h1>
-
-                                                                <!-- ZVEZDICE -->
-                                                                <div class="mb-2 text-warning">
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                </div>
-                                                                <!-- END ZVEZDICE -->
-
-                                                                <!-- CENA -->
-                                                                {% if auction.amount  == None %}
-                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.auction.prethodna_ponuda}}</span></div>
-                                                                {% else %}
-                                                                    <div class="price">{{ auction.amount.amount }} rsd<span class="ms-4">{{ auction.auction.prethodna_ponuda }}</span></div>
-                                                                {% endif %}
-                                                                <!-- END CENA -->
                                                             </div>
                                                         </div>
 
