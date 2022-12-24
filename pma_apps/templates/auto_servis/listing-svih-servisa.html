@@ -112,6 +112,8 @@
                                                                             {% else %}
                                                                                 <h3 class="fw-bold fs-30 mb-3">{{ servis.user.username }}</h3>
                                                                             {% endif %}
+
+                                                                            <!-- ZVEZDICE -->
                                                                             <div class="mb-2 text-warning">
                                                                                 <i class="fa fa-star{% if servis.averageReview < 0.5 %}-o{% elif servis.averageReview >= 0.5 and servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
                                                                                 <i class="fa fa-star{% if servis.averageReview < 1.5 %}-o{% elif servis.averageReview >= 1.5 and servis.averageReview < 2 %}-half-o{% endif %} fa-2x text-warning"></i>
@@ -120,22 +122,54 @@
                                                                                 <i class="fa fa-star{% if servis.averageReview < 4.5 %}-o{% elif servis.averageReview >= 4.5 and servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
                                                                                 &nbsp;{{ servis.averageReview }} / 5
                                                                             </div>
+                                                                            <!-- END ZVEZDICE -->
                                                                         </a>
                                                                         <hr/>
+                                                                        <!-- SLOGAN SERVISA -->
                                                                         {% if servis.slogan_servisa %}
                                                                             <p class="fs-16">{{ servis.slogan_servisa }} </p>
                                                                         {% else %}
                                                                             <p class="fs-16">...nema slogana servisa...</p>
                                                                         {% endif %}
+                                                                        <!-- END SLOGAN SERVISA -->
+
+                                                                        <!-- STATISTIKA U KARTICI LISTINGA -->
+                                                                        <div class="notification-body">
+                                                                            <div class="media mt-0">
+                                                                                <!-- BROJ PONUDA SERVISA -->
+                                                                                <div class=" bradius me-1 mt-1">
+                                                                                    <i class="fa fa-address-book-o fa-4x text-white"></i>
+                                                                                </div>
+                                                                                <div class="media-body ms-3 d-flex">
+                                                                                    <div class="">
+                                                                                        <p class="fs-15 text-dark fw-bold mb-0">Ponuda</p>
+                                                                                        <p class="mb-0 fs-4 text-dark">&nbsp;&nbsp;15</p>
+                                                                                    </div>
+                                                                                    <div class="notify-time">
+                                                                                        <p class="mb-0 text-muted fs-11">pre 2 sata</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- END BROJ PONUDA SERVISA -->
+
+                                                                                <!-- BROJ POSLOVA SERVISA -->
+                                                                                <div class=" bradius me-1 mt-1">
+                                                                                    <i class="fa fa-car fa-4x text-white"></i>
+                                                                                </div>
+                                                                                <div class="media-body ms-3 d-flex">
+                                                                                    <div class="">
+                                                                                        <p class="fs-15 text-dark fw-bold mb-0">Poslovi</p>
+                                                                                        <p class="mb-0 fs-5 text-dark">&nbsp;&nbsp;15</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- END BROJ POSLOVA SERVISA -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- END STATISTIKA U KARTICI LISTINGA -->
+
                                                                         <div class="row">
                                                                             <div class="px-0 px-sm-4">
                                                                                 <!-- POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
                                                                                 <div class="card-body p-0 d-lg-none">
-                                                                                    {% if servis.grad_auto_servisa %}
-                                                                                        <div class="price h3 text-center mb-5 fw-bold">{{ servis.get_grad_servisa }}</div>
-                                                                                    {% else %}
-                                                                                        <div class="price h3 text-center mb-5 fw-bold">{{ servis.user.get_grad_servisa }}</div>
-                                                                                    {% endif %}
                                                                                     <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
                                                                                         <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
                                                                                     </a>
@@ -158,6 +192,9 @@
                                                                                 <!-- SOCIAL ICONS SERVISA -->
                                                                                 <div class="social social-profile-buttons mt-5 float-end">
                                                                                     <div class="mt-3">
+                                                                                        {% if servis.web_site_servisa %}
+                                                                                            <a class="social-icon text-white" href="https://{{ servis.web_site_servisa }}" target="_blank"><i class="fa fa-globe"></i></a>
+                                                                                        {% endif %}
                                                                                         {% if servis.twitter_link %}
                                                                                             <a class="social-icon text-primary" href="https://{{ profil_servisa.twitter_link }}" target="_blank">
                                                                                                 <i class="fa fa-twitter"></i>
