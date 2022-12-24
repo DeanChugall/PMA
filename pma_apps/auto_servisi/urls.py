@@ -7,6 +7,7 @@ from pma_apps.auto_servisi.views import (
     ListaPrihvacenihPonudaServisaView,
     ListaSvihServisaView,
     ObrisiReviewVozacaView,
+    ObrisiServisView,
     profil_servisa_update_view,
 )
 
@@ -50,5 +51,10 @@ urlpatterns = [
         "obrisi_ustisak_servisa/<int:pk>/",
         ObrisiReviewVozacaView.as_view(),
         name="obrisi_utisak_servisa",
+    ),
+    path(
+        "brisanje-servisa/<int:pk>/",
+        ObrisiServisView.as_view(),
+        name="brisanje_servisa",
     ),
 ]

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
@@ -23,6 +24,8 @@ from pma_apps.users.models import (
     SlikeServisa,
     Vozac,
 )
+
+User = get_user_model()
 
 
 class KreirajServisKorisnikaView(generic.CreateView):
@@ -304,6 +307,22 @@ class ObrisiReviewVozacaView(LoginRequiredMixin, generic.DeleteView):
 
     context_object_name = "obrisi_utisak_servisa"
     success_message = " Uspešno obrisan utisak."
+
+    def get_success_url(self):
+        return self.request.META.get("HTTP_REFERER")
+
+
+class ObrisiServisView(LoginRequiredMixin, generic.DeleteView):
+    model = User
+    queryset = User.objects.all()
+
+    context_object_name = "obrisi_utisak_servisa"
+    success_message = " Uspešno obrisan utisak."
+    error_message = " GRESKAAA Uspešno obrisan utisak."
+    form_class = UrediProfilServisaForm
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def get_success_url(self):
         return self.request.META.get("HTTP_REFERER")

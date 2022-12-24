@@ -1,4 +1,4 @@
-<form action="{% url 'users:brisanje_vozaca' user.id  %}"
+<form action="{% url 'auto_servis:brisanje_servisa' user.id %}"
     class="ogin100-form validate-form"
     method='POST'
     enctype='multipart/form-data'>
@@ -7,12 +7,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="obrisiModalLabel">Brisanje Korisničkog Naloga Vozača</h1>
+                    <h1 class="modal-title fs-5" id="obrisiModalLabel">Brisanje Korisničkog Naloga Servisa</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     {% csrf_token %}
-                    <h5><b>{{ user.username }}</b>, da li ste sigurni da želite da obrišete Vaš korisnički nalog?</h5>
+                    <h5><b>{{ user.username }}</b>, molimo Vas da kontaktirate @PMA Administratora za brisanje Vašeg Korisničkog Naloga!</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="submit"

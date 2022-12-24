@@ -415,10 +415,36 @@
         </div>
         <!-- END EDIT RADNO VREME AUTO SERVISA -->
 
-
         <!-- EDIT NOTIFIKACIJE -->
         {% include 'auto_servis/partials/partials-notifikacije-sigurnost-servisi.html' %}
         <!-- END EDIT NOTIFIKACIJE -->
+
+        <div class="col-lg-12">
+            <!-- BRISANJE NALOGA -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Brisanje Korisničkog Naloga</div>
+                </div>
+                <div class="card-body">
+                    <p>Potpuno brisanje korisničkog naloga '<b>{{ user.username }}</b>', takođe i svih podataka vezanih za isti!</p>
+                </div>
+
+                <!-- Modal BRISANJE NALOGA -->
+                {% include 'auto_servis/partials/partials-obrisi-nalog-servisa.html' %}
+                <!-- END Modal BRISANJE NALOGA -->
+                <div class="card-footer text-end">
+                    <button class="btn btn-outline-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#obrisiModal"
+                        type="button"
+                        value="Obriši">
+                        <i class="fa fa-trash-o"></i>&nbsp;Brisanje Naloga
+                    </button>
+                </div>
+
+            </div>
+            <!-- END BRISANJE NALOGA -->
+        </div>
     </form>
 
 </div>
