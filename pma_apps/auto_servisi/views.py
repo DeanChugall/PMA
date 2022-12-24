@@ -316,13 +316,5 @@ class ObrisiServisView(LoginRequiredMixin, generic.DeleteView):
     model = User
     queryset = User.objects.all()
 
-    context_object_name = "obrisi_utisak_servisa"
-    success_message = " Uspešno obrisan utisak."
-    error_message = " GRESKAAA Uspešno obrisan utisak."
-    form_class = UrediProfilServisaForm
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
     def get_success_url(self):
-        return self.request.META.get("HTTP_REFERER")
+        return reverse("landing_page:landing_page")
