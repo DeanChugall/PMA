@@ -51,9 +51,8 @@
 
         <!-- PAGE -->
         <div class="page">
+            <!-- app-Header -->
             <div class="page-main">
-
-                <!-- app-Header -->
                 <div class="app-header header sticky">
                     <div class="container-fluid main-container">
                         <div class="d-flex">
@@ -231,15 +230,15 @@
                                     <span class="side-menu__label">Dashboard</span>
                                 </a>
                             </li>
-                            <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide"
-                                    href="{% url 'ponude:aktivni_zahtevi' %}">
-                                    <i class="side-menu__icon fa fa-list"></i>
-                                    <span class="side-menu__label">Aktivni Zahtevi</span>
-                                </a>
-                            </li>
                             {% if user.is_authenticated %}
                                 {% if user.role == "SERVIS" %}
+                                    <li class="slide">
+                                        <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                            href="{% url 'ponude:aktivni_zahtevi' %}">
+                                            <i class="side-menu__icon fa fa-list"></i>
+                                            <span class="side-menu__label">Aktivni Zahtevi</span>
+                                        </a>
+                                    </li>
                                     <li class="slide">
                                         <a class="side-menu__item has-link" data-bs-toggle="slide"
                                             href="{% url 'ponude:pacenje_zahteva' %}">
@@ -263,6 +262,13 @@
                                     </li>
                                 {% endif %}
                                 {% if user.role == "VOZAC" %}
+                                    <li class="slide">
+                                        <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                            href="{% url 'ponude:aktivni_zahtevi' %}">
+                                            <i class="side-menu__icon fa fa-list"></i>
+                                            <span class="side-menu__label">Aktivni Zahtevi</span>
+                                        </a>
+                                    </li>
                                     <li class="slide">
                                         <a class="side-menu__item has-link" data-bs-toggle="slide"
                                             href="{% url 'ponude:aktivni_zahtevi_vozaca' user.username %}">
@@ -311,8 +317,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- END APP-SIDEBAR-->
             </div>
+            <!-- END APP-SIDEBAR-->
 
             <!--app-content open-->
             {% block app_content %}

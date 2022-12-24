@@ -148,7 +148,7 @@ def profil_servisa_update_view(request, username):
     return render(request, "auto_servis/uredi-auto-servis.html", context)
 
 
-class ListaSvihServisaView(LoginRequiredMixin, generic.ListView):
+class ListaSvihServisaView(generic.ListView):
     template_name = "auto_servis/listing-svih-servisa.html"
     context_object_name = "lista_svih_servisa"
 
