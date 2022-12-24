@@ -35,9 +35,13 @@
                                                     <div class="profile-cover__action bg-img">
                                                     </div>
                                                     <div class="profile-cover__img">
+                                                        <!-- LOGO SERVISA -->
                                                         <div class="profile-img-1">
                                                             <img src="{{ slika_logo_servisa.slika_logo_servisa.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
                                                         </div>
+                                                        <!-- END LOGO SERVISA -->
+
+                                                        <!-- IME SERVISA -->
                                                         <div class="profile-img-content text-dark text-start">
                                                             <div class="text-dark">
                                                                 {% if  profil_servisa.ime_servisa %}
@@ -48,6 +52,7 @@
                                                                 <h5 class="text-muted">{{ profil_servisa.user.username }}</h5>
                                                             </div>
                                                         </div>
+                                                        <!-- IME SERVISA -->
                                                     </div>
                                                     {% if user.role == "SERVIS" and servis == user %}
                                                         <div class="btn-profile">
@@ -91,6 +96,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- RATING SERVISA -->
                                 <div class="mb-0 text-warning pull-right">
                                     <i class="fa fa-star{% if profil_servisa.averageReview < 0.5 %}-o{% elif profil_servisa.averageReview >= 0.5 and servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
                                     <i class="fa fa-star{% if profil_servisa.averageReview < 1.5 %}-o{% elif profil_servisa.averageReview >= 1.5 and servis.averageReview < 2 %}-half-o{% endif %} fa-2x text-warning"></i>
@@ -99,6 +105,7 @@
                                     <i class="fa fa-star{% if profil_servisa.averageReview < 4.5 %}-o{% elif profil_servisa.averageReview >= 4.5 and servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
                                     &nbsp;{{ profil_servisa.averageReview }} / 5
                                 </div>
+                                <!-- END RATING SERVISA -->
                             </div>
                         </div>
                         <!-- END HEADER PROFILA SERVISA -->
