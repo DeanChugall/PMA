@@ -96,15 +96,25 @@
                                                 </div>
                                             </div>
 
-                                            <!-- CITY CHOSE -->
+                                            <!-- NAV BAR ICONS -->
                                             {% if user.role == "SERVIS" %}
-                                                <p>{{user.role}}</p>
+                                                <div class="d-flex">
+                                                    <a class="nav-link icon text-center" href="{% url 'auto_servis:detalji_servisa' request.user.username  %}">
+                                                        <i class="fa fa-car"></i>
+                                                        <span class="fs-16 ms-2 d-none d-xl-block"><strong>{{user.username}}</strong></span>
+                                                    </a>
+                                                </div>
                                             {% else %}
                                             {% endif %}
                                             {% if user.role == "VOZAC" %}
-                                                <p>{{user.role}}</p>
+                                                <div class="d-flex">
+                                                    <a class="nav-link icon text-center" href="{% url 'users:detalji_vozaca' request.user.username  %}">
+                                                        <i class="fe fe-user"></i>
+                                                        <span class="fs-16 ms-2 d-none d-xl-block"><strong>{{user.username}}</strong></span>
+                                                    </a>
+                                                </div>
                                             {% endif %}
-                                            <!-- END CITY CHOSE -->
+                                            <!-- END NAV BAR ICONS -->
 
                                             <!-- Theme-Layout DARK-LIGHT -->
                                             <div class="d-flex country">
