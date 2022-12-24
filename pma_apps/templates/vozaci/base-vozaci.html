@@ -139,6 +139,11 @@
                                                                 <i class="dropdown-icon fe fe-user"></i>
                                                                 Profil
                                                             </a>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'users:izmena_profila_vozaca' request.user.username  %}">
+                                                                <i class="dropdown-icon fe fe-user"></i>
+                                                                Izmena Profila
+                                                            </a>
                                                         {% else %}
                                                             <a class="dropdown-item"
                                                                 href="{% url 'auto_servis:detalji_servisa' request.user.username  %}">
