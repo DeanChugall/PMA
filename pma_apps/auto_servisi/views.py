@@ -159,7 +159,10 @@ class ListaSvihServisaView(generic.ListView):
         # Get Last uploaded logo image for Servis
         for servis in profil_servisa:
             servis.slika_logo_servisa = servis.get_slika_logo_servisa.first()
-            servis.rating = servis.averageReview
+            servis.prosek_rating = servis.averageReview
+            servis.rating = servis.countReview
+            servis.ponude = servis.count_ponude
+            servis.prihvacene_ponude = servis.count_prihvacene_poonude
 
         page = self.request.GET.get("page", 1)
         paginator = Paginator(profil_servisa, 5)

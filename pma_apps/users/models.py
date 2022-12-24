@@ -2,27 +2,20 @@
 
 Kreiranje Korisnika putem Django PROXY nacina.
 """
-import re
-
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.db.models import Avg, CharField, Count, ImageField
+from django.db.models import Avg, CharField, Count
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from config.do_storages.do_storage import (
-    AutoServisMediaStorage,
-    PublicMediaStorage,
-    StaticStorage,
-)
 from pma_apps.utils.godista_automobila import GodisteAutomobila
 from pma_apps.utils.gradovi import Gradovi
 from pma_apps.utils.image_resize import image_resize
 from pma_apps.utils.marke_automobila import MarkeAutomobila
-from pma_apps.utils.radno_vreme_servisa import RadniDaniServisa, RadniSatiServisa
+from pma_apps.utils.radno_vreme_servisa import RadniSatiServisa
 
 
 class User(AbstractUser):
@@ -360,6 +353,32 @@ class ServisProfile(models.Model):
         if reviews["count"] is not None:
             count = int(reviews["count"])
         return count
+
+    @property
+    def count_ponude(self):
+        from pma_apps.auctions.models import Bid
+
+        ponude = Bid.objects.filter(servis=self).aggregate(count=Count("id"))
+        count_ponude = 0
+        if ponude["count"] is not None:
+            count_ponude = int(ponude["count"])
+        return count_ponude
+
+    @property
+    def count_prihvacene_poonude(self):
+        """
+        Prebroj sve prihvacene ponude Vozaca.
+        :return: broj prihvacenih ponuda Vozaca.
+        """
+        from pma_apps.auctions.models import Auction
+
+        prihvacene_poonude = Auction.objects.filter(buyer=self.user).aggregate(
+            count=Count("id")
+        )
+        count_prihvacene_ponude = 0
+        if prihvacene_poonude["count"] is not None:
+            count_prihvacene_ponude = int(prihvacene_poonude["count"])
+        return count_prihvacene_ponude
 
     def __str__(self):
         return (

@@ -90,7 +90,6 @@
                                                                             <li><a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
                                                                         </ul>
                                                                     </div>
-                                                                    <h1>{{ lista_svih_slika_servisa }}</h1>
                                                                     <div class="br-be-0 br-te-0">
                                                                         <a href="{% url 'auto_servis:detalji_servisa' servis.user.username  %}" class="">
                                                                             <img class="cover-image br-7 w-100"
@@ -98,6 +97,7 @@
                                                                                 alt="img">
                                                                         </a>
                                                                     </div>
+                                                                    <div class="price h6 mb-1 fw-bold text-center text-muted mt-1">Aktivnost: {{ servis.user.last_login }}</div>
                                                                 </div>
                                                             </div>
                                                             <!-- END SLIKA SERVISA -->
@@ -105,14 +105,13 @@
                                                             <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
                                                             <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
                                                                 <div class="card-body">
-                                                                    <div class="mb-3">
+                                                                    <div class="">
                                                                         <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="">
                                                                             {% if servis.ime_servisa %}
                                                                                 <h3 class="fw-bold fs-30 mb-3">{{ servis.ime_servisa }}</h3>
                                                                             {% else %}
                                                                                 <h3 class="fw-bold fs-30 mb-3">{{ servis.user.username }}</h3>
                                                                             {% endif %}
-
                                                                             <!-- ZVEZDICE -->
                                                                             <div class="mb-2 text-warning">
                                                                                 <i class="fa fa-star{% if servis.averageReview < 0.5 %}-o{% elif servis.averageReview >= 0.5 and servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
@@ -120,10 +119,18 @@
                                                                                 <i class="fa fa-star{% if servis.averageReview < 2.5 %}-o{% elif servis.averageReview >= 2.5 and servis.averageReview < 3 %}-half-o{% endif %} fa-2x text-warning"></i>
                                                                                 <i class="fa fa-star{% if servis.averageReview < 3.5 %}-o{% elif servis.averageReview >= 3.5 and servis.averageReview < 4 %}-half-o{% endif %} fa-2x text-warning"></i>
                                                                                 <i class="fa fa-star{% if servis.averageReview < 4.5 %}-o{% elif servis.averageReview >= 4.5 and servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
-                                                                                &nbsp;{{ servis.averageReview }} / 5
+                                                                                &nbsp;{{ servis.averageReview }} / 5 &nbsp;&nbsp;ukupno utisaka: {{ servis.countReview }}
                                                                             </div>
-                                                                            dsfsd
                                                                             <!-- END ZVEZDICE -->
+
+                                                                            <!-- GRAD SERVISA ISPOD IMENA -->
+                                                                            {% if servis.grad_auto_servisa %}
+                                                                                <div class="price h6 mb-1 fw-bold text-white">{{ servis.get_grad_servisa }}</div>
+                                                                            {% else %}
+                                                                                <div class="price h6 mb-1 fw-bold text-white">{{ servis.user.get_grad_servisa }}</div>
+                                                                            {% endif %}
+                                                                            <!-- END GRAD SERVISA ISPOD IMENA -->
+
                                                                         </a>
                                                                         <hr/>
                                                                         <!-- SLOGAN SERVISA -->
@@ -144,7 +151,7 @@
                                                                                 <div class="media-body d-flex">
                                                                                     <div class="">
                                                                                         <p class="fs-11 text-dark fw-bold mb-0">Ponude</p>
-                                                                                        <p class="mb-0 fs-4 text-dark">15</p>
+                                                                                        <p class="mb-0 fs-4 text-dark">&nbsp; {{ servis.count_ponude }}</p>
                                                                                     </div>
                                                                                 </div>
                                                                                 <!-- END BROJ PONUDA SERVISA -->
@@ -156,7 +163,7 @@
                                                                                 <div class="media-body d-flex">
                                                                                     <div class="">
                                                                                         <p class="fs-11 text-dark fw-bold mb-0">Poslovi</p>
-                                                                                        <p class="mb-0 fs-4 text-dark">15</p>
+                                                                                        <p class="mb-0 fs-4 text-dark">&nbsp;{{ servis.count_prihvacene_poonude }}</p>
                                                                                     </div>
                                                                                 </div>
                                                                                 <!-- END BROJ POSLOVA SERVISA -->
