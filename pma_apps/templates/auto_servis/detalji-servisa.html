@@ -88,6 +88,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="mb-0 text-warning pull-right">
+                                    <i class="fa fa-star{% if profil_servisa.averageReview < 0.5 %}-o{% elif profil_servisa.averageReview >= 0.5 and servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                    <i class="fa fa-star{% if profil_servisa.averageReview < 1.5 %}-o{% elif profil_servisa.averageReview >= 1.5 and servis.averageReview < 2 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                    <i class="fa fa-star{% if profil_servisa.averageReview < 2.5 %}-o{% elif profil_servisa.averageReview >= 2.5 and servis.averageReview < 3 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                    <i class="fa fa-star{% if profil_servisa.averageReview < 3.5 %}-o{% elif profil_servisa.averageReview >= 3.5 and servis.averageReview < 4 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                    <i class="fa fa-star{% if profil_servisa.averageReview < 4.5 %}-o{% elif profil_servisa.averageReview >= 4.5 and servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                    &nbsp;{{ profil_servisa.averageReview }} / 5
+                                </div>
                             </div>
                         </div>
                         <!-- END HEADER PROFILA SERVISA -->
@@ -199,7 +207,11 @@
                                                 <span><i class="fe fe-briefcase fs-20"></i></span>
                                             </div>
                                             <div>
-                                                <strong>{{ profil_servisa.get_grad_servisa }}</strong>
+                                                {% if profil_servisa.grad_auto_servisa %}
+                                                    <strong>{{ profil_servisa.get_grad_servisa }}</strong>
+                                                {% else %}
+                                                    <strong>{{ profil_servisa.user.get_grad_servisa }}</strong>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center mb-3 mt-3">

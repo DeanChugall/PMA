@@ -61,6 +61,11 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.username}"
 
+    @property
+    def get_grad_servisa(self):
+        """Returns grad Vozaca izostavljene geografske koordinate."""
+        return self.grad.split("|")[0]
+
 
 # ###########################################################
 # ##################### VOZACI ##############################

@@ -153,15 +153,13 @@ class ListaSvihServisaView(LoginRequiredMixin, generic.ListView):
 
         profil_servisa = ServisProfile.objects.all()
 
-        # reviews = RatingServisa.objects.filter(servis_id=profil_servisa.id, status=True)
-
         # Get Last uploaded logo image for Servis
         for servis in profil_servisa:
             servis.slika_logo_servisa = servis.get_slika_logo_servisa.first()
             servis.rating = servis.averageReview
 
         page = self.request.GET.get("page", 1)
-        paginator = Paginator(profil_servisa, 3)
+        paginator = Paginator(profil_servisa, 5)
 
         try:
             pages = paginator.page(page)
