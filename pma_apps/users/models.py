@@ -195,7 +195,6 @@ class ServisProfile(models.Model):
         blank=True,
         max_length=100,
         choices=Gradovi.choices,
-        default=Gradovi.BEOGRAD,
     )
 
     broj_telefona_vlasnika = CharField(null=True, blank=True, max_length=100)
