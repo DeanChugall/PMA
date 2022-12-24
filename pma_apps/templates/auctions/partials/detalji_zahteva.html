@@ -60,7 +60,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit"
-                                class="btn btn-outline-danger">
+                                class="btn btn-outline-danger ">
                                 <i class="fa fa-trash-o"></i>&nbsp;Obriši
                             </button>
                             <button type="button"
@@ -68,25 +68,44 @@
                                 data-bs-dismiss="modal">
                                 <i class="fa fa-close"></i>&nbsp;Odustani
                             </button>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <button
-                class="btn btn-outline-success"
-                hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
-                hx-target="#detalji-zahteva"
-                hx-trigger="click">
-                <i class="fa fa-edit"></i>&nbsp;Izmeni
-            </button>
+            {% if auction.active %}
+                <button
+                    class="btn btn-outline-success"
+                    hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
+                    hx-target="#detalji-zahteva"
+                    hx-trigger="click">
+                    <i class="fa fa-edit"></i>&nbsp;Izmeni
+                </button>
+                <button class="btn btn-outline-danger float-end"
+                    data-bs-toggle="modal"
+                    data-bs-target="#obrisiModal"
+                    type="button"
+                    value="Obriši">
+                    <i class="fa fa-trash-o"></i>&nbsp;Obriši
+                </button>
+            {% else %}
+                <button
+                    class="btn btn-outline-success disabled"
+                    hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
+                    hx-target="#detalji-zahteva"
+                    hx-trigger="click">
+                    <i class="fa fa-edit"></i>&nbsp;Izmeni
+                </button>
+                <button class="btn btn-outline-danger float-end disabled"
+                    data-bs-toggle="modal"
+                    data-bs-target="#obrisiModal"
+                    type="button"
+                    value="Obriši">
+                    <i class="fa fa-trash-o"></i>&nbsp;Obriši
+                </button>
+            {% endif %}
 
-            <button class="btn btn-outline-danger float-end"
-                data-bs-toggle="modal"
-                data-bs-target="#obrisiModal"
-                type="button"
-                value="Obriši">
-                <i class="fa fa-trash-o"></i>&nbsp;Obriši
-            </button>
+
         </form>
     {% endif %}
 </div>
