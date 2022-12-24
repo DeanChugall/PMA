@@ -58,8 +58,8 @@
                             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
                             <!-- LOGO -->
                             <a class="logo-horizontal" href="{% url 'landing_page:landing_page' %}">
-                                <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
-                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-4.png' %}" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-4.png' %}" class="header-brand-img light-logo1" alt="logo">
                             </a>
                             <!-- END LOGO -->
 
@@ -70,9 +70,13 @@
                             </div>
                             <!-- END SEARCH -->
                             <div class="d-flex order-lg-2 ms-auto header-right-icons">
-                                <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
-                                    aria-controls="navbarSupportedContent-4" aria-expanded="false"
+
+                                <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent-4"
+                                    aria-controls="navbarSupportedContent-4"
+                                    aria-expanded="false"
                                     aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon fe fe-more-vertical"></span>
                                 </button>
@@ -132,8 +136,7 @@
                                             <!-- PROFILE HEADER -->
                                             <div class="dropdown d-flex profile-1">
                                                 {% if user.is_authenticated %}
-                                                    <a href="javascript:void(0)" data-bs-toggle="dropdown"
-                                                        class="nav-link leading-none d-flex">
+                                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
                                                         <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -200,7 +203,7 @@
                     <div class="side-header">
                         <!-- SIDE BAR LOGO -->
                         <a class="header-brand1" href="{% url 'landing_page:landing_page' %}">
-                            <img src="{% static 'assets/images/brand/logo.png' %}"
+                            <img src="{% static 'assets/images/brand/logo-4.png' %}"
                                 class="header-brand-img desktop-logo"
                                 alt="logo">
                             <img src="{% static 'assets/images/brand/logo-1.png' %}"

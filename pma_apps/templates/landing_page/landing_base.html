@@ -50,8 +50,8 @@
                             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
                             <!-- sidebar-toggle-->
                             <a class="logo-horizontal " href="{% url 'landing_page:landing_page' %}">
-                                <img src="{% static 'assets/images/brand/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
-                                <img src="{% static 'assets/images/brand/logo-3.png' %}" class="header-brand-img light-logo1" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-4.png' %}" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="{% static 'assets/images/brand/logo-4.png' %}" class="header-brand-img light-logo1" alt="logo">
                             </a>
                             <!-- END sidebar-toggle-->
                             <!-- LOGO -->
@@ -106,41 +106,49 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="main-sidemenu navbar px-0">
-                                        <a class="navbar-brand ps-0 d-none d-lg-block"
-                                            href="{% url 'landing_page:landing_page' %}">
-                                            <img alt="" class="logo-2"
-                                                src="{% static 'assets/images/brand/logo-3.png' %}">
-                                            <img src="{% static 'assets/images/brand/logo.png' %}" class="logo-3"
-                                                alt="logo">
+                                        <a class="navbar-brand ps-0 d-none d-lg-block" href="{% url 'landing_page:landing_page' %}">
+                                            <img alt="" class="logo-2" src="{% static 'assets/images/brand/logo-4.png' %}">
+                                            <img src="{% static 'assets/images/brand/logo-4.png' %}" class="logo-3" alt="logo">
                                         </a>
                                         <ul class="side-menu">
                                             <li class="slide">
-                                                <a class="side-menu__item active" data-bs-toggle="slide"
-                                                    href="#home"><span
-                                                        class="side-menu__label">Home</span></a>
+                                                <a class="side-menu__item active" data-bs-toggle="slide" href="#home">
+                                                    <span class="side-menu__label">Home</span>
+                                                </a>
+                                            </li>
+                                            <li class="slide d-lg-none">
+                                                <a class="side-menu"  href="{% url 'ponude:ponude' %}">
+                                                    <span class="side-menu__label m-5">Kontrolna Tabla</span>
+                                                </a>
                                             </li>
                                             <li class="slide">
-                                                <a class="side-menu__item" data-bs-toggle="slide" href="#ponude"><span
-                                                    class="side-menu__label">Ponude</span></a>
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="#ponude">
+                                                    <span class="side-menu__label">Ponude</span>
+                                                </a>
                                             </li>
                                             <li class="slide">
-                                                <a class="side-menu__item" data-bs-toggle="slide" href="#About"><span
-                                                    class="side-menu__label">Misija</span></a>
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="#About">
+                                                    <span class="side-menu__label">Misija</span>
+                                                </a>
                                             </li>
                                             <li class="slide">
-                                                <a class="side-menu__item" data-bs-toggle="slide" href="#faqs"><span
-                                                    class="side-menu__label">@PMA</span></a>
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="#faqs">
+                                                    <span class="side-menu__label">@PMA</span>
+                                                </a>
                                                 <li class="slide">
-                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#scba"><span
-                                                        class="side-menu__label">Infinity SCBA</span></a>
+                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#scba">
+                                                        <span class="side-menu__label">Infinity SCBA</span>
+                                                    </a>
                                                 </li>
                                                 <li class="slide">
-                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#cena"><span
-                                                        class="side-menu__label">Cena</span></a>
+                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#cena">
+                                                        <span class="side-menu__label">Cena</span>
+                                                    </a>
                                                 </li>
                                                 <li class="slide">
-                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#Contact"><span
-                                                        class="side-menu__label">Kontakt</span></a>
+                                                    <a class="side-menu__item" data-bs-toggle="slide" href="#Contact">
+                                                        <span class="side-menu__label">Kontakt</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                             <div class="header-nav-right d-none d-lg-flex">
