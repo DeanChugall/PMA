@@ -1,3 +1,4 @@
+import re
 from decimal import Decimal
 
 from django import forms
@@ -412,11 +413,17 @@ def ponuda_zahteva_view(request, zahtev_id):
     View za postavljanje Ponuda Servisera na Zahtev Vozaca.
     """
     auction = Auction.objects.get(id=zahtev_id)
-    amount = Decimal(request.POST["amount"].replace(",", "."))
+    amount = Decimal(re.sub(r"[^0-9]", "", request.POST["amount"]))
 
     profil_servisa = ServisProfile.objects.get(user_id=request.user.id)
 
     auction.current_bid = amount
+
+    # Ocisti sve no int vrednosti iz POST-aa i sacuvaj za validaciju forme.
+    post = request.POST.copy()
+    post["amount"] = amount
+    request.POST = post
+
     form = BidForm(request.POST)
     if form.is_valid():
 
