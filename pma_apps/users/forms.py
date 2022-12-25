@@ -28,9 +28,7 @@ class UserAdminCreationForm(UserCreationForm):
         fields = [
             "username",
         ]
-        error_messages = {
-            "username": {"unique": _("This username has already been taken.")}
-        }
+        error_messages = {"username": {"unique": _("Ovo korisničko Ime je zauzeto.")}}
 
 
 class UlogujVozacaForm(AuthenticationForm):
@@ -57,12 +55,11 @@ class UlogujVozacaForm(AuthenticationForm):
 
     error_messages = {
         "invalid_login": _("Došlo je do greške,proverite Vaše pristupne podatke."),
-        "inactive": _("This account is inactive."),
+        "inactive": _("Vaš Nalog Nije Aktivan."),
     }
 
 
 class KreirajVozacaForm(UserCreationForm):
-    # role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.VOZAC)
     first_name = forms.CharField(required=True, help_text="Ime*", label="")
     last_name = forms.CharField(required=True, help_text="Prezime*", label="")
     email = forms.EmailField(

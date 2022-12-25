@@ -34,7 +34,6 @@ class User(AbstractUser):
         blank=False,
         max_length=100,
         choices=Gradovi.choices,
-        default=Gradovi.BEOGRAD,
     )
     is_first_login = models.BooleanField(default=True)
 
@@ -110,7 +109,6 @@ class VozacProfile(models.Model):
         blank=True,
         max_length=20,
         choices=VrstaGoriva.choices,
-        default=VrstaGoriva.DIZEL,
     )
 
     class Meta:

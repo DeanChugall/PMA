@@ -4,7 +4,7 @@
 <div class="col-xl-12">
     {{ detalji_vozaca.errors }}
     {{ detalji_profila_vozaca.errors }}
-    <form action='' class="ogin100-form validate-form" method='POST' enctype='multipart/form-data'>
+    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate>
         {% csrf_token %}
         {{ detalji_vozaca.role }}
 
@@ -19,18 +19,15 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Grad:</label>
-                            <select class="form-control select2 form-select" name="grad">
-                                {% for grad in detalji_vozaca.grad %}
-                                    {% render_field grad %}
-                                {% endfor %}
-                            </select>
-
+                            {% render_field detalji_vozaca.grad class="form-control" placeholder="Grad" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Mesto - Grad.</div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Email adresa:</label>
-                            {% render_field detalji_vozaca.email class="form-control" placeholder="Email"  %}
+                            {% render_field detalji_vozaca.email class="form-control" placeholder="Email" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Email adresu.</div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
@@ -44,19 +41,22 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Broj Telefona:</label>
-                            {% render_field detalji_profila_vozaca.broj_telefona class="form-control" placeholder="Broj Telefona" %}
+                            {% render_field detalji_profila_vozaca.broj_telefona class="form-control" placeholder="Broj Telefona" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Broj Telefona.</div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Ime:</label>
-                            {% render_field detalji_vozaca.first_name class="form-control" placeholder="Ime" %}
+                            {% render_field detalji_vozaca.first_name class="form-control" placeholder="Ime" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Ime.</div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Prezime:</label>
-                            {% render_field detalji_vozaca.last_name class="form-control" placeholder="Prezime" %}
+                            {% render_field detalji_vozaca.last_name class="form-control" placeholder="Prezime" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Prezime.</div>
                         </div>
                     </div>
                 </div>
@@ -83,8 +83,9 @@
                 <div class="row">
                     <!-- VIN BROJ -->
                     <div class="form-group">
-                        <label class="form-label">VIN Broj:</label>
-                        {% render_field detalji_profila_vozaca.vin class="form-control form-control-lg" placeholder="primer: WAUZZZ4BZWN049194" %}
+                        <label class="form-label">Broj Šasije Automobila (VIN broj):</label>
+                        {% render_field detalji_profila_vozaca.vin class="form-control form-control-lg" placeholder="primer: WAUZZZ4BZWN049194" required="required" %}
+                        <div class="invalid-feedback m-1">Unesite Broj Šasije Automobila (VIN broj).</div>
                     </div>
                     <!-- END VIN BROJ -->
 
@@ -92,7 +93,8 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="form-label">Marka:</label>
-                            {% render_field detalji_profila_vozaca.marka class="form-control" placeholder="primer: Renault" %}
+                            {% render_field detalji_profila_vozaca.marka class="form-control" placeholder="primer: Renault" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Marku Automobila.</div>
                         </div>
                     </div>
                     <!-- END MARKA AUTOMOBILA -->
@@ -101,7 +103,8 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="form-label">Model:</label>
-                            {% render_field detalji_profila_vozaca.modell class="form-control" placeholder="primer: Scenic II" %}
+                            {% render_field detalji_profila_vozaca.modell class="form-control" placeholder="primer: Scenic II"  required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Model Automobila.</div>
                         </div>
                     </div>
                     <!-- END MODEL AUTOMOBILA -->
@@ -112,29 +115,25 @@
                         <!-- Godište Automobila -->
                         <div class="col-md-4 mb-2">
                             <label class="form-label">Godište Automobila:</label>
-                            <select class="form-control select2 form-select" name="godiste">
-                                {% for godiste in detalji_profila_vozaca.godiste %}
-                                    {% render_field godiste %}
-                                {% endfor %}
-                            </select>
+                            {% render_field detalji_profila_vozaca.godiste class="form-control form-select" placeholder="primer: Godište Automobila" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Godište Automobila.</div>
                         </div>
                         <!-- END Godište Automobila -->
 
                         <!-- Vrsta Goriva -->
                         <div class="col-md-4 mb-2">
                             <label class="form-label">Vrsta Goriva:</label>
-                            <select class="form-control form-select" name="vrsta_goriva">
-                                {% for vrsta_goriva in detalji_profila_vozaca.vrsta_goriva %}
-                                    {% render_field vrsta_goriva %}
-                                {% endfor %}
-                            </select>
+                            {% render_field detalji_profila_vozaca.vrsta_goriva class="form-control form-select" placeholder="primer: Vrsta Goriva" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Vrsta Goriva Automobila.</div>
+
                         </div>
                         <!-- END Vrsta Goriva -->
 
                         <!-- Kilometraža -->
                         <div class="col-md-4 mb-2">
                             <label class="form-label">Kilometraža:</label>
-                            {% render_field detalji_profila_vozaca.kilometraza class="form-control" placeholder="primer: 156.500 km" %}
+                            {% render_field detalji_profila_vozaca.kilometraza class="form-control" placeholder="primer: 156.500 km" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Kilometražu Automobila.</div>
                         </div>
                         <!-- END Kilometraža -->
                     </div>
@@ -143,13 +142,15 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="form-label">Zapremina Motora:</label>
-                            {% render_field detalji_profila_vozaca.zapremina_motora class="form-control" placeholder="primer: 1890 ccm" %}
+                            {% render_field detalji_profila_vozaca.zapremina_motora class="form-control" placeholder="primer: 1890 ccm" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Zapreminu Motora Automobila.</div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="form-label">Snaga Motora:</label>
-                            {% render_field detalji_profila_vozaca.snaga_motora class="form-control" placeholder="primer: 120 KS  ili 80 KW" %}
+                            {% render_field detalji_profila_vozaca.snaga_motora class="form-control" placeholder="primer: 120 KS  ili 80 KW" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Snagu Motora Automobila.</div>
                         </div>
                     </div>
                 </div>
