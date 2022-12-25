@@ -25,6 +25,7 @@ class GodisteAutomobila(models.TextChoices):
     godiste_2003 = "2003", "2003"
     godiste_2002 = "2002", "2002"
     godiste_2001 = "2001", "2001"
+    godiste_2000 = "2000", "2000"
     godiste_1999 = "1999", "1999"
     godiste_1998 = "1998", "1998"
     godiste_1997 = "1997", "1997"
