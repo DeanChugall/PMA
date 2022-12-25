@@ -4,7 +4,11 @@
 <div class="col-xl-12">
     {{ detalji_vozaca.errors }}
     {{ detalji_profila_vozaca.errors }}
-    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate>
+    <form action=''
+        class="ogin100-form validate-form needs-validation"
+        method='POST'
+        enctype='multipart/form-data'
+        novalidate>
         {% csrf_token %}
         {{ detalji_vozaca.role }}
 
@@ -75,7 +79,7 @@
         <!-- END EDIT PROFILA -->
 
         <!-- EDIT AUTOMOBILA -->
-        <div class="card" id="automobil">
+        <div class="card text-white bg-indigo-darkest" id="automobil">
             <div class="card-header">
                 <h3 class="card-title">Uređivanje Automobila</h3>
             </div>

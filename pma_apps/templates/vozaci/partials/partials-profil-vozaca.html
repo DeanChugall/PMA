@@ -94,7 +94,7 @@
     <!-- END EDIT PROFILA -->
 
     <!-- EDIT AUTOMOBILA -->
-    <div class="card">
+    <div class="card text-white bg-indigo-darkest">
         <div class="card-header">
             <h3 class="card-title">Podaci Automobila</h3>
         </div>
@@ -209,8 +209,9 @@
     </div>
     <!-- END EDIT AUTOMOBILA -->
 
-    <!-- EDIT NOTIFIKACIJE -->
+    <!-- EDIT NOTIFIKACIJE I BRISANJE NALOGA -->
     <div class="row">
+        <!-- EDIT NOTIFIKACIJE -->
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
@@ -326,35 +327,34 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- END EDIT NOTIFIKACIJE -->
+        <!-- END EDIT NOTIFIKACIJE -->
 
-    <div class="col-lg-12">
         <!-- BRISANJE NALOGA -->
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Brisanje Korisničkog Naloga</div>
-            </div>
-            <div class="card-body">
-                <p>Potpuno brisanje korisničkog naloga '<b>{{ detalji_vozaca.username }}</b>', takođe i svih podataka vezanih za isti!</p>
-            </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Brisanje Korisničkog Naloga</div>
+                </div>
+                <div class="card-body">
+                    <p>Potpuno brisanje korisničkog naloga '<b>{{ detalji_vozaca.username }}</b>', takođe i svih podataka vezanih za isti!</p>
+                </div>
 
-            <!-- Modal BRISANJE NALOGA -->
-            {% include 'vozaci/partials/partials-obrisi-nalog-vozaca.html' %}
-            <!-- END Modal BRISANJE NALOGA -->
-            <div class="card-footer text-end">
-                <button class="btn btn-outline-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#obrisiModal"
-                    type="button"
-                    value="Obriši">
-                    <i class="fa fa-trash-o"></i>&nbsp;Brisanje Naloga
-                </button>
+                <!-- Modal BRISANJE NALOGA -->
+                {% include 'vozaci/partials/partials-obrisi-nalog-vozaca.html' %}
+                <!-- END Modal BRISANJE NALOGA -->
+                <div class="card-footer text-end">
+                    <button class="btn btn-outline-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#obrisiModal"
+                        type="button"
+                        value="Obriši">
+                        <i class="fa fa-trash-o"></i>&nbsp;Brisanje Naloga
+                    </button>
+                </div>
             </div>
-
         </div>
         <!-- END BRISANJE NALOGA -->
     </div>
-
+    <!-- END EDIT NOTIFIKACIJE I BRISANJE NALOGA -->
 </div>
 <!-- END PROMENA PROFILA -->

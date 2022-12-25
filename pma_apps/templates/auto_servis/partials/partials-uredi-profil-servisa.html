@@ -4,12 +4,12 @@
 <div class="col-xl-12">
     {{ detalji_servisa.errors }}
     {{ detalji_profila_servisa.errors }}
-    <form action='' class="ogin100-form validate-form" method='POST' enctype='multipart/form-data'>
+    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate>
         {% csrf_token %}
         {{ detalji_servisa.role }}
 
         <!-- EDIT PROFILA VLASNIKA SERVISA -->
-        <div class="card  text-white bg-indigo-darkest">
+        <div class="card text-white bg-indigo-darkest">
             <div class="card-header">
                 <h3 class="card-title">Osnovni Podaci Vlasnika Servisa</h3>
             </div>
@@ -19,11 +19,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Mesto Prebilavišta:</label>
-                            <select class="form-control select2 form-select" name="grad">
-                                {% for grad in detalji_servisa.grad %}
-                                    {% render_field grad %}
-                                {% endfor %}
-                            </select>
+                            {% render_field detalji_servisa.grad class="form-control form-control-lg" placeholder="primer: Mesto Prebilavišta" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Mesto Prebilavišta.</div>
                         </div>
                     </div>
                     <!-- END MESTO PREBIVALISTA VLASNIKA SERVISA -->
@@ -32,7 +29,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Email adresa:</label>
-                            {% render_field detalji_servisa.email class="form-control" placeholder="Email"  %}
+                            {% render_field detalji_servisa.email class="form-control" placeholder="Email" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Email adresu.</div>
                         </div>
                     </div>
                     <!-- END EMAIL ADRESA VLASNIKA SERVISA -->
@@ -41,7 +39,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Korisničko Ime:</label>
-                            {% render_field detalji_servisa.username class="form-control" placeholder="Username" readonly="readonly" %}
+                            {% render_field detalji_servisa.username class="form-control" placeholder="Username" readonly="readonly" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Korisničko Ime.</div>
                         </div>
                     </div>
                     <!-- END KORISNICKO IME VLASNIKA SERVISA -->
@@ -50,8 +49,9 @@
                     <!-- TELEFON VLASNIKA SERVISA -->
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
-                            <label class="form-label">Telefon:</label>
-                            {% render_field detalji_profila_servisa.broj_telefona_vlasnika class="form-control" placeholder="Broj Telefona" %}
+                            <label class="form-label">Telefon Vlasnika:</label>
+                            {% render_field detalji_profila_servisa.broj_telefona_vlasnika class="form-control" placeholder="Broj Telefona" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Telefon Vlasnika.</div>
                         </div>
                     </div>
                     <!-- END TELEFON VLASNIKA SERVISA -->
@@ -60,7 +60,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Ime:</label>
-                            {% render_field detalji_servisa.first_name class="form-control" placeholder="Ime" %}
+                            {% render_field detalji_servisa.first_name class="form-control" placeholder="Ime" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Ime Vlasnika.</div>
                         </div>
                     </div>
                     <!-- END IME VLASNIKA SERVISA -->
@@ -69,7 +70,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Prezime:</label>
-                            {% render_field detalji_servisa.last_name class="form-control" placeholder="Prezime" %}
+                            {% render_field detalji_servisa.last_name class="form-control" placeholder="Prezime" required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Prezime Vlasnika.</div>
                         </div>
                     </div>
                     <!-- END PREZIME VLASNIKA SERVISA -->
@@ -99,7 +101,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Naziv Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.ime_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." %}
+                            {% render_field detalji_profila_servisa.ime_servisa class="form-control form-control-lg" placeholder="Ime Servisa nije uneto..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Naziv Auto Servisa.</div>
                         </div>
                     </div>
                     <!-- END NAZIV AUTO SERVISA -->
@@ -117,7 +120,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Grad Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.grad_auto_servisa class="form-control form-control-lg" placeholder="Grad Servisa nije unet..." %}
+                            {% render_field detalji_profila_servisa.grad_auto_servisa class="form-control form-control-lg" placeholder="Grad Servisa nije unet..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Grad Auto Servisa.</div>
                         </div>
                     </div>
                     <!-- END GRAD AUTO SERVISA -->
@@ -126,7 +130,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Adresa Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.adresa_servisa class="form-control form-control-lg" placeholder="Adresa Servisa nije uneta..." %}
+                            {% render_field detalji_profila_servisa.adresa_servisa class="form-control form-control-lg" placeholder="Adresa Servisa nije uneta..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Adresu Auto Servisa.</div>
                         </div>
                     </div>
                     <!-- END ADRESA AUTO SERVISA -->
@@ -135,7 +140,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Broj Telefona Servisa:</label>
-                            {% render_field detalji_profila_servisa.broj_telefona_servisa class="form-control" placeholder="Broj Telefona Servisa nije unet..." %}
+                            {% render_field detalji_profila_servisa.broj_telefona_servisa class="form-control" placeholder="Broj Telefona Servisa nije unet..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Broj Telefona Auto Servisa.</div>
                         </div>
                     </div>
                     <!-- END BROJ TELEFONA AUTO SERVISA -->
@@ -144,7 +150,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">E-mail Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.email_servisa class="form-control form-control-lg" placeholder="Email Servisa nije uneta..." %}
+                            {% render_field detalji_profila_servisa.email_servisa class="form-control form-control-lg" placeholder="Email Servisa nije uneta..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite E-mail Auto Servisa.</div>
                         </div>
                     </div>
                     <!-- END EMAIL AUTO SERVISA -->
@@ -153,7 +160,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Datum Osnivanja Auto Servisa:</label>
-                            {% render_field detalji_profila_servisa.datum_osnivanja class="form-control form-control-lg" placeholder="Datum Osnivanja Servisa nije unet..." %}
+                            {% render_field detalji_profila_servisa.datum_osnivanja class="form-control form-control-lg" placeholder="Datum Osnivanja Servisa nije unet..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Datum Osnivanja Auto Servisa.</div>
                         </div>
                     </div>
                     <!-- END DATUM OSNIVANJA AUTO SERVISA -->
@@ -180,7 +188,8 @@
                     <div class="col-md-4 mb-2">
                         <div class="form-group">
                             <label class="form-label">Specijalizovan za Marku:</label>
-                            {% render_field detalji_profila_servisa.specijalizovan_za_marku class="form-control" placeholder="Specijalizovan Za Marku Automobila nije uneta..." %}
+                            {% render_field detalji_profila_servisa.specijalizovan_za_marku class="form-control" placeholder="Specijalizovan Za Marku Automobila nije uneta..." required="required" %}
+                            <div class="invalid-feedback m-1">Unesite Specijalizovan za Marku.</div>
                         </div>
                     </div>
                     <!-- END SPECIJALIZOVAN ZA  AUTO SERVISA -->
