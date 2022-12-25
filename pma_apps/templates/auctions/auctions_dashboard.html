@@ -176,8 +176,7 @@
                                     </div>
                                     <div class="">
                                         <h6 class="mb-1 fw-semibold">Prihvaćeni Zahtevi</h6>
-                                        <p class="fw-normal fs-12"> <span class="text-success">3.5%</span>
-                                            prihvaćen </p>
+                                        <p class="fw-normal fs-12"> <span class="text-success">3.5%</span>prihvaćen </p>
                                     </div>
                                     <div class=" ms-auto my-auto">
                                         <p class="fw-bold fs-20"> 342 </p>
@@ -222,10 +221,11 @@
                                                 <div class="tabs-menu1">
                                                     <!-- Tabs -->
                                                     <ul class="nav panel-tabs product-sale">
-                                                        <li>
-                                                            <a href="#tab5" class="active" data-bs-toggle="tab">Svi Zahtevi</a>
-                                                        </li>
-
+                                                        <a href="{% url 'ponude:aktivni_zahtevi' %}"
+                                                            class="btn ripple btn-min w-sm btn-primary me-2 my-auto mb-2"
+                                                            target="_self">
+                                                            <i class="fe fe-edit"></i> Svi Aktivni Zahtevi
+                                                        </a>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -240,7 +240,7 @@
                                                                         <th class="bg-transparent border-bottom-0"  style="width: 5%;">Zahtev</th>
                                                                         <th class="bg-transparent border-bottom-0">Kategorija</th>
                                                                         <th class="bg-transparent border-bottom-0">Datum Kreiranja</th>
-                                                                        <th class="bg-transparent border-bottom-0" style="width: 10%;">Status</th>
+                                                                        <th class="bg-transparent border-bottom-0" style="width: 10%;">Aktivan</th>
                                                                         <th class="bg-transparent border-bottom-0" style="width: 10%;">Detalji</th>
                                                                     </tr>
                                                                 </thead>
@@ -270,12 +270,15 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">
-                                                                                    <span class="badge bg-success-transparent rounded-pill text-success p-2 px-3">{{ auction.active }}</span>
+                                                                                    {% if auction.active %}
+                                                                                        <span class="badge bg-success-transparent rounded-pill text-success p-2 px-3">AKTIVAN</span>
+                                                                                    {% else %}
+                                                                                        <span class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">ZATVOREN</span>
+                                                                                    {% endif %}
                                                                                 </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="mt-sm-1 d-block">
-                                                                                    <input type="hidden" name="next" value="{{ next }}">
                                                                                     <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
                                                                                         class="btn btn-primary mb-1">
                                                                                         <i class="fe fe-eye mx-2"></i>Pogledaj
