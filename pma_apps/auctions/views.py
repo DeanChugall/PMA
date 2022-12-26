@@ -115,7 +115,11 @@ def detalji_zahteva_view(request, zahtev_id):
     ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
+    # TODO: Implementirati bolju logiku za prikaz Serviserima preporucene zahteve
     preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:3]
+
+    for servis in ponude_auto_servisa:
+        servis.slika_logo_servisa = servis.servis.get_slika_logo_servisa.first()
 
     for zahtev in preporuceni_zahtevi_servisima:
         zahtev.image = zahtev.get_images.first()
@@ -434,7 +438,9 @@ def ponuda_zahteva_view(request, zahtev_id):
         auction.save()
 
         return HttpResponseRedirect(
-            reverse("ponude:detalji_ponude_view", args=[zahtev_id])
+            "{}#listing-ponuda-zahteva".format(
+                reverse("ponude:detalji_ponude_view", args=[zahtev_id])
+            )
         )
     else:
         return render(

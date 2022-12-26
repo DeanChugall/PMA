@@ -72,15 +72,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-content">
 
+                        <div class="tab-content">
                             <div class="tab-pane active" id="tab-12">
                                 <div class="row">
                                     {% if pages %}
                                         {% for servis in pages %}
                                             <div class="col-xl-12 col-lg-12 col-md-12">
                                                 <div class="card overflow-hidden">
-                                                    <div class="card-body">
+                                                    <div class="card-body text-white bg-indigo-darkest">
                                                         <div class="row g-0">
                                                             <!-- SLIKA SERVISA -->
                                                             <div class="col-xl-3 col-lg-12 col-md-12">
@@ -198,27 +198,29 @@
                                                                                 <div class="social social-profile-buttons mt-5 float-end">
                                                                                     <div class="mt-3">
                                                                                         {% if servis.web_site_servisa %}
-                                                                                            <a class="social-icon text-white" href="https://{{ servis.web_site_servisa }}" target="_blank"><i class="fa fa-globe"></i></a>
+                                                                                            <a class="social-icon text-white" href="https://{{ servis.web_site_servisa }}" target="_blank">
+                                                                                                <i class="fa fa-globe"></i>
+                                                                                            </a>
                                                                                         {% endif %}
                                                                                         {% if servis.twitter_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.twitter_link }}" target="_blank">
+                                                                                            <a class="social-icon text-primary" href="https://{{ servis.twitter_link }}" target="_blank">
                                                                                                 <i class="fa fa-twitter"></i>
                                                                                             </a>
                                                                                         {% endif %}
                                                                                         {% if servis.facebook_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.facebook_link }}" target="_blank">
+                                                                                            <a class="social-icon text-primary" href="https://{{ servis.facebook_link }}" target="_blank">
                                                                                                 <i class="fa fa-facebook"></i>
                                                                                             </a>
                                                                                         {% endif %}
 
                                                                                         {% if servis.youtube_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.youtube_link.url }}" target="_blank">
-                                                                                                <i class="fa fa-youtube"></i>
+                                                                                             <a class="social-icon text-primary" href="https://{{ servis.youtube_link }}" target="_blank">
+                                                                                                <i class="fa fa-facebook"></i>
                                                                                             </a>
                                                                                         {% endif %}
 
                                                                                         {% if servis.linkedin_link %}
-                                                                                            <a class="social-icon text-primary" href="https://{{ profil_servisa.linkedin_link }}" target="_blank">
+                                                                                            <a class="social-icon text-primary" href="https://{{ servis.linkedin_link }}" target="_blank">
                                                                                                 <i class="fa fa-linkedin"></i>
                                                                                             </a>
                                                                                         {% endif %}

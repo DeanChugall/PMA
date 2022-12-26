@@ -2,6 +2,7 @@
 
 Kreiranje Korisnika putem Django PROXY nacina.
 """
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.db.models import Avg, CharField, Count
@@ -331,6 +332,11 @@ class ServisProfile(models.Model):
         """Returns grad Vozaca LONGITUDE."""
         return self.grad_auto_servisa.split("|")[2]
 
+    # @property
+    # def get_logo_servisa(self):
+    #     logo_servisa = SlikaLogoServisa.objects.filter(servis=self).first()
+    #     return logo_servisa
+
     @property
     def averageReview(self):
         reviews = RatingServisa.objects.filter(servis=self, status=True).aggregate(
@@ -386,9 +392,6 @@ class ServisProfile(models.Model):
 
 
 class RatingServisa(models.Model):
-    """
-    Referenca @see: https://medium.com/geekculture/django-implementing-star-rating-e1deff03bb1c
-    """
 
     servis = models.ForeignKey(
         ServisProfile, on_delete=models.CASCADE, related_name="get_servis_rating"

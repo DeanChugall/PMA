@@ -1,42 +1,190 @@
 {% for ponuda in ponude_auto_servisa %}
     {% if user.role == "VOZAC" or user.role == "SERVIS"%}
         <div class="col-xl-12">
-            <div class="card">
-                <div class="product-grid6">
-                    <div class="product-image6 p-5">
+            <div class="card text-white bg-indigo-darkest">
+                        <div class="card-body">
+                            <div class="row g-0">
+                                <!-- SLIKA SERVISA -->
+                                <div class="col-xl-3 col-lg-12 col-md-12">
+                                    <div class="product-list">
+                                        <div class="product-image">
+                                            <ul class="icons">
+                                                <li><a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-primary"><i class="fe fe-eye text-white "></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="br-be-0 br-te-0">
+                                            <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username  %}" class="">
+                                                <img class="cover-image br-7 w-100"
+                                                    src="{{ ponuda.slika_logo_servisa.slika_logo_servisa.url|default:'/static/assets/images/auto-servisi/nema-servis-slike.jpg' }}"
+                                                    alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="price h6 mb-1 fw-bold text-center text-muted mt-1">Aktivnost: {{ ponuda.servis.user.last_login }}</div>
+                                    </div>
+                                </div>
+                                <!-- END SLIKA SERVISA -->
 
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="product-content text-center">
-                            {% if ponuda.servis.ime_servisa %}
-                                <h1 class="title fw-bold fs-20">
-                                    <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username  %}">{{ ponuda.servis.ime_servisa }}</a>
-                                </h1>
-                            {% else %}
-                                <h1 class="title fw-bold fs-20">
-                                    <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username  %}">{{ ponuda.servis.user.username }}</a>
-                                </h1>
-                            {% endif %}
-                            <div class="mb-2 text-warning">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                            </div>
-                            <div class="price">{{ ponuda.amount }} rsd<span class="ms-4"></span>
-                            </div>
-                            {% if ponuda.opis_ponude %}
-                                <div class="price">{{ ponuda.opis_ponude }}<span class="ms-4"></span>
+                                <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
+                                <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                    <div class="card-body">
+                                        <div class="">
+                                            <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="">
+                                                {% if ponuda.servis.ime_servisa %}
+                                                    <h3 class="fw-bold fs-30 mb-3">{{ ponuda.servis.ime_servisa }}</h3>
+                                                {% else %}
+                                                    <h3 class="fw-bold fs-30 mb-3">{{ ponuda.servis.user.username }}</h3>
+                                                {% endif %}
+                                                <!-- ZVEZDICE -->
+                                                <div class="mb-2 text-warning">
+                                                    <i class="fa fa-star{% if ponuda.servis.averageReview < 0.5 %}-o{% elif ponuda.servis.averageReview >= 0.5 and ponuda.servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                    <i class="fa fa-star{% if ponuda.servis.averageReview < 1.5 %}-o{% elif ponuda.servis.averageReview >= 1.5 and ponuda.servis.averageReview < 2 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                    <i class="fa fa-star{% if ponuda.servis.averageReview < 2.5 %}-o{% elif ponuda.servis.averageReview >= 2.5 and ponuda.servis.averageReview < 3 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                    <i class="fa fa-star{% if ponuda.servis.averageReview < 3.5 %}-o{% elif ponuda.servis.averageReview >= 3.5 and ponuda.servis.averageReview < 4 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                    <i class="fa fa-star{% if ponuda.servis.averageReview < 4.5 %}-o{% elif ponuda.servis.averageReview >= 4.5 and ponuda.servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
+                                                    &nbsp;{{ ponuda.servis.averageReview }} / 5 &nbsp;&nbsp;ukupno utisaka: {{ ponuda.servis.countReview }}
+                                                </div>
+                                                <!-- END ZVEZDICE -->
+
+                                                <!-- GRAD SERVISA ISPOD IMENA -->
+                                                {% if ponuda.servis.grad_auto_servisa %}
+                                                    <div class="price h6 mb-1 fw-bold text-white">{{ ponuda.servis.get_grad_servisa }}</div>
+                                                {% else %}
+                                                    <div class="price h6 mb-1 fw-bold text-white">{{ ponuda.servis.user.get_grad_servisa }}</div>
+                                                {% endif %}
+                                                <!-- END GRAD SERVISA ISPOD IMENA -->
+
+                                            </a>
+                                            <hr/>
+                                            <!-- SLOGAN SERVISA -->
+                                            {% if ponuda.servis.slogan_servisa %}
+                                                <p class="fs-16">{{ ponuda.servis.slogan_servisa }} </p>
+                                            {% else %}
+                                                <p class="fs-16">...nema slogana servisa...</p>
+                                            {% endif %}
+                                            <!-- END SLOGAN SERVISA -->
+
+                                            <!-- STATISTIKA U KARTICI LISTINGA -->
+                                            <div class="notification-body">
+                                                <div class="media mt-0">
+                                                    <!-- BROJ PONUDA SERVISA -->
+                                                    <div class=" bradius me-1 mt-1">
+                                                        <i class="fa fa-address-book-o fa-3x text-white"></i>
+                                                    </div>
+                                                    <div class="media-body d-flex">
+                                                        <div class="">
+                                                            <p class="fs-11 text-dark fw-bold mb-0">Ponude</p>
+                                                            <p class="mb-0 fs-4 text-dark">&nbsp; {{ ponuda.servis.count_ponude }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- END BROJ PONUDA SERVISA -->
+
+                                                    <!-- BROJ POSLOVA SERVISA -->
+                                                    <div class=" bradius me-1 mt-1">
+                                                        <i class="fa fa-car fa-3x text-white"></i>
+                                                    </div>
+                                                    <div class="media-body d-flex">
+                                                        <div class="">
+                                                            <p class="fs-11 text-dark fw-bold mb-0">Poslovi</p>
+                                                            <p class="mb-0 fs-4 text-dark">&nbsp;{{ ponuda.servis.count_prihvacene_poonude }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- END BROJ POSLOVA SERVISA -->
+                                                </div>
+                                            </div>
+                                            <!-- END STATISTIKA U KARTICI LISTINGA -->
+
+                                            <div class="row">
+                                                <div class="px-0 px-sm-4">
+                                                    <!-- POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
+                                                    <div class="card-body p-0 d-lg-none">
+                                                        <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
+                                                            <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
+                                                        </a>
+                                                        {% if ponuda.servis.broj_telefona_servisa %}
+                                                            <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                                <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                                            </a>
+                                                        {% elif ponuda.servis.broj_telefona_vlasnika %}
+                                                            <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                                <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                                            </a>
+                                                        {% else %}
+                                                            <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-primary btn-block">
+                                                                <i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <!-- END POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
+
+                                                    <!-- SOCIAL ICONS SERVISA -->
+                                                    <div class="social social-profile-buttons mt-5 float-end">
+                                                        <div class="mt-3">
+                                                            {% if ponuda.servis.web_site_servisa %}
+                                                                <a class="social-icon text-white" href="https://{{ ponuda.servis.web_site_servisa }}" target="_blank"><i class="fa fa-globe"></i></a>
+                                                            {% endif %}
+                                                            {% if ponuda.servis.twitter_link %}
+                                                                <a class="social-icon text-primary" href="https://{{ ponuda.servis.twitter_link }}" target="_blank">
+                                                                    <i class="fa fa-twitter"></i>
+                                                                </a>
+                                                            {% endif %}
+                                                            {% if ponuda.servis.facebook_link %}
+                                                                <a class="social-icon text-primary" href="https://{{ ponuda.servis.facebook_link }}" target="_blank">
+                                                                    <i class="fa fa-facebook"></i>
+                                                                </a>
+                                                            {% endif %}
+
+                                                            {% if ponuda.servis.youtube_link %}
+                                                                <a class="social-icon text-primary" href="https://{{ ponuda.servis.youtube_link  }}" target="_blank">
+                                                                    <i class="fa fa-youtube"></i>
+                                                                </a>
+                                                            {% endif %}
+
+                                                            {% if ponuda.servis.linkedin_link %}
+                                                                <a class="social-icon text-primary" href="https://{{ ponuda.servis.linkedin_link }}" target="_blank">
+                                                                    <i class="fa fa-linkedin"></i>
+                                                                </a>
+                                                            {% endif %}
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <!-- END SOCIAL ICONS SERVISA -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            {% else %}
-                                <div class="price">Nema Opisa Ponude<span class="ms-4"></span>
+                                <!-- END IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
+
+                                <!-- POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA VELIKIM REZOLUCIJAMA -->
+                                <div class="col-xl-3 col-lg-12 col-md-1 my-auto d-none d-lg-block">
+                                    <div class="card-body p-0">
+                                        {% if ponuda.servis.grad_auto_servisa %}
+                                            <div class="price h3 text-center mb-5 fw-bold">{{ ponuda.servis.get_grad_servisa }}</div>
+                                        {% else %}
+                                            <div class="price h3 text-center mb-5 fw-bold">{{ ponuda.servis.user.get_grad_servisa }}</div>
+                                        {% endif %}
+                                        <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
+                                            <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
+                                        </a>
+                                        {% if ponuda.servis.broj_telefona_servisa %}
+                                            <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                            </a>
+                                        {% elif servis.broj_telefona_vlasnika %}
+                                            <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-primary btn-block">
+                                                <i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!
+                                            </a>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                            {% endif %}
+                                <!-- END POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA VELIKIM REZOLUCIJAMA -->
+                            </div>
                         </div>
-                    </div>
 
-                </div>
 
                 <!-- PRIHVATI PONUDU -->
                 <div class="card-footer text-center">
@@ -44,11 +192,6 @@
                         <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}">
                             <button type="button" class="btn btn-primary mb-1 btn-lg">
                                 <i class="fa fa-check-square fa-1x"></i> Prihvati Ponudu
-                            </button>
-                        </a>
-                        <a href="javascript:void(0)">
-                            <button type="button" class="btn btn-outline-primary mb-1 btn-lg  ">
-                                <i class="fa fa-phone-square fa-1x"></i> Pozovi Servis
                             </button>
                         </a>
                     {% endif %}
@@ -99,7 +242,7 @@
     {% endif %}
 {% empty %}
     <div class="col-xl-12">
-        <div class="card">
+        <div class="card text-white bg-indigo-darkest">
             <div class="product-grid6">
                 <div class="product-image6 p-5"></div>
                 <div class="card-body pt-0">

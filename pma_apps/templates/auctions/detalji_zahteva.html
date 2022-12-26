@@ -131,7 +131,7 @@
                                 <div class='card-header'>
                                     <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
                                 </div>
-                                <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" method='POST'>
+                                <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" class="needs-validation"method='POST' novalidate>
                                     {% csrf_token %}
                                     <div class='card-body'>
                                         <!-- Product price-->
@@ -151,7 +151,8 @@
                                             {% endif %}
 
                                             <div class='form-group mt-2'>
-                                                {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." %}
+                                                {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" %}
+                                                <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
                                                 {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" %}
                                                 <div class="mt-1">
                                                     <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0'>Postavi Ponudu</button>
@@ -165,7 +166,7 @@
                         <div class='row'>
                             <!-- Comments -->
                             <div class='col-xl-12'>
-                                <div class='card mb-4'>
+                                <div class='card mb-4 text-white bg-indigo-darkest'>
                                     <div class='card-header'>
                                         <i class='fa fa-comments'></i>&nbsp;Detalji Zahteva
                                     </div>
