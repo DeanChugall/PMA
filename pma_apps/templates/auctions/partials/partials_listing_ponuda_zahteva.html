@@ -1,7 +1,7 @@
 {% for ponuda in ponude_auto_servisa %}
     {% if user.role == "VOZAC" or user.role == "SERVIS"%}
         <div class="col-xl-12">
-            <div class="card text-white bg-indigo-darkest">
+            <div class="card text-white bg-indigo-darkest border">
                 <div class="card-body">
                     <div class="row g-0">
                         <!-- SLIKA SERVISA -->
@@ -52,7 +52,6 @@
                                             <div class="price h6 mb-1 fw-bold text-white">{{ ponuda.servis.user.get_grad_servisa }}</div>
                                         {% endif %}
                                         <!-- END GRAD SERVISA ISPOD IMENA -->
-
                                     </a>
                                     <hr/>
                                     <!-- SLOGAN SERVISA -->
@@ -99,22 +98,34 @@
                                             <div class="card-body p-0 d-lg-none">
                                                 {% if ponuda.amount %}
                                                     <hr/>
-                                                    <div class="price h3 text-center mb-5 mt-5 fw-bold">{{ ponuda.amount }} rsd</div>
+                                                    <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">{{ ponuda.amount }} rsd</div>
                                                 {% endif %}
                                                 <hr/>
-                                                <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
+
+                                                <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
+                                                <div class="card p-1">
+                                                    <div class="card-header h5">
+                                                        <strong>Opis Ponude:</strong>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p class="card-text">{{ ponuda.opis_ponude }}</p>
+                                                    </div>
+                                                </div>
+                                                <!-- END OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
+
+                                                <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-lg btn-block mt-2">
                                                     <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
                                                 </a>
                                                 {% if ponuda.servis.broj_telefona_servisa %}
-                                                    <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                    <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-lg btn-block">
                                                         <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
                                                     </a>
                                                 {% elif ponuda.servis.broj_telefona_vlasnika %}
-                                                    <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-block">
+                                                    <a href="tel: {{ ponuda.servis.broj_telefona_servisa }}" class="btn btn-primary btn-lg btn-block">
                                                         <i class="fe fe-phone-call mx-2"></i>Pozovi Servis
                                                     </a>
                                                 {% else %}
-                                                    <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-primary btn-block">
+                                                    <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-lg btn-primary btn-block">
                                                         <i class="fe fe-phone-missed mx-2"></i>Telefon nije unet!
                                                     </a>
                                                 {% endif %}
@@ -159,6 +170,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
+                            <div class="card p-1 d-none d-lg-block">
+                                <div class="card-header h5">
+                                    <strong>Opis Ponude:</strong>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">{{ ponuda.opis_ponude }}</p>
+                                </div>
+                            </div>
+                            <!-- END OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
                         </div>
                         <!-- END IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
 
@@ -166,7 +188,7 @@
                         <div class="col-xl-3 col-lg-12 col-md-1 my-auto d-none d-lg-block">
                             <div class="card-body p-0">
                                 {% if ponuda.amount %}
-                                    <div class="price h3 text-center mb-5 fw-bold">{{ ponuda.amount }} rsd</div>
+                                    <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">{{ ponuda.amount }} rsd</div>
                                 {% endif %}
                                 <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-block mt-2">
                                     <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
@@ -189,7 +211,6 @@
                         <!-- END POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA VELIKIM REZOLUCIJAMA -->
                     </div>
                 </div>
-
 
                 <!-- PRIHVATI PONUDU -->
                 <div class="card-footer text-center">
