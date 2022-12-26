@@ -115,7 +115,7 @@ def detalji_zahteva_view(request, zahtev_id):
     ponude_auto_servisa = Bid.objects.filter(auction=zahtevi.id)
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
-    profil_vozaca = VozacProfile.objects.get(user=request.user)
+    profil_vozaca = VozacProfile.objects.get(user=zahtevi.creator)
 
     # TODO: Implementirati bolju logiku za prikaz Serviserima preporucene zahteve
     preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:3]
@@ -318,7 +318,6 @@ def aktivni_zahtevi_view(request):
     Active auctions are paginated: 3 per page
     """
     id_pracenog_zahteva = request.user.watchlist.all()
-    # ponude_auto_servisa = Bid.objects.filter(auction=auction.id)
 
     category_name = request.GET.get("category_name", None)
 

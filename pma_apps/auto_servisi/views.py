@@ -290,7 +290,7 @@ def submit_review(request, profil_servisa_id):
             )
             form = RatingServisaForm(request.POST, instance=reviews)
             form.save()
-            messages.success(request, "Thank you! Your review has been updated.")
+            messages.success(request, "Zahvaljujemo, Vaš utisak je ažuriran.")
             return redirect(url)
         except RatingServisa.DoesNotExist:
             form = RatingServisaForm(request.POST)
