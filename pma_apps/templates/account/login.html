@@ -48,37 +48,47 @@
                         class="header-brand-img" alt=""></a>
                 </div>
             </div>
-            <form class="ogin100-form validate-form" method="POST" action="{% url 'users:prijava' %}">
+            <form class="ogin100-form validate-form needs-validation" method="POST" action="" novalidate>
                 {% csrf_token %}
                 <div class="container-login100">
                     <div class="wrap-login100 p-6">
-
                         <span class="login100-form-title pb-5">Prijava Korisnika</span>
                         <div class="panel panel-primary">
-                            <div class="tab-menu-heading">
-                                <div class="tabs-menu1">
-                                    <!-- Tabs -->
-                                    <ul class="nav panel-tabs">
-                                        <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Email</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <div class="tab-menu-heading"></div>
                             <div class="panel-body tabs-menu-body p-0 pt-5">
                                 <div class="tab-content">
-
+                                    <!-- PRIKAZI INVALID CREDENTIALS -->
+                                    {% if form.non_field_errors %}
+                                        {% for error in form.non_field_errors %}
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ error|striptags }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <!-- END PRIKAZI INVALID CREDENTIALS -->
                                     <div class="tab-pane active" id="tab5">
                                         <div class="wrap-input100 validate-input input-group">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
+                                                <i class="fa fa-user text-muted" aria-hidden="true"></i>
                                             </a>
                                             {{ form.username|add_class:"input100 border-start-0 form-control" }}
                                         </div>
+                                        {% if form.username.errors %}
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ form.username.errors|striptags }}
+                                            </div>
+                                        {% endif %}
                                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                                <i class="fa fa-solid fa-key text-muted"></i>
                                             </a>
                                             {{ form.password|add_class:"input100 border-start-0 form-control" }}
                                         </div>
+                                        {% if form.password.errors %}
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ form.password.errors|striptags }}
+                                            </div>
+                                        {% endif %}
                                         <div class="text-end pt-4">
                                             <p class="mb-0"><a href="{% url 'users:pass-reset' %}" class="text-primary ms-1">Zaboravljena
                                                 Lozinka?</a>
@@ -98,13 +108,6 @@
                                             <a href="{% url 'auto_servis:kreiraj_servis' %}" class="login100-form-btn btn btn-outline-warning">
                                                 Novi Servis? Napravi nalog
                                             </a>
-                                        </div>
-                                        <div class="text-center pt-3">
-                                            {% if form.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                    {{ form.errors }}
-                                                </div>
-                                            {% endif %}
                                         </div>
                                         <label class="login-social-icon"><span>Social Login</span></label>
                                         <div class="d-flex justify-content-center">
@@ -131,10 +134,8 @@
                     </div>
                 </div>
             </form>
-
             <!-- CONTAINER CLOSED -->
         </div>
     </div>
     <!-- End PAGE -->
-
 {% endblock content %}

@@ -27,7 +27,6 @@ class DetaljiServisKorisnikaForm(forms.ModelForm):
 
 
 class KreirajServisKorisnikaForm(UserCreationForm):
-    # role = forms.CharField(widget=forms.HiddenInput(), initial=User.Role.VOZAC)
     first_name = forms.CharField(required=True, help_text="Ime*", label="")
     last_name = forms.CharField(required=True, help_text="Prezime*", label="")
     email = forms.EmailField(

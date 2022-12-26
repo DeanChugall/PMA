@@ -51,51 +51,109 @@
             </div>
             <div class="container-login100">
                 <div class="wrap-login100 p-6">
-                    <form class="ogin100-form validate-form" method="POST" action="">
+                    <form class="ogin100-form validate-form" method="POST" action="" novalidate>
                         {% csrf_token %}
                         <span class="login100-form-title">Registracija Vozača</span>
+
+                        <!-- UNOS KORISNICKOG IMENA -->
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                             </a>
-                            {% render_field form.username class="input100 border-start-0 ms-0 form-control" placeholder="Korisničko Ime" %}
+                            {% render_field form.username class="input100 border-start-0 ms-0 form-control" placeholder="Korisničko Ime" required="required"%}
                         </div>
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.username.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS KORISNICKOG IMENA -->
+
+                        <!-- UNOS IMENA IMENA -->
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                             </a>
                             {% render_field form.first_name class="input100 border-start-0 ms-0 form-control" placeholder="Ime" %}
                         </div>
+                        {% if form.first_name.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.first_name.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS IMENA IMENA -->
+
+                        <!-- UNOS PREZIMENA -->
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                             </a>
                             {% render_field form.last_name class="input100 border-start-0 ms-0 form-control" placeholder="Prezime" %}
                         </div>
+                        {% if form.last_name.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.last_name.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS PREZIMENA -->
+
+                        <!-- UNOS IMENA GRADA -->
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-city" aria-hidden="true"></i>
                             </a>
                             {% render_field form.grad class="input100 border-start-0 ms-0 form-control" %}
                         </div>
+                        {% if form.grad.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.grad.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS IMENA GRADA -->
+
+                        <!-- UNOS EMAILa -->
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                             </a>
                             {% render_field form.email class="input100 border-start-0 ms-0 form-control" placeholder="Email" %}
                         </div>
+                        {% if form.email.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.email.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS EMAILa -->
+
+                        <!-- UNOS LOZINKE -->
                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                             </a>
                             {% render_field form.password1 type="password" class="input100 border-start-0 ms-0  form-control" placeholder="Lozinka" %}
                         </div>
+                        {% if form.password1.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.password1.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS LOZINKE -->
+
+                        <!-- UNOS POTVRDE LOZINKE -->
                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                             </a>
                             {% render_field form.password2 type="password" class="input100 border-start-0 ms-0  form-control" placeholder="Potvrdi Lozinku" %}
                         </div>
+                        {% if form.password2.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ form.password2.errors|striptags }}
+                            </div>
+                        {% endif %}
+                        <!-- END UNOS POTVRDE LOZINKE -->
+
+
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn btn-primary" type="submit">Registruj se kao Vozač</button>
 
@@ -104,12 +162,17 @@
                             <p class="text-dark mb-0">Imam već nalog?
                                 <a href="{% url 'users:prijava' %}" class="text-primary ms-1">Prijava</a>
                             </p>
-                            {% if form.errors %}
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ form.errors }}
-                                </div>
+
+                            <!-- ERROR MESSAGE -->
+                            {% if form.non_field_errors %}
+                                {% for error in form.non_field_errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ error|striptags }}
+                                    </div>
+                                {% endfor %}
                             {% endif %}
                         </div>
+                        <!-- END ERROR MESSAGE -->
 
                         <label class="login-social-icon"><span>Social Login</span></label>
                         <div class="d-flex justify-content-center">

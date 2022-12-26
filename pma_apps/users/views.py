@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -27,6 +28,10 @@ class LoginKorisnikaView(LoginView):
     template_name = "account/login.html"
     redirect_authenticated_user = True
 
+    def form_invalid(self, form):
+        messages.error(self.request, "Invalid username or password")
+        return self.render_to_response(self.get_context_data(form=form))
+
     def get_default_redirect_url(self):
         """
         Return the default redirect URL ka dashboard-u ako je Vozac vec bio ulogovan pre.
@@ -41,9 +46,11 @@ class LoginKorisnikaView(LoginView):
             user.is_first_login = False
             user.save()
             if user.role == User.Role.VOZAC:
-                return reverse("users:detalji_vozaca", args=[user.username])
+                return reverse("users:izmena_profila_vozaca", args=[user.username])
             elif user.role == User.Role.SERVIS:
-                return reverse("auto_servis:detalji_servisa", args=[user.username])
+                return reverse(
+                    "auto_servis:izmena_profila_servisa", args=[user.username]
+                )
         return reverse("ponude:ponude")
 
 

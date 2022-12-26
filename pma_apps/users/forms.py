@@ -34,21 +34,14 @@ class UserAdminCreationForm(UserCreationForm):
 class UlogujVozacaForm(AuthenticationForm):
     username = UsernameField(
         label=_(""),
-        strip=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Korisničko Ime",
-                "class": "input100 border-start-0 form-control ms-0",
-            }
-        ),
+        strip=True,
     )
     password = forms.CharField(
         label=_(""),
-        strip=False,
+        strip=True,
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "Lozinka",
-                "type": "password",
+                "required": "required",
             }
         ),
     )
