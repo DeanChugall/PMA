@@ -32,11 +32,11 @@
                 </div>
                 <!-- PAGE-HEADER END -->
 
-                <!-- ROW-1 OPEN -->
+                <!-- UNOS ZAHTEVA VOZACA -->
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- FORMA UNOSA ZAHTEVA -->
-                        <form  action='' class="ogin100-form validate-form" method='POST' enctype='multipart/form-data'>
+                        <form  action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate>
                             {% csrf_token %}
                             <div class="card">
                                 <div class="card-header">
@@ -59,15 +59,17 @@
 
                                     <div class="card-body">
                                         <div class="row mb-4">
-                                            <label class="col-md-3 form-label">Kratak Opis Zahteva :</label>
+                                            <label class="col-md-3 form-label">Kratak Opis Zahteva:</label>
                                             <div class="col-md-9">
-                                                {% render_field auction_form.title class="form-control" placeholder="Kratak Opis Zahteva..." %}
+                                                {% render_field auction_form.title class="form-control" placeholder="Kratak Opis Zahteva..." required="required" %}
+                                                <div class="invalid-feedback m-1">Unesite Kratak Opis Zahteva!</div>
                                             </div>
                                         </div>
                                         <div class="row mb-4">
-                                            <label class="col-md-3 form-label">Kategorija Zahteva :</label>
+                                            <label class="col-md-3 form-label">Kategorija Zahteva:</label>
                                             <div class="col-md-9">
-                                                {% render_field auction_form.category class="form-control" placeholder="Detaljan Opis Zahteva..." %}
+                                                {% render_field auction_form.category class="form-control" placeholder="Detaljan Opis Zahteva..." required="required" %}
+                                                <div class="invalid-feedback m-1">Unesite Kategoriju Zahteva!</div>
                                             </div>
                                         </div>
 
@@ -75,9 +77,8 @@
                                         <div class="row">
                                             <label class="col-md-3 form-label mb-4">Detaljan Opis Zahteva:</label>
                                             <div class="col-md-9 mb-4">
-                                                <!--                                            {{ auction_form.description|add_class:"content"|attr:"name:example"}}-->
-                                                <!--                                            {{ auction_form.description }}-->
-                                                {% render_field auction_form.description class="form-control" placeholder="Detaljan Opis Zahteva..." %}
+                                                {% render_field auction_form.description class="form-control" placeholder="Detaljan Opis Zahteva..." required="required" %}
+                                                <div class="invalid-feedback m-1">Unesite Detaljan Opis Zahteva!</div>
                                             </div>
                                         </div>
                                         <!--End Row-->
@@ -92,15 +93,14 @@
                                                 {% endfor %}
                                             </div>
                                         </div>
-                                        <!--End Row-->
                                     </div>
                                     <div class="card-footer">
                                         <!--Row-->
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-9">
-                                                <button type='submit' class='btn btn-primary btn-lg'>Postavi</button>
-                                                <a href="{% url 'ponude:ponude' %}" class="btn btn-outline-warning float-end btn-lg">Odustani</a>
+                                                <button type='submit' class='btn btn-primary btn-lg'>Kreiraj Zahtev</button>
+                                                <a href="{% url 'ponude:ponude' %}" class="btn btn-outline-danger float-end btn-lg">Odustani</a>
                                             </div>
                                         </div>
                                         <!--End Row-->
@@ -111,7 +111,195 @@
                         <!-- END FORMA UNOSA ZAHTEVA -->
                     </div>
                 </div>
-                <!-- /ROW-1 CLOSED -->
+                <!-- END UNOS ZAHTEVA VOZACA -->
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card p-0">
+                            <div class="card-body p-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="page-title">Podaci Automobila</h1>
+                <hr/>
+
+                <!-- PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
+                <div class="row">
+                    <!-- VIN BROJ -->
+                    <div class="col-md-6 col-xl-6">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">VIN BROJ (broj šasije):</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>2HGFG1B86AH531491</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END VIN BROJ -->
+
+                    <!-- KILOMETRAZA -->
+                    <div class="col-md-6 col-xl-6">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">KILOMETRAŽA:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>125.800</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END KILOMETRAZA -->
+                </div>
+                <!-- END PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
+
+                <!-- PODACI O AUTOMOBILU (MARKA, MODEL, GODISTE) -->
+                <div class="row">
+                    <!-- MARKA -->
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header br-te-3 br-ts-3" style="background-color: #6c5ffc;">
+                                <h3 class="card-title text-white">MARKA:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>RENAULT</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- END MARKA -->
+
+                    <!-- MODEL -->
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">MODEL:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>SCENIC II</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END MODEL -->
+
+                    <!-- GODISTE -->
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">GODIŠTE:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>2007</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END GODISTE -->
+                </div>
+                <!-- END PODACI O AUTOMOBILU (MARKA, MODEL, GODISTE) -->
+
+
+                <!-- PODACI O AUTOMOBILU (GORIVO, ZAPREMINA, SNAGA) -->
+                <div class="row">
+                    <!-- GORIVO -->
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">VRSTA GORIVA:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>Dizel</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END GORIVO -->
+
+                    <!-- ZAPREMINA -->
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">ZAPREMINA MOTORA:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>1900 ccm</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END ZAPREMINA -->
+
+                    <!-- SNAGA -->
+                    <div class="SNAGA col-xl-4">
+                        <div class="card">
+                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                <h3 class="card-title text-white">SNAGA MOTORA:</h3>
+                                <div class="card-options ">
+                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3>120 ks</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END GODISTE -->
+                </div>
+                <!-- END PODACI O AUTOMOBILU (GORIVO, ZAPREMINA, SNAGA) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
             <!-- CONTAINER CLOSED -->
         </div>
@@ -129,6 +317,18 @@
     <script src="{% static 'assets/plugins/fancyuploder/jquery.iframe-transport.js' %}"></script>
     <script src="{% static 'assets/plugins/fancyuploder/jquery.fancy-fileupload.js' %}"></script>
     <script src="{% static 'assets/plugins/fancyuploder/fancy-uploader.js' %}"></script>
+
+    <!-- FORM WIZARD JS-->
+    <script src="{% static 'assets/plugins/formwizard/jquery.smartWizard.js' %}"></script>
+    <script src="{% static 'assets/plugins/formwizard/fromwizard.js' %}"></script>
+
+    <!-- INTERNAl Jquery.steps js -->
+    <script src="{% static 'assets/plugins/jquery-steps/jquery.steps.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/parsleyjs/parsley.min.js' %}"></script>
+
+    <!-- INTERNAL Accordion-Wizard-Form js-->
+    <script src="{% static 'assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js' %}"></script>
+    <script src="{% static 'assets/js/form-wizard.js' %}"></script>
 
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.8.3"></script>
