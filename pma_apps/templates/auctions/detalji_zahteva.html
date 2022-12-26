@@ -125,8 +125,9 @@
                         </div>
                         <!-- END POSLEDNJA CENA -->
 
-                        <!-- UNOS CENE PONUDE ZA ZAHTEV -->
+                        <!-- UNOS PONUDE SERVISERA I DETALJI ZAHTEVA -->
                         <div class='col-xl-6'>
+                            <!-- UNOS UNOS PONUDE ZA ZAHTEV -->
                             <div class='card mb-4 h-100'>
                                 <div class='card-header'>
                                     <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
@@ -162,9 +163,10 @@
                                     </form>
                                 </div>
                             </div>
+                            <!-- END UNOS PONUDE ZA ZAHTEV -->
                     {% elif auction.active == False and auction.buyer is not None %}
                         <div class='row'>
-                            <!-- Comments -->
+                            <!-- DETALJI ZAHTEVA AKO JE ODOBREN -->
                             <div class='col-xl-12'>
                                 <div class='card mb-4 text-white bg-indigo-darkest'>
                                     <div class='card-header'>
@@ -188,8 +190,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- DETALJI ZAHTEVA AKO JE ODOBREN -->
                         </div>
-                        <!-- END UNS CENE PONUDE ZA ZAHTEV -->
+                        <!-- END UNOS PONUDE SERVISERA I DETALJI ZAHTEVA -->
                     {% endif %}
 
                     <!-- LISTING SVIH PONUDE ZAHTEVA SERISA -->
