@@ -165,7 +165,7 @@ class ListaSvihServisaView(generic.ListView):
             servis.prihvacene_ponude = servis.count_prihvacene_poonude
 
         page = self.request.GET.get("page", 1)
-        paginator = Paginator(profil_servisa, 5)
+        paginator = Paginator(profil_servisa, 10)
 
         try:
             pages = paginator.page(page)
