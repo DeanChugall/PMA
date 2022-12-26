@@ -103,14 +103,16 @@
                                                 <hr/>
 
                                                 <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
-                                                <div class="card p-1">
-                                                    <div class="card-header h5">
-                                                        <strong>Opis Ponude:</strong>
+                                                {% if ponuda.opis_ponude %}
+                                                    <div class="card p-1">
+                                                        <div class="card-header h5">
+                                                            <strong>Opis Ponude:</strong>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text">{{ ponuda.opis_ponude }}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="card-body">
-                                                        <p class="card-text">{{ ponuda.opis_ponude }}</p>
-                                                    </div>
-                                                </div>
+                                                {% endif %}
                                                 <!-- END OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
 
                                                 <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-lg btn-block mt-2">
@@ -172,14 +174,16 @@
                             </div>
 
                             <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
-                            <div class="card p-1 d-none d-lg-block">
-                                <div class="card-header h5">
-                                    <strong>Opis Ponude:</strong>
+                            {% if ponuda.opis_ponude %}
+                                <div class="card p-1 d-none d-lg-block">
+                                    <div class="card-header h5">
+                                        <strong>Opis Ponude:</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ ponuda.opis_ponude }}</p>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text">{{ ponuda.opis_ponude }}</p>
-                                </div>
-                            </div>
+                            {% endif %}
                             <!-- END OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
                         </div>
                         <!-- END IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->

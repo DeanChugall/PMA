@@ -1,37 +1,139 @@
 <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0" id="detalji-zahteva">
     <div class="mt-2 mb-4">
         <h3 class="mb-3 fw-semibold">{{ auction.title }}</h3>
+        <span class="fw-bold me-2">
+            <small class="fw-bold me-2">Zahtev Kreirao:</small>
+        </span>
+        <span class="fw-bold text-success">
+            <small class="fw-bold me-2">{{ auction.creator }}</small>
+        </span><br>
+        <span class="fw-bold me-2">
+            <small class="fw-bold me-2">Kreirano:</small>
+        </span>
+
+        <span class="fw-bold text-success">
+            <small class="fw-bold me-2">{{ auction.date_created }}</small>
+        </span>
+
+        <!-- POSLEDNJA CENA PONUDE -->
         {% if auction.current_bid  %}
-            <h1 class="title fw-bold fs-20">{{ auction.current_bid }} rsd</h1>
+            <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">{{ auction.current_bid }} rsd</div>
         {% else %}
-            <h1 class="title fw-bold fs-15">Nema cene za ovaj zahtev. </h1>
+            <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">Nema cene za ovaj zahtev. </div>
         {% endif %}
+        <!-- END POSLEDNJA CENA PONUDE -->
+        <hr>
+
         <!-- DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
-        <div class=" mt-4 mb-5">
-            <span class="fw-bold me-2">
-                <small class="fw-bold me-2">Kategorija:</small>
-            </span>
-            <span class="fw-bold text-success">
-                <small class="fw-bold me-2">{{ auction.category }}</small>
-            </span><br>
-            <span class="fw-bold me-2">
-                <small class="fw-bold me-2">Kreirano:</small>
-            </span>
-            <span class="fw-bold text-success">
-                <small class="fw-bold me-2">{{ auction.date_created }}</small>
-            </span><br>
-            <span class="fw-bold me-2">
-                <small class="fw-bold me-2">Zahtev Kreirao:</small>
-            </span>
-            <span class="fw-bold text-success">
-                <small class="fw-bold me-2">{{ auction.creator }}</small>
-            </span>
+        <div class="row">
+            <!-- VIN BROJ -->
+            <div class="col-xl-12 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">VIN Broj</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold {% if profil_vozaca.vin %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.vin|default_if_none:"..." }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- END VIN BROJ -->
+
+            <!-- KILOMETRAZA AUTA VOZACA -->
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Kilometraža</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold text-white">
+                            {{ profil_vozaca.vin|default_if_none:"0 km" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- END KILOMETRAZA AUTA VOZACA -->
+
+
+            <!-- MARKA AUTA VOZACA -->
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold text-white">
+                            {{ profil_vozaca.marka|default_if_none:"marka" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- END MARKA AUTA VOZACA -->
         </div>
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold text-success">
+                            {{ auction.category }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold text-success">
+                            {{ auction.category }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold text-success">
+                            {{ auction.category }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold text-white">
+                            {{ auction.category }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="card">
+                    <div class="card-header bg-primary br-te-3 br-ts-3">
+                        <h3 class="card-title text-white">Opis Zahteva:</h3>
+                        <div class="card-options ">
+                            <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body text-justify">
+                        <h6>{{ auction.description }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
+
+
     </div>
 
-    <h4 class="mt-4"><b> Opis</b></h4>
-    <p>{{ auction.description }}</p>
-    <!-- END DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
+
     <hr>
     {% if auction.creator == user %}
         <form method="POST" action="{% url 'ponude:obrisi_zahtev' auction.id %}">
