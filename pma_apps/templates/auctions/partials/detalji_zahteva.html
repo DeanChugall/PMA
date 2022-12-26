@@ -44,8 +44,8 @@
                 <div class="card ribbone-card">
                     <div class="arrow-ribbone-right bg-info">Kilometraža</div>
                     <div class="card-body  p-2  mb-2">
-                        <span class="fw-bold text-white">
-                            {{ profil_vozaca.vin|default_if_none:"0 km" }}
+                        <span class="fw-bold {% if profil_vozaca.kilometraza %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.kilometraza|default_if_none:"..." }}
                         </span>
                     </div>
                 </div>
