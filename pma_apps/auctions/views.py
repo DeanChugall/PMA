@@ -156,6 +156,8 @@ def kreiranje_zahteva_view(request):
     """
     image_form_set = forms.modelformset_factory(Image, form=ImageForm, extra=1)
 
+    profil_vozaca = VozacProfile.objects.get(user=request.user)
+
     if request.method == "POST":
         auction_form = AuctionForm(request.POST, request.FILES)
         image_form = image_form_set(
@@ -182,6 +184,7 @@ def kreiranje_zahteva_view(request):
                     "auction_form": AuctionForm(),
                     "image_form": image_form_set(queryset=Image.objects.none()),
                     "success": True,
+                    "profil_vozaca": profil_vozaca,
                 },
             )
         else:
@@ -192,6 +195,7 @@ def kreiranje_zahteva_view(request):
                     "categories": Category.objects.all(),
                     "auction_form": AuctionForm(),
                     "image_form": image_form_set(queryset=Image.objects.none()),
+                    "profil_vozaca": profil_vozaca,
                 },
             )
     else:
@@ -202,6 +206,7 @@ def kreiranje_zahteva_view(request):
                 "categories": Category.objects.all(),
                 "auction_form": AuctionForm(),
                 "image_form": image_form_set(queryset=Image.objects.none()),
+                "profil_vozaca": profil_vozaca,
             },
         )
 

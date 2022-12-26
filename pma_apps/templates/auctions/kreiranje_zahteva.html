@@ -125,6 +125,9 @@
                 <h1 class="page-title">Podaci Automobila</h1>
                 <hr/>
 
+
+
+
                 <!-- PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
                 <div class="row">
                     <!-- VIN BROJ -->
@@ -138,7 +141,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>2HGFG1B86AH531491</h3>
+                                <h3>{{ profil_vozaca.vin|default_if_none:"VIN" }}</h3>
                             </div>
                         </div>
                     </div>
@@ -155,7 +158,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>125.800</h3>
+                                <h3>{{ profil_vozaca.vin|default_if_none:"0 km" }}</h3>
                             </div>
 
                         </div>
@@ -177,7 +180,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>RENAULT</h3>
+                                <h3>{{ profil_vozaca.marka|default_if_none:"marka" }}</h3>
                             </div>
 
                         </div>
@@ -195,7 +198,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>SCENIC II</h3>
+                                <h3>{{ profil_vozaca.modell|default_if_none:"model" }}</h3>
                             </div>
                         </div>
                     </div>
@@ -212,7 +215,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>2007</h3>
+                                <h3>{{ profil_vozaca.godiste|default_if_none:"godiste" }}</h3>
                             </div>
                         </div>
                     </div>
@@ -234,7 +237,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>Dizel</h3>
+                                <h3>{{ profil_vozaca.vrsta_goriva|default_if_none:"vrsta goriva" }}</h3>
                             </div>
                         </div>
                     </div>
@@ -251,7 +254,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>1900 ccm</h3>
+                                <h3>{{ profil_vozaca.zapremina_motora|default_if_none:"0 ccm" }}</h3>
                             </div>
                         </div>
                     </div>
@@ -268,7 +271,7 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <h3>120 ks</h3>
+                                <h3>{{ profil_vozaca.snaga_motora|default_if_none:"0 ks / 0 kw" }}</h3>
                             </div>
                         </div>
                     </div>
