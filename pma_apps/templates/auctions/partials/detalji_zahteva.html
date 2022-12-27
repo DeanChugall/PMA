@@ -46,12 +46,25 @@
 
         <!-- POSLEDNJA CENA PONUDE -->
         {% if auction.current_bid  %}
-            <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">{{ auction.current_bid }} rsd</div>
+            <div class="card mt-3">
+                <span class="ribbone-danger-right">
+                    <span><i class="fe fe-zap"></i><strong>Poslednja Data Ponuda &nbsp;</strong></span>
+                </span>
+                <div class="card-body p-4">
+                    <div class="h3 text-center mb-5 mt-5 p-2 fw-bold bg-primary rounded-2">{{ auction.current_bid }} rsd</div>
+                </div>
+            </div>
         {% else %}
-            <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">Nema cene za ovaj zahtev. </div>
+            <div class="card mt-3">
+                <span class="ribbone-danger-right">
+                    <span><i class="fe fe-zap"></i><strong>Poslednja Data Ponuda &nbsp;</strong></span>
+                </span>
+                <div class="card-body p-6">
+                    <div class="h3 text-center mb-5 mt-5 p-2 fw-bold bg-primary rounded-2">>Nema cene za ovaj zahtev.</div>
+                </div>
+            </div>
         {% endif %}
         <!-- END POSLEDNJA CENA PONUDE -->
-        <hr>
 
         <!-- DETALJI ZAHTEVA (VIN, KILOMETRAZA) -->
         <div class="row">
