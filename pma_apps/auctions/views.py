@@ -303,6 +303,16 @@ def uredi_zahtev_vozaca_view(request, pk):
     auction = get_object_or_404(Auction, pk=pk)
     form = AuctionForm(request.POST or None, instance=auction)
 
+    zahtevi = Auction.objects.get(id=pk)
+
+    profil_vozaca = VozacProfile.objects.get(user=zahtevi.creator)
+    profil_servisa = ServisProfile.objects.filter(user=request.user)
+    ponuda_jednog_auto_servisa = (
+        Bid.objects.all()
+        .filter(auction=zahtevi.id)
+        .filter(servis=profil_servisa.first())
+    )
+
     context = {
         "form": form,
         "auction": auction,
@@ -315,6 +325,9 @@ def uredi_zahtev_vozaca_view(request, pk):
         context = {
             "form": form,
             "auction": auction,
+            "profil_servisa": profil_servisa,
+            "ponuda_jednog_auto_servisa": ponuda_jednog_auto_servisa,
+            "profil_vozaca": profil_vozaca,
         }
         return render(request, "auctions/partials/detalji_zahteva.html", context)
     return render(request, "auctions/partials/uredi_zahtev_vozaca.html", context)
