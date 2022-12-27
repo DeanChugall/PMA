@@ -99,39 +99,19 @@
                     </div>
 
                     {% if user.role == "SERVIS" and auction.active %}
-                        <!-- POSLEDNJA CENA -->
-                        <div class="col-xl-6 d-none d-xl-block">
-                            <div class="card h-100">
-                                <div class='card-header'>
-                                    <div class="card-title">Poslednja Ponuđena Cena Servisa</div>
-                                </div>
-                                <div class="product-grid6">
-                                    <div class="product-image6 p-5"></div>
-                                    <div class="card-body pt-0">
-                                        <div class="product-content text-center">
-                                            {% if ponude_auto_servisa_zadnja_cena.amount %}
-                                                {% if ponude_auto_servisa_zadnja_cena.servis.ime_servisa %}
-                                                    <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis.ime_servisa }}</h1>
-                                                {% else %}
-                                                    <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.servis.username }}</h1>
-                                                {% endif %}
-                                                <h1 class="title fw-bold fs-20">{{ ponude_auto_servisa_zadnja_cena.amount }} rsd</h1>
-                                            {% else %}
-                                                <h1 class="title fw-bold fs-20">Nema cene za ovaj zahtev. </h1>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END POSLEDNJA CENA -->
-
                         <!-- UNOS PONUDE SERVISERA I DETALJI ZAHTEVA -->
-                        <div class='col-xl-6'>
+                        <div class='col-xl-12'>
                             <!-- UNOS UNOS PONUDE ZA ZAHTEV -->
-                            <div class='card mb-4 h-100'>
+                            <div class='card mb-4 h-100 bg-success-transparent'>
                                 <div class='card-header'>
-                                    <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
+                                    {% if ponuda_jednog_auto_servisa %}
+                                        <div class="tags mb-2">
+                                            <span class="tag tag-radius tag-round tag-green text-black">Dali ste ponudu: <strong>{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
+                                            <span class="tag tag-radius tag-round tag-orange text-black">Datum ponude: <strong>{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
+                                        </div>
+                                    {% else %}
+                                        <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
+                                    {% endif %}
                                 </div>
                                 <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" class="needs-validation"method='POST' novalidate>
                                     {% csrf_token %}
@@ -153,12 +133,22 @@
                                             {% endif %}
 
                                             <div class='form-group mt-2'>
-                                                {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" %}
-                                                <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
-                                                {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" %}
-                                                <div class="mt-1">
-                                                    <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0'>Postavi Ponudu</button>
-                                                </div>
+                                                {% if ponuda_jednog_auto_servisa %}
+                                                    {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" disabled="disabled"%}
+                                                    <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
+                                                    {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" disabled="disabled"%}
+                                                    <div class="mt-1">
+                                                        <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0 disabled'>Postavi Ponudu</button>
+                                                    </div>
+                                                {% else %}
+                                                    {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" %}
+                                                    <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
+                                                    {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" %}
+                                                    <div class="mt-1">
+                                                        <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0'>Postavi Ponudu</button>
+                                                    </div>
+                                                {% endif %}
+
                                             </div>
                                         </div>
                                     </form>

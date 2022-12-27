@@ -140,6 +140,14 @@ def detalji_zahteva_view(request, zahtev_id):
     else:
         zahtevi.is_watched = False
 
+    # Prosledjivanje inicijalne vrednosti za modal uredjivanja ponude
+    if ponuda_jednog_auto_servisa:
+        cena_servisa = ponuda_jednog_auto_servisa[0].amount
+        opis_ponude_servisa = ponuda_jednog_auto_servisa[0].opis_ponude
+    else:
+        cena_servisa = None
+        opis_ponude_servisa = ""
+
     return render(
         request,
         "auctions/detalji_zahteva.html",
@@ -147,7 +155,9 @@ def detalji_zahteva_view(request, zahtev_id):
             "categories": Category.objects.all(),
             "auction": zahtevi,
             "images": zahtevi.get_images.all(),
-            "bid_form": BidForm(),
+            "bid_form": BidForm(
+                initial={"amount": cena_servisa, "opis_ponude": opis_ponude_servisa}
+            ),
             "comments": zahtevi.get_comments.all(),
             "comment_form": CommentForm(),
             "ponude_auto_servisa": ponude_auto_servisa,
@@ -439,7 +449,7 @@ def watchlist_edit(request, zahtev_id, reverse_method):
         return HttpResponseRedirect(reverse(reverse_method))
 
 
-# SERVISERI
+# SERVISERI (Ponude)
 @login_required
 def ponuda_zahteva_view(request, zahtev_id):
     """
@@ -483,6 +493,24 @@ def ponuda_zahteva_view(request, zahtev_id):
                 "error_min_value": True,
                 "title": "Auction",
             },
+        )
+
+
+class IzmeniPonuduZahtevaView(LoginRequiredMixin, generic.UpdateView):
+    """
+    Izmena zahteva Servisera koji se izvrsava u modalu.
+
+    @return: Vraca detalje zahteva i to na '#' selektoru '#listing-ponuda-zahteva'.
+    """
+
+    template_name = "auctions/detalji_ponude.html"
+    queryset = Bid.objects.all()
+    form_class = BidForm
+    context_object_name = "brisanje_ponude"
+
+    def get_success_url(self):
+        return "{}#listing-ponuda-zahteva".format(
+            reverse("ponude:detalji_ponude_view", args=[self.object.auction.id])
         )
 
 

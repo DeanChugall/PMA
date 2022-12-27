@@ -1,7 +1,12 @@
 from django.urls import path
 
 from . import views
-from .views import ListaZahtevaVozacaView, ObrisiPonuduZahtevaView, ObrisiZahtevView
+from .views import (
+    IzmeniPonuduZahtevaView,
+    ListaZahtevaVozacaView,
+    ObrisiPonuduZahtevaView,
+    ObrisiZahtevView,
+)
 
 app_name = "auctions"
 
@@ -45,6 +50,11 @@ urlpatterns = [
         "zahtevi/<str:zahtev_id>/ponuda",
         views.ponuda_zahteva_view,
         name="ponuda_zahteva",
+    ),
+    path(
+        "zahtevi/<int:pk>/izmeni-ponudu/",
+        IzmeniPonuduZahtevaView.as_view(),
+        name="izmeni_ponudu",
     ),
     path(
         "zahtevi/<int:pk>/brisanje-ponude",
