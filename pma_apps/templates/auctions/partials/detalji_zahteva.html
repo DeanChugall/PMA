@@ -1,11 +1,20 @@
 <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0" id="detalji-zahteva">
     <div class="mt-2 mb-4">
         <h3 class="mb-3 fw-semibold">{{ auction.title }}</h3>
-        <!-- KATEGORIJA ZAHTEVA -->
-        <span class="fw-bold text-success">
-            <small class="fw-bold me-2">{{ auction.category }}</small>
-        </span><br>
-        <!-- END KATEGORIJA ZAHTEVA -->
+
+        <!-- TAGOVI SERVISERA O PONUDI -->
+        {% if user.role == "SERVIS" %}
+            {% if ponuda_jednog_auto_servisa %}
+                <div class="tags mb-2">
+                    <span class="tag tag-radius tag-round tag-green text-black">Dali ste ponudu: <strong>{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
+                    <span class="tag tag-radius tag-round tag-orange text-black">Datum ponude: <strong>{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
+                </div>
+            {% else %}
+                <span class="tag tag-radius tag-round tag-red text-black"><strong>Za ovaj zahtev niste dali ponudu!</strong></span>
+            {% endif %}
+        {% endif %}
+        <!-- END TAGOVI SERVISERA O PONUDI -->
+
         <hr/>
 
         <!-- AUTOR ZAHTEVA -->
@@ -25,6 +34,15 @@
             <small class="fw-bold me-2">{{ auction.date_created }}</small>
         </span>
         <!-- END DATUM KREIRANJA -->
+        <br>
+        <!-- KATEGORIJA ZAHTEVA -->
+        <span class="fw-bold me-2">
+            <small class="fw-bold me-2">Kategorija:</small>
+        </span>
+        <span class="fw-bold text-success">
+            <small class="fw-bold me-2">{{ auction.category }}</small>
+        </span>
+        <!-- END KATEGORIJA ZAHTEVA -->
 
         <!-- POSLEDNJA CENA PONUDE -->
         {% if auction.current_bid  %}

@@ -101,7 +101,7 @@ def category_details_view(request, category_name):
 @login_required
 def detalji_zahteva_view(request, zahtev_id):
     """
-    It renders a page that displays the details of a selected auction
+    Prikaz detalja jednog zahteva Vozača.
     """
     if not request.user.is_authenticated:
         next_page = request.GET.get("next", "/")
@@ -116,6 +116,13 @@ def detalji_zahteva_view(request, zahtev_id):
     ponude_auto_servisa_zadnja_cena = Bid.objects.filter(auction=zahtevi.id).first()
 
     profil_vozaca = VozacProfile.objects.get(user=zahtevi.creator)
+
+    profil_servisa = ServisProfile.objects.filter(user=request.user)
+    ponuda_jednog_auto_servisa = (
+        Bid.objects.all()
+        .filter(auction=zahtevi.id)
+        .filter(servis=profil_servisa.first())
+    )
 
     # TODO: Implementirati bolju logiku za prikaz Serviserima preporucene zahteve
     preporuceni_zahtevi_servisima = Auction.objects.filter(active=True)[:3]
@@ -148,6 +155,8 @@ def detalji_zahteva_view(request, zahtev_id):
             "preporuceni_zahtevi_servisima": preporuceni_zahtevi_servisima,
             "id_pracenog_zahteva": id_pracenog_zahteva,
             "profil_vozaca": profil_vozaca,
+            "profil_servisa": profil_servisa,
+            "ponuda_jednog_auto_servisa": ponuda_jednog_auto_servisa,
         },
     )
 
