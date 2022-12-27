@@ -103,16 +103,21 @@
                         <div class='col-xl-12'>
                             <!-- UNOS UNOS PONUDE ZA ZAHTEV -->
                             <div class='card mb-4 h-100 {% if ponuda_jednog_auto_servisa %}bg-success-transparent{% endif %} '>
-                                <div class='card-header'>
-                                    {% if ponuda_jednog_auto_servisa %}
-                                        <div class="tags mb-2">
-                                            <span class="tag tag-radius tag-round tag-green text-black">Dali ste ponudu: <strong>{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
-                                            <span class="tag tag-radius tag-round tag-orange text-black">Datum ponude: <strong>{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
+
+                                {% if ponuda_jednog_auto_servisa %}
+                                    <div class="tags mb-2">
+                                        <span class="tag tag-radius tag-round tag-green text-black">Dali ste ponudu: <strong>{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
+                                        <span class="tag tag-radius tag-round tag-orange text-black">Datum ponude: <strong>{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
+                                    </div>
+                                {% else %}
+                                    <div class="card mt-3 mb-3">
+                                        <span class="power-ribbone-top-left ">
+                                            <span><i class="fa fa-car"></i><strong>{{ user.username  }}, Vaša ponuda ovde!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+                                        </span>
+                                        <div class="card-body p-4">
                                         </div>
-                                    {% else %}
-                                        <div class="card-title">{{ user.username  }}, Vaša ponuda ovde!</div>
-                                    {% endif %}
-                                </div>
+                                    </div>
+                                {% endif %}
                                 <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" class="needs-validation"method='POST' novalidate>
                                     {% csrf_token %}
                                     <div class='card-body'>
@@ -195,7 +200,13 @@
 
                     <!-- LISTING SVIH PONUDE ZAHTEVA SERISA -->
                     <div class="border-top my-3" id="listing-ponuda-zahteva"></div>
-                    <h3 class="p-3 mb-2">Listing Ponuda Zahteva</h3>
+                    <div class="card mt-3 mb-3">
+                        <span class="ribbone-info-left ">
+                            <span><i class="fa fa-car"></i><strong>Listing Ponuda Zahteva&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+                        </span>
+                        <div class="card-body p-4">
+                        </div>
+                    </div>
                     {% include 'auctions/partials/partials_listing_ponuda_zahteva.html' %}
                     <!-- END LISTING SVIH PONUDE ZAHTEVA SERISA -->
 
