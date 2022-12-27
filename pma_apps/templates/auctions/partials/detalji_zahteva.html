@@ -1,19 +1,30 @@
 <div class="details col-xl-7 col-lg-12 col-md-12 mt-4 mt-xl-0" id="detalji-zahteva">
     <div class="mt-2 mb-4">
         <h3 class="mb-3 fw-semibold">{{ auction.title }}</h3>
+        <!-- KATEGORIJA ZAHTEVA -->
+        <span class="fw-bold text-success">
+            <small class="fw-bold me-2">{{ auction.category }}</small>
+        </span><br>
+        <!-- END KATEGORIJA ZAHTEVA -->
+        <hr/>
+
+        <!-- AUTOR ZAHTEVA -->
         <span class="fw-bold me-2">
             <small class="fw-bold me-2">Zahtev Kreirao:</small>
         </span>
         <span class="fw-bold text-success">
             <small class="fw-bold me-2">{{ auction.creator }}</small>
         </span><br>
+        <!-- END AUTOR ZAHTEVA -->
+
+        <!-- DATUM KREIRANJA -->
         <span class="fw-bold me-2">
             <small class="fw-bold me-2">Kreirano:</small>
         </span>
-
         <span class="fw-bold text-success">
             <small class="fw-bold me-2">{{ auction.date_created }}</small>
         </span>
+        <!-- END DATUM KREIRANJA -->
 
         <!-- POSLEDNJA CENA PONUDE -->
         {% if auction.current_bid  %}
@@ -24,10 +35,10 @@
         <!-- END POSLEDNJA CENA PONUDE -->
         <hr>
 
-        <!-- DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
+        <!-- DETALJI ZAHTEVA (VIN, KILOMETRAZA) -->
         <div class="row">
             <!-- VIN BROJ -->
-            <div class="col-xl-12 col-md-12">
+            <div class="col-xl-6 col-md-6">
                 <div class="card ribbone-card">
                     <div class="arrow-ribbone-right bg-info">VIN Broj</div>
                     <div class="card-body  p-2  mb-2">
@@ -51,68 +62,100 @@
                 </div>
             </div>
             <!-- END KILOMETRAZA AUTA VOZACA -->
+        </div>
 
-
+        <!-- DETALJI ZAHTEVA (MARKA, MODEL) -->
+        <div class="row">
             <!-- MARKA AUTA VOZACA -->
             <div class="col-xl-6 col-md-12">
                 <div class="card ribbone-card">
-                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="arrow-ribbone-right bg-info">Marka</div>
                     <div class="card-body  p-2  mb-2">
-                        <span class="fw-bold text-white">
-                            {{ profil_vozaca.marka|default_if_none:"marka" }}
+                        <span class="fw-bold {% if profil_vozaca.marka %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.marka|default_if_none:"..." }}
                         </span>
                     </div>
                 </div>
             </div>
             <!-- END MARKA AUTA VOZACA -->
-        </div>
-        <div class="row">
-            <div class="col-xl-6 col-md-12">
-                <div class="card ribbone-card">
-                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
-                    <div class="card-body  p-2  mb-2">
-                        <span class="fw-bold text-success">
-                            {{ auction.category }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 col-md-12">
-                <div class="card ribbone-card">
-                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
-                    <div class="card-body  p-2  mb-2">
-                        <span class="fw-bold text-success">
-                            {{ auction.category }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
+            <!-- MODEL AUTA VOZACA -->
             <div class="col-xl-6 col-md-12">
                 <div class="card ribbone-card">
-                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
+                    <div class="arrow-ribbone-right bg-info">Model</div>
                     <div class="card-body  p-2  mb-2">
-                        <span class="fw-bold text-success">
-                            {{ auction.category }}
+                        <span class="fw-bold {% if profil_vozaca.modell %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.modell|default_if_none:"..." }}
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-md-12">
-                <div class="card ribbone-card">
-                    <div class="arrow-ribbone-right bg-info">Kategorija</div>
-                    <div class="card-body  p-2  mb-2">
-                        <span class="fw-bold text-white">
-                            {{ auction.category }}
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <!-- END MODEL AUTA VOZACA -->
         </div>
+        <!-- END DETALJI ZAHTEVA (VIN, MARKA, MODEL) -->
 
-        <!-- DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
+
+        <!-- DETALJI ZAHTEVA (GODISTE, VRSTA GORIVA) -->
+        <div class="row">
+            <!-- VRSTA GORIVA AUTA VOZACA -->
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Gorivo</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold {% if profil_vozaca.vrsta_goriva %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.vrsta_goriva|default_if_none:"..." }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- END VRSTA GORIVA AUTA VOZACA -->
+
+            <!--GODISTE AUTA VOZACA -->
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Godište</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold {% if profil_vozaca.godiste %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.godiste|default_if_none:"..." }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--END GODISTE AUTA VOZACA -->
+        </div>
+        <!-- END DETALJI ZAHTEVA (GODISTE, VRSTA GORIVA) -->
+
+        <!-- DETALJI ZAHTEVA (ZAPREMINA MOTORA, SNAGA MOTORA) -->
+        <div class="row">
+            <!-- VRSTA ZAPREMINA MOTORA VOZACA -->
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Zapremina Motora</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold {% if profil_vozaca.zapremina_motora %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.zapremina_motora|default_if_none:"..." }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- END ZAPREMINA MOTORA AUTA VOZACA -->
+
+            <!--GODISTE SNAGA MOTORA VOZACA -->
+            <div class="col-xl-6 col-md-12">
+                <div class="card ribbone-card">
+                    <div class="arrow-ribbone-right bg-info">Snaga Motora</div>
+                    <div class="card-body  p-2  mb-2">
+                        <span class="fw-bold {% if profil_vozaca.snaga_motora %} text-white {% else %} text-danger {% endif %}">
+                            {{ profil_vozaca.snaga_motora|default_if_none:"..." }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--END GODISTE SNAGA MOTORA VOZACA -->
+        </div>
+        <!-- END DETALJI ZAHTEVA (ZAPREMINA MOTORA, SNAGA MOTORA) -->
+
+        <!-- OPIS ZAHTEVA ZAHTEVA -->
         <div class="row">
             <div class="col-md-12 col-xl-12">
                 <div class="card">
@@ -128,13 +171,12 @@
                 </div>
             </div>
         </div>
-        <!-- END DETALJI ZAHTEVA i OPIS ZAHTEVA ZAGLAVLJA -->
-
-
+        <!-- END OPIS ZAHTEVA -->
     </div>
 
-
     <hr>
+
+    <!-- BRISANJE IZMENA ZAHTEVA -->
     {% if auction.creator == user %}
         <form method="POST" action="{% url 'ponude:obrisi_zahtev' auction.id %}">
             <!-- Modal -->
@@ -159,7 +201,6 @@
                                 data-bs-dismiss="modal">
                                 <i class="fa fa-close"></i>&nbsp;Odustani
                             </button>
-
                         </div>
                     </div>
                 </div>
@@ -197,4 +238,5 @@
             {% endif %}
         </form>
     {% endif %}
+    <!-- END BRISANJE IZMENA ZAHTEVA -->
 </div>
