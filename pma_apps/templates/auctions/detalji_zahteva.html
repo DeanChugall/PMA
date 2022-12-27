@@ -59,7 +59,7 @@
                 <!-- ROW-1 OPEN -->
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="card">
+                        <div class="card bg-indigo-darkest">
                             <div class="card-body">
                                 <div class="row row-sm">
                                     <div class="col-xl-5 col-lg-12 col-md-12">
@@ -102,7 +102,7 @@
                         <!-- UNOS PONUDE SERVISERA I DETALJI ZAHTEVA -->
                         <div class='col-xl-12'>
                             <!-- UNOS UNOS PONUDE ZA ZAHTEV -->
-                            <div class='card mb-4 h-100 bg-success-transparent'>
+                            <div class='card mb-4 h-100 {% if ponuda_jednog_auto_servisa %}bg-success-transparent{% endif %} '>
                                 <div class='card-header'>
                                     {% if ponuda_jednog_auto_servisa %}
                                         <div class="tags mb-2">
@@ -132,23 +132,31 @@
                                                 {% endif %}
                                             {% endif %}
 
-                                            <div class='form-group mt-2'>
+                                            <div class='form-group mt-1'>
                                                 {% if ponuda_jednog_auto_servisa %}
                                                     {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" disabled="disabled"%}
                                                     <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
                                                     {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" disabled="disabled"%}
                                                     <div class="mt-1">
-                                                        <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0 disabled'>Postavi Ponudu</button>
+                                                        <button type='submit' class='btn btn-primary btn-lg mt-1 mb-0 float-end disabled'>Postavi Ponudu</button>
+                                                        <button class="btn btn-primary float-end m-lg-1 btn-lg"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#izmeniPonuduModal"
+                                                            type="button"
+                                                            value="Izmeni Ponudu">
+                                                            <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                                                        </button>
                                                     </div>
                                                 {% else %}
                                                     {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" %}
                                                     <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
                                                     {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" %}
                                                     <div class="mt-1">
-                                                        <button type='submit' class='btn btn-primary btn-lg mt-7 mb-0'>Postavi Ponudu</button>
+                                                        <button type='submit' class='btn btn-outline-success btn-lg mt-1 mb-0 float-end'>
+                                                            <i class="fa fa-check-square"></i> Postavi Ponudu
+                                                        </button>
                                                     </div>
                                                 {% endif %}
-
                                             </div>
                                         </div>
                                     </form>
