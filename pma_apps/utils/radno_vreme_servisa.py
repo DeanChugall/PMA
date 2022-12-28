@@ -12,7 +12,7 @@ class RadniDaniServisa(models.TextChoices):
 
 
 class RadniSatiServisa(models.TextChoices):
-    NEARADAN_DAN = "NEARADAN DAN"
+    NEARADAN_DAN = "NERADAN DAN"
     NULA = "00:00", "00:00"
     JEDAN = "01:00", "01:00"
     DVA = "02:00", "02:00"
