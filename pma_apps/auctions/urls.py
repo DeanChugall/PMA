@@ -39,6 +39,11 @@ urlpatterns = [
         views.prihvati_ponudu_zahteva_view,
         name="prihvati_ponudu",
     ),
+    path(
+        "auction/<int:pk>/otkazi",
+        views.otkazi_ponudu_zahteva_view,
+        name="otkazi_ponudu",
+    ),
     # HTMX
     path(
         "zahtevi/<int:pk>/uredjivanje",

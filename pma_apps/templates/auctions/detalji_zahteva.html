@@ -184,8 +184,9 @@
                                             </div>
                                         {% else %}
                                             <div class='alert alert-warning' role='alert'>
-                                                Zahtev je već odobren <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
-                                            </div>
+                                                Zahtev je odobren servisu: <strong>
+                                                    <a href="{% url 'auto_servis:detalji_servisa' auction.buyer.username  %}">{{ auction.buyer }}</a>
+                                                </strong> za <strong>{{ auction.current_bid }} rsd</strong>.</div>
                                         {% endif %}
                                     </div>
                                 </div>

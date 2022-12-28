@@ -233,6 +233,7 @@ def kreiranje_zahteva_view(request):
         )
 
 
+@login_required
 def prihvati_ponudu_zahteva_view(request, pk):
     """
     Zatvaranje zahteva Vozaca tako sto se prihvata ponuda Servisa.
@@ -246,6 +247,23 @@ def prihvati_ponudu_zahteva_view(request, pk):
             Bid.objects.filter(auction=zahtev).filter(id=ponuda.id).last().servis.user
         )
         zahtev.current_bid = ponuda.amount
+        zahtev.save()
+
+        return HttpResponseRedirect(
+            reverse("ponude:detalji_ponude_view", args=[zahtev.pk])
+        )
+    return HttpResponseRedirect(reverse("ponude:detalji_ponude_view", args=[zahtev.pk]))
+
+
+@login_required
+def otkazi_ponudu_zahteva_view(request, pk):
+    """
+    Otkazivanje Pobnude zahteva Vozaca tako sto se otkazuje ponuda Servisa.
+    """
+    zahtev = Auction.objects.get(id=pk)
+
+    if request.user == zahtev.creator:
+        zahtev.active = True
         zahtev.save()
 
         return HttpResponseRedirect(

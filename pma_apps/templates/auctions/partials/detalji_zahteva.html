@@ -17,6 +17,24 @@
 
         <hr/>
 
+        <!-- DA LI JE ZAHTEV AKTIVAN -->
+        <span class="fw-bold me-0">
+            {% if auction.active %}
+                <div class="tags mb-0">
+                    <span class="tag tag-radius tag-round tag-green text-black"><strong>AKTIVAN ZAHTEV</strong></span>
+                </div>
+            {% elif auction.buyer == user %}
+                <div class="tags mb-0">
+                    <span class="tag tag-radius tag-round tag-green text-black"><strong>VAŠA PONUDA JE PRIHVAĆENA ZA OVAJ ZAHTEV</strong></span>
+                </div>
+            {% else %}
+                <div class="tags mb-0">
+                    <span class="tag tag-radius tag-round tag-red text-black"><strong>NEAKTIVAN ZAHTEV</strong></span>
+                </div>
+            {% endif %}
+        </span>
+        <!-- END DA LI JE ZAHTEV AKTIVAN -->
+
         <!-- AUTOR ZAHTEVA -->
         <span class="fw-bold me-2">
             <small class="fw-bold me-2">Zahtev Kreirao:</small>
@@ -207,10 +225,10 @@
 
     <hr>
 
-    <!-- BRISANJE IZMENA ZAHTEVA -->
+    <!-- BRISANJE, IZMENA, OTKAZIVANJE ZAHTEVA -->
     {% if auction.creator == user %}
+        <!-- MODAL BRISANJE ZAHTEVA -->
         <form method="POST" action="{% url 'ponude:obrisi_zahtev' auction.id %}">
-            <!-- Modal -->
             <div class="modal fade" id="obrisiModal" tabindex="-1" aria-labelledby="obrisiModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -236,38 +254,63 @@
                     </div>
                 </div>
             </div>
-            {% if auction.active %}
-                <button
-                    class="btn btn-outline-success"
-                    hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}#top-detalji-zahteva"
-                    hx-target="#detalji-zahteva"
-                    hx-trigger="click">
-                    <i class="fa fa-edit"></i>&nbsp;Izmeni
-                </button>
-                <button class="btn btn-outline-danger float-end"
-                    data-bs-toggle="modal"
-                    data-bs-target="#obrisiModal"
-                    type="button"
-                    value="Obriši">
-                    <i class="fa fa-trash-o"></i>&nbsp;Obriši
-                </button>
-            {% else %}
-                <button
-                    class="btn btn-outline-success disabled"
-                    hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
-                    hx-target="#detalji-zahteva"
-                    hx-trigger="click">
-                    <i class="fa fa-edit"></i>&nbsp;Izmeni
-                </button>
-                <button class="btn btn-outline-danger float-end disabled"
-                    data-bs-toggle="modal"
-                    data-bs-target="#obrisiModal"
-                    type="button"
-                    value="Obriši">
-                    <i class="fa fa-trash-o"></i>&nbsp;Obriši
-                </button>
-            {% endif %}
         </form>
+        <!-- END MODAL BRISANJE ZAHTEVA -->
+        {% if auction.active %}
+            <button
+                class="btn btn-outline-success"
+                hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}#top-detalji-zahteva"
+                hx-target="#detalji-zahteva"
+                hx-trigger="click">
+                <i class="fa fa-edit"></i>&nbsp;Izmeni
+            </button>
+            <button class="btn btn-outline-danger float-end"
+                data-bs-toggle="modal"
+                data-bs-target="#obrisiModal"
+                type="button"
+                value="Obriši">
+                <i class="fa fa-trash-o"></i>&nbsp;Obriši
+            </button>
+        {% else %}
+            <!-- OTKAZIVANJE PONUDE -->
+            <!-- MODAL OTKAZIVANJE PONUDE -->
+            <form method="POST" action="{% url 'ponude:otkazi_ponudu' auction.id %}">
+                <div class="modal fade" id="otkaziPonuduModal" tabindex="-1" aria-labelledby="otkaziPonuduModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="otkaziPonuduModalLabel">Otkazivanje Ponude</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {% csrf_token %}
+                                <h5>Da li ste sigurni da želite da otkažete prihvaćenu ponudu: [{{auction.title}}] ?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit"
+                                    class="btn btn-outline-danger ">
+                                    <i class="fa fa-close"></i>&nbsp;Otkaži
+                                </button>
+                                <button type="button"
+                                    class="btn btn-outline-success"
+                                    data-bs-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;Zatvori
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END OTKAZIVANJE PONUDE -->
+            <button class="btn btn-outline-danger float-end"
+                data-bs-toggle="modal"
+                data-bs-target="#otkaziPonuduModal"
+                type="button"
+                value="Obriši">
+                <i class="fa fa-close"></i>&nbsp;OTKAŽI PONUDU
+            </button>
+            <!-- END OTKAZIVANJE PONUDE -->
+        {% endif %}
     {% endif %}
-    <!-- END BRISANJE IZMENA ZAHTEVA -->
+    <!-- END BRISANJE -IZMENA ZAHTEVA & OTKAZIVANJE PONUDE -->
 </div>
