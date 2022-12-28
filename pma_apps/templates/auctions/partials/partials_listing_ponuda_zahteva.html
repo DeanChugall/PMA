@@ -99,7 +99,7 @@
                                             <div class="card-body p-0 d-lg-none">
                                                 {% if ponuda.amount %}
                                                     <hr/>
-                                                    <div class="h3 text-center mb-5 mt-5 p-2 fw-bold  bg-primary rounded-2">{{ ponuda.amount }} rsd</div>
+                                                    <div class="h3 text-center mb-5 mt-5 p-2 fw-bold bg-primary rounded-2">{{ ponuda.amount }} rsd</div>
                                                 {% endif %}
                                                 <hr/>
 
@@ -232,7 +232,7 @@
                                 <h5><b>{{ user.username }}</b>, da li ste sigurni da želite da Prihvatite izabranu ponudu?</h5>
                             </div>
                             <div class="modal-footer">
-                                <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}">
+                                <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}#detalji-odobrenog-zahteva">
                                     <button class="btn btn-outline-success">
                                         <i class="fa fa-check-square fa-1x"></i> Prihvati Ponudu
                                     </button>
@@ -258,12 +258,14 @@
                             value="Prihvati Ponudu">
                             <i class="fa fa-check-square fa-1x"></i>&nbsp;Prihvati Ponudu
                         </button>
+                    </div>
                 {% endif %}
                 <!-- END OTVARANJE MODALA PRIHVATA PONUDE -->
                 <!-- END PRIHVATI PONUDU -->
 
-                <!-- BRISANJE PONUDE ZAHTEVA-->
+                <!-- BRISANJE PONUDE ZAHTEVA SAMO SERVISER -->
                 {% if ponuda.servis.user == user and auction.active %}
+                    <!-- MODAL BRISANJA PONUDE -->
                     <form method="POST" action="{% url 'ponude:obrisi_ponudu_zahteva' ponuda.id %}">
                         <!-- Modal -->
                         <div class="modal fade" id="obrisiPonuduModal" tabindex="-1" aria-labelledby="obrisiPonuduModalLabel" aria-hidden="true">
@@ -292,40 +294,53 @@
                             </div>
                         </div>
                     </form>
-                    <button class="btn btn-primary float-end m-lg-1 d-none d-lg-block"
-                        data-bs-toggle="modal"
-                        data-bs-target="#izmeniPonuduModal"
-                        type="button"
-                        value="Izmeni Ponudu">
-                        <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
-                    </button>
-                    <button class="btn btn-outline-danger float-end m-1 d-none d-lg-block"
-                        data-bs-toggle="modal"
-                        data-bs-target="#obrisiPonuduModal"
-                        type="button"
-                        value="Obriši">
-                        <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
-                    </button>
+                    <!-- END MODAL BRISANJA PONDUE -->
+
+                    <!-- DUGME IZMENI-OBRISI PONUDU VELIKI EKRAN -->
+                    <div class="row d-none d-lg-block">
+                        <div class="col">
+                            <button class="btn btn-primary float-end m-lg-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#izmeniPonuduModal"
+                                type="button"
+                                value="Izmeni Ponudu">
+                                <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                            </button>
+                            <button class="btn btn-outline-danger float-end m-1 d-none d-lg-block"
+                                data-bs-toggle="modal"
+                                data-bs-target="#obrisiPonuduModal"
+                                type="button"
+                                value="Obriši">
+                                <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
+                            </button>
+                        </div>
+                    </div>
+                    <!-- END DUGME IZMENI-OBRISI PONUDU VELIKI EKRAN -->
+
+                    <!-- DUGME IZMENI-OBRISI PONUDU MALI EKRAN -->
                     <div class="row d-lg-none">
-                        <button class="btn btn-primary float-end m-lg-1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#izmeniPonuduModal"
-                            type="button"
-                            value="Izmeni Ponudu">
-                            <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
-                        </button>
-                        <button class="btn btn-outline-danger float-end m-1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#obrisiPonuduModal"
-                            type="button"
-                            value="Obriši">
-                            <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
-                        </button>
+                        <div class="col">
+                            <button class="btn btn-primary m-1 col-12"
+                                data-bs-toggle="modal"
+                                data-bs-target="#izmeniPonuduModal"
+                                type="button"
+                                value="Izmeni Ponudu">
+                                <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                            </button>
+                            <button class="btn btn-outline-danger m-1 col-12"
+                                data-bs-toggle="modal"
+                                data-bs-target="#obrisiPonuduModal"
+                                type="button"
+                                value="Obriši">
+                                <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
+                            </button>
+                        </div>
+                        <!-- END DUGME IZMENI-OBRISI PONUDU MALI EKRAN -->
                     </div>
                 {% endif %}
-                <!-- END BRISANJE PONUDE ZAHTEVA -->
+                <!-- END BRISANJE PONUDE ZAHTEVA SAMO SERVISER -->
 
-                <!-- IZMENA PONUDE ZAHTEVA MODAL -->
+                <!-- IZMENA PONUDE ZAHTEVA MODAL SAMO SERVISER  -->
                 {% if ponuda.servis.user == user and auction.active %}
                     <form class="needs-validation" method="POST" action="{% url 'ponude:izmeni_ponudu' ponuda.id %}" novalidate>
                         <!-- Modal -->
@@ -360,9 +375,8 @@
                         </div>
                     </form>
                 {% endif %}
-                <!-- END IZMENA PONUDE ZAHTEVA MODAL -->
+                <!-- END IZMENA PONUDE ZAHTEVA MODAL SAMO SERVISER -->
             </div>
-        </div>
         </div>
     {% endif %}
 {% empty %}

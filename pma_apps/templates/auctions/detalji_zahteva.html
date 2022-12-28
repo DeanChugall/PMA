@@ -82,7 +82,6 @@
                                                                         style='width: 300px;'>
                                                                 {% endfor %}
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -114,59 +113,57 @@
                                         <span class="bookmark-ribbone-success-left">
                                             <span><i class="fa fa-car"></i><strong>{{ user.username  }}, Vaša ponuda ovde!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
                                         </span>
-                                        <div class="card-body p-4">
-                                        </div>
+                                        <div class="card-body p-4"></div>
                                     </div>
                                 {% endif %}
-                                <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" class="needs-validation"method='POST' novalidate>
+                                <form action="{% url 'ponude:ponuda_zahteva' auction.id %}" class="needs-validation" method='POST' novalidate>
                                     {% csrf_token %}
                                     <div class='card-body'>
                                         <!-- Product price-->
-                                        <p>
-                                            {% if auction.current_bid is None %}
-                                                {% if auction.creator != user %}
-                                                    <div class='alert alert-secondary' role='alert'>
-                                                        Budite prvi Servis koji će postaviti ponudu za ovaj zahtev!
-                                                    </div>
-                                                {% endif %}
-                                            {% elif auction.buyer is not None %}
-                                                {% if auction.creator == user %}
-                                                    <div class='alert alert-secondary' role='alert'>
-                                                        Zahtev je odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
-                                                    </div>
-                                                {% endif %}
+                                        {% if auction.current_bid is None %}
+                                            {% if auction.creator != user %}
+                                                <div class='alert alert-secondary' role='alert'>
+                                                    Budite prvi Servis koji će postaviti ponudu za ovaj zahtev!
+                                                </div>
                                             {% endif %}
+                                        {% elif auction.buyer is not None %}
+                                            {% if auction.creator == user %}
+                                                <div class='alert alert-secondary' role='alert'>
+                                                    Zahtev je odobren servisu: <strong>{{ auction.buyer }}</strong> za <strong>{{ auction.current_bid }} rsd</strong>.
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
 
-                                            <div class='form-group mt-1'>
-                                                {% if ponuda_jednog_auto_servisa %}
-                                                    {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" disabled="disabled"%}
-                                                    <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
-                                                    {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" disabled="disabled"%}
-                                                    <div class="mt-1">
-                                                        <button class="btn btn-primary float-end m-lg-1 btn-lg"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#izmeniPonuduModal"
-                                                            type="button"
-                                                            value="Izmeni Ponudu">
-                                                            <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
-                                                        </button>
-                                                    </div>
-                                                {% else %}
-                                                    {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" %}
-                                                    <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
-                                                    {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" %}
-                                                    <div class="mt-1">
-                                                        <button type='submit' class='btn btn-outline-success btn-lg mt-1 mb-1 float-end'>
-                                                            <i class="fa fa-check-square"></i> Postavi Ponudu
-                                                        </button>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
+                                        <div class='form-group mt-1'>
+                                            {% if ponuda_jednog_auto_servisa %}
+                                                {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" disabled="disabled"%}
+                                                <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
+                                                {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" disabled="disabled"%}
+                                                <div class="mt-1">
+                                                    <button class="btn btn-primary float-end m-lg-1"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#izmeniPonuduModal"
+                                                        type="button"
+                                                        value="Izmeni Ponudu">
+                                                        <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                                                    </button>
+                                                </div>
+                                            {% else %}
+                                                {% render_field bid_form.amount class="form-control form-control-lg" min="1" max="900000" placeholder="Vaša cena ovde..." required="required" %}
+                                                <div class="invalid-feedback m-1">Niste uneli cenu Ponude...</div>
+                                                {% render_field bid_form.opis_ponude class="form-control form-control-lg mt-4" placeholder="Kratak Opis Ponude... **(max 400 karaktera)" %}
+                                                <div class="mt-1">
+                                                    <button type='submit' class='btn btn-outline-success btn-lg mt-1 mb-1 float-end'>
+                                                        <i class="fa fa-check-square"></i> Postavi Ponudu
+                                                    </button>
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
-                            <!-- END UNOS PONUDE ZA ZAHTEV -->
+                        </div>
+                        <!-- END UNOS PONUDE ZA ZAHTEV -->
                     {% elif auction.active == False and auction.buyer is not None %}
                         <div class='row'>
                             <!-- DETALJI ZAHTEVA AKO JE ODOBREN -->
@@ -274,7 +271,6 @@
                             </div>
                         {% endfor %}
                         <!-- END PREPORUCENI ZAHTEVI SERVISIMA -->
-                        </div>
                     {% endif %}
                     <!-- END VIDLJIVO SAMO SERVISERIMA -->
 
@@ -283,6 +279,7 @@
                 <!-- CONTAINER CLOSED -->
             </div>
         </div>
+    </div>
 {% endblock app_content %}
 
 {% block extra-javascript %}
