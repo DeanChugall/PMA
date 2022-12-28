@@ -302,7 +302,6 @@
                                             <h1 class="modal-title fs-5" id="izmeniPonuduModalModalLabel">Izmena Ponude {{ ponuda.id }}</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        {{form}}
                                         <div class="modal-body">
                                             {% csrf_token %}
                                             <label class="col-md-12 form-label">Cena Ponude:</label>
@@ -314,7 +313,7 @@
                                         <div class="modal-footer">
                                             <button type="submit"
                                                 class="btn btn-outline-danger">
-                                                <i class="fa fa-trash-o"></i>&nbsp;Sačuvaj
+                                                <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
                                             </button>
                                             <button type="button"
                                                 class="btn btn-outline-success"
