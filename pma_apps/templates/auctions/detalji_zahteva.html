@@ -104,6 +104,12 @@
                             <div class='card mb-4 h-100 {% if ponuda_jednog_auto_servisa %}bg-success-transparent{% endif %} '>
 
                                 {% if ponuda_jednog_auto_servisa %}
+                                    <div class="card me-2">
+                                        <span class="ribbone-info-left">
+                                            <span><i class="fa fa-car"></i><strong>{{ user.username  }}, Vaša ponuda je ovde!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+                                        </span>
+                                        <div class="card-body p-4"></div>
+                                    </div>
                                     <div class="tags mb-2">
                                         <span class="tag tag-radius tag-round tag-green text-black">Dali ste ponudu: <strong>{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
                                         <span class="tag tag-radius tag-round tag-orange text-black">Datum ponude: <strong>{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
