@@ -262,7 +262,7 @@ class ServisProfile(models.Model):
         blank=True,
         max_length=20,
         choices=RadniSatiServisa.choices,
-        default=RadniSatiServisa.NEARADAN_DAN,
+        default=RadniSatiServisa.NERADAN_DAN,
     )
 
     otvoreno_do_nedelja = models.CharField(
@@ -270,7 +270,7 @@ class ServisProfile(models.Model):
         blank=True,
         max_length=20,
         choices=RadniSatiServisa.choices,
-        default=RadniSatiServisa.NEARADAN_DAN,
+        default=RadniSatiServisa.NERADAN_DAN,
     )
 
     web_site_servisa = models.CharField(
