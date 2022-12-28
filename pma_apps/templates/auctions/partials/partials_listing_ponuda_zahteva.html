@@ -258,13 +258,36 @@
                                 </div>
                             </div>
                         </form>
-                        <button class="btn btn-outline-danger float-end m-1"
+                        <button class="btn btn-primary float-end m-lg-1 d-none d-lg-block"
+                            data-bs-toggle="modal"
+                            data-bs-target="#izmeniPonuduModal"
+                            type="button"
+                            value="Izmeni Ponudu">
+                            <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                        </button>
+                        <button class="btn btn-outline-danger float-end m-1 d-none d-lg-block"
                             data-bs-toggle="modal"
                             data-bs-target="#obrisiPonuduModal"
                             type="button"
                             value="Obriši">
                             <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
                         </button>
+                        <div class="row d-lg-none">
+                            <button class="btn btn-primary float-end m-lg-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#izmeniPonuduModal"
+                                type="button"
+                                value="Izmeni Ponudu">
+                                <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                            </button>
+                            <button class="btn btn-outline-danger float-end m-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#obrisiPonuduModal"
+                                type="button"
+                                value="Obriši">
+                                <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
+                            </button>
+                        </div>
                     {% endif %}
                     <!-- END BRISANJE PONUDE ZAHTEVA -->
 
@@ -303,13 +326,7 @@
                                 </div>
                             </div>
                         </form>
-                        <button class="btn btn-primary float-end m-lg-1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#izmeniPonuduModal"
-                            type="button"
-                            value="Izmeni Ponudu">
-                            <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
-                        </button>
+
                     {% endif %}
                     <!-- END IZMENA PONUDE ZAHTEVA MODAL -->
                 </div>
