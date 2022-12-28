@@ -25,7 +25,7 @@
                         </div>
                         <!-- END SLIKA SERVISA -->
 
-                        <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
+                        <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS -->
                         <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
                             <div class="card-body">
                                 <div class="">
@@ -173,6 +173,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS -->
 
                             <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
                             {% if ponuda.opis_ponude %}
@@ -218,118 +219,150 @@
                 </div>
 
                 <!-- PRIHVATI PONUDU -->
-                <div class="card-footer text-center">
-                    {% if auction.creator == user and auction.active %}
-                        <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}">
-                            <button type="button" class="btn btn-primary mb-1 btn-lg">
-                                <i class="fa fa-check-square fa-1x"></i> Prihvati Ponudu
-                            </button>
-                        </a>
-                    {% endif %}
-                    <!-- END PRIHVATI PONUDU -->
+                <!-- MODAL PRIHVATA PONUDE -->
+                <div class="modal fade" id="prihvatiPonuduModal" tabindex="-1" aria-labelledby="prihvatiPonuduModalModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="prihvatiPonuduModalLabel">Potvrda</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5><b>{{ user.username }}</b>, da li ste sigurni da želite da Prihvatite izabranu ponudu?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}">
+                                    <button class="btn btn-outline-success">
+                                        <i class="fa fa-check-square fa-1x"></i> Prihvati Ponudu
+                                    </button>
+                                </a>
+                                <button type="button"
+                                    class="btn btn-outline-danger"
+                                    data-bs-dismiss="modal">
+                                    <i class="fa fa-close"></i>&nbsp;Odustani
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MODAL PRIHVATA PONUDE -->
 
-                    <!-- BRISANJE PONUDE ZAHTEVA-->
-                    {% if ponuda.servis.user == user and auction.active %}
-                        <form method="POST" action="{% url 'ponude:obrisi_ponudu_zahteva' ponuda.id %}">
-                            <!-- Modal -->
-                            <div class="modal fade" id="obrisiPonuduModal" tabindex="-1" aria-labelledby="obrisiPonuduModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="obrisiPonuduModalLabel">Brisanje Ponude {{ ponuda.id }}</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            {% csrf_token %}
-                                            <h5>Da li ste sigurni da želite da obrišete ponudu sa brojem: {{ ponuda.id }} ?</h5>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit"
-                                                class="btn btn-outline-danger">
-                                                <i class="fa fa-trash-o"></i>&nbsp;Obriši
-                                            </button>
-                                            <button type="button"
-                                                class="btn btn-outline-success"
-                                                data-bs-dismiss="modal">
-                                                <i class="fa fa-close"></i>&nbsp;Odustani
-                                            </button>
-                                        </div>
+                <!-- OTVARANJE MODALA PRIHVATA PONUDE -->
+                {% if auction.creator == user and auction.active %}
+                    <div class="card-footer text-center">
+                        <button class="btn btn-primary mb-1 btn-lg"
+                            data-bs-toggle="modal"
+                            data-bs-target="#prihvatiPonuduModal"
+                            type="button"
+                            value="Prihvati Ponudu">
+                            <i class="fa fa-trash-o"></i>&nbsp;Prihvati Ponudu
+                        </button>
+                {% endif %}
+                <!-- END OTVARANJE MODALA PRIHVATA PONUDE -->
+                <!-- END PRIHVATI PONUDU -->
+
+                <!-- BRISANJE PONUDE ZAHTEVA-->
+                {% if ponuda.servis.user == user and auction.active %}
+                    <form method="POST" action="{% url 'ponude:obrisi_ponudu_zahteva' ponuda.id %}">
+                        <!-- Modal -->
+                        <div class="modal fade" id="obrisiPonuduModal" tabindex="-1" aria-labelledby="obrisiPonuduModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="obrisiPonuduModalLabel">Brisanje Ponude {{ ponuda.id }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% csrf_token %}
+                                        <h5>Da li ste sigurni da želite da obrišete ponudu sa brojem: {{ ponuda.id }} ?</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit"
+                                            class="btn btn-outline-danger">
+                                            <i class="fa fa-trash-o"></i>&nbsp;Obriši
+                                        </button>
+                                        <button type="button"
+                                            class="btn btn-outline-success"
+                                            data-bs-dismiss="modal">
+                                            <i class="fa fa-close"></i>&nbsp;Odustani
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <button class="btn btn-primary float-end m-lg-1 d-none d-lg-block"
+                        </div>
+                    </form>
+                    <button class="btn btn-primary float-end m-lg-1 d-none d-lg-block"
+                        data-bs-toggle="modal"
+                        data-bs-target="#izmeniPonuduModal"
+                        type="button"
+                        value="Izmeni Ponudu">
+                        <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
+                    </button>
+                    <button class="btn btn-outline-danger float-end m-1 d-none d-lg-block"
+                        data-bs-toggle="modal"
+                        data-bs-target="#obrisiPonuduModal"
+                        type="button"
+                        value="Obriši">
+                        <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
+                    </button>
+                    <div class="row d-lg-none">
+                        <button class="btn btn-primary float-end m-lg-1"
                             data-bs-toggle="modal"
                             data-bs-target="#izmeniPonuduModal"
                             type="button"
                             value="Izmeni Ponudu">
                             <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
                         </button>
-                        <button class="btn btn-outline-danger float-end m-1 d-none d-lg-block"
+                        <button class="btn btn-outline-danger float-end m-1"
                             data-bs-toggle="modal"
                             data-bs-target="#obrisiPonuduModal"
                             type="button"
                             value="Obriši">
                             <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
                         </button>
-                        <div class="row d-lg-none">
-                            <button class="btn btn-primary float-end m-lg-1"
-                                data-bs-toggle="modal"
-                                data-bs-target="#izmeniPonuduModal"
-                                type="button"
-                                value="Izmeni Ponudu">
-                                <i class="fa fa-edit"></i>&nbsp;Izmeni Ponudu
-                            </button>
-                            <button class="btn btn-outline-danger float-end m-1"
-                                data-bs-toggle="modal"
-                                data-bs-target="#obrisiPonuduModal"
-                                type="button"
-                                value="Obriši">
-                                <i class="fa fa-trash-o"></i>&nbsp;Obriši Ponudu
-                            </button>
-                        </div>
-                    {% endif %}
-                    <!-- END BRISANJE PONUDE ZAHTEVA -->
+                    </div>
+                {% endif %}
+                <!-- END BRISANJE PONUDE ZAHTEVA -->
 
-                    <!-- IZMENA PONUDE ZAHTEVA MODAL -->
-                    {% if ponuda.servis.user == user and auction.active %}
-                        <form class="needs-validation" method="POST" action="{% url 'ponude:izmeni_ponudu' ponuda.id %}" novalidate>
-                            <!-- Modal -->
-                            <div class="modal fade" id="izmeniPonuduModal" tabindex="-1" aria-labelledby="izmeniPonuduModalModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="izmeniPonuduModalModalLabel">Izmena Ponude {{ ponuda.id }}</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            {% csrf_token %}
-                                            <label class="col-md-12 form-label">Cena Ponude:</label>
-                                            {% render_field bid_form.amount class="form-control mb-2" value=ponuda.amount required="required" %}
+                <!-- IZMENA PONUDE ZAHTEVA MODAL -->
+                {% if ponuda.servis.user == user and auction.active %}
+                    <form class="needs-validation" method="POST" action="{% url 'ponude:izmeni_ponudu' ponuda.id %}" novalidate>
+                        <!-- Modal -->
+                        <div class="modal fade" id="izmeniPonuduModal" tabindex="-1" aria-labelledby="izmeniPonuduModalModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="izmeniPonuduModalModalLabel">Izmena Ponude {{ ponuda.id }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% csrf_token %}
+                                        <label class="col-md-12 form-label">Cena Ponude:</label>
+                                        {% render_field bid_form.amount class="form-control mb-2" value=ponuda.amount required="required" %}
 
-                                            <label class="col-md-12 form-label mt-3">Opis Ponude:</label>
-                                            {% render_field bid_form.opis_ponude class="form-control mt-3" %}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit"
-                                                class="btn btn-outline-danger">
-                                                <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
-                                            </button>
-                                            <button type="button"
-                                                class="btn btn-outline-success"
-                                                data-bs-dismiss="modal">
-                                                <i class="fa fa-close"></i>&nbsp;Odustani
-                                            </button>
-                                        </div>
+                                        <label class="col-md-12 form-label mt-3">Opis Ponude:</label>
+                                        {% render_field bid_form.opis_ponude class="form-control mt-3" %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit"
+                                            class="btn btn-outline-danger">
+                                            <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                                        </button>
+                                        <button type="button"
+                                            class="btn btn-outline-success"
+                                            data-bs-dismiss="modal">
+                                            <i class="fa fa-close"></i>&nbsp;Odustani
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-
-                    {% endif %}
-                    <!-- END IZMENA PONUDE ZAHTEVA MODAL -->
-                </div>
+                        </div>
+                    </form>
+                {% endif %}
+                <!-- END IZMENA PONUDE ZAHTEVA MODAL -->
             </div>
+        </div>
         </div>
     {% endif %}
 {% empty %}
