@@ -1,7 +1,9 @@
 from django import forms
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -291,6 +293,16 @@ def submit_review(request, profil_servisa_id):
             form = RatingServisaForm(request.POST, instance=reviews)
             form.save()
             messages.success(request, "Zahvaljujemo, Vaš utisak je ažuriran.")
+
+            # Send Mail
+            servis = Servis.objects.get(id=profil_servisa_id)
+            send_mail(
+                "Promena Utiska Vozača!",
+                "Poštovani, Vozača je promenuo utisak!",
+                settings.EMAIL_HOST_USER,
+                [servis.email],
+            )
+
             return redirect(url)
         except RatingServisa.DoesNotExist:
             form = RatingServisaForm(request.POST)
@@ -304,6 +316,15 @@ def submit_review(request, profil_servisa_id):
                 data.vozac = Vozac.objects.get(id=request.user.id)
                 data.save()
                 messages.success(request, "Hvala! Vaš utisak je uspešno postavljen.")
+
+                # Send Mail
+                servis = Servis.objects.get(id=profil_servisa_id)
+                send_mail(
+                    "Novi Utisak Vozača!",
+                    "Poštovani, imate ostavljen novi utisak Vozača!",
+                    settings.EMAIL_HOST_USER,
+                    [servis.email],
+                )
                 return redirect(url)
 
 
