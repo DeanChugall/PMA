@@ -255,15 +255,23 @@
                             <!-- END STATISTIKA, SLIKA I BIOGRAFIJA -->
 
                             <!-- RATING STAR AND REVIEW -->
+
                             <div class="col-xl-8">
                                 <div class="card">
                                     <div class="card-body">
                                         {% if user.role != "SERVIS" %}
-                                            <form action="{% url 'auto_servis:submit_review' servis.id %}" method="POST">
+                                            <form class="ogin100-form validate-form needs-validation"
+                                                action="{% url 'auto_servis:submit_review' servis.id %}#utisci-vozaca"
+                                                method="POST"
+                                                novalidate>
                                                 {% csrf_token %}
                                                 {% include 'auto_servis/partials/alerts.html' %}
-                                                <br>
-                                                <h5>Ostavite Vaš Utisak</h5>
+                                                <div class="card mt-1 mb-3">
+                                                    <span class="ribbone-success-left">
+                                                        <span><i class="fa fa-user-circle"></i><strong>Ostavite Vaš utisak ovde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+                                                    </span>
+                                                    <div class="card-body p-4"></div>
+                                                </div>
                                                 <div class="rate">
                                                     <input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
                                                     <input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
@@ -275,12 +283,12 @@
                                                     <input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
                                                     <input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
                                                     <input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
+                                                    <div class="invalid-feedback m-1">Niste ocenili Servis!</div>
                                                 </div><br>
-                                                <strong>Kratak Naslov:</strong>
                                                 <input type="text" class="form-control mb-4 mt-4" name="subject" placeholder="Naslov..." >
                                                 <textarea class="form-control" name="review" placeholder="Vaš utisak ovde..." rows="7"></textarea>
                                                 <div class="profile-share border-top-0">
-                                                    <button class="btn btn-md btn-success ms-auto"><i class="fa fa-share ms-1"></i> Sačuvaj Utisak</button>
+                                                    <button type="submit" class="btn btn-md btn-success ms-auto"><i class="fa fa-share ms-1"></i> Sačuvaj Utisak</button>
                                                 </div>
                                             </form>
                                         {% elif reviews %}
@@ -293,6 +301,12 @@
                                             </div>
                                         {% endif %}
                                     </div>
+                                </div>
+                                <div class="card mt-1 mb-3"  id="utisci-vozaca">
+                                    <span class="ribbone-info-left ">
+                                        <span><i class="fa fa-user-circle"></i><strong>Ostavljeni Utisci Vozača&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>
+                                    </span>
+                                    <div class="card-body p-4"></div>
                                 </div>
                                 {% for review in reviews %}
                                     <div class="card border p-0 shadow-none">
@@ -313,8 +327,8 @@
 
                                                             </span>
                                                         </div>
-                                                        <h6 class="mb-0 mt-1">{{review.vozac}}</h6>
-                                                        <small class="text-muted">{{review.updated_at}}</small>
+                                                        <h6 class="mb-0 mt-1">{{ review.vozac }}</h6>
+                                                        <small class="text-muted">{{ review.updated_at }}</small>
                                                     </div>
                                                 </div>
                                                 <!-- BRISANJE UTISKA -->

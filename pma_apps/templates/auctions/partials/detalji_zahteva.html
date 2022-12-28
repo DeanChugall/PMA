@@ -6,8 +6,8 @@
         {% if user.role == "SERVIS" %}
             {% if ponuda_jednog_auto_servisa %}
                 <div class="tags mb-2">
-                    <span class="tag tag-radius tag-round tag-green text-black">Dali ste ponudu: <strong>{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
-                    <span class="tag tag-radius tag-round tag-orange text-black">Datum ponude: <strong>{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
+                    <span class="tag tag-radius tag-round tag-orange text-black">Dali ste ponudu: <strong>&nbsp;{{ ponuda_jednog_auto_servisa.0.amount }} rsd</strong></span>
+                    <span class="tag tag-radius tag-round tag-orange text-black">Datum: <strong>&nbsp;{{ ponuda_jednog_auto_servisa.0.date }}</strong></span>
                 </div>
             {% else %}
                 <span class="tag tag-radius tag-round tag-red text-black"><strong>Za ovaj zahtev niste dali ponudu!</strong></span>
@@ -25,7 +25,7 @@
                 </div>
             {% elif auction.buyer == user %}
                 <div class="tags mb-0">
-                    <span class="tag tag-radius tag-round tag-green text-black"><strong>VAŠA PONUDA JE PRIHVAĆENA ZA OVAJ ZAHTEV</strong></span>
+                    <span class="tag tag-radius tag-round tag-green text-black"><strong>VAŠA PONUDA JE PRIHVAĆENA</strong></span>
                 </div>
             {% else %}
                 <div class="tags mb-0">
