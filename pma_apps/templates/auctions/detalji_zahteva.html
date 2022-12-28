@@ -41,7 +41,7 @@
                 <!-- PAGE-HEADER END -->
 
                 <!-- Watchlist -->
-                <div>
+                <div  id="top-detalji-zahteva">
                     {% if auction.is_watched %}
                         <a class='btn btn-outline-danger mt-auto'
                             href="{% url 'ponude:pracenje_zahteva_edit' auction.id 'ponude:detalji_zahteva_view' %}">

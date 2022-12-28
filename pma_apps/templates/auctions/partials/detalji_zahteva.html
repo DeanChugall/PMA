@@ -239,7 +239,7 @@
             {% if auction.active %}
                 <button
                     class="btn btn-outline-success"
-                    hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}"
+                    hx-get="{% url 'ponude:uredi_zahtev_vozaca' auction.id %}#top-detalji-zahteva"
                     hx-target="#detalji-zahteva"
                     hx-trigger="click">
                     <i class="fa fa-edit"></i>&nbsp;Izmeni

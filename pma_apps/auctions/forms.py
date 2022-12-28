@@ -25,7 +25,9 @@ class AuctionForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["category"] = forms.ModelChoiceField(
-            empty_label="Odaberite Kategoriju Servisa", queryset=Category.objects.all()
+            empty_label="Odaberite Kategoriju Servisa",
+            queryset=Category.objects.all(),
+            label="Kategorija",
         )
 
         for visible in self.visible_fields():
