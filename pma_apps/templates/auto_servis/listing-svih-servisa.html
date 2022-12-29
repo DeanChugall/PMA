@@ -103,14 +103,42 @@
                                                             <!-- END SLIKA SERVISA -->
 
                                                             <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS-->
-                                                            <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                                                            <div class="col-xl-6 col-lg-12 col-md-12 my-auto">
                                                                 <div class="card-body">
                                                                     <div class="">
                                                                         <a href="{% url 'auto_servis:detalji_servisa' servis.user.username %}" class="">
                                                                             {% if servis.ime_servisa %}
-                                                                                <h3 class="fw-bold fs-30 mb-3">{{ servis.ime_servisa }}</h3>
+                                                                                <div class="card me-2">
+                                                                                    <span class="ribbone-info-left">
+                                                                                        <span><strong> &nbsp;&nbsp;Auto Servis&nbsp;&nbsp;&nbsp;</strong></span>
+                                                                                    </span>
+                                                                                    <div class="card-body p-4">
+                                                                                        <h3 class="fw-bold fs-30 mt-4 mb-1 text-white">{{ servis.ime_servisa }}</h3>
+                                                                                        <!-- GRAD SERVISA ISPOD IMENA -->
+                                                                                        {% if servis.grad_auto_servisa %}
+                                                                                            <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ servis.get_grad_servisa }}</strong></span>
+                                                                                        {% else %}
+                                                                                            <span class="tag tag-radius tag-round tag-green text-black"><strong>&nbsp;{{ servis.user.get_grad_servisa }}</strong></span>
+                                                                                        {% endif %}
+                                                                                        <!-- END GRAD SERVISA ISPOD IMENA -->
+                                                                                    </div>
+                                                                                </div>
                                                                             {% else %}
-                                                                                <h3 class="fw-bold fs-30 mb-3">{{ servis.user.username }}</h3>
+                                                                                <div class="card me-2">
+                                                                                    <span class="ribbone-info-left">
+                                                                                        <span><strong> &nbsp;&nbsp;Ime Servisa!&nbsp;&nbsp;&nbsp;</strong></span>
+                                                                                    </span>
+                                                                                    <div class="card-body p-4">
+                                                                                        <h3 class="fw-bold fs-30 mt-4 mb-1">{{ servis.user.username }}</h3>
+                                                                                        <!-- GRAD SERVISA ISPOD IMENA -->
+                                                                                        {% if servis.grad_auto_servisa %}
+                                                                                            <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ servis.get_grad_servisa }}</strong></span>
+                                                                                        {% else %}
+                                                                                            <span class="tag tag-radius tag-round tag-green text-black"><strong>&nbsp;{{ servis.user.get_grad_servisa }}</strong></span>
+                                                                                        {% endif %}
+                                                                                        <!-- END GRAD SERVISA ISPOD IMENA -->
+                                                                                    </div>
+                                                                                </div>
                                                                             {% endif %}
                                                                             <!-- ZVEZDICE -->
                                                                             <div class="mb-2 text-warning">
@@ -122,22 +150,11 @@
                                                                                 &nbsp;{{ servis.averageReview }} / 5 &nbsp;&nbsp;ukupno utisaka: {{ servis.countReview }}
                                                                             </div>
                                                                             <!-- END ZVEZDICE -->
-
-                                                                            <!-- GRAD SERVISA ISPOD IMENA -->
-                                                                            {% if servis.grad_auto_servisa %}
-                                                                                <div class="price h6 mb-1 fw-bold text-white">{{ servis.get_grad_servisa }}</div>
-                                                                            {% else %}
-                                                                                <div class="price h6 mb-1 fw-bold text-white">{{ servis.user.get_grad_servisa }}</div>
-                                                                            {% endif %}
-                                                                            <!-- END GRAD SERVISA ISPOD IMENA -->
-
                                                                         </a>
                                                                         <hr/>
                                                                         <!-- SLOGAN SERVISA -->
                                                                         {% if servis.slogan_servisa %}
-                                                                            <p class="fs-16">{{ servis.slogan_servisa }} </p>
-                                                                        {% else %}
-                                                                            <p class="fs-16">...nema slogana servisa...</p>
+                                                                            <h4 class="fw-bold fs-16">{{ servis.slogan_servisa }} </h4>
                                                                         {% endif %}
                                                                         <!-- END SLOGAN SERVISA -->
 

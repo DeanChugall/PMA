@@ -1,7 +1,7 @@
 {% load widget_tweaks %}
 {% for ponuda in ponude_auto_servisa %}
     {% if user.role == "VOZAC" or user.role == "SERVIS"%}
-        <div class="col-xl-12">
+        <div class="col-xl-12 col-lg-12 col-md-12">
             <div class="card text-white bg-indigo-darkest border">
                 <div class="card-body">
                     <div class="row g-0">
@@ -26,15 +26,52 @@
                         <!-- END SLIKA SERVISA -->
 
                         <!-- IME & RATING & SLOGAN SERVISA & POZOVI SERVIS -->
-                        <div class="col-xl-6 col-lg-12 col-md-12 border-end my-auto">
+                        <div class="col-xl-6 col-lg-12 col-md-12 my-auto">
                             <div class="card-body">
                                 <div class="">
                                     <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="">
+                                        <!-- IME, GRAD SERVISA -->
                                         {% if ponuda.servis.ime_servisa %}
-                                            <h3 class="fw-bold fs-30 mb-3">{{ ponuda.servis.ime_servisa }}</h3>
+                                            <div class="card me-2">
+                                                <span class="ribbone-info-left">
+                                                    <span><strong> &nbsp;&nbsp;Auto Servis&nbsp;&nbsp;&nbsp;</strong></span>
+                                                </span>
+                                                <div class="card-body p-4">
+                                                    <!-- IME SERVISA ZA MALE REZOLUCIJE -->
+                                                    <h3 class="fw-bold fs-25 mt-4 mb-1 text-white d-lg-none">{{ ponuda.servis.ime_servisa }}</h3>
+                                                    <!-- END IME SERVISA ZA MALE REZOLUCIJE -->
+                                                    <!-- IME SERVISA ZA VELIKE REZOLUCIJE -->
+                                                    <h3 class="fw-bold fs-30 mt-4 mb-1 text-white d-none d-lg-block">{{ ponuda.servis.ime_servisa }}</h3>
+                                                    <!-- END IME SERVISA ZA MALE REZOLUCIJE -->
+
+                                                    <!-- GRAD SERVISA ISPOD IMENA -->
+                                                    {% if ponuda.servis.grad_auto_servisa %}
+                                                        <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ ponuda.servis.get_grad_servisa }}</strong></span>
+                                                    {% else %}
+                                                        <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ ponuda.servis.user.get_grad_servisa }}</strong></span>
+                                                    {% endif %}
+                                                    <!-- END GRAD SERVISA ISPOD IMENA -->
+                                                </div>
+                                            </div>
                                         {% else %}
-                                            <h3 class="fw-bold fs-30 mb-3">{{ ponuda.servis.user.username }}</h3>
+                                            <div class="card me-2">
+                                                <span class="ribbone-info-left">
+                                                    <span><strong> &nbsp;&nbsp;Auto Servis&nbsp;&nbsp;&nbsp;</strong></span>
+                                                </span>
+                                                <div class="card-body p-4">
+                                                    <h3 class="fw-bold fs-30 mt-4 mb-1 text-white">{{ ponuda.servis.user.username }}</h3>
+                                                    <!-- GRAD SERVISA ISPOD IMENA -->
+                                                    {% if ponuda.servis.grad_auto_servisa %}
+                                                        <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ ponuda.servis.get_grad_servisa }}</strong></span>
+                                                    {% else %}
+                                                        <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ ponuda.servis.user.get_grad_servisa }}</strong></span>
+                                                    {% endif %}
+                                                    <!-- END GRAD SERVISA ISPOD IMENA -->
+                                                </div>
+                                            </div>
                                         {% endif %}
+                                        <!-- END IME, GRAD SERVISA -->
+
                                         <!-- ZVEZDICE -->
                                         <div class="mb-2 text-warning">
                                             <i class="fa fa-star{% if ponuda.servis.averageReview < 0.5 %}-o{% elif ponuda.servis.averageReview >= 0.5 and ponuda.servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
@@ -46,20 +83,11 @@
                                         </div>
                                         <!-- END ZVEZDICE -->
 
-                                        <!-- GRAD SERVISA ISPOD IMENA -->
-                                        {% if ponuda.servis.grad_auto_servisa %}
-                                            <div class="price h6 mb-1 fw-bold text-white">{{ ponuda.servis.get_grad_servisa }}</div>
-                                        {% else %}
-                                            <div class="price h6 mb-1 fw-bold text-white">{{ ponuda.servis.user.get_grad_servisa }}</div>
-                                        {% endif %}
-                                        <!-- END GRAD SERVISA ISPOD IMENA -->
                                     </a>
                                     <hr/>
                                     <!-- SLOGAN SERVISA -->
                                     {% if ponuda.servis.slogan_servisa %}
-                                        <p class="fs-16">{{ ponuda.servis.slogan_servisa }} </p>
-                                    {% else %}
-                                        <p class="fs-16">...nema slogana servisa...</p>
+                                        <h4 class="fw-bold fs-16">{{ ponuda.servis.slogan_servisa }}</h4>
                                     {% endif %}
                                     <!-- END SLOGAN SERVISA -->
 
@@ -95,7 +123,7 @@
 
                                     <div class="row">
                                         <div class="px-0 px-sm-4">
-                                            <!-- POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
+                                            <!-- POZOVI I PREGLED PROFILA SERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
                                             <div class="card-body p-0 d-lg-none">
                                                 {% if ponuda.amount %}
                                                     <hr/>
@@ -103,18 +131,18 @@
                                                 {% endif %}
                                                 <hr/>
 
-                                                <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
+                                                <!-- OPIS PONUDE VIDLJIV SAMO NA MALIM REZOLUCIJAMA -->
                                                 {% if ponuda.opis_ponude %}
-                                                    <div class="card p-1">
-                                                        <div class="card-header h5">
-                                                            <strong>Opis Ponude:</strong>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <p class="card-text">{{ ponuda.opis_ponude }}</p>
+                                                    <div class="card me-2">
+                                                        <span class="ribbone-info-left">
+                                                            <span><strong> &nbsp;&nbsp;Opis Ponude&nbsp;&nbsp;&nbsp;</strong></span>
+                                                        </span>
+                                                        <div class="card-body p-4">
+                                                            <h3 class=" fs-14 mt-5 mb-1 text-white">{{ ponuda.opis_ponude }}</h3>
                                                         </div>
                                                     </div>
                                                 {% endif %}
-                                                <!-- END OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
+                                                <!-- END OPIS PONUDE VIDLJIV SAMO NA MALIM REZOLUCIJAMA -->
 
                                                 <a href="{% url 'auto_servis:detalji_servisa' ponuda.servis.user.username %}" class="btn btn-outline-primary btn-lg btn-block mt-2">
                                                     <i class="fe fe-eye mx-2 wishlist-icon"></i>Pogledaj Profil
@@ -177,12 +205,12 @@
 
                             <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
                             {% if ponuda.opis_ponude %}
-                                <div class="card p-1 d-none d-lg-block">
-                                    <div class="card-header h5">
-                                        <strong>Opis Ponude:</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ ponuda.opis_ponude }}</p>
+                                <div class="card me-2">
+                                    <span class="ribbone-info-left">
+                                        <span><strong> &nbsp;&nbsp;Opis Ponude&nbsp;&nbsp;&nbsp;</strong></span>
+                                    </span>
+                                    <div class="card-body p-4">
+                                        <h3 class=" fs-16 mt-5 mb-1 text-white">{{ ponuda.opis_ponude }}</h3>
                                     </div>
                                 </div>
                             {% endif %}
