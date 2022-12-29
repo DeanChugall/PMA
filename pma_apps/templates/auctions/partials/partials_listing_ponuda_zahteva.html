@@ -220,16 +220,19 @@
 
                 <!-- PRIHVATI PONUDU -->
                 <!-- MODAL PRIHVATA PONUDE -->
-                <div class="modal fade" id="prihvatiPonuduModal" tabindex="-1" aria-labelledby="prihvatiPonuduModalModalLabel"
+                <div class="modal fade"
+                    id="prihvatiPonuduModal{{ponuda.id}}"
+                    tabindex="-1"
+                    ria-labelledby="prihvatiPonuduModalModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="prihvatiPonuduModalLabel">Potvrda</h1>
+                                <h1 class="modal-title fs-5" id="prihvatiPonuduModalLabel{{ponuda.id}}">Potvrda</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <h5><b>{{ user.username }}</b>, da li ste sigurni da želite da Prihvatite izabranu ponudu?</h5>
+                                <h5><b>{{ user.username }}</b>, da li ste sigurni da želite da Prihvatite izabranu ponudu {{ponuda.id}}?</h5>
                             </div>
                             <div class="modal-footer">
                                 <a href="{% url 'ponude:prihvati_ponudu' ponuda.id %}#detalji-odobrenog-zahteva">
@@ -253,10 +256,10 @@
                     <div class="card-footer text-center">
                         <button class="btn btn-primary mb-1 btn-lg col-xl-12"
                             data-bs-toggle="modal"
-                            data-bs-target="#prihvatiPonuduModal"
+                            data-bs-target="#prihvatiPonuduModal{{ponuda.id}}"
                             type="button"
                             value="Prihvati Ponudu">
-                            <i class="fa fa-check-square fa-1x"></i>&nbsp;Prihvati Ponudu
+                            <i class="fa fa-check-square fa-1x"></i>&nbsp;Prihvati Ponudu  {{ponuda.id}}
                         </button>
                     </div>
                 {% endif %}
