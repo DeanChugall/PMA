@@ -528,30 +528,7 @@ class IzmeniPonuduZahtevaView(LoginRequiredMixin, generic.UpdateView):
     form_class = BidForm
     context_object_name = "brisanje_ponude"
 
-    def form_valid(self, form):
-        """
-        Da bi se postavila pravilna cena poslednje ponude zahteva na html template,
-        potrebno je prvo proveriti da li uopste ima ponuda posle brisanje, ako ima
-        postavi zadnju ucitanu cenu servisera, a ukoliko nema, postavi cenu na 0.
-
-        :param form: BidForm()
-        :return: Detalji Zahteva
-        """
-
-        # TODO: Kada Servis iymeni ponudu ne updejtuje se dobro cena na detaljima ponude
-        success_url = self.get_success_url()
-
-        # Get all Ponude za this Zahtev.
-        sve_ponude_zahteva = Bid.objects.all().filter(auction_id=self.object.auction.id)
-
-        if sve_ponude_zahteva.count() > 0:
-            self.object.auction.current_bid = sve_ponude_zahteva.first().amount
-        else:
-            self.object.auction.current_bid = 0
-        self.object.auction.save()
-
-        return HttpResponseRedirect(success_url)
-
+    # TODO: Mora da se updejtuje current bid u Auctions tabeli sa ovom novom ispravljenom cenom !!!
     def get_success_url(self):
         return "{}#listing-ponuda-zahteva".format(
             reverse("ponude:detalji_ponude_view", args=[self.object.auction.id])
