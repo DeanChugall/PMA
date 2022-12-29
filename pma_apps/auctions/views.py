@@ -528,12 +528,11 @@ class IzmeniPonuduZahtevaView(LoginRequiredMixin, generic.UpdateView):
     form_class = BidForm
     context_object_name = "brisanje_ponude"
 
-    # TODO: Mora da se updejtuje current bid u Auctions tabeli sa ovom novom ispravljenom cenom !!!
     def form_valid(self, form):
         success_url = self.get_success_url()
 
-        # Uradi update za polje current_bid da bi se prikazala vrednost na
-        # front.self.object.auction.current_bid = self.object.amount
+        # Uradi update za polje current_bid da bi se prikazala vrednost na frontu.
+        self.object.auction.current_bid = self.object.amount
         self.object.auction.save()
         print(self.request.POST)
         form.save()
