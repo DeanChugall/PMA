@@ -45,11 +45,43 @@
 
                                                 <!-- GRAD SERVISA ISPOD IMENA -->
                                                 {% if ponuda.servis.grad_auto_servisa %}
-                                                    <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ ponuda.servis.get_grad_servisa }}</strong></span>
+                                                    <span class="tag tag-radius tag-round tag-outline-warning text-white"><strong>&nbsp;{{ ponuda.servis.get_grad_servisa }}</strong></span>
                                                 {% else %}
-                                                    <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ ponuda.servis.user.get_grad_servisa }}</strong></span>
+                                                    <span class="tag tag-radius tag-round tag-outline-warning text-white"><strong>&nbsp;{{ ponuda.servis.user.get_grad_servisa }}</strong></span>
                                                 {% endif %}
                                                 <!-- END GRAD SERVISA ISPOD IMENA -->
+
+                                                <!-- SOCIAL ICONS SERVISA -->
+                                                <div class="social float-end">
+                                                    {% if ponuda.servis.web_site_servisa %}
+                                                        <a class="social-icon text-white" href="https://{{ ponuda.servis.web_site_servisa }}" target="_blank"><i class="fa fa-globe"></i></a>
+                                                    {% endif %}
+
+                                                    {% if ponuda.servis.twitter_link %}
+                                                        <a class="social-icon text-white" href="https://{{ ponuda.servis.twitter_link }}" target="_blank">
+                                                            <i class="fa fa-twitter"></i>
+                                                        </a>
+                                                    {% endif %}
+
+                                                    {% if ponuda.servis.facebook_link %}
+                                                        <a class="social-icon text-white" href="https://{{ ponuda.servis.facebook_link }}" target="_blank">
+                                                            <i class="fa fa-facebook"></i>
+                                                        </a>
+                                                    {% endif %}
+
+                                                    {% if ponuda.servis.youtube_link %}
+                                                        <a class="social-icon text-white" href="https://{{ ponuda.servis.youtube_link  }}" target="_blank">
+                                                            <i class="fa fa-youtube"></i>
+                                                        </a>
+                                                    {% endif %}
+
+                                                    {% if ponuda.servis.linkedin_link %}
+                                                        <a class="social-icon text-white" href="https://{{ ponuda.servis.linkedin_link }}" target="_blank">
+                                                            <i class="fa fa-linkedin"></i>
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                                <!-- END SOCIAL ICONS SERVISA -->
                                             </div>
                                         </div>
                                     {% else %}
@@ -91,7 +123,7 @@
                                 <!-- END SLOGAN SERVISA -->
 
                                 <!-- STATISTIKA U KARTICI LISTINGA -->
-                                <div class="notification-body">
+                                <div class="notification-body mt-4">
                                     <div class="media mt-0">
                                         <!-- BROJ PONUDA SERVISA -->
                                         <div class=" bradius me-1 mt-1">
@@ -161,41 +193,6 @@
                                             {% endif %}
                                         </div>
                                         <!-- END POZOVI I PREGLED PROFILA SEERVISA  VIDLJIVO SAMO NA MALIM REZOLUCIJAMA -->
-
-                                        <!-- SOCIAL ICONS SERVISA -->
-                                        <div class="social social-profile-buttons mt-5 float-end">
-                                            <div class="mt-3">
-                                                {% if ponuda.servis.web_site_servisa %}
-                                                    <a class="social-icon text-white" href="https://{{ ponuda.servis.web_site_servisa }}" target="_blank"><i class="fa fa-globe"></i></a>
-                                                {% endif %}
-
-                                                {% if ponuda.servis.twitter_link %}
-                                                    <a class="social-icon text-primary" href="https://{{ ponuda.servis.twitter_link }}" target="_blank">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                {% endif %}
-
-                                                {% if ponuda.servis.facebook_link %}
-                                                    <a class="social-icon text-primary" href="https://{{ ponuda.servis.facebook_link }}" target="_blank">
-                                                        <i class="fa fa-facebook"></i>
-                                                    </a>
-                                                {% endif %}
-
-                                                {% if ponuda.servis.youtube_link %}
-                                                    <a class="social-icon text-primary" href="https://{{ ponuda.servis.youtube_link  }}" target="_blank">
-                                                        <i class="fa fa-youtube"></i>
-                                                    </a>
-                                                {% endif %}
-
-                                                {% if ponuda.servis.linkedin_link %}
-                                                    <a class="social-icon text-primary" href="https://{{ ponuda.servis.linkedin_link }}" target="_blank">
-                                                        <i class="fa fa-linkedin"></i>
-                                                    </a>
-                                                {% endif %}
-                                                <br>
-                                            </div>
-                                        </div>
-                                        <!-- END SOCIAL ICONS SERVISA -->
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +200,7 @@
 
                             <!-- OPIS PONUDE VIDLJIV SAMO NA VELIKIM REZOLUCIJAMA -->
                             {% if ponuda.opis_ponude %}
-                                <div class="card me-2 d-none d-lg-block">
+                                <div class="card me-2 mt-5 d-none d-lg-block">
                                     <span class="ribbone-info-left">
                                         <span><strong> &nbsp;&nbsp;Opis Ponude&nbsp;&nbsp;&nbsp;</strong></span>
                                     </span>
@@ -279,8 +276,8 @@
 
                 <!-- OTVARANJE MODALA PRIHVATA PONUDE -->
                 {% if auction.creator == user and auction.active %}
-                    <div class="card-footer text-center">
-                        <button class="btn btn-primary mb-1 btn-lg col-xl-12"
+                    <div class="card-footer text-center col-xl-12">
+                        <button class="btn btn-outline-success mb-1 btn-lg col-xl-6"
                             data-bs-toggle="modal"
                             data-bs-target="#prihvatiPonuduModal{{ponuda.id}}"
                             type="button"
