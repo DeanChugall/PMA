@@ -92,15 +92,20 @@
                                                                     <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
                                                                 </h1>
 
-                                                                <!-- ZVEZDICE -->
-                                                                <div class="mb-2 text-warning">
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-star text-warning"></i>
+                                                                <!-- GRAD VOZACA -->
+                                                                <div class="row">
+                                                                    <div class="card ribbone-card">
+                                                                        <div class="arrow-ribbone-right bg-info">Grad Vozača</div>
+                                                                        <div class="card-body  p-4  mb-0">
+                                                                            <span class="">
+                                                                                <span class="tag tag-green fw-bold {% if auction.creator.get_grad_servisa %} text-black{% else %} text-danger {% endif %}">
+                                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ auction.creator.get_grad_servisa|default_if_none:"..." }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                </span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <!-- END ZVEZDICE -->
+                                                                <!-- END GRAD VOZACA -->
 
                                                                 <!-- CENA -->
                                                                 {% if auction.current_bid  == None %}
