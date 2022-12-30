@@ -66,13 +66,13 @@
                                         <div class="row">
                                             <!-- SLIKA ZAGLAVLJA -->
                                             <div class="col-xl-12">
-                                                <div class="product-carousel">
+                                                <div class="">
                                                     <div id="Slider" class="carousel slide border" data-bs-ride="false">
                                                         <div class="carousel-inner">
                                                             <div class="carousel-item active">
                                                                 {% for image in images %}
                                                                     <img class="img-fluid br-7 w-100`"
-                                                                        style="width: 300px; height: auto"
+                                                                        style='width:100%;  object-fit: cover;'
                                                                         src="{{ image.image.url }}"
                                                                         alt='Slika Automobila'>
                                                                 {% empty %}
