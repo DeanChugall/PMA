@@ -380,6 +380,8 @@ def aktivni_zahtevi_view(request):
 
     for auction in auctions:
         auction.image = auction.get_images.first()
+        auction.user = auction.creator.get_profil_vozaca
+
         if request.user in auction.watchers.all():
             auction.is_watched = True
         else:

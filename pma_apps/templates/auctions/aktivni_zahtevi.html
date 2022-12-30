@@ -85,13 +85,21 @@
                                                             <!-- END SLIKA SAMO ZA VELIKE REZOLUCIJE -->
                                                         </div>
                                                         <!-- END HOVER ICONS -->
+                                                        <div class="col mt-1">
+                                                            <div class="tags">
+                                                                <span class="tag tag-radius tag-round tag-outline-primary">{{auction.user.user}}</span>
+                                                                <span class="tag tag-radius tag-round tag-outline-secondary">{{auction.category}}</span>
+                                                            </div>
 
+                                                        </div>
+
+                                                        <!-- INFO KARTICA -->
                                                         <div class="card-body pt-0 mt-2">
                                                             <div class="product-content text-center">
                                                                 <div class="row">
                                                                     <div class="card ribbone-card">
                                                                         <h1 class="title fw-bold fs-20 text-truncate  mt-3">
-                                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title|default_if_none:"..." }}</a>
                                                                         </h1>
                                                                     </div>
                                                                 </div>
@@ -107,28 +115,72 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
+                                                                    <!-- END GRAD VOZACA -->
+                                                                    <hr/>
                                                                 </div>
-                                                                <!-- END GRAD VOZACA -->
+                                                                <!-- TAGOVI AUTA VOZACA -->
+                                                                <div class="row">
+                                                                    <div class="col m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-primary col-12"><strong>{{auction.user.vin|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-6 m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-success col-12"><strong>{{auction.user.marka|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                    <div class="col m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-success  col-12"><strong>{{auction.user.modell|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-6 m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-success col-12"><strong>{{auction.user.godiste|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                    <div class="col m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-success  col-12"><strong>{{auction.user.kilometraza|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-6 m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-success col-12"><strong>{{auction.user.zapremina_motora|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                    <div class="col m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-success  col-12"><strong>{{auction.user.snaga_motora|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col m-1">
+                                                                        <span class="tag tag-radius tag-round tag-outline-primary col-12"><strong>{{auction.user.vrsta_goriva|default_if_none:"..."}}</strong></span>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- END TAGOVI AUTA VOZACA -->
 
-                                                                <!-- CENA -->
-                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">
-                                                                    <div class="row">
-                                                                        <div class="card bg-primary img-card box-primary-shadow">
-                                                                            <div class="card-body ">
-                                                                                <div class="text-white text-center">
-                                                                                    {% if auction.current_bid  == None %}
-                                                                                        <h2 class="mb-0 number-font">Nema Ponuda</h2>
-                                                                                    {% else %}
-                                                                                        <h2 class="mb-0 number-font"> {{ auction.current_bid }} <small>rsd</small></h2>
-                                                                                    {% endif %}
-                                                                                </div>
-                                                                            </div>
+                                                                <hr/>
+
+                                                                <!-- POSLEDNJA CENA PONUDE -->
+                                                                {% if auction.current_bid  %}
+                                                                    <div class="card mt-1">
+                                                                        <span class="ribbone-info-left">
+                                                                            <span><i class="fe fe-zap text-white"></i><strong>Poslednja Ponuda Servisa &nbsp;</strong></span>
+                                                                        </span>
+                                                                        <div class="card-body p-4">
+                                                                            <div class="h3 text-center mb-5 mt-5 p-2 fw-bold bg-primary rounded-2">{{ auction.current_bid }} rsd</div>
                                                                         </div>
                                                                     </div>
-                                                                </a>
-                                                                <!-- END CENA -->
+                                                                {% else %}
+                                                                    <div class="card mt-1">
+                                                                        <span class="ribbone-danger-right">
+                                                                            <span><i class="fe fe-zap text-white"></i><strong>Obaveštenje! &nbsp;</strong></span>
+                                                                        </span>
+                                                                        <div class="card-body p-6">
+                                                                            <div class="h3 text-center mb-1 mt-5 p-2 fw-bold bg-primary rounded-2">nema ponuda.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
+                                                                <!-- END POSLEDNJA CENA PONUDE -->
                                                             </div>
                                                         </div>
+                                                        <!-- END INFO KARTICA -->
 
                                                         <div class="card-footer text-center">
                                                             <input type="hidden" name="next" value="{{ next }}">
