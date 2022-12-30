@@ -87,9 +87,21 @@
                                                                 </li>
                                                                 <li></li>
                                                             </ul>
-                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper">
-                                                                <img class="rounded-3 img-fluid img-center img_automobil" src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                            <!-- SLIKA SAMO ZA MALE REZOLUCIJE -->
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper d-lg-none">
+                                                                <img class="rounded-3 img-fluid img-center" style='width:100%; height: 40vw; object-fit: cover;'
+                                                                    src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                                    alt="img">
                                                             </a>
+                                                            <!-- END SLIKA SAMO ZA MALE REZOLUCIJE -->
+
+                                                            <!-- SLIKA SAMO ZA VELIKE REZOLUCIJE -->
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper d-none d-lg-block">
+                                                                <img class="rounded-3 img-fluid img-center"
+                                                                    src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                                    alt="img">
+                                                            </a>
+                                                            <!-- END SLIKA SAMO ZA VELIKE REZOLUCIJE -->
                                                         </div>
                                                         <!-- END HOVER ICONS -->
 
@@ -121,7 +133,8 @@
 
                                                         <div class="card-footer text-center">
                                                             <input type="hidden" name="next" value="{{ next }}">
-                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="btn btn-primary mb-1 ml-auto">
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
+                                                                class="btn btn-primary mb-1 ml-auto btn-block">
                                                                 <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                             </a>
                                                         </div>

@@ -87,11 +87,21 @@
                                                                         <i class="fe fe-eye"></i>
                                                                     </a>
                                                                 </li>
-                                                            </ul>
-                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper">
-                                                                <img class="rounded-3 img-fluid img-center img_automobil"
-                                                                    src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}" alt="img">
+                                                            </ul><!-- SLIKA SAMO ZA MALE REZOLUCIJE -->
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper d-lg-none">
+                                                                <img class="rounded-3 img-fluid img-center" style='width:100%; height: 40vw; object-fit: cover;'
+                                                                    src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                                    alt="img">
                                                             </a>
+                                                            <!-- END SLIKA SAMO ZA MALE REZOLUCIJE -->
+
+                                                            <!-- SLIKA SAMO ZA VELIKE REZOLUCIJE -->
+                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper d-none d-lg-block">
+                                                                <img class="rounded-3 img-fluid img-center"
+                                                                    src="{{ auction.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                                    alt="img">
+                                                            </a>
+                                                            <!-- END SLIKA SAMO ZA VELIKE REZOLUCIJE -->
                                                         </div>
                                                         <!-- END HOVER ICONS -->
 
@@ -123,13 +133,13 @@
                                                         <div class="card-footer text-center">
                                                             <input type="hidden" name="next" value="{{ next }}">
                                                             <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
-                                                                class="btn btn-primary mb-1">
+                                                                class="btn btn-primary mb-1 btn-block">
                                                                 <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
                                                             </a>
                                                             {% for pracenje in id_pracenog_zahteva %}
                                                                 {%  if pracenje.id == auction.id %}
                                                                     <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
-                                                                        class="btn btn-outline-primary mb-1">
+                                                                        class="btn btn-outline-primary mb-1 btn-block">
                                                                         <i class="fe fe-heart mx-2 wishlist-icon"></i>Zahtev koji pratim
                                                                     </a>
                                                                 {% endif %}
