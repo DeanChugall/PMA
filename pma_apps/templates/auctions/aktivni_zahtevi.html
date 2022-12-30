@@ -98,7 +98,7 @@
                                                                 <!-- GRAD VOZACA -->
                                                                 <div class="row">
                                                                     <div class="card ribbone-card">
-                                                                        <div class="card-body  p-4  mb-0">
+                                                                        <div class="card-body p-4  mb-0">
                                                                             <span class="">
                                                                                 <span class="tag tag-green fw-bold {% if auction.creator.get_grad_servisa %} text-black {% else %} text-danger {% endif %}"
                                                                                     style="font-size:11.0pt"><i class="bi bi-geo-fill text-red"></i>
@@ -110,19 +110,22 @@
                                                                 </div>
                                                                 <!-- END GRAD VOZACA -->
 
-                                                                <div class="row">                       <!-- CENA -->
-                                                                    <div class="card bg-primary img-card box-primary-shadow">
-                                                                        <div class="card-body ">
-                                                                            <div class="text-white text-center">
-                                                                                {% if auction.current_bid  == None %}
-                                                                                <h2 class="mb-0 number-font">Nema Ponuda</h2>
-                                                                                {% else %}
-                                                                                <h2 class="mb-0 number-font"> {{ auction.current_bid }} <small>rsd</small></h2>
-                                                                                {% endif %}
+                                                                <!-- CENA -->
+                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">
+                                                                    <div class="row">
+                                                                        <div class="card bg-primary img-card box-primary-shadow">
+                                                                            <div class="card-body ">
+                                                                                <div class="text-white text-center">
+                                                                                    {% if auction.current_bid  == None %}
+                                                                                        <h2 class="mb-0 number-font">Nema Ponuda</h2>
+                                                                                    {% else %}
+                                                                                        <h2 class="mb-0 number-font"> {{ auction.current_bid }} <small>rsd</small></h2>
+                                                                                    {% endif %}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </a>
                                                                 <!-- END CENA -->
                                                             </div>
                                                         </div>
