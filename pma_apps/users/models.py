@@ -90,7 +90,9 @@ class VozacProfile(models.Model):
         CNG = "Benzin + Metan (CNG)", "Benzin + Metan (CNG)"
         EV = "EV", "EV"
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="get_profil_vozaca"
+    )
     broj_telefona = CharField(null=True, blank=True, max_length=100)
 
     # Automobil Vozaca
