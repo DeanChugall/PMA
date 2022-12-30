@@ -88,17 +88,20 @@
 
                                                         <div class="card-body pt-0 mt-2">
                                                             <div class="product-content text-center">
-                                                                <h1 class="title fw-bold fs-20 text-truncate">
-                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
-                                                                </h1>
-
+                                                                <div class="row">
+                                                                    <div class="card ribbone-card">
+                                                                        <h1 class="title fw-bold fs-20 text-truncate  mt-3">
+                                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                                        </h1>
+                                                                    </div>
+                                                                </div>
                                                                 <!-- GRAD VOZACA -->
                                                                 <div class="row">
                                                                     <div class="card ribbone-card">
-                                                                        <div class="arrow-ribbone-right bg-info">Grad Vozača</div>
                                                                         <div class="card-body  p-4  mb-0">
                                                                             <span class="">
-                                                                                <span class="tag tag-green fw-bold {% if auction.creator.get_grad_servisa %} text-black{% else %} text-danger {% endif %}">
+                                                                                <span class="tag tag-green fw-bold {% if auction.creator.get_grad_servisa %} text-black {% else %} text-danger {% endif %}"
+                                                                                    style="font-size:11.0pt"><i class="bi bi-geo-fill text-red"></i>
                                                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ auction.creator.get_grad_servisa|default_if_none:"..." }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                 </span>
                                                                             </span>
