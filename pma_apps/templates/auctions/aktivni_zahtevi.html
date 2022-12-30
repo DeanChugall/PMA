@@ -110,12 +110,19 @@
                                                                 </div>
                                                                 <!-- END GRAD VOZACA -->
 
-                                                                <!-- CENA -->
-                                                                {% if auction.current_bid  == None %}
-                                                                    <div class="price">Nema Ponuda<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
-                                                                {% else %}
-                                                                    <div class="price">{{auction.current_bid }} rsd<span class="ms-4">{{auction.prethodna_ponuda}}</span></div>
-                                                                {% endif %}
+                                                                <div class="row">                       <!-- CENA -->
+                                                                    <div class="card bg-primary img-card box-primary-shadow">
+                                                                        <div class="card-body ">
+                                                                            <div class="text-white text-center">
+                                                                                {% if auction.current_bid  == None %}
+                                                                                <h2 class="mb-0 number-font">Nema Ponuda</h2>
+                                                                                {% else %}
+                                                                                <h2 class="mb-0 number-font"> {{ auction.current_bid }} <small>rsd</small></h2>
+                                                                                {% endif %}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <!-- END CENA -->
                                                             </div>
                                                         </div>
