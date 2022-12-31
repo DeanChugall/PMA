@@ -231,43 +231,83 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}" class="img-wrapper">
-                                                <img class="img-fluid br-7 w-100`"
+                                            <!-- SLIKA SAMO ZA MALE REZOLUCIJE -->
+                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper d-lg-none">
+                                                <img class="rounded-3 img-fluid img-center" style='width:100%; height: 40vw; object-fit: cover;'
                                                     src="{{ poporuceni_zahtev.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
                                                     alt="img">
                                             </a>
+                                            <!-- END SLIKA SAMO ZA MALE REZOLUCIJE -->
+
+                                            <!-- SLIKA SAMO ZA VELIKE REZOLUCIJE -->
+                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}" class="img-wrapper d-none d-lg-block">
+                                                <img class="rounded-3 img-fluid img-center"
+                                                    src="{{ poporuceni_zahtev.image.image.url|default:'/static/assets/images/auctions/no-car.jpg' }}"
+                                                    alt="img">
+                                            </a>
+                                            <!-- END SLIKA SAMO ZA VELIKE REZOLUCIJE -->
                                         </div>
                                         <div class="card-body pt-0">
                                             <div class="product-content text-center">
                                                 <h1 class="title fw-bold fs-20 text-truncate">
                                                     <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}">{{ poporuceni_zahtev.title }}</a>
                                                 </h1>
-                                                <div class="mb-2 text-warning">
-                                                    <i class="fa fa-star text-warning"></i>
-                                                    <i class="fa fa-star text-warning"></i>
-                                                    <i class="fa fa-star text-warning"></i>
-                                                    <i class="fa fa-star text-warning"></i>
-                                                    <i class="fa fa-star text-warning"></i>
+                                                <!-- INFO KARTICA -->
+                                                <div class="card-body pt-0 mt-2">
+                                                    <div class="product-content text-center">
+                                                        <!-- GRAD VOZACA -->
+                                                        <div class="row">
+                                                            <div class="card ribbone-card">
+                                                                <div class="card-body p-4  mb-0">
+                                                                    <span class="">
+                                                                        <span class="tag tag-green fw-bold {% if poporuceni_zahtev.creator.get_grad_servisa %} text-black {% else %} text-danger {% endif %}"
+                                                                            style="font-size:11.0pt"><i class="bi bi-geo-fill text-red"></i>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ poporuceni_zahtev.creator.get_grad_servisa|default_if_none:"..." }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- END GRAD VOZACA -->
+                                                            <hr/>
+                                                        </div>
+
+                                                        <!-- POSLEDNJA CENA PONUDE -->
+                                                        {% if poporuceni_zahtev.current_bid  %}
+                                                            <div class="card mt-1">
+                                                                <span class="ribbone-info-left">
+                                                                    <span><i class="fe fe-zap text-white"></i><strong>Poslednja Ponuda Servisa &nbsp;</strong></span>
+                                                                </span>
+                                                                <div class="card-body p-4">
+                                                                    <div class="h3 text-center mb-0 mt-5 p-2 fw-bold bg-primary rounded-2">{{ poporuceni_zahtev.current_bid }} rsd</div>
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="card mt-1">
+                                                                <span class="ribbone-danger-right">
+                                                                    <span><i class="fe fe-eye text-white"></i><strong>Obaveštenje! &nbsp;</strong></span>
+                                                                </span>
+                                                                <div class="card-body p-4">
+                                                                    <div class="h5 text-center mb-0 mt-5 p-2 fw-bold bg-primary rounded-2 d-lg-none">nema ponuda.</div>
+                                                                    <div class="h3 text-center mb-0 mt-5 p-2 fw-bold bg-primary rounded-2 d-none d-lg-block">nema ponuda.</div>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                        <!-- END POSLEDNJA CENA PONUDE -->
+                                                    </div>
                                                 </div>
-                                                <!-- CENA -->
-                                                {% if poporuceni_zahtev.amount.amount == None %}
-                                                    <div class="price">Nema Ponuda</div>
-                                                {% else %}
-                                                    <div class="price">{{ poporuceni_zahtev.amount.amount }} rsd</div>
-                                                {% endif %}
-                                                <!-- END CENA -->
+                                                <!-- END INFO KARTICA -->
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
                                             <input type="hidden" name="next" value="{{ next }}">
                                             <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}"
-                                                class="btn btn-primary mb-1">
-                                                <i class="fe fe-bar-chart-2 mx-2"></i>Detalji
+                                                class="btn btn-primary mb-1 ml-auto btn-block">
+                                                <i class="fe fe-bar-chart-2 mx-2"></i><strong>Detalji Zahteva</strong>
                                             </a>
                                             {% for pracenje in id_pracenog_zahteva %}
                                                 {%  if pracenje.id == poporuceni_zahtev.id %}
                                                     <a href="{% url 'ponude:detalji_ponude_view' poporuceni_zahtev.id %}"
-                                                        class="btn btn-outline-primary mb-1">
+                                                        class="btn btn-outline-primary mb-1 btn-block">
                                                         <i class="fe fe-heart mx-2 wishlist-icon"></i>Zahtev koji pratim
                                                     </a>
                                                 {% endif %}
