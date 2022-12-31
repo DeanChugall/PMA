@@ -24,7 +24,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
-    "popravimojauto.com",
+    "popravimojauto.com",  # production server
+    "pma-stage-ypuym.ondigitalocean.app",  # stage server
 ]
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
