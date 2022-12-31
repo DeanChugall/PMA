@@ -30,6 +30,8 @@ ALLOWED_HOSTS = [
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
 
+ADMINS = (("Dejan Cugalj", "info@dejan.pro"),)
+
 USE_THOUSAND_SEPARATOR = True
 THOUSAND_SEPARATOR = True
 
@@ -250,5 +252,39 @@ EMAIL_HOST_USER = env.str("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD", default="")
 EMAIL_PORT = env.str("EMAIL_PORT", default="")
 EMAIL_USE_TLS = env.str("EMAIL_USE_TLS", default="")
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+# LOGGING
+# ------------------------------------------------------------------------------
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {"format": "%(levelname)s %(asctime)s %(name)-12s  %(message)s"}
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+    "root": {"level": env.str("LOG_LEVEL", default="INFO"), "handlers": ["console"]},
+}
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------

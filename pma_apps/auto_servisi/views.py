@@ -1,3 +1,5 @@
+import logging
+
 from django import forms
 from django.conf import settings
 from django.contrib import messages
@@ -29,6 +31,9 @@ from pma_apps.users.models import (
 
 User = get_user_model()
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 class KreirajServisKorisnikaView(generic.CreateView):
     template_name = "auto_servis/kreiraj-servis.html"
@@ -48,9 +53,15 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
+
         # TODO Proslediti broj ponuda servisa
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
+
+        logger.info(
+            f'Poseta korisnika >>> {self.kwargs["username"]} <<< detalju servisa >>> {profil_servisa.ime_servisa} <<< '
+        )
+
         slika_servisa = SlikeServisa.objects.all().filter(servis=profil_servisa)[:1]
         slika_logo_servisa = (
             SlikaLogoServisa.objects.all().filter(servis=profil_servisa).first()
