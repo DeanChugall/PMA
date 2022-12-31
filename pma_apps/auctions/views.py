@@ -291,6 +291,7 @@ class ListaZahtevaVozacaView(LoginRequiredMixin, generic.ListView):
         for auction in auctions:
             auction.image = auction.get_images.first()
             auction.amount = auction.get_bids.first()
+            auction.user = auction.creator.get_profil_vozaca
 
         page = self.request.GET.get("page", 1)
         paginator = Paginator(auctions, 9)
