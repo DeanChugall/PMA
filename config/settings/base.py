@@ -24,13 +24,10 @@ ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
-    "pma-7x5sd.ondigitalocean.app",
     "popravimojauto.com",
 ]
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
-
-ADMINS = (("Dejan Cugalj", "info@dejan.pro"),)
 
 USE_THOUSAND_SEPARATOR = True
 THOUSAND_SEPARATOR = True
@@ -165,7 +162,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("datatab", "info@dejan.pro")]
+ADMINS = [("Dejan Cugalj", "info@dejan.pro")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
@@ -205,7 +202,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "sr-latn"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Belgrade"
 
 USE_I18N = True
 

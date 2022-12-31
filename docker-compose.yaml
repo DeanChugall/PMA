@@ -36,6 +36,8 @@ services:
       - postgres_data_local_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
+    environment:
+      TZ: "Europe/Belgrade"
 
   postgres-test:
     build:
