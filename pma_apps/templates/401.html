@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+
+    <head>
+
+        <!-- META DATA -->
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="@PMA Dashboard">
+        <meta name="author" content="@PMA Technologies Private Limited">
+        <meta name="keywords" content="Popravi Moj Auto.">
+
+        <!-- FAVICON -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}"/>
+
+        <!-- TITLE -->
+        <title>@PMA || 403 Zabranjeno</title>
+
+        <!-- BOOTSTRAP CSS -->
+        <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+
+        <!-- STYLE CSS -->
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/css/dark-style.css' %}" rel="stylesheet"/>
+        <link href="{% static 'assets/css/transparent-style.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/css/skin-modes.css' %}" rel="stylesheet"/>
+
+        <!--- FONT-ICONS CSS -->
+        <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet"/>
+
+        <!-- COLOR SKIN CSS -->
+        <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}"/>
+
+    </head>
+
+    <body class="login-img">
+
+        <!-- BACKGROUND-IMAGE -->
+        <div class="">
+
+            <!-- GLOBAL-LOADER -->
+            <div id="global-loader">
+                <img src="{% static 'assets/images/loader.svg' %}" class="loader-img" alt="Loader">
+            </div>
+            <!-- End GLOBAL-LOADER -->
+
+            <!-- PAGE -->
+            <div class="page">
+                <!-- PAGE-CONTENT OPEN -->
+                <div class="page-content error-page error2 text-white">
+                    <div class="container text-center">
+                        <div class="error-template">
+                            <h1 class="display-1 mb-2">4<span class="custom-emoji"><svg xmlns="http://www.w3.org/2000/svg" height="140" width="140" data-name="Layer 1" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#a2a1ff"/><path fill="#6563ff" d="M14.99951,17.0918a.99473.99473,0,0,1-.64209-.23438,3.766,3.766,0,0,0-4.71484,0,.99955.99955,0,1,1-1.28516-1.53125,5.81162,5.81162,0,0,1,7.28516,0,.99974.99974,0,0,1-.64307,1.76563Z"/><circle cx="15" cy="10" r="1" fill="#6563ff"/><circle cx="9" cy="10" r="1" fill="#6563ff"/></svg></span>1</h1>
+                            <h5 class="error-details">
+                                Žao nam je, došlo je do greške!
+                            </h5>
+                            <div class="text-center">
+                                <a class="btn btn-secondary mt-5 mb-5" href="{% url 'landing_page:landing_page' %}"> <i class="fa fa-long-arrow-left"></i> Povratak na početnu stranicu </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- PAGE-CONTENT OPEN CLOSED -->
+            </div>
+            <!-- End PAGE -->
+
+        </div>
+        <!-- JQUERY JS -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+        <!-- BOOTSTRAP JS -->
+        <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+        <!-- Perfect SCROLLBAR JS-->
+        <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+
+        <!-- Color Theme js -->
+        <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+        <!-- Sticky js -->
+        <script src="{% static 'assets/js/sticky.js' %}"></script>
+
+        <!-- CUSTOM JS -->
+        <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    </body>
+
+</html>
+
+{% block title %}Forbidden (403){% endblock %}
+
+{% block content %}
+    <h1>Forbidden (403)</h1>
+
+    <p>{% if exception %}{{ exception }}{% else %}You're not allowed to access this page.{% endif %}</p>
+{% endblock content %}
