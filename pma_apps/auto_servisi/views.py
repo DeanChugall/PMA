@@ -209,6 +209,7 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
             auction.image = auction.auction.get_images.first()
             auction.amount = auction.auction.get_bids.first()
             auction.prihvacena_cena = auction.auction.current_bid
+            auction.user = auction.auction.creator.get_profil_vozaca
 
         page = self.request.GET.get("page", 1)
         paginator = Paginator(ponude, 9)
@@ -250,6 +251,7 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
             .filter(servis=profil_servisa)
             .select_related("auction")
             .filter(auction__buyer__username=self.kwargs["username"])
+            .filter(auction__active=False)
         )
 
         id_pracenog_zahteva = self.request.user.watchlist.all()
@@ -258,6 +260,7 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
             auction.image = auction.auction.get_images.first()
             auction.amount = auction.auction.get_bids.first()
             auction.prihvacena_cena = auction.auction.current_bid
+            auction.user = auction.auction.creator.get_profil_vozaca
 
         page = self.request.GET.get("page", 1)
         paginator = Paginator(ponude, 9)
