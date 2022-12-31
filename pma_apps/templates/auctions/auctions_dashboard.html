@@ -26,269 +26,290 @@
                 </div>
                 <!-- PAGE-HEADER END -->
 
-                <!-- ROW-1: STATISTIKA -->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                <!-- ROW-1 OPEN -->
+                <div class="row row-cards">
+                    <div class="col-xl-12 col-lg-8">
+                        <!-- HEADER SEARCH---NOVI ZAHTEV ... -->
+                        <div class="row ">
+                            <div class="col-xl-12">
+                                <div class="card p-2 card-block justify-content-between align-items-end">
+                                    {% if user.role == "VOZAC" %}
+                                        <div class="col-xl-4 col-lg-12 ">
+                                            <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block">
+                                                <i class="fa fa-plus-square me-2"></i><strong>Novi Zahtev</strong>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END HEADER SEARCH---NOVI ZAHTEV ... -->
+
+                        <!-- ROW-1: STATISTIKA -->
                         <div class="row">
-                            <!-- Ukupan Broj ZAHTEVA -->
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                <a href="{% url 'ponude:aktivni_zahtevi' %}" style="color: white">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="mt-2">
-                                                    <h6 class="">AKTIVNI ZAHTEVI</h6>
-                                                    <h2 class="mb-0 number-font">{{ auctions_count }}</h2>
-                                                </div>
-                                                <div class="ms-auto">
-                                                    <div class="chart-wrapper mt-1">
-                                                        <canvas id="leadschart"
-                                                            class="h-8 w-9 chart-dropshadow"></canvas>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                                <div class="row">
+                                    <!-- Ukupan Broj ZAHTEVA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <a href="{% url 'ponude:aktivni_zahtevi' %}" style="color: white">
+                                            <div class="card overflow-hidden">
+                                                <div class="card-body">
+                                                    <div class="d-flex">
+                                                        <div class="mt-2">
+                                                            <h6 class="">AKTIVNI ZAHTEVI</h6>
+                                                            <h2 class="mb-0 number-font">{{ auctions_count }}</h2>
+                                                        </div>
+                                                        <div class="ms-auto">
+                                                            <div class="chart-wrapper mt-1">
+                                                                <canvas id="leadschart"
+                                                                    class="h-8 w-9 chart-dropshadow"></canvas>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <span class="text-muted fs-12">
+                                                        <span class="text-pink">
+                                                            <i class="fe fe-arrow-down-circle text-pink"></i> 0.75%
+                                                        </span>prethodne nedelje
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <span class="text-muted fs-12">
-                                                <span class="text-pink">
-                                                    <i class="fe fe-arrow-down-circle text-pink"></i> 0.75%
-                                                </span>prethodne nedelje
-                                            </span>
-                                        </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <!-- END Ukupan Broj ZAHTEVA -->
+                                    <!-- END Ukupan Broj ZAHTEVA -->
 
-                            <!-- Ukupan Broj SERVISA -->
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                <a href="{% url 'auto_servis:lista_svih_servisa' %}" style="color: white">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="mt-2">
-                                                    <h6 class="">AUTO SERIVSI</h6>
-                                                    <h2 class="mb-0 number-font">{{ servisa_count }}</h2>
-                                                </div>
-                                                <div class="ms-auto">
-                                                    <div class="chart-wrapper mt-1">
-                                                        <canvas id="costchart"
-                                                            class="h-8 w-9 chart-dropshadow"></canvas>
+                                    <!-- Ukupan Broj SERVISA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <a href="{% url 'auto_servis:lista_svih_servisa' %}" style="color: white">
+                                            <div class="card overflow-hidden">
+                                                <div class="card-body">
+                                                    <div class="d-flex">
+                                                        <div class="mt-2">
+                                                            <h6 class="">AUTO SERIVSI</h6>
+                                                            <h2 class="mb-0 number-font">{{ servisa_count }}</h2>
+                                                        </div>
+                                                        <div class="ms-auto">
+                                                            <div class="chart-wrapper mt-1">
+                                                                <canvas id="costchart"
+                                                                    class="h-8 w-9 chart-dropshadow"></canvas>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <span class="text-muted fs-12"><span class="text-warning"><i
+                                                        class="fe fe-arrow-up-circle text-warning"></i> 0.6%</span>
+                                                        prethodne nedelje</span>
                                                 </div>
                                             </div>
-                                            <span class="text-muted fs-12"><span class="text-warning"><i
-                                                class="fe fe-arrow-up-circle text-warning"></i> 0.6%</span>
-                                                prethodne nedelje</span>
+                                        </a>
+                                    </div>
+                                    <!-- END Ukupan Broj SERVISA -->
+
+                                    <!-- Ukupan Broj VOZČA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <div class="card overflow-hidden">
+                                            <div class="card-body">
+                                                <div class="d-flex">
+                                                    <div class="mt-2">
+                                                        <h6 class="">UKUPNO VOZAČA</h6>
+                                                        <h2 class="mb-0 number-font">{{ users_count }}</h2>
+                                                    </div>
+                                                    <div class="ms-auto">
+                                                        <div class="chart-wrapper mt-1">
+                                                            <canvas id="profitchart"
+                                                                class="h-8 w-9 chart-dropshadow"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="text-muted fs-12"><span class="text-green"><i
+                                                    class="fe fe-arrow-up-circle text-green"></i> 0.9%</span>
+                                                    prethodne nedelje</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <!-- END Ukupan Broj SERVISA -->
+                                    <!-- END Ukupan Broj VOZČA -->
 
-                            <!-- Ukupan Broj VOZČA -->
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                <div class="card overflow-hidden">
+                                    <!-- Ukupno Kategorija SERVISA -->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+                                        <a href="#kategorije-servisa" style="color: white">
+                                            <div class="card overflow-hidden">
+                                                <div class="card-body">
+                                                    <div class="d-flex">
+                                                        <div class="mt-2">
+                                                            <h6 class="">KATEGORIJA SERVISA</h6>
+                                                            <h2 class="mb-0 number-font">{{ categories_count }}</h2>
+                                                        </div>
+                                                        <div class="ms-auto">
+                                                            <div class="chart-wrapper mt-1">
+                                                                <canvas id="saleschart"
+                                                                    class="h-8 w-9 chart-dropshadow"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-muted fs-12"><span class="text-secondary"><i
+                                                        class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
+                                                        prethodne nedelje</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!-- END Ukupno Kategorija SERVISA -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END ROW-1: STATISTIKA -->
+
+                        <!-- ROW-2 DIJAGRAMI STATISTIKA -->
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Statistika</h3>
+                                    </div>
                                     <div class="card-body">
+                                        <div class="d-flex mx-auto text-center justify-content-center mb-4">
+                                            <div class="d-flex text-center justify-content-center me-3"><span
+                                                class="dot-label bg-primary my-auto"></span>Prihvaćeni Zahtevi</div>
+                                            <div class="d-flex text-center justify-content-center"><span
+                                                class="dot-label bg-secondary my-auto"></span>Odbijeni Zahtevi</div>
+                                        </div>
+                                        <div class="chartjs-wrapper-demo">
+                                            <canvas id="transactions" class="chart-dropshadow"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- COL END -->
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body pb-0 bg-recentorder">
+                                        <h3 class="card-title text-white">Statistika Zahtevi</h3>
+                                        <div class="chartjs-wrapper-demo">
+                                            <canvas id="recentorders" class="chart-dropshadow"></canvas>
+                                        </div>
+                                    </div>
+                                    <div id="flotback-chart" class="flot-background"></div>
+                                    <div class="card-body">
+                                        <div class="d-flex mb-4 mt-3">
+                                            <div
+                                                class="avatar avatar-md bg-secondary-transparent text-secondary bradius me-3">
+                                                <i class="fe fe-check"></i>
+                                            </div>
+                                            <div class="">
+                                                <h6 class="mb-1 fw-semibold">Prihvaćeni Zahtevi</h6>
+                                                <p class="fw-normal fs-12"> <span class="text-success">3.5%</span>prihvaćen </p>
+                                            </div>
+                                            <div class=" ms-auto my-auto">
+                                                <p class="fw-bold fs-20"> 342 </p>
+                                            </div>
+                                        </div>
                                         <div class="d-flex">
-                                            <div class="mt-2">
-                                                <h6 class="">UKUPNO VOZAČA</h6>
-                                                <h2 class="mb-0 number-font">{{ users_count }}</h2>
+                                            <div class="avatar  avatar-md bg-pink-transparent text-pink bradius me-3">
+                                                <i class="fe fe-x"></i>
                                             </div>
-                                            <div class="ms-auto">
-                                                <div class="chart-wrapper mt-1">
-                                                    <canvas id="profitchart"
-                                                        class="h-8 w-9 chart-dropshadow"></canvas>
-                                                </div>
+                                            <div class="">
+                                                <h6 class="mb-1 fw-semibold">Odbijeni Zahtevi</h6>
+                                                <p class="fw-normal fs-12"> <span class="text-success">1.2%</span>
+                                                    prihvaćen </p>
+                                            </div>
+                                            <div class=" ms-auto my-auto">
+                                                <p class="fw-bold fs-20 mb-0"> 23 </p>
                                             </div>
                                         </div>
-                                        <span class="text-muted fs-12"><span class="text-green"><i
-                                            class="fe fe-arrow-up-circle text-green"></i> 0.9%</span>
-                                            prethodne nedelje</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- END Ukupan Broj VOZČA -->
+                            <!-- COL END -->
+                        </div>
+                        <!-- END ROW-2 DIJAGRAMI STATISTIKA  -->
 
-                            <!-- Ukupno Kategorija SERVISA -->
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                <a href="#kategorije-servisa" style="color: white">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="d-flex">
-                                                <div class="mt-2">
-                                                    <h6 class="">KATEGORIJA SERVISA</h6>
-                                                    <h2 class="mb-0 number-font">{{ categories_count }}</h2>
-                                                </div>
-                                                <div class="ms-auto">
-                                                    <div class="chart-wrapper mt-1">
-                                                        <canvas id="saleschart"
-                                                            class="h-8 w-9 chart-dropshadow"></canvas>
+                        <!-- ROW-3 OPEN: Podržani Servisi-->
+                        {% include 'auctions/partials/partials_kategorije_servisa.html' %}
+                        <!-- ROW-3s CLOSED: Podržani Servisi- -->
+
+                        <!-- TABELA ZAHTEVA -->
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title mb-0">Zahtevi za servise</h3>
+                                    </div>
+                                    <div class="card-body pt-4">
+                                        <div class="grid-margin">
+                                            <div class="">
+                                                <div class="panel panel-primary">
+                                                    <div class="tab-menu-heading border-0 p-0">
+                                                        <div class="tabs-menu1">
+                                                            <!-- Tabs -->
+                                                            <ul class="nav panel-tabs product-sale">
+                                                                <a href="{% url 'ponude:aktivni_zahtevi' %}"
+                                                                    class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto mb-2"
+                                                                    target="_self">
+                                                                    <i class="fe fe-edit"></i> Svi Aktivni Zahtevi
+                                                                </a>
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <span class="text-muted fs-12"><span class="text-secondary"><i
-                                                class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
-                                                prethodne nedelje</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- END Ukupno Kategorija SERVISA -->
-                        </div>
-                    </div>
-                </div>
-                <!-- END ROW-1: STATISTIKA -->
-
-                <!-- ROW-2 DIJAGRAMI STATISTIKA -->
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Statistika</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex mx-auto text-center justify-content-center mb-4">
-                                    <div class="d-flex text-center justify-content-center me-3"><span
-                                        class="dot-label bg-primary my-auto"></span>Prihvaćeni Zahtevi</div>
-                                    <div class="d-flex text-center justify-content-center"><span
-                                        class="dot-label bg-secondary my-auto"></span>Odbijeni Zahtevi</div>
-                                </div>
-                                <div class="chartjs-wrapper-demo">
-                                    <canvas id="transactions" class="chart-dropshadow"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COL END -->
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-                        <div class="card overflow-hidden">
-                            <div class="card-body pb-0 bg-recentorder">
-                                <h3 class="card-title text-white">Statistika Zahtevi</h3>
-                                <div class="chartjs-wrapper-demo">
-                                    <canvas id="recentorders" class="chart-dropshadow"></canvas>
-                                </div>
-                            </div>
-                            <div id="flotback-chart" class="flot-background"></div>
-                            <div class="card-body">
-                                <div class="d-flex mb-4 mt-3">
-                                    <div
-                                        class="avatar avatar-md bg-secondary-transparent text-secondary bradius me-3">
-                                        <i class="fe fe-check"></i>
-                                    </div>
-                                    <div class="">
-                                        <h6 class="mb-1 fw-semibold">Prihvaćeni Zahtevi</h6>
-                                        <p class="fw-normal fs-12"> <span class="text-success">3.5%</span>prihvaćen </p>
-                                    </div>
-                                    <div class=" ms-auto my-auto">
-                                        <p class="fw-bold fs-20"> 342 </p>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <div class="avatar  avatar-md bg-pink-transparent text-pink bradius me-3">
-                                        <i class="fe fe-x"></i>
-                                    </div>
-                                    <div class="">
-                                        <h6 class="mb-1 fw-semibold">Odbijeni Zahtevi</h6>
-                                        <p class="fw-normal fs-12"> <span class="text-success">1.2%</span>
-                                            prihvaćen </p>
-                                    </div>
-                                    <div class=" ms-auto my-auto">
-                                        <p class="fw-bold fs-20 mb-0"> 23 </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- COL END -->
-                </div>
-                <!-- END ROW-2 DIJAGRAMI STATISTIKA  -->
-
-                <!-- ROW-3 OPEN: Podržani Servisi-->
-                {% include 'auctions/partials/partials_kategorije_servisa.html' %}
-                <!-- ROW-3s CLOSED: Podržani Servisi- -->
-
-                <!-- TABELA ZAHTEVA -->
-                <div class="row">
-                    <div class="col-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title mb-0">Zahtevi za servise</h3>
-                            </div>
-                            <div class="card-body pt-4">
-                                <div class="grid-margin">
-                                    <div class="">
-                                        <div class="panel panel-primary">
-                                            <div class="tab-menu-heading border-0 p-0">
-                                                <div class="tabs-menu1">
-                                                    <!-- Tabs -->
-                                                    <ul class="nav panel-tabs product-sale">
-                                                        <a href="{% url 'ponude:aktivni_zahtevi' %}"
-                                                            class="btn ripple btn-min w-sm btn-outline-primary me-2 my-auto mb-2"
-                                                            target="_self">
-                                                            <i class="fe fe-edit"></i> Svi Aktivni Zahtevi
-                                                        </a>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="panel-body tabs-menu-body border-0 pt-0">
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="tab5">
-                                                        <div class="table-responsive">
-                                                            <table id="data-table"
-                                                                class="table table-bordered text-nowrap mb-0">
-                                                                <thead class="border-top">
-                                                                    <tr>
-                                                                        <th class="bg-transparent border-bottom-0"  style="width: 5%;">Zahtev</th>
-                                                                        <th class="bg-transparent border-bottom-0">Kategorija</th>
-                                                                        <th class="bg-transparent border-bottom-0">Datum Kreiranja</th>
-                                                                        <th class="bg-transparent border-bottom-0" style="width: 10%;">Aktivan</th>
-                                                                        <th class="bg-transparent border-bottom-0" style="width: 10%;">Detalji</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    {% for auction in pages %}
-                                                                        <tr class="border-bottom">
-                                                                            <td class="text-center">
-                                                                                <div class="mt-0 mt-sm-2 d-block">
-                                                                                    <span class="d-inline-block text-truncate" style="max-width: 150px;">
-                                                                                        <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="d-flex">
-                                                                                    <div class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                        <h6 class="mb-0 fs-14 fw-semibold">{{ auction.category }}</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="d-flex">
-                                                                                    <div  class="mt-0 mt-sm-3 d-block">
-                                                                                        <h6 class="mb-0 fs-14 fw-semibold">{{ auction.date_created }}</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="mt-sm-1 d-block">
-                                                                                    {% if auction.active %}
-                                                                                        <span class="badge bg-success-transparent rounded-pill text-success p-2 px-3">AKTIVAN</span>
-                                                                                    {% else %}
-                                                                                        <span class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">ZATVOREN</span>
-                                                                                    {% endif %}
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="mt-sm-1 d-block">
-                                                                                    <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
-                                                                                        class="btn btn-primary mb-1">
-                                                                                        <i class="fe fe-eye mx-2"></i>Pogledaj
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    {% endfor %}
-                                                                </tbody>
-                                                            </table>
+                                                    <div class="panel-body tabs-menu-body border-0 pt-0">
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active" id="tab5">
+                                                                <div class="table-responsive">
+                                                                    <table id="data-table"
+                                                                        class="table table-bordered text-nowrap mb-0">
+                                                                        <thead class="border-top">
+                                                                            <tr>
+                                                                                <th class="bg-transparent border-bottom-0"  style="width: 5%;">Zahtev</th>
+                                                                                <th class="bg-transparent border-bottom-0">Kategorija</th>
+                                                                                <th class="bg-transparent border-bottom-0">Datum Kreiranja</th>
+                                                                                <th class="bg-transparent border-bottom-0" style="width: 10%;">Aktivan</th>
+                                                                                <th class="bg-transparent border-bottom-0" style="width: 10%;">Detalji</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {% for auction in pages %}
+                                                                                <tr class="border-bottom">
+                                                                                    <td class="text-center">
+                                                                                        <div class="mt-0 mt-sm-2 d-block">
+                                                                                            <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                                                                                                <a href="{% url 'ponude:detalji_ponude_view' auction.id %}">{{ auction.title }}</a>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <div class="d-flex">
+                                                                                            <div class="ms-3 mt-0 mt-sm-2 d-block">
+                                                                                                <h6 class="mb-0 fs-14 fw-semibold">{{ auction.category }}</h6>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <div class="d-flex">
+                                                                                            <div  class="mt-0 mt-sm-3 d-block">
+                                                                                                <h6 class="mb-0 fs-14 fw-semibold">{{ auction.date_created }}</h6>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <div class="mt-sm-1 d-block">
+                                                                                            {% if auction.active %}
+                                                                                                <span class="badge bg-success-transparent rounded-pill text-success p-2 px-3">AKTIVAN</span>
+                                                                                            {% else %}
+                                                                                                <span class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">ZATVOREN</span>
+                                                                                            {% endif %}
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <div class="mt-sm-1 d-block">
+                                                                                            <a href="{% url 'ponude:detalji_ponude_view' auction.id %}"
+                                                                                                class="btn btn-primary mb-1">
+                                                                                                <i class="fe fe-eye mx-2"></i>Pogledaj
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -298,11 +319,9 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- END TABELA ZAHTEVA -->
                     </div>
+                    <!-- CONTAINER CLOSED -->
                 </div>
-                <!-- END TABELA ZAHTEVA -->
             </div>
-            <!-- CONTAINER CLOSED -->
-        </div>
-    </div>
 {% endblock app_content %}
