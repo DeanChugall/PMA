@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
     "0.0.0.0",
     "127.0.0.1",
     "pma-7x5sd.ondigitalocean.app",
+    "popravimojauto.com",
 ]
 
 ADMIN_ENABLED = env.bool("ADMIN_ENABLED", False)
