@@ -35,14 +35,15 @@ class UlogujVozacaForm(AuthenticationForm):
     username = UsernameField(
         label=_(""),
         strip=True,
+        widget=forms.TextInput(
+            attrs={"required": "required", "placeholder": "Korisničko Ime"},
+        ),
     )
     password = forms.CharField(
         label=_(""),
         strip=True,
         widget=forms.PasswordInput(
-            attrs={
-                "required": "required",
-            }
+            attrs={"required": "required", "placeholder": "Lozinka"},
         ),
     )
 

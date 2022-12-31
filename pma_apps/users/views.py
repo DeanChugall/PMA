@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, resolve_url
 from django.urls import reverse
 from django.views import generic
 
@@ -51,6 +51,10 @@ class LoginKorisnikaView(LoginView):
                 return reverse(
                     "auto_servis:izmena_profila_servisa", args=[user.username]
                 )
+
+        if self.next_page:
+            return resolve_url(self.next_page, "")
+
         return reverse("ponude:ponude")
 
 
