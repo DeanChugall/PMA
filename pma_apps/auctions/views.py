@@ -267,6 +267,7 @@ def otkazi_ponudu_zahteva_view(request, pk):
     if request.user == zahtev.creator:
         zahtev.active = True
         zahtev.current_bid = ponuda.amount
+        zahtev.buyer_id = None
         zahtev.save()
 
         return HttpResponseRedirect(
