@@ -325,7 +325,7 @@ def otkazi_ponudu_zahteva_view(request, pk):
     Otkazivanje Pobnude zahteva Vozaca tako sto se otkazuje ponuda Servisa.
     """
     zahtev = Auction.objects.get(id=pk)
-    email_servisa = zahtev.buyer.servisprofile.email_servisa
+    profil_servisa_email = zahtev.buyer.servisprofile
 
     ponuda = Bid.objects.filter(auction_id=zahtev.id).first()
 
@@ -351,10 +351,10 @@ def otkazi_ponudu_zahteva_view(request, pk):
                     f"Otkazivanje prihvaćene ponude '{ponuda.auction.title}'.",
                     f"Poštovani {request.user}, otkazali ste ponudu:\n"
                     f"-------------------------------------------------------\n"
-                    f"Servis: {ponuda.servis.ime_servisa}\n"
-                    f"Adresa: {ponuda.servis.adresa_servisa}\n"
-                    f"Telefon Vlasnika: {ponuda.servis.broj_telefona_vlasnika}\n"
-                    f"Telefon Servisa: {ponuda.servis.broj_telefona_servisa}\n"
+                    f"Servis: {profil_servisa_email.ime_servisa}\n"
+                    f"Adresa: {profil_servisa_email.adresa_servisa}\n"
+                    f"Telefon Vlasnika: {profil_servisa_email.broj_telefona_vlasnika}\n"
+                    f"Telefon Servisa: {profil_servisa_email.broj_telefona_servisa}\n"
                     f"Opis Ponude: {ponuda.opis_ponude}\n"
                     f"\n"
                     f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
@@ -364,7 +364,7 @@ def otkazi_ponudu_zahteva_view(request, pk):
                 # Posalji mail Servisu
                 (
                     f"Vozač {request.user} je otkazao Vašu ponudu!",
-                    f"Nažalost {ponuda.servis.user.username},"
+                    f"Nažalost {profil_servisa_email.user.username},"
                     f" Vozač {request.user} je otkazao Vašu ponudu u zahtevu: {ponuda.auction.title}!\n"
                     f"---------------------------------------------------------------------------------\n"
                     f"Naziv Zahteva: {ponuda.auction.title}\n"
@@ -373,7 +373,7 @@ def otkazi_ponudu_zahteva_view(request, pk):
                     f"\n"
                     f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
                     settings.EMAIL_HOST_USER,
-                    [email_servisa],
+                    [profil_servisa_email.email_servisa],
                 ),
             )
             send_mass_mail(datatuple)
