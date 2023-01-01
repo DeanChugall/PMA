@@ -1,10 +1,14 @@
+import logging
 import re
 from decimal import Decimal
+from smtplib import SMTPException
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import BadHeaderError, send_mass_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, resolve_url
@@ -16,6 +20,9 @@ from pma_apps.auctions.models import Auction, Bid, Category, Image
 from pma_apps.users.models import ServisProfile, VozacProfile
 
 User = get_user_model()
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def ponude_view(request):
@@ -250,6 +257,62 @@ def prihvati_ponudu_zahteva_view(request, pk):
         zahtev.current_bid = ponuda.amount
         zahtev.save()
 
+        # Send Mail (Vozacu i Serviseru) i loguj da je ponuda prihvacena,
+        try:
+            logger.info(
+                f"<PONUDE>"
+                f">>> KORISNIK {request.user}  JE PRIHVATIO PONUDU <<< "
+                f"</PONUDE>"
+            )
+
+            email_vozac = zahtev.creator.email
+            email_servis = ponuda.servis.email_servisa
+
+            datatuple = (
+                # Posalji mail vozacu
+                (
+                    f"Potvrda prihvaćene ponude '{ponuda.auction.title}'.",
+                    f"Poštovani {request.user}, prihvatili ste ponudu:\n"
+                    f"-------------------------------------------------------\n"
+                    f"Servis: {ponuda.servis.ime_servisa}\n"
+                    f"Grad: {ponuda.servis.grad_auto_servisa}\n"
+                    f"Adresa: {ponuda.servis.adresa_servisa}\n"
+                    f"Telefon Vlasnika: {ponuda.servis.broj_telefona_vlasnika}\n"
+                    f"Telefon Servisa: {ponuda.servis.broj_telefona_servisa}\n"
+                    f"Email Servisa: {ponuda.servis.email_servisa}\n"
+                    f"Opis Ponude: {ponuda.opis_ponude}\n"
+                    f"Cena: {ponuda.amount} rsd\n"
+                    f"\n"
+                    f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [email_vozac],
+                ),
+                # Posalji mail Servisu
+                (
+                    f"Vozač {request.user} je prihvatio Vašu ponudu!",
+                    f"Čestitamo {ponuda.servis.user.username}, "
+                    f"Vozač {request.user} je prihvatio Vašu ponudu u zahtevu: {ponuda.auction.title}!\n"
+                    f"-----------------------------------------------------------------------------------\n"
+                    f"Naziv Zahteva: {ponuda.auction.title}\n"
+                    f"Opis Zahteva: {ponuda.auction.description}\n"
+                    f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
+                    f"CENA: {ponuda.amount} rsd\n"
+                    f"\n"
+                    f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [email_servis],
+                ),
+            )
+            send_mass_mail(datatuple)
+        except BadHeaderError:  # subject is not properly formatted.
+            logger.info("<MAIL-ERROR> >>> Invalid header found <<< </MAIL-ERROR>")
+        except SMTPException as e:  # errors related to SMTP.
+            logger.info(
+                "<MAIL-ERROR>"
+                f">>> here was an error sending an email: {e} <<< "
+                "</MAIL-ERROR>"
+            )
+
         return HttpResponseRedirect(
             reverse("ponude:detalji_ponude_view", args=[zahtev.pk])
         )
@@ -269,6 +332,58 @@ def otkazi_ponudu_zahteva_view(request, pk):
         zahtev.current_bid = ponuda.amount
         zahtev.buyer_id = None
         zahtev.save()
+
+        # Send Mail (Vozacu i Serviseru) i loguj da je ponuda Otkazana,
+        try:
+            logger.info(
+                f"<PONUDE>"
+                f">>> KORISNIK {request.user}  JE OTKAZAO PONUDU <<< "
+                f"</PONUDE>"
+            )
+
+            email_vozac = zahtev.creator.email
+            email_servis = ponuda.servis.email_servisa
+
+            datatuple = (
+                # Posalji mail vozacu
+                (
+                    f"Otkazivanje prihvaćene ponude '{ponuda.auction.title}'.",
+                    f"Poštovani {request.user}, otkazali ste ponudu:\n"
+                    f"-------------------------------------------------------\n"
+                    f"Servis: {ponuda.servis.ime_servisa}\n"
+                    f"Adresa: {ponuda.servis.adresa_servisa}\n"
+                    f"Telefon Vlasnika: {ponuda.servis.broj_telefona_vlasnika}\n"
+                    f"Telefon Servisa: {ponuda.servis.broj_telefona_servisa}\n"
+                    f"Opis Ponude: {ponuda.opis_ponude}\n"
+                    f"\n"
+                    f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [email_vozac],
+                ),
+                # Posalji mail Servisu
+                (
+                    f"Vozač {request.user} je otkazao Vašu ponudu!",
+                    f"Nažalost {ponuda.servis.user.username},"
+                    f" Vozač {request.user} je otkazao Vašu ponudu u zahtevu: {ponuda.auction.title}!\n"
+                    f"---------------------------------------------------------------------------------\n"
+                    f"Naziv Zahteva: {ponuda.auction.title}\n"
+                    f"Opis Zahteva: {ponuda.auction.description}\n"
+                    f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
+                    f"\n"
+                    f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [email_servis],
+                ),
+            )
+            send_mass_mail(datatuple)
+        except BadHeaderError:  # subject is not properly formatted.
+            logger.info("<MAIL-ERROR> >>> Invalid header found <<< </MAIL-ERROR>")
+        except SMTPException as e:  # errors related to SMTP.
+            logger.info(
+                "<MAIL-ERROR>"
+                f">>> here was an error sending an email: {e} <<< "
+                "</MAIL-ERROR>"
+            )
 
         return HttpResponseRedirect(
             reverse("ponude:detalji_ponude_view", args=[zahtev.pk])

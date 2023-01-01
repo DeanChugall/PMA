@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import generic
@@ -347,6 +348,28 @@ class ObrisiReviewVozacaView(LoginRequiredMixin, generic.DeleteView):
 
     context_object_name = "obrisi_utisak_servisa"
     success_message = " Uspešno obrisan utisak."
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.delete()
+
+        logger.info(
+            f"<SERVIS>"
+            f">>> Brisanje Utiska Korisnika:  {self.request.user} <<< "
+            f">>> Email Servisa {self.object.servis.email_servisa} <<< "
+            f">>> Ime Servisa {self.object.servis.ime_servisa} <<< "
+            f"</SERVIS>"
+        )
+
+        send_mail(
+            f"Brisanje Utisaka Vozača {self.request.user}!",
+            f"Poštovani, Vozač {self.request.user} je obrisao svoj utisak!\n"
+            f"Srdačan pozdrav, Vaš Popravi Moj Auto.",
+            settings.EMAIL_HOST_USER,
+            [self.object.servis.email_servisa],
+        )
+
+        return HttpResponseRedirect(success_url)
 
     def get_success_url(self):
         return self.request.META.get("HTTP_REFERER")

@@ -2,7 +2,6 @@
 
 Kreiranje Korisnika putem Django PROXY nacina.
 """
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.db.models import Avg, CharField, Count
