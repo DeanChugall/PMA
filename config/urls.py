@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("", include("pma_apps.landing_page.urls", namespace="landing_page")),
@@ -10,9 +11,14 @@ urlpatterns = [
     path("", include("pma_apps.users.urls", namespace="users")),
     path("", include("pma_apps.auto_servisi.urls", namespace="auto_servis")),
     path("ponude/", include("pma_apps.auctions.urls", namespace="ponude")),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.ADMIN_ENABLED:
+
+if settings.ADMIN_ENABLED and settings.DEBUG:
     urlpatterns += [
         path("admin/", admin.site.urls),
     ]
