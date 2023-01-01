@@ -325,6 +325,8 @@ def otkazi_ponudu_zahteva_view(request, pk):
     Otkazivanje Pobnude zahteva Vozaca tako sto se otkazuje ponuda Servisa.
     """
     zahtev = Auction.objects.get(id=pk)
+    email_servisa = zahtev.buyer.servisprofile.email_servisa
+
     ponuda = Bid.objects.filter(auction_id=zahtev.id).first()
 
     if request.user == zahtev.creator:
@@ -342,7 +344,6 @@ def otkazi_ponudu_zahteva_view(request, pk):
             )
 
             email_vozac = zahtev.creator.email
-            email_servis = ponuda.servis.email_servisa
 
             datatuple = (
                 # Posalji mail vozacu
@@ -372,7 +373,7 @@ def otkazi_ponudu_zahteva_view(request, pk):
                     f"\n"
                     f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
                     settings.EMAIL_HOST_USER,
-                    [email_servis],
+                    [email_servisa],
                 ),
             )
             send_mass_mail(datatuple)
