@@ -235,8 +235,13 @@
                                                                                         </a>
                                                                                     {% endif %}
 
+                                                                                    {% if servis.instagram_link %}
+                                                                                        <a class="social-icon" href="https://{{ servis.instagram_link.url }}" target="_blank">
+                                                                                            <i class="fa fa-instagram text-white"></i></a>
+                                                                                    {% endif %}
+
                                                                                     {% if servis.linkedin_link %}
-                                                                                        <a class="social-icon " href="https://{{ servis.linkedin_link }}" target="_blank">
+                                                                                        <a class="social-icon" href="https://{{ servis.linkedin_link }}" target="_blank">
                                                                                             <i class="fa fa-linkedin text-white"></i>
                                                                                         </a>
                                                                                     {% endif %}

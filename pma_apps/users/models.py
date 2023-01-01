@@ -301,6 +301,11 @@ class ServisProfile(models.Model):
         null=True,
         blank=True,
     )
+    instagram_link = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+    )
 
     # Za rejting polje
     header = models.CharField(

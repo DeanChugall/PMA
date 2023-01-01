@@ -2,7 +2,6 @@
     <div class="mt-2 mb-4">
         <h3 class="mb-1 fw-semibold">{{ auction.title }}</h3>
         <hr>
-
         <!-- TAGOVI SERVISERA O PONUDI -->
         {% if user.role == "SERVIS" %}
             {% if ponuda_jednog_auto_servisa %}
@@ -16,7 +15,6 @@
         {% endif %}
         <!-- END TAGOVI SERVISERA O PONUDI -->
 
-        <hr/>
 
         <span class="fw-bold me-0">
             {% if auction.active %}
@@ -45,7 +43,7 @@
                     <span class="tag tag-radius tag-round tag-green text-black"><strong>VAŠA PONUDA JE PRIHVAĆENA</strong></span>
                     <div class="tags mb-0">
                         <!-- DA LI JE ZAHTEV AKTIVAN -->
-                        <span class="tag tag-radius tag-round tag-green text-black"><strong>AKTIVAN ZAHTEV</strong></span>
+                        <span class="tag tag-radius tag-round tag-danger text-black"><strong>NEAKTIVAN ZAHTEV</strong></span>
                         <!-- END DA LI JE ZAHTEV AKTIVAN -->
 
                         <!-- GRAD VOZACA -->
@@ -63,14 +61,12 @@
                         <span class="tag tag-radius tag-round tag-outline-primary mb-2">Kategorija: &nbsp;&nbsp;&nbsp;&nbsp;<strong>{{ auction.category }}</strong></span>
                         <!-- END KATEGORIJA ZAHTEVA -->
                     </div>
-
                 </div>
             {% else %}
                 <div class="tags mb-0">
-                    <span class="tag tag-radius tag-round tag-red text-black"><strong>NEAKTIVAN ZAHTEV</strong></span>
                     <div class="tags mb-0">
                         <!-- DA LI JE ZAHTEV AKTIVAN -->
-                        <span class="tag tag-radius tag-round tag-green text-black"><strong>AKTIVAN ZAHTEV</strong></span>
+                        <span class="tag tag-radius tag-round tag-red text-black"><strong>NEAKTIVAN ZAHTEV</strong></span>
                         <!-- END DA LI JE ZAHTEV AKTIVAN -->
 
                         <!-- GRAD VOZACA -->

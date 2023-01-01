@@ -75,6 +75,11 @@
                                                         </a>
                                                     {% endif %}
 
+                                                    {% if ponuda.servis.instagram_link %}
+                                                        <a class="social-icon text-white" href="https://{{ ponuda.servis.instagram_link.url }}" target="_blank">
+                                                            <i class="fa fa-instagram"></i></a>
+                                                    {% endif %}
+
                                                     {% if ponuda.servis.linkedin_link %}
                                                         <a class="social-icon text-white" href="https://{{ ponuda.servis.linkedin_link }}" target="_blank">
                                                             <i class="fa fa-linkedin"></i>

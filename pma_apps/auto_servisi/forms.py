@@ -92,6 +92,7 @@ class UrediProfilServisaForm(forms.ModelForm):
             "youtube_link",
             "twitter_link",
             "linkedin_link",
+            "instagram_link",
             "header",
         ]
 
