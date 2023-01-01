@@ -17,6 +17,7 @@ if READ_DOT_ENV_FILE:
     env.read_env(str(ROOT_DIR / ".envs/.production/.auth0"))
 
 DEBUG = env.bool("DJANGO_DEBUG", False)
+STAGE = env.bool("STAGE", True)
 
 SECRET_KEY = env.str("DJANGO_SECRET_KEY", default="Test")
 

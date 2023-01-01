@@ -11,11 +11,16 @@ urlpatterns = [
     path("", include("pma_apps.users.urls", namespace="users")),
     path("", include("pma_apps.auto_servisi.urls", namespace="auto_servis")),
     path("ponude/", include("pma_apps.auctions.urls", namespace="ponude")),
-    path(
-        "robots.txt",
-        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
-    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# add robots.txt if not in STAGE mode
+if not settings.STAGE:
+    urlpatterns += [
+        path(
+            "robots.txt",
+            TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+        ),
+    ]
 
 
 if settings.ADMIN_ENABLED and settings.DEBUG:

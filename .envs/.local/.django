@@ -4,6 +4,7 @@
 DJANGO_SETTINGS_MODULE=config.settings.base
 DJANGO_READ_DOT_ENV_FILE=True
 
+STAGE=True
 DJANGO_DEBUG=True
 DJANGO_SECRET_KEY=dHteuy50To55IlWACdB5JBOq0Kn6gYclLWFqWHzNVV3KpGgoN9TooF7fjpe9ZIaB
 DATABASE_URL=postgres://pma_database:pma_database@postgres:5432/pma_database
