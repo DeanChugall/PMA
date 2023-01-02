@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load settings_value_tags %}
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="ltr">
@@ -7,7 +7,6 @@
     <head>
         <!-- META DATA -->
         {% block meta_data %}{% endblock meta_data %}
-
 
         <!-- FAVICON -->
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}"/>
@@ -35,6 +34,17 @@
         <link href="{% static 'assets/switcher/css/switcher.css' %}" rel="stylesheet"/>
         <link href="{% static 'assets/switcher/demo.css' %}" rel="stylesheet"/>
 
+        {% settings_value_tags "STAGE" as google_tag %}
+        {% if not google_tag %}
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S9H063VLY"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-8S9H063VLY');
+            </script>
+        {% endif %}
     </head>
 
     <body class="app sidebar-mini ltr dark-mode">
