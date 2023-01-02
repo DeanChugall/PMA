@@ -1,15 +1,15 @@
 {% extends "auto_servis/auto-servis-base.html" %}
 {% load static %}
 
-{% block title %} Auto Servis: {{ user.username }} {% endblock %}
+{% block title %}@PMA {{ profil_servisa.ime_servisa }} {% endblock %}
 
 {% block meta_data %}
     <meta charset="UTF-8" xmlns="http://www.w3.org/1999/html">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="@PMA Technologies Private Limited">
-    <meta name="description" content="@PMA Profil Auto Servisa: {{ user.username }}">
-    <meta name="keywords" content="Auto Servis, {{ user.username }}">
+    <meta name="description" content="@PMA Profil Auto Servisa: {{ profil_servisa.ime_servisa }}">
+    <meta name="keywords" content="Auto Servis, {{ profil_servisa.ime_servisa }}">
 {% endblock meta_data %}
 
 {% block app_content %}
@@ -44,7 +44,7 @@
                                                         <!-- IME SERVISA -->
                                                         <div class="profile-img-content text-dark text-start">
                                                             <div class="text-dark">
-                                                                {% if  profil_servisa.ime_servisa %}
+                                                                {% if profil_servisa.ime_servisa %}
                                                                     <h3 class="h3 mb-2">{{ profil_servisa.ime_servisa }}</h3>
                                                                 {% else %}
                                                                     <h3 class="h3 mb-2">Naziv Auto Servisa nije unet!</h3>
