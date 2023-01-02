@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static i18n %}
+{% load settings_value_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="ltr">
     <head>
@@ -8,6 +9,18 @@
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/favicon.ico' %}" />
         {% block extra_head %}
         {% endblock extra_head %}
+
+        {% settings_value_tags "STAGE" as google_tag %}
+        {% if not google_tag %}
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S9H063VLY"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-8S9H063VLY');
+            </script>
+        {% endif %}
     </head>
     <body class="app sidebar-mini ltr login-img">
         {% block body %}
