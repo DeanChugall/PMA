@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static i18n %}
+{% load settings_value_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="ltr">
 
@@ -29,11 +30,19 @@
 
         <!-- COLOR SKIN CSS -->
         <link id="theme" rel="stylesheet" type="text/css" media="all" href="{% static 'assets/colors/color1.css' %}"/>
-
+        {% settings_value_tags "STAGE" as google_tag %}
+        {% if not google_tag %}
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-8S9H063VLY"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-8S9H063VLY');
+            </script>
+        {% endif %}
     </head>
-
     <body class="app ltr landing-page horizontal dark-mode">
-
         <!-- GLOBAL-LOADER -->
         <div id="global-loader">
             <img src="{% static 'assets/images/loader.svg' %}" class="loader-img" alt="Loader">
