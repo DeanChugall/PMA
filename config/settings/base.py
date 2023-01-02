@@ -37,8 +37,11 @@ THOUSAND_SEPARATOR = True
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
 # CSRF_COOKIE_HTTPONLY = True
-
-# CSRF_TRUSTED_ORIGINS = ["https://0.0.0.0:8000", "https://pma-7x5sd.ondigitalocean.app"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://popravimojauto.com",
+    "https://pma-stage-ypuym.ondigitalocean.app",
+    "https://pma-7x5sd.ondigitalocean.app",
+]
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
