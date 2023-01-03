@@ -4,6 +4,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -45,7 +46,7 @@ class KreirajServisKorisnikaView(generic.CreateView):
         return reverse("users:prijava")
 
 
-class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
+class DetaljiServisaView(generic.DetailView):
     template_name = "auto_servis/detalji-servisa.html"
     queryset = Servis.objects.all()
     context_object_name = "detalji_servisa"
@@ -87,6 +88,7 @@ class DetaljiServisaView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+@login_required
 def profil_servisa_update_view(request, username):
 
     # Slike Auto Servisa
@@ -298,6 +300,7 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
         return queryset
 
 
+@login_required
 def submit_review(request, profil_servisa_id):
     url = request.META.get("HTTP_REFERER")
     if request.method == "POST":

@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, redirect, render, resolve_url
@@ -96,6 +97,7 @@ class DetaljiVozacaView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+@login_required
 def profil_vozaca_update_view(request, username):
     vozac = get_object_or_404(Vozac, username=username)
     vozac_form = UrediVozacaForm(request.POST or None, instance=vozac)

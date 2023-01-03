@@ -54,7 +54,7 @@
                                                         </div>
                                                         <!-- IME SERVISA -->
                                                     </div>
-                                                    {% if user.role == "SERVIS" and servis == user %}
+                                                    {% if user.role == "SERVIS" and servis == user and user.is_authenticated%}
                                                         <div class="btn-profile">
                                                             <a href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}"
                                                                 class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
@@ -259,11 +259,10 @@
                             <!-- END STATISTIKA, SLIKA I BIOGRAFIJA -->
 
                             <!-- RATING STAR AND REVIEW -->
-
                             <div class="col-xl-8">
                                 <div class="card">
                                     <div class="card-body">
-                                        {% if user.role != "SERVIS" %}
+                                        {% if user.role != "SERVIS" and user.is_authenticated %}
                                             <form class="ogin100-form validate-form needs-validation"
                                                 action="{% url 'auto_servis:submit_review' servis.id %}#utisci-vozaca"
                                                 method="POST"
