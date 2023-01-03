@@ -106,14 +106,21 @@
                             </div>
 
                             <div class="btn-list mt-6">
-                                <button type="button" class="btn btn-icon rounded-pill"><i
-                                    class="fa fa-facebook"></i></button>
-                                <button type="button" class="btn btn-icon rounded-pill"><i
-                                    class="fa fa-youtube"></i></button>
-                                <button type="button" class="btn btn-icon rounded-pill"><i
-                                    class="fa fa-twitter"></i></button>
-                                <button type="button" class="btn btn-icon rounded-pill"><i
-                                    class="fa fa-instagram"></i></button>
+                                <button type="button" onclick="window.open('https://www.linkedin.com/company/popravi-moj-auto/','_blank')" class="btn btn-icon rounded-pill">
+                                    <i class="fa fa-linkedin-square"></i>
+                                </button>
+                                <button type="button" onclick="window.open('https://facebook.com','_blank')" class="btn btn-icon rounded-pill">
+                                    <i class="fa fa-facebook"></i>
+                                </button>
+                                <button type="button" onclick="window.open('https://youtube.com','_blank')" class="btn btn-icon rounded-pill">
+                                    <i class="fa fa-youtube"></i>
+                                </button>
+                                <button type="button" onclick="window.open('https://facebook.com','_blank')" class="btn btn-icon rounded-pill">
+                                    <i class="fa fa-twitter"></i>
+                                </button>
+                                <button type="button" onclick="window.open('https://facebook.com','_blank')" class="btn btn-icon rounded-pill">
+                                    <i class="fa fa-instagram"></i>
+                                </button>
                             </div>
                             <hr>
                         </div>
@@ -121,7 +128,7 @@
                 </div>
                 <footer class="main-footer px-0 pb-0 text-center">
                     <div class="row ">
-                        <div class="col-md-12 col-sm-12">Copyright © <span id="year"></span> <a href="#">@PMA</a>.
+                        <div class="col-md-12 col-sm-12">Copyright © <span id="year"></span> <a href="{% url 'landing_page:landing_page' %}">@PMA</a>.
                             Designed with <span class="fa fa-heart text-danger"></span> by <a
                                 href="{% url 'landing_page:landing_page' %}"> Popravi Moj Auto </a> All rights reserved.
                         </div>
