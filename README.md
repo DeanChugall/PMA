@@ -28,6 +28,12 @@
 - Ciscenje svi paketa iz PIP-a: ```pip freeze | xargs pip uninstall -y```
 - Pre-Commit run: ```pre-commit run```
 - HTML pre-commit: ```djhtml -i pma_apps/templates/.```
+- Generisanje hash lozinke:
+```python
+from django.contrib.auth.hashers import make_password
+make_password('pa_ovde_lozinka')
+```
+
 
 ---
 
