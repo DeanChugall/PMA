@@ -616,7 +616,7 @@ def ponuda_zahteva_view(request, zahtev_id):
     if form.is_valid():
 
         new_bid = form.save(commit=False)
-        new_bid.auction =     auction
+        new_bid.auction = auction
         new_bid.servis = profil_servisa
         new_bid.save()
         auction.save()
