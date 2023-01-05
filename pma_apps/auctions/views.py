@@ -632,7 +632,7 @@ def ponuda_zahteva_view(request, zahtev_id):
             # Ako je Servis uneo Email u profil, posalji na taj mail.
             # Ako nije posalji na mail Vlasnika Servisa.
             if profil_servisa.email_servisa:
-                  email_servis = profil_servisa.email_servisa
+                email_servis = profil_servisa.email_servisa
             else:
                 email_servis = request.user.email
 
