@@ -600,6 +600,9 @@ def ponuda_zahteva_view(request, zahtev_id):
     auction = Auction.objects.get(id=zahtev_id)
     amount = Decimal(re.sub(r"[^0-9]", "", request.POST["amount"]))
 
+    # Get Ponudu Servisa
+    ponuda = Bid.objects.filter(auction_id=auction.id).first()
+
     profil_servisa = ServisProfile.objects.get(user_id=request.user.id)
 
     auction.current_bid = amount
@@ -617,6 +620,66 @@ def ponuda_zahteva_view(request, zahtev_id):
         new_bid.servis = profil_servisa
         new_bid.save()
         auction.save()
+
+        # Send Mail (Vozacu i Serviseru) i loguj da je data Ponuda Servisa,
+        try:
+            logger.info(
+                f"<PONUDE>"
+                f">>> KORISNIK {request.user}  JE DAO PONUDU <<< "
+                f"</PONUDE>"
+            )
+
+            # Ako je Servis uneo Email u profil, posalji na taj mail.
+            # Ako nije posalji na mail Vlasnika Servisa.
+            if profil_servisa.email_servisa:
+                email_servis = profil_servisa.email_servisa
+            else:
+                email_servis = request.user.email
+
+            # Email Vozaca
+            email_vozaca = auction.creator.email
+
+
+            postavljena_ponuda_email = (
+                # Posalji mail Vozacu
+                (
+                    f"Data je nova ponuda za zahtev: '{auction.title}'.",
+                    f"Poštovani {auction.creator.username},\n"
+                    f"-------------------------------------------------------\n"
+                    f"Servis: {profil_servisa.ime_servisa}\n"
+                    f"Adresa: {profil_servisa.adresa_servisa}\n"
+                    f"Telefon Vlasnika: {profil_servisa.broj_telefona_vlasnika}\n"
+                    f"Telefon Servisa: {profil_servisa.broj_telefona_servisa}\n"
+                    f"Opis Ponude: {ponuda.opis_ponude}\n"
+                    f"\n"
+                    f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [email_vozaca],
+                ),
+                # Posalji mail Servisu
+                (
+                    f"Poštovani {profil_servisa.user.username},",
+                    f"Dali ste novu ponuda za zahtev: '{auction.title}'.\n"
+                    f"---------------------------------------------------------------------------------\n"
+                    f"Naziv Zahteva: {ponuda.auction.title}\n"
+                    f"Opis Zahteva: {ponuda.auction.description}\n"
+                    f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
+                    f"\n"
+                    f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [email_servis],
+                ),
+            )
+            send_mass_mail(postavljena_ponuda_email)
+        except BadHeaderError:  # subject is not properly formatted.
+            logger.info("<MAIL-ERROR> >>> Invalid header found <<< </MAIL-ERROR>")
+        except SMTPException as e:  # errors related to SMTP.
+            logger.info(
+                "<MAIL-ERROR>"
+                f">>> here was an error sending an email: {e} <<< "
+                "</MAIL-ERROR>"
+            )
+
 
         return HttpResponseRedirect(
             "{}#listing-ponuda-zahteva".format(
