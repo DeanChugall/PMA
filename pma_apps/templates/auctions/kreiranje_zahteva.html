@@ -42,7 +42,11 @@
                                 <div class="card-header">
                                     <div class="card-title">Dodaj Novi Zahtev</div>
                                 </div>
+
                                 {% if success %}
+                                    <!-- OBAVESTENJE USPESNO KREIRAN ZAHTEV -->
+                                    {% include 'auctions/partials/partials_modal_uspesno_kreira_zahtev.html' %}
+
                                     <div class="card-body">
                                         <div class="row mb-4">
                                             <br>
@@ -54,6 +58,7 @@
                                         <a href="{% url 'ponude:aktivni_zahtevi_vozaca' user.username %}" class="btn btn-primary btn-lg">Pregled Vaših Zahteva</a>
                                         <!--End Row-->
                                     </div>
+                                    <!-- END OBAVESTENJE USPESNO KREIRAN ZAHTEV -->
                                 {% else %}
                                     <div class="card-body">
                                         <div class="row mb-4">
@@ -305,6 +310,12 @@
     <!-- INTERNAL Accordion-Wizard-Form js-->
     <script src="{% static 'assets/plugins/accordion-Wizard-Form/jquery.accordion-wizard.min.js' %}"></script>
     <script src="{% static 'assets/js/form-wizard.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#kreiranaPonudaModal').modal('show');
+        });
+    </script>
 
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.8.3"></script>
