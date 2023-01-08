@@ -146,7 +146,9 @@
                                                                             <i class="fa fa-star{% if servis.averageReview < 2.5 %}-o{% elif servis.averageReview >= 2.5 and servis.averageReview < 3 %}-half-o{% endif %} fa-2x text-warning"></i>
                                                                             <i class="fa fa-star{% if servis.averageReview < 3.5 %}-o{% elif servis.averageReview >= 3.5 and servis.averageReview < 4 %}-half-o{% endif %} fa-2x text-warning"></i>
                                                                             <i class="fa fa-star{% if servis.averageReview < 4.5 %}-o{% elif servis.averageReview >= 4.5 and servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
-                                                                            &nbsp;{{ servis.averageReview }} / 5 &nbsp;&nbsp;ukupno utisaka: {{ servis.countReview }}
+                                                                            &nbsp;{{ servis.averageReview }} / 5
+                                                                            <br>
+                                                                            &nbsp;&nbsp;ukupno utisaka: {{ servis.countReview }}
                                                                         </div>
                                                                         <!-- END ZVEZDICE -->
                                                                     </a>

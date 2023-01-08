@@ -115,7 +115,9 @@
                                         <i class="fa fa-star{% if ponuda.servis.averageReview < 2.5 %}-o{% elif ponuda.servis.averageReview >= 2.5 and ponuda.servis.averageReview < 3 %}-half-o{% endif %} fa-2x text-warning"></i>
                                         <i class="fa fa-star{% if ponuda.servis.averageReview < 3.5 %}-o{% elif ponuda.servis.averageReview >= 3.5 and ponuda.servis.averageReview < 4 %}-half-o{% endif %} fa-2x text-warning"></i>
                                         <i class="fa fa-star{% if ponuda.servis.averageReview < 4.5 %}-o{% elif ponuda.servis.averageReview >= 4.5 and ponuda.servis.averageReview < 5 %}-half-o{% endif %} fa-2x text-warning"></i>
-                                        &nbsp;{{ ponuda.servis.averageReview }} / 5 &nbsp;&nbsp;ukupno utisaka: {{ ponuda.servis.countReview }}
+                                        &nbsp;{{ ponuda.servis.averageReview }} / 5
+                                        <br>
+                                        &nbsp;&nbsp;ukupno utisaka: {{ ponuda.servis.countReview }}
                                     </div>
                                     <!-- END ZVEZDICE -->
 
