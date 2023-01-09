@@ -25,7 +25,10 @@
                     <h1 class="page-title">Pregled Svih Auto Servisa</h1>
                     <div>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
+                            <li class="breadcrumb-item"
+                                aria-current="page">
+                                <a href="{% url 'ponude:ponude' %}">Početna</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">Lista Svih Auto Servisa </li>
                         </ol>
                     </div>
@@ -36,33 +39,33 @@
                 <div class="row row-cards">
 
                     <!-- COL-END -->
-                    <div class="col-xl-12 col-lg-8">
+                    <div class="col-xl-12 col-lg-12">
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card p-0">
                                     <div class="card-body p-4">
                                         <div class="row">
-                                            <div class="col-xl-5 col-lg-8 col-md-8 col-sm-8">
-                                                <div class="input-group d-flex w-100 float-start">
-                                                    <input type="text" class="form-control border-end-0 my-2" placeholder="Search ...">
+                                            <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="input-group d-flex w-100 float-start input-group-lg">
+                                                    <input type="text"
+                                                        class="form-control border-end-0 my-2"
+                                                        placeholder="Pretraga ...">
                                                     <button class="btn input-group-text bg-transparent border-start-0 text-muted my-2">
                                                         <i class="fe fe-search text-muted" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                             {% if user.role == "VOZAC" %}
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
                                                     <ul class="nav item2-gl-menu float-end my-2">
                                                         <li class="border-end">
-                                                            <a href="#tab-11" class="show active" data-bs-toggle="tab" title="List style">
-                                                                <i class="fa fa-th"></i>
-                                                            </a>
+
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-xl-3 col-lg-12">
+                                                <div class="col-xl-6 col-lg-12">
                                                     <a href="{% url 'ponude:kreiranje_zahteva' %}"
-                                                        class="btn btn-primary btn-block float-end my-2">
+                                                        class="btn btn-primary btn-block float-end my-2 p-3">
                                                         <i class="fa fa-plus-square me-2"></i>Novi Zahtev
                                                     </a>
                                                 </div>
