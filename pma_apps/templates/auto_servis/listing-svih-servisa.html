@@ -114,6 +114,21 @@
                                                                                 <span class="ribbone-info-left">
                                                                                     <span><strong> &nbsp;&nbsp;Auto Servis&nbsp;&nbsp;&nbsp;</strong></span>
                                                                                 </span>
+
+                                                                                <!-- TAG VERIFIKOVAN SERVIS -->
+                                                                                {%  if servis.verifikovan_servis %}
+                                                                                    <span class="pull-right tag tag-green text-black"
+                                                                                        style="justify-content: right;">
+                                                                                        <strong>Verifikovan Servis</strong>
+                                                                                    </span>
+                                                                                {%  else %}
+                                                                                    <span class="pull-right tag tag-gray text-black"
+                                                                                        style="justify-content: right;">
+                                                                                        <strong>Servis Nije Verifikovan</strong>
+                                                                                    </span>
+                                                                                {%  endif %}
+                                                                                <!-- END TAG VERIFIKOVAN SERVIS -->
+
                                                                                 <div class="card-body p-4">
                                                                                     <h3 class="fw-bold fs-30 mt-4 mb-1 text-white">{{ servis.ime_servisa }}</h3>
                                                                                     <!-- GRAD SERVISA ISPOD IMENA -->
@@ -123,6 +138,8 @@
                                                                                         <span class="tag tag-radius tag-round tag-outline-warning text-whites"><strong>&nbsp;{{ servis.user.get_grad_servisa }}</strong></span>
                                                                                     {% endif %}
                                                                                     <!-- END GRAD SERVISA ISPOD IMENA -->
+
+
                                                                                 </div>
                                                                             </div>
                                                                         {% else %}
@@ -132,6 +149,9 @@
                                                                                 </span>
                                                                                 <div class="card-body p-4">
                                                                                     <h3 class="fw-bold fs-30 mt-4 mb-1">{{ servis.user.username }}</h3>
+                                                                                    <!-- TAG VERIFIKOVAN SERVIS -->
+                                                                                    <span class="tag tag-rounded tag-icon tag-orange"><i class="fe fe-bell"></i>Third tag <a href="javascript:void(0)" class="tag-addon tag-addon-cross tag-orange"><i class="fe fe-x text-white m-1"></i></a></span>
+                                                                                    <!-- END TAG VERIFIKOVAN SERVIS -->
                                                                                     <!-- GRAD SERVISA ISPOD IMENA -->
                                                                                     {% if servis.grad_auto_servisa %}
                                                                                         <span class="tag tag-radius tag-round tag-yellow text-black"><strong>&nbsp;{{ servis.get_grad_servisa }}</strong></span>
@@ -139,6 +159,8 @@
                                                                                         <span class="tag tag-radius tag-round tag-green text-black"><strong>&nbsp;{{ servis.user.get_grad_servisa }}</strong></span>
                                                                                     {% endif %}
                                                                                     <!-- END GRAD SERVISA ISPOD IMENA -->
+
+
                                                                                 </div>
                                                                             </div>
                                                                         {% endif %}

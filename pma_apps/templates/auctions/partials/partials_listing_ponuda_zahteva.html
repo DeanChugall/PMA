@@ -35,6 +35,21 @@
                                             <span class="ribbone-info-left">
                                                 <span><strong> &nbsp;&nbsp;Auto Servis&nbsp;&nbsp;&nbsp;</strong></span>
                                             </span>
+
+                                            <!-- TAG VERIFIKOVAN SERVIS -->
+                                            {%  if ponuda.servis.verifikovan_servis %}
+                                                <span class="pull-right tag tag-green text-black"
+                                                    style="justify-content: right;">
+                                                    <strong>Verifikovan Servis</strong>
+                                                </span>
+                                            {%  else %}
+                                                <span class="pull-right tag tag-gray text-black"
+                                                    style="justify-content: right;">
+                                                    <strong>Servis Nije Verifikovan</strong>
+                                                </span>
+                                            {%  endif %}
+                                            <!-- END TAG VERIFIKOVAN SERVIS -->
+
                                             <div class="card-body p-4">
                                                 <!-- IME SERVISA ZA MALE REZOLUCIJE -->
                                                 <h3 class="fw-bold fs-25 mt-4 mb-1 text-white d-lg-none">{{ ponuda.servis.ime_servisa }}</h3>

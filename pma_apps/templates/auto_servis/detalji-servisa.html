@@ -31,6 +31,19 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="row">
+
+                                                <!-- TAG VERIFIKOVAN SERVIS -->
+                                                {%  if profil_servisa.verifikovan_servis %}
+                                                    <span class="tag tag-green text-black" >
+                                                        <strong>Verifikovan Servis</strong>
+                                                    </span>
+                                                {%  else %}
+                                                    <span class="tag tag-gray text-black">
+                                                        <strong>Servis Nije Verifikovan</strong>
+                                                    </span>
+                                                {%  endif %}
+                                                <!-- END TAG VERIFIKOVAN SERVIS -->
+
                                                 <div class="panel profile-cover">
                                                     <div class="profile-cover__action bg-img">
                                                     </div>
@@ -42,8 +55,11 @@
                                                         <!-- END LOGO SERVISA -->
 
                                                         <!-- IME SERVISA -->
+
                                                         <div class="profile-img-content text-dark text-start">
+                                                            <br>
                                                             <div class="text-dark">
+                                                                <br>
                                                                 {% if profil_servisa.ime_servisa %}
                                                                     <h3 class="h3 mb-2">{{ profil_servisa.ime_servisa }}</h3>
                                                                 {% else %}
@@ -55,7 +71,7 @@
                                                         <!-- IME SERVISA -->
                                                     </div>
                                                     {% if user.role == "SERVIS" and servis == user and user.is_authenticated%}
-                                                        <div class="btn-profile">
+                                                        <div class="btn-profile mt-3">
                                                             <a href="{% url 'auto_servis:izmena_profila_servisa' request.user.username  %}"
                                                                 class="btn ripple btn-min w-sm btn-primary me-2 my-auto"
                                                                 target="_self">
@@ -65,9 +81,12 @@
                                                     {% endif %}
                                                 </div>
                                             </div>
+
                                             <!-- SOCIAL PROFILE SERVISA -->
                                             <div class="row">
+
                                                 <div class="px-0 px-sm-4">
+
                                                     <div class="social social-profile-buttons mt-5 float-end">
                                                         <div class="mt-3">
                                                             {% if profil_servisa.web_site_servisa %}
@@ -100,6 +119,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- RATING SERVISA -->
                                 <div class="mb-0 text-warning pull-right">
                                     <i class="fa fa-star{% if profil_servisa.averageReview < 0.5 %}-o{% elif profil_servisa.averageReview >= 0.5 and servis.averageReview < 1 %}-half-o{% endif %} fa-2x text-warning"></i>
