@@ -1,8 +1,13 @@
+import logging
+from smtplib import SMTPException
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.core.mail import BadHeaderError, send_mass_mail
 from django.shortcuts import get_object_or_404, redirect, render, resolve_url
 from django.urls import reverse
 from django.views import generic
@@ -18,6 +23,9 @@ from pma_apps.users.forms import (
 from pma_apps.users.models import Vozac, VozacProfile
 
 User = get_user_model()
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 class LoginKorisnikaView(LoginView):
@@ -65,6 +73,37 @@ class KreirajVozacaView(generic.CreateView):
     context_object_name = "kreiraj_vozaca"
 
     def get_success_url(self):
+        # Send Mail (Administratoru) da je nalog VOZACA kreiran.
+        try:
+            logger.info(
+                f"<KREIRANJE VOZACA>"
+                f">>> VOZAC {self.object.username}  JE NAPRAVIO NOVI NALOG. <<< "
+                f"</KREIRANJE VOZAC>"
+            )
+
+            admin_email = settings.ADMINS[0][1]
+
+            # Posalji mail adminu da je kreiran Vozac
+            data = (
+                (
+                    f"Kreiranje novog Vozača '{self.object.username}'.",
+                    f"Poštovani, Vozač {self.object.username} je kreirao nalog!\n"
+                    f"-------------------------------------------------------\n"
+                    f"\n"
+                    f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [admin_email],
+                ),
+            )
+            send_mass_mail(data)
+        except BadHeaderError:  # subject is not properly formatted.
+            logger.info("<MAIL-ERROR> >>> Invalid header found <<< </MAIL-ERROR>")
+        except SMTPException as e:  # errors related to SMTP.
+            logger.info(
+                "<MAIL-ERROR>"
+                f">>> here was an error sending an email: {e} <<< "
+                "</MAIL-ERROR>"
+            )
         return reverse("users:prijava")
 
 

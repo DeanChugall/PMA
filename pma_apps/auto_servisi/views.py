@@ -1,4 +1,5 @@
 import logging
+from smtplib import SMTPException
 
 from django import forms
 from django.conf import settings
@@ -6,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
+from django.core.mail import BadHeaderError, send_mail, send_mass_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -43,6 +44,37 @@ class KreirajServisKorisnikaView(generic.CreateView):
     context_object_name = "kreiraj_servis"
 
     def get_success_url(self):
+        # Send Mail (Administratoru) da je nalog SERVISA kreiran.
+        try:
+            logger.info(
+                f"<KREIRANJE SERVISA>"
+                f">>> KORISNIK {self.object.username}  JE NAPRAVIO NOVI NALOG AUTO SERVISA. <<< "
+                f"</KREIRANJE SERVISA>"
+            )
+
+            admin_email = settings.ADMINS[0][1]
+
+            # Posalji mail adminu da je kreiran Vozac
+            data = (
+                (
+                    f"Kreiranje novog SERVISA '{self.object.username}'.",
+                    f"Poštovani, KORISNIK {self.object.username} je kreirao novi SERVIS!\n"
+                    f"-------------------------------------------------------\n"
+                    f"\n"
+                    f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
+                    settings.EMAIL_HOST_USER,
+                    [admin_email],
+                ),
+            )
+            send_mass_mail(data)
+        except BadHeaderError:  # subject is not properly formatted.
+            logger.info("<MAIL-ERROR> >>> Invalid header found <<< </MAIL-ERROR>")
+        except SMTPException as e:  # errors related to SMTP.
+            logger.info(
+                "<MAIL-ERROR>"
+                f">>> here was an error sending an email: {e} <<< "
+                "</MAIL-ERROR>"
+            )
         return reverse("users:prijava")
 
 
@@ -355,23 +387,30 @@ class ObrisiReviewVozacaView(LoginRequiredMixin, generic.DeleteView):
     def form_valid(self, form):
         success_url = self.get_success_url()
         self.object.delete()
+        try:
+            logger.info(
+                f"<SERVIS>"
+                f">>> Brisanje Utiska Korisnika:  {self.request.user} <<< "
+                f">>> Email Servisa {self.object.servis.email_servisa} <<< "
+                f">>> Ime Servisa {self.object.servis.ime_servisa} <<< "
+                f"</SERVIS>"
+            )
 
-        logger.info(
-            f"<SERVIS>"
-            f">>> Brisanje Utiska Korisnika:  {self.request.user} <<< "
-            f">>> Email Servisa {self.object.servis.email_servisa} <<< "
-            f">>> Ime Servisa {self.object.servis.ime_servisa} <<< "
-            f"</SERVIS>"
-        )
-
-        send_mail(
-            f"Brisanje Utisaka Vozača {self.request.user}!",
-            f"Poštovani, Vozač {self.request.user} je obrisao svoj utisak!\n"
-            f"Srdačan pozdrav, Vaš Popravi Moj Auto.",
-            settings.EMAIL_HOST_USER,
-            [self.object.servis.email_servisa],
-        )
-
+            send_mail(
+                f"Brisanje Utisaka Vozača {self.request.user}!",
+                f"Poštovani, Vozač {self.request.user} je obrisao svoj utisak!\n"
+                f"Srdačan pozdrav, Vaš Popravi Moj Auto.",
+                settings.EMAIL_HOST_USER,
+                [self.object.servis.email_servisa],
+            )
+        except BadHeaderError:  # subject is not properly formatted.
+            logger.info("<MAIL-ERROR> >>> Invalid header found <<< </MAIL-ERROR>")
+        except SMTPException as e:  # errors related to SMTP.
+            logger.info(
+                "<MAIL-ERROR>"
+                f">>> here was an error sending an email: {e} <<< "
+                "</MAIL-ERROR>"
+            )
         return HttpResponseRedirect(success_url)
 
     def get_success_url(self):

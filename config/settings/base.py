@@ -167,7 +167,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("Dejan Cugalj", "info@dejan.pro")]
+ADMINS = [("Dejan Cugalj", "admin@popravimojauto.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
