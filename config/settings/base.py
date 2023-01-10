@@ -228,7 +228,7 @@ AWS_S3_ENDPOINT_URL = env.str("AWS_S3_ENDPOINT_URL", default="")
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
 # STATIC SETTINGS
-USE_SPACES  = env.str("USE_SPACES", default="True")
+USE_SPACES  = env.bool("USE_SPACES", "True")
 if USE_SPACES:
     PUBLIC_STATIC_LOCATION = "static"
     STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_STATIC_LOCATION}/"
