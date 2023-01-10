@@ -487,6 +487,26 @@
         {% include 'auto_servis/partials/partials-notifikacije-sigurnost-servisi.html' %}
         <!-- END EDIT NOTIFIKACIJE -->
 
+        <!-- PROMENA LOZINKE -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Promena Lozinke Korisničkog Naloga</div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Za promenu lozinke korisničkog naloga e-mail mora da je ispravno unesen i da imate pristup istom!</strong></p>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="{% url 'users:pass-reset' %}" class="btn btn-outline-danger my-1">
+                            <i class="fa fa-chain-broken"></i>&nbsp;Promeni Lozinku
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PROMENA LOZINKE -->
+
         <div class="row" id="brisanje_naloga">
             <div class="col-lg-12">
                 <!-- BRISANJE NALOGA -->
