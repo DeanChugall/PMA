@@ -436,6 +436,7 @@ class SlikeServisa(models.Model):
         verbose_name_plural: str = "Slika Servisa"
         ordering = ["-id"]
 
+    # TODO: KONVERTOVATI SVA VELIKA SLOVA NAZIVA FAJLA U MALA
     def save(self, *args, **kwargs):
         image_resize(self.slika_servisa, 500, 500)
         super().save(*args, **kwargs)

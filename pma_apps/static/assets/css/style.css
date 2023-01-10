@@ -16068,7 +16068,7 @@ ul.inbox-pagination li {
 .profile-cover__img {
     display: flex;
     border-radius: 11px;
-    color: #fff;
+    color: #000;
     position: absolute;
     left: 50px;
     top: 183px;
@@ -16078,9 +16078,9 @@ ul.inbox-pagination li {
 
 .profile-cover__img .profile-img-1>img {
     max-width: 120px;
-    border: 5px solid #ffffff;
-    border-radius: 50%;
-    margin-top: 55px;
+    border: 1px solid #000000;
+    border-radius: 10%;
+    margin-top: 75px;
     margin-left: -9px;
 }
 
