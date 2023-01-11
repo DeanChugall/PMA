@@ -3,25 +3,25 @@
 <!-- PROMENA PROFILA -->
 <div class="col-xl-12">
     <!-- PRIKAZ GRESKE U UNOSU POLJA -->
-    <div class='row'>
-        <div class='col-xl-12'>
-            <div class='card mb-4 text-white bg-indigo-darkest'>
-                <div class='card-header'>
-                    <i class='fa fa-comments'></i>&nbsp;Detalji Zahteva
-                </div>
-                <div class='card-body'>
-                    {% if detalji_vozaca.errors %}
+    {% if detalji_vozaca.errors %}
+        <div class='row'>
+            <div class='col-xl-12'>
+                <div class='card mb-4 text-white bg-indigo-darkest'>
+                    <div class='card-header'>
+                        <i class='fa fa-comments'></i>&nbsp;Detalji Greške
+                    </div>
+                    <div class='card-body'>
                         <div class='alert alert-danger' role='alert'>
                             <strong>
                                 {{ detalji_vozaca.errors }}
                                 {{ detalji_profila_vozaca.errors }}
                             </strong>
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% endif %}
     <!-- END PRIKAZ GRESKE U UNOSU POLJA -->
     <form action=''
         class="ogin100-form validate-form needs-validation"
