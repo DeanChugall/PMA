@@ -52,7 +52,7 @@ make_password('pa_ovde_lozinka')
 
 ---
 
-## Inicijalizacija svih podataka ukoliko mora da se obriše DB (postgres psql):
+## Restore i Bckp svih podataka iz DB-a (postgres pg_dump, psql):
 
 ### BCKP (pg_dump)
 ---
