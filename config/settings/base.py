@@ -228,11 +228,11 @@ AWS_S3_ENDPOINT_URL = env.str("AWS_S3_ENDPOINT_URL", default="")
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
 # STATIC SETTINGS
-USE_SPACES  = env.bool("USE_SPACES", "True")
+USE_SPACES = env.bool("USE_SPACES", "True")
 if USE_SPACES:
     PUBLIC_STATIC_LOCATION = "static"
     STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_STATIC_LOCATION}/"
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 else:
     STATIC_ROOT = str(ROOT_DIR / "staticfiles")
     STATIC_URL = "/static/"

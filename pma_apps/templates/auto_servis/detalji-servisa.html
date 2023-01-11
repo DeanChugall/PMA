@@ -55,7 +55,6 @@
                                                         <!-- END LOGO SERVISA -->
 
                                                         <!-- IME SERVISA -->
-
                                                         <div class="profile-img-content text-dark text-start">
                                                             <br>
                                                             <div class="text-dark">
@@ -154,49 +153,73 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="main-profile-contact-list">
+                                            <!-- BROJ PONUDA -->
                                             <div class="me-5">
                                                 <div class="media mb-4 d-flex">
-                                                    <div class="media-icon bg-secondary bradius me-3 mt-1">
+                                                    <div class="media-icon bg-facebook-gradient bradius me-3 mt-1">
                                                         <i class="fe fe-edit fs-20 text-white"></i>
                                                     </div>
                                                     <div class="media-body">
-                                                        <span class="text-muted">Ponude</span>
+                                                        <span class="text-white">Ponude</span>
                                                         <div class="fw-semibold fs-25">
                                                             {{ broj_ponuda_servisa }}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- END BROJ PONUDA -->
+
+                                            <!-- BROJ POSLOVA -->
+                                            <div class="me-5">
+                                                <div class="media mb-4 d-flex">
+                                                    <div class="media-icon bg-warning-gradient bradius me-3 mt-1">
+                                                        <i class="fa fa-car fa-2x text-white"></i>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <span class="text-white">Poslovi</span>
+                                                        <div class="fw-semibold fs-25">
+                                                            {{ profil_servisa.count_prihvacene_poonude }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END BROJ PONUDA -->
+
+                                            <!-- BROJ UTISAKA -->
                                             <div class="me-5 mt-5 mt-md-0">
                                                 <div class="media mb-4 d-flex">
-                                                    <div class="media-icon bg-danger bradius text-white me-3 mt-1">
+                                                    <div class="media-icon bg-danger-gradient bradius text-white me-3 mt-1">
                                                         <span class="mt-3">
                                                             <i class="fe fe-users fs-20"></i>
                                                         </span>
                                                     </div>
                                                     <div class="media-body">
-                                                        <span class="text-muted">Utisaka</span>
+                                                        <span class="text-white">Utisaka</span>
                                                         <div class="fw-semibold fs-25">
                                                             {{ profil_servisa.countReview }}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- END BROJ UTISAKA -->
+
+                                            <!-- PROSECNA OCENA -->
                                             <div class="me-0 mt-5 mt-md-0">
                                                 <div class="media">
                                                     <div class="media-icon bg-primary text-white bradius me-3 mt-1">
                                                         <span class="mt-3">
-                                                            <i class="fe fe-cast fs-20"></i>
+                                                            <i class="fe fe-star fs-20"></i>
                                                         </span>
                                                     </div>
                                                     <div class="media-body">
-                                                        <span class="text-muted">Srednja Ocena</span>
+                                                        <span class="text-white">Srednja Ocena</span>
                                                         <div class="fw-semibold fs-25">
                                                             {{ profil_servisa.averageReview }}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- END PROSECNA OCENA -->
                                         </div>
                                     </div>
                                 </div>

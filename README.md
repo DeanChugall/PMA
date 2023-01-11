@@ -27,7 +27,7 @@
 ## Korisne komande:
 - Ciscenje svi paketa iz PIP-a: ```pip freeze | xargs pip uninstall -y```
 - Pre-Commit run: ```pre-commit run```
-- HTML pre-commit: ```djhtml -i pma_apps/templates/.```
+- HTML pre-commit: ```djhtml -i pma_apps/templates/ .```
 - Generisanje hash lozinke:
 ```python
 from django.contrib.auth.hashers import make_password
