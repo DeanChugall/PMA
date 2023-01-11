@@ -37,7 +37,7 @@ make_password('pa_ovde_lozinka')
 
 ---
 
-## Inicijalizacija svih podataka ukoliko mora da se obriše DB:
+## Inicijalizacija svih podataka ukoliko mora da se obriše DB (djnago fixture):
 [@see reference](https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata)
 - <b>Čuvanje svih podataka iz DB-a (fixtures):</b>
 - - Prvo se ode u DIR: ``` tests/fixtures_from_db ```
@@ -49,3 +49,16 @@ make_password('pa_ovde_lozinka')
 
 - <b>Učitavanje inicijalnih podataka u novu bazu:</b>
 - - ``` python ../../manage.py loaddata pma-data.json ```
+
+---
+
+## Inicijalizacija svih podataka ukoliko mora da se obriše DB (postgres psql):
+
+## BCKP (pg_dump)
+---
+```python /usr/bin/pg_dump --data-only --file=/putanja/do/dump/fajla/dump.sql --username=pma-database --host=app-61dd23fa-68f7-4bee-9f34-46e041c53f8a-do-user-10633050-0.b.db.ondigitalocean.com --port=25060 ```
+
+
+### Restore (psql)
+---
+```python /usr/bin/psql --file=/putanja/do/dump/fajla/dump.sql --username=pma_database --host=0.0.0.0 --port=5432 ```
