@@ -87,8 +87,14 @@ class DetaljiServisaView(generic.DetailView):
     slug_url_kwarg = "username"
 
     def get_context_data(self, **kwargs):
+        """
+        Broj ponuda servisa se dobija tako sto se pozove metoda 'count_ponude' iz
+        modela @see:'from pma_apps.users.models ServisProfile'.
 
-        # TODO Proslediti broj ponuda servisa
+        :param kwargs: self, kwargs
+        :return: context
+        """
+
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
 
