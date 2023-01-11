@@ -2,8 +2,27 @@
 {% load crispy_forms_tags %}
 <!-- PROMENA PROFILA -->
 <div class="col-xl-12">
-    {{ detalji_vozaca.errors }}
-    {{ detalji_profila_vozaca.errors }}
+    <!-- PRIKAZ GRESKE U UNOSU POLJA -->
+    <div class='row'>
+        <div class='col-xl-12'>
+            <div class='card mb-4 text-white bg-indigo-darkest'>
+                <div class='card-header'>
+                    <i class='fa fa-comments'></i>&nbsp;Detalji Zahteva
+                </div>
+                <div class='card-body'>
+                    {% if detalji_vozaca.errors %}
+                        <div class='alert alert-danger' role='alert'>
+                            <strong>
+                                {{ detalji_vozaca.errors }}
+                                {{ detalji_profila_vozaca.errors }}
+                            </strong>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PRIKAZ GRESKE U UNOSU POLJA -->
     <form action=''
         class="ogin100-form validate-form needs-validation"
         method='POST'
@@ -11,8 +30,6 @@
         novalidate>
         {% csrf_token %}
         {{ detalji_vozaca.role }}
-
-
         <!-- EDIT PROFILA -->
         <div class="card">
             <div class="card-header">
