@@ -54,7 +54,7 @@ make_password('pa_ovde_lozinka')
 
 ## Inicijalizacija svih podataka ukoliko mora da se obriše DB (postgres psql):
 
-## BCKP (pg_dump)
+### BCKP (pg_dump)
 ---
 ```python /usr/bin/pg_dump --data-only --file=/putanja/do/dump/fajla/dump.sql --username=pma-database --host=app-61dd23fa-68f7-4bee-9f34-46e041c53f8a-do-user-10633050-0.b.db.ondigitalocean.com --port=25060 ```
 
