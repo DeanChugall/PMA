@@ -55,10 +55,26 @@ make_password('pa_ovde_lozinka')
 ## Restore i Bckp svih podataka iz DB-a (postgres pg_dump, psql):
 
 ### BCKP (pg_dump)
----
-```python /usr/bin/pg_dump --data-only --file=/putanja/do/dump/fajla/dump.sql --username=pma-database --host=app-61dd23fa-68f7-4bee-9f34-46e041c53f8a-do-user-10633050-0.b.db.ondigitalocean.com --port=25060 ```
 
+---
+
+```shell
+ /usr/bin/pg_dump --data-only --file=/putanja/do/dump/fajla/dump.sql --username=pma-database --host=app-61dd23fa-68f7-4bee-9f34-46e041c53f8a-do-user-10633050-0.b.db.ondigitalocean.com --port=25060
+ ```
 
 ### Restore (psql)
+
 ---
-```python /usr/bin/psql --file=/putanja/do/dump/fajla/dump.sql --username=pma_database --host=0.0.0.0 --port=5432 ```
+
+```shell
+ /usr/bin/psql --file=/putanja/do/dump/fajla/dump.sql --username=pma_database --host=0.0.0.0 --port=5432
+ ```
+
+---
+
+## Change Git username and email
+
+```shell 
+git config --global user.name "your_username"
+git config --global user.email "your_email"
+```
