@@ -62,3 +62,12 @@ make_password('pa_ovde_lozinka')
 ### Restore (psql)
 ---
 ```python /usr/bin/psql --file=/putanja/do/dump/fajla/dump.sql --username=pma_database --host=0.0.0.0 --port=5432 ```
+
+---
+
+## Change Git username and email
+
+```shell 
+git config --global user.name "your_username"
+git config --global user.email "your_email"
+```
