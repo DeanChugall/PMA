@@ -245,24 +245,30 @@
             <div class="card-body">
                 <div class="row">
                     <!-- SLIKA LOGO SERVISA -->
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-6 mb-2">
+                        <img src="{{logo_servisa.slika_logo_servisa.url}}" class="img-fluid rounded-3" style='width:50%; height: 10vw; object-fit: cover;'>
+
                         <div class="form-group">
                             <label class="form-label">Logo Auto Servisa</label>
                             {{ image_form.management_form }}
                             {% for form in slika_logoa_form %}
-                                {{ form.as_p }}
+                                {% render_field form.slika_logo_servisa class="dropify" %}
                             {% endfor %}
                         </div>
                     </div>
                     <!-- END SLIKA LOGO SERVISA -->
 
                     <!-- SLIKA SERVISA -->
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-6 mb-2">
+                        {% for image in slika_servisa %}
+                            <img src="{{ image.slika_servisa.url }}" class="img-fluid rounded-3" style='width:50%; height: 10vw; object-fit: cover;'>
+                        {% endfor %}
+
                         <div class="form-group">
                             <label class="form-label">Slika Auto Servisa</label>
                             {{ slike_servisa_form.management_form }}
                             {% for form in slike_servisa_form %}
-                                {{ form.as_p }}
+                                {% render_field form.slika_servisa class="dropify" %}
                             {% endfor %}
                         </div>
                     </div>

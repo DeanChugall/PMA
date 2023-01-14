@@ -149,6 +149,10 @@ def profil_servisa_update_view(request, username):
         request.POST or None, instance=servis_profile
     )
 
+    # Slika i Logo servisa
+    slika_servisa = SlikeServisa.objects.all().filter(servis=servis_profile)[:1]
+    logo_servisa = SlikaLogoServisa.objects.all().filter(servis=servis_profile).first()
+
     if request.method == "POST":
 
         slika_servisa_image_form = slika_auto_servisa_form_set(
@@ -197,6 +201,8 @@ def profil_servisa_update_view(request, username):
         "slika_logoa_form": slika_logoa_form_set(
             queryset=SlikaLogoServisa.objects.none()
         ),
+        "slika_servisa": slika_servisa,
+        "logo_servisa": logo_servisa,
     }
 
     return render(request, "auto_servis/uredi-auto-servis.html", context)
