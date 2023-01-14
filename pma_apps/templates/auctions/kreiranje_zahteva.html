@@ -59,6 +59,7 @@
                                     </div>
                                     <!-- END OBAVESTENJE USPESNO KREIRAN ZAHTEV -->
                                 {% else %}
+                                    <!-- NASLOV ZAHTEVA -->
                                     <div class="card-body">
                                         <div class="row mb-4">
                                             <label class="col-md-3 form-label">Kratak Opis Zahteva:</label>
@@ -67,6 +68,9 @@
                                                 <div class="invalid-feedback m-1">Unesite Kratak Opis Zahteva!</div>
                                             </div>
                                         </div>
+                                        <!-- END NASLOV ZAHTEVA -->
+
+                                        <!-- KATEGORIJA ZAHTEVA -->
                                         <div class="row mb-4">
                                             <label class="col-md-3 form-label">Kategorija Zahteva:</label>
                                             <div class="col-md-9">
@@ -74,8 +78,9 @@
                                                 <div class="invalid-feedback m-1">Unesite Kategoriju Zahteva!</div>
                                             </div>
                                         </div>
+                                        <!-- END KATEGORIJA ZAHTEVA -->
 
-                                        <!-- Row -->
+                                        <!-- DETALJAN OPIS ZAHTEVA -->
                                         <div class="row">
                                             <label class="col-md-3 form-label mb-4">Detaljan Opis Zahteva:</label>
                                             <div class="col-md-9 mb-4">
@@ -83,68 +88,24 @@
                                                 <div class="invalid-feedback m-1">Unesite Detaljan Opis Zahteva!</div>
                                             </div>
                                         </div>
-                                        <!--End Row-->
+                                        <!-- END DETALJAN OPIS ZAHTEVA -->
 
-                                        <!--Row-->
+                                        <!-- SLIKA ZAHTEVA -->
                                         <div class="row">
                                             <label class="col-md-3 form-label mb-4">Slika Vašeg Automobila:</label>
                                             <div class="col-md-9">
                                                 {{ image_form.management_form }}
-
-<!--                                                 <div class="col-lg-12 col-sm-12 mb-12 mb-lg-12">-->
-<!--                                                <input type="file" class="dropify" data-bs-height="180" />-->
-<!--                                            </div>-->
-
                                                 {% for form in image_form %}
-                                                {% render_field form.image class="dropify" %}
+                                                    {% render_field form.image class="dropify" %}
                                                 {% endfor %}
                                             </div>
                                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--                                        <div class="card-header">-->
-<!--                                        <h3 class="card-title">File Upload</h3>-->
-<!--                                    </div>-->
-<!--                                    <div class=" card-body">-->
-<!--                                        <div class="row mb-5">-->
-<!--                                            <div class="col-lg-12 col-sm-12 mb-12 mb-lg-12">-->
-<!--                                                <input type="file" class="dropify" data-bs-height="180" />-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                    </div>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                        <!-- END SLIKA ZAHTEVA -->
                                     </div>
+
+                                    <!--BTN KREIRANJA i ODUSTAJANJA ZAHTEVA-->
                                     <div class="card-footer">
-                                        <!--Row-->
+
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-9">
@@ -156,7 +117,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <!--End Row-->
+                                        <!--END BTN KREIRANJA i ODUSTAJANJA ZAHTEVA-->
                                     </div>
                                 {% endif %}
                             </div>
