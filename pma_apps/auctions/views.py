@@ -189,19 +189,19 @@ def kreiranje_zahteva_view(request):
     profil_vozaca = VozacProfile.objects.get(user=request.user)
 
     if request.method == "POST":
-        auction_form = AuctionForm(request.POST, request.FILES)
+        zahtev_form = AuctionForm(request.POST, request.FILES)
         image_form = image_form_set(
             request.POST, request.FILES, queryset=Image.objects.none()
         )
 
-        if auction_form.is_valid() and image_form.is_valid():
-            new_auction = auction_form.save(commit=False)
+        if zahtev_form.is_valid() and image_form.is_valid():
+            new_auction = zahtev_form.save(commit=False)
             new_auction.creator = request.user
             new_auction.save()
 
-            for auction_form in image_form.cleaned_data:
-                if auction_form:
-                    image = auction_form["image"]
+            for zahtev_form in image_form.cleaned_data:
+                if zahtev_form:
+                    image = zahtev_form["image"]
 
                     new_image = Image(auction=new_auction, image=image)
                     new_image.save()
