@@ -90,11 +90,58 @@
                                             <label class="col-md-3 form-label mb-4">Slika Vašeg Automobila:</label>
                                             <div class="col-md-9">
                                                 {{ image_form.management_form }}
+
+<!--                                                 <div class="col-lg-12 col-sm-12 mb-12 mb-lg-12">-->
+<!--                                                <input type="file" class="dropify" data-bs-height="180" />-->
+<!--                                            </div>-->
+
                                                 {% for form in image_form %}
-                                                    {{ form.as_p }}
+                                                {% render_field form.image class="dropify" %}
                                                 {% endfor %}
                                             </div>
                                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                                        <div class="card-header">-->
+<!--                                        <h3 class="card-title">File Upload</h3>-->
+<!--                                    </div>-->
+<!--                                    <div class=" card-body">-->
+<!--                                        <div class="row mb-5">-->
+<!--                                            <div class="col-lg-12 col-sm-12 mb-12 mb-lg-12">-->
+<!--                                                <input type="file" class="dropify" data-bs-height="180" />-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     </div>
                                     <div class="card-footer">
                                         <!--Row-->
@@ -318,4 +365,8 @@
 
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.8.3"></script>
+
+    <!-- FILE UPLOADES JS -->
+    <script src="{% static 'assets/plugins/fileuploads/js/fileupload.js' %}"></script>
+    <script src="{% static 'assets/plugins/fileuploads/js/file-upload.js' %}"></script>
 {% endblock extra-javascript %}

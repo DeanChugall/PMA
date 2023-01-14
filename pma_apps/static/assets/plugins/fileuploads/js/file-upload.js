@@ -1,12 +1,11 @@
 $('.dropify').dropify({
 	messages: {
-		'default': 'Drag and drop a file here or click',
-		'replace': 'Drag and drop or click to replace',
-		'remove': 'Remove',
-		'error': 'Ooops, something wrong appended.'
+		'default': 'Prevucite i otpustite sliku ovde ili samo kliknite da postavite sliku!',
+		'replace': 'Prevucite i otpustite ili samo kliknite da biste zamenili sliku!',
+		'remove': 'Ukloni',
+		'error': 'Ups, nešto se desilo što ne bi trebalo!'
 	},
 	error: {
-		'fileSize': 'The file size is too big (2M max).'
+		'fileSize': 'Veličina slike je prevelika (maksimalno 2mb).'
 	}
 });
-	
