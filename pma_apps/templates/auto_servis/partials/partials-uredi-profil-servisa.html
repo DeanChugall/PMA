@@ -24,7 +24,7 @@
         </div>
     {% endif %}
     <!-- END PRIKAZ GRESKE U UNOSU POLJA -->
-    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate>
+    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate id="submit-profil-servisa">
         {% csrf_token %}
         {{ detalji_servisa.role }}
 
@@ -562,6 +562,32 @@
             </div>
         </div>
     </form>
+
+    <!-- MODAL UCITAVANJA PROMENE PROFILA SERVISA -->
+    <div id="ucitavanje_profila-servisa_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3 class="modal-title">Učitavanje Profila...</h3>
+                    <div class="example">
+                        <div class="progress progress-md mb-3">
+                            <div class="progress-bar progress-bar-indeterminate bg-pink"></div>
+                        </div>
+                        <div class="progress progress-md mb-3">
+                            <div class="progress-bar progress-bar-indeterminate bg-yellow-1"></div>
+                        </div>
+                        <div class="progress progress-md mb-3">
+                            <div class="progress-bar progress-bar-indeterminate bg-blue-1"></div>
+                        </div>
+                        <div class="progress progress-md">
+                            <div class="progress-bar progress-bar-indeterminate bg-purple-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL UCITAVANJA PROMENE PROFILA SERVISA -->
 
 </div>
 <!-- END PROMENA PROFILA -->
