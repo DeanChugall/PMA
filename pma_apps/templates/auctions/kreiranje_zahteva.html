@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- FORMA UNOSA ZAHTEVA -->
-                        <form  action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate>
+                        <form  action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate id="submit-button">
                             {% csrf_token %}
                             <div class="card">
                                 <div class="card-header">
@@ -121,6 +121,32 @@
                                     </div>
                                 {% endif %}
                             </div>
+
+                            <!--MODAL UCITAVANJA ZAHTEVA ZAHTEVA-->
+                            <div id="ucitavanje_zahteva_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h3 class="modal-title">Učitavanje Zahteva...</h3>
+                                            <div class="example">
+                                                <div class="progress progress-md mb-3">
+                                                    <div class="progress-bar progress-bar-indeterminate bg-pink"></div>
+                                                </div>
+                                                <div class="progress progress-md mb-3">
+                                                    <div class="progress-bar progress-bar-indeterminate bg-yellow-1"></div>
+                                                </div>
+                                                <div class="progress progress-md mb-3">
+                                                    <div class="progress-bar progress-bar-indeterminate bg-blue-1"></div>
+                                                </div>
+                                                <div class="progress progress-md">
+                                                    <div class="progress-bar progress-bar-indeterminate bg-purple-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END MODAL UCITAVANJA ZAHTEVA ZAHTEVA-->
                         </form>
                         <!-- END FORMA UNOSA ZAHTEVA -->
                     </div>
@@ -330,4 +356,7 @@
     <!-- FILE UPLOADES JS -->
     <script src="{% static 'assets/plugins/fileuploads/js/fileupload.js' %}"></script>
     <script src="{% static 'assets/plugins/fileuploads/js/file-upload.js' %}"></script>
+
+    <!-- CEKAJ DA SE UCITA ZAHTEV NA DO SPACE JS -->
+    <script src="{% static 'assets/js/modal-ucitavanja-zahteva.js' %}"></script>
 {% endblock extra-javascript %}
