@@ -595,15 +595,18 @@ def watchlist_edit(request, zahtev_id, reverse_method):
 @login_required
 def ponuda_zahteva_view(request, zahtev_id):
     """
-    View za postavljanje Ponuda Servisera na Zahtev Vozaca.
+    View za postavljanje Ponuda Servisera na Zahtev Vozaca. Takodje i slanja email-a Servisu i Vozacu.
     """
     auction = Auction.objects.get(id=zahtev_id)
+
+    # Podaci iz POST-a ponude
     amount = Decimal(re.sub(r"[^0-9]", "", request.POST["amount"]))
+    opis_ponude = request.POST["opis_ponude"]
+
+    profil_servisa = ServisProfile.objects.get(user_id=request.user.id)
 
     # Get Ponudu Servisa
     ponuda = Bid.objects.filter(auction_id=auction.id).first()
-
-    profil_servisa = ServisProfile.objects.get(user_id=request.user.id)
 
     auction.current_bid = amount
 
@@ -649,7 +652,8 @@ def ponuda_zahteva_view(request, zahtev_id):
                     f"Adresa: {profil_servisa.adresa_servisa}\n"
                     f"Telefon Vlasnika: {profil_servisa.broj_telefona_vlasnika}\n"
                     f"Telefon Servisa: {profil_servisa.broj_telefona_servisa}\n"
-                    f"Opis Ponude: {ponuda.opis_ponude}\n"
+                    f"Cena: {amount}\n"
+                    f"Opis Ponude: {opis_ponude}\n"
                     f"\n"
                     f"Srdačan pozdrav, 'Vaš Popravi Moj Auto'.",
                     settings.EMAIL_HOST_USER,
@@ -664,6 +668,10 @@ def ponuda_zahteva_view(request, zahtev_id):
                     f"Opis Zahteva: {ponuda.auction.description}\n"
                     f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
                     f"\n"
+                    f"---------------------------------------------------------------------------------\n"
+                    f"Cena: {amount}\n"
+                    f"Opis Ponude: {opis_ponude}\n"
+                    f"---------------------------------------------------------------------------------\n\n"
                     f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
                     settings.EMAIL_HOST_USER,
                     [email_servis],
@@ -717,7 +725,6 @@ class IzmeniPonuduZahtevaView(LoginRequiredMixin, generic.UpdateView):
         # Uradi update za polje current_bid da bi se prikazala vrednost na frontu.
         self.object.auction.current_bid = self.object.amount
         self.object.auction.save()
-        print(self.request.POST)
         form.save()
         return HttpResponseRedirect(success_url)
 
