@@ -71,21 +71,29 @@ def category_details_view(request, category_name):
     """
 
     category = get_object_or_404(Category, category_name=category_name)
-    auctions = (
-        Auction.objects.filter(category=category)
+    # auctions = (
+    #     Auction.objects.filter(category=category)
+    #     .filter(active=True)
+    #     .order_by("-date_created")
+    # )
+
+    auctions = FilterZahtevaPoGradovima(
+        request.GET,
+        queryset=Auction.objects.filter(category=category)
         .filter(active=True)
-        .order_by("-date_created")
+        .order_by("-date_created"),
     )
+
     id_pracenog_zahteva = request.user.watchlist.all()
 
-    for auction in auctions:
+    for auction in auctions.qs:
         auction.image = auction.get_images.first()
         auction.amount = auction.get_bids.first()
         auction.user = auction.creator.get_profil_vozaca
 
     # Show 3 active auctions per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions, 9)
+    paginator = Paginator(auctions.qs, 9)
     try:
         pages = paginator.page(page)
     except PageNotAnInteger:
@@ -93,16 +101,28 @@ def category_details_view(request, category_name):
     except EmptyPage:
         pages = paginator.page(paginator.num_pages)
 
+    # Prosledi URL parametar ako ima u GET-u za paginaciju.
+    get_grad_pagination_url = request.GET.get("creator__grad")
+
+    # Samo za prikaz grada u Title HTML-a
+    if request.GET.get("creator__grad"):
+        grad_filtera = request.GET.get("creator__grad").split("|")[0]
+    else:
+        grad_filtera = ""
+
     return render(
         request,
         "auctions/auctions_category.html",
         {
             "categories": Category.objects.all(),
-            "auctions": auctions,
-            "auctions_count": auctions.count(),
+            "auctions": auctions.qs,
+            "auctions_form": auctions.form,
+            "auctions_count": auctions.qs.count(),
             "pages": pages,
             "title": category.category_name,
             "id_pracenog_zahteva": id_pracenog_zahteva,
+            "get_grad_pagination_url": get_grad_pagination_url,
+            "grad_filtera": grad_filtera,
         },
     )
 
@@ -493,20 +513,16 @@ def aktivni_zahtevi_view(request):
 
     category_name = request.GET.get("category_name", None)
 
+    # Filtriranje Zahteva po gradovima
     if category_name is not None:
         auctions = FilterZahtevaPoGradovima(
             request.GET,
             queryset=Auction.objects.filter(active=True, category=category_name),
         )
-
-        # auctions = Auction.objects.filter(active=True, category=category_name)
     else:
-        # auctions = Auction.objects.filter(active=True)
         auctions = FilterZahtevaPoGradovima(
             request.GET, queryset=Auction.objects.filter(active=True)
         )
-
-    # Filtriranje Zahteva po gradovima
 
     for auction in auctions.qs:
         auction.image = auction.get_images.first()
@@ -527,14 +543,12 @@ def aktivni_zahtevi_view(request):
     except EmptyPage:
         pages = paginator.page(paginator.num_pages)
 
-    get_grad_pagination_url = request.GET.get(
-        "creator__grad"
-    )  # Prosledi URL parametar ako ima u GET-u za paginaciju.
+    # Prosledi URL parametar ako ima u GET-u za paginaciju.
+    get_grad_pagination_url = request.GET.get("creator__grad")
 
+    # Samo za prikaz grada u Title HTML-a
     if request.GET.get("creator__grad"):
-        grad_filtera = request.GET.get("creator__grad").split("|")[
-            0
-        ]  # Samo za prikaz grada u Title HTML-a/
+        grad_filtera = request.GET.get("creator__grad").split("|")[0]
     else:
         grad_filtera = ""
 

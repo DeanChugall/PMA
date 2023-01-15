@@ -1,5 +1,6 @@
 {% extends "auctions/auctions_base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}{{ title }} {% endblock %}
 
@@ -44,6 +45,13 @@
                                             <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block p-3">
                                                 <i class="fa fa-plus-square me-2"></i><strong>Novi Zahtev</strong>
                                             </a>
+                                        </div>
+                                     {% else %}
+                                        <div class="col-xl-4 col-lg-4 ">
+                                            <form method="GET" action="">
+                                                {% render_field auctions_form.creator__grad class="form-control" %}
+                                                <input type="submit" value="Filtriranje Po Gradu" class="btn btn-primary btn-block mt-3" />
+                                            </form>
                                         </div>
                                     {% endif %}
                                 </div>
@@ -210,7 +218,7 @@
                                                     <ul class='pagination'>
                                                         {% if pages.has_previous %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>
+                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}{% if get_grad_pagination_url %}&creator__grad={{ get_grad_pagination_url }}{% endif %}'>
                                                                     &laquo;
                                                                 </a>
                                                             </li>
@@ -226,13 +234,13 @@
                                                                 </li>
                                                             {% else %}
                                                                 <li class='page-item'>
-                                                                    <a class='page-link' href='?page={{ i }}'>{{ i }}</a>
+                                                                    <a class='page-link' href='?page={{ i }}{% if get_grad_pagination_url %}&creator__grad={{ get_grad_pagination_url }}{% endif %}'>{{ i }}</a>
                                                                 </li>
                                                             {% endif %}
                                                         {% endfor %}
                                                         {% if pages.has_next %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.next_page_number }}'>
+                                                                <a class='page-link' href='?page={{ pages.next_page_number }}{% if get_grad_pagination_url %}&creator__grad={{ get_grad_pagination_url }}{% endif %}'>
                                                                     &raquo;
                                                                 </a>
                                                             </li>
