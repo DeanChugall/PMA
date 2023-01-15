@@ -1,5 +1,6 @@
 {% extends "auctions/auctions_base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %} Aktivni Zahtevi Vozača {% endblock %}
 
@@ -19,11 +20,11 @@
             <div class="main-container container-fluid">
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Svi Aktivni Zahtevi</h1>
+                    <h1 class="page-title">Svi Aktivni Zahtevi{% if grad_filtera %}: {{grad_filtera}}{% endif %}</h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item" aria-current="page"><a href="{% url 'ponude:ponude' %}">Početna</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Aktivni Zahtevi</li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'ponude:aktivni_zahtevi' %}">Aktivni Zahtevi</a></li>
                         </ol>
                     </div>
                 </div>
@@ -32,7 +33,7 @@
                 <!-- ROW-1 OPEN -->
                 <div class="row row-cards">
                     <div class="col-xl-12 col-lg-12">
-                        <!-- HEADER SEARCH---NOVI ZAHTEV ... -->
+                        <!-- FILTER --- NOVI ZAHTEV ... -->
                         <div class="row ">
                             <div class="col-xl-12">
                                 <div class="card p-2 card-block justify-content-between align-items-end">
@@ -42,12 +43,18 @@
                                                 <i class="fa fa-plus-square me-2"></i><strong>Novi Zahtev</strong>
                                             </a>
                                         </div>
+                                    {% else %}
+                                        <div class="col-xl-4 col-lg-4 ">
+                                            <form method="GET" action="{% url 'ponude:aktivni_zahtevi' %}">
+                                                {% render_field auctions_form.creator__grad class="form-control" %}
+                                                <input type="submit" value="Filtriranje Po Gradu" class="btn btn-primary btn-block mt-3" />
+                                            </form>
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
-                        <!-- END HEADER SEARCH---NOVI ZAHTEV ... -->
-
+                        <!-- END FILTER --- NOVI ZAHTEV ... -->
                         <div class="tab-content">
                             <!-- CARD PREGLED U KOCKICAMA -->
                             <div class="tab-pane active" id="tab-11">
@@ -207,7 +214,7 @@
                                                     <ul class='pagination'>
                                                         {% if pages.has_previous %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>
+                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}{% if get_grad_pagination_url %}&creator__grad={{ get_grad_pagination_url }}{% endif %}'>
                                                                     &laquo;
                                                                 </a>
                                                             </li>
@@ -223,13 +230,13 @@
                                                                 </li>
                                                             {% else %}
                                                                 <li class='page-item'>
-                                                                    <a class='page-link' href='?page={{ i }}'>{{ i }}</a>
+                                                                    <a class='page-link' href='?page={{ i }}{% if get_grad_pagination_url %}&creator__grad={{ get_grad_pagination_url }}{% endif %}'>{{ i }}</a>
                                                                 </li>
                                                             {% endif %}
                                                         {% endfor %}
                                                         {% if pages.has_next %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.next_page_number }}'>
+                                                                <a class='page-link' href='?page={{ pages.next_page_number }}{% if get_grad_pagination_url %}&creator__grad={{ get_grad_pagination_url }}{% endif %}'>
                                                                     &raquo;
                                                                 </a>
                                                             </li>

@@ -15,6 +15,7 @@ from django.shortcuts import get_object_or_404, render, resolve_url
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
+from pma_apps.auctions.filters import FilterZahtevaPoGradovima
 from pma_apps.auctions.forms import AuctionForm, BidForm, CommentForm, ImageForm
 from pma_apps.auctions.models import Auction, Bid, Category, Image
 from pma_apps.users.models import ServisProfile, VozacProfile
@@ -493,11 +494,21 @@ def aktivni_zahtevi_view(request):
     category_name = request.GET.get("category_name", None)
 
     if category_name is not None:
-        auctions = Auction.objects.filter(active=True, category=category_name)
-    else:
-        auctions = Auction.objects.filter(active=True)
+        auctions = FilterZahtevaPoGradovima(
+            request.GET,
+            queryset=Auction.objects.filter(active=True, category=category_name),
+        )
 
-    for auction in auctions:
+        # auctions = Auction.objects.filter(active=True, category=category_name)
+    else:
+        # auctions = Auction.objects.filter(active=True)
+        auctions = FilterZahtevaPoGradovima(
+            request.GET, queryset=Auction.objects.filter(active=True)
+        )
+
+    # Filtriranje Zahteva po gradovima
+
+    for auction in auctions.qs:
         auction.image = auction.get_images.first()
         auction.user = auction.creator.get_profil_vozaca
 
@@ -506,9 +517,9 @@ def aktivni_zahtevi_view(request):
         else:
             auction.is_watched = False
 
-    # Show 3 active auctions per page
+    # Show 9 active auctions per page
     page = request.GET.get("page", 1)
-    paginator = Paginator(auctions, 9)
+    paginator = Paginator(auctions.qs, 9)
     try:
         pages = paginator.page(page)
     except PageNotAnInteger:
@@ -516,16 +527,30 @@ def aktivni_zahtevi_view(request):
     except EmptyPage:
         pages = paginator.page(paginator.num_pages)
 
+    get_grad_pagination_url = request.GET.get(
+        "creator__grad"
+    )  # Prosledi URL parametar ako ima u GET-u za paginaciju.
+
+    if request.GET.get("creator__grad"):
+        grad_filtera = request.GET.get("creator__grad").split("|")[
+            0
+        ]  # Samo za prikaz grada u Title HTML-a/
+    else:
+        grad_filtera = ""
+
     return render(
         request,
         "auctions/aktivni_zahtevi.html",
         {
             "categories": Category.objects.all(),
-            "auctions": auctions,
-            "auctions_count": auctions.count(),
+            "auctions": auctions.qs,
+            "auctions_count": auctions.qs.count(),
             "pages": pages,
             "title": "Aktivni Zahtevi Auctions",
             "id_pracenog_zahteva": id_pracenog_zahteva,
+            "auctions_form": auctions.form,
+            "get_grad_pagination_url": get_grad_pagination_url,
+            "grad_filtera": grad_filtera,
         },
     )
 
