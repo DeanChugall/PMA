@@ -24,7 +24,7 @@
         </div>
     {% endif %}
     <!-- END PRIKAZ GRESKE U UNOSU POLJA -->
-    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' novalidate id="submit-profil-servisa">
+    <form action='' class="ogin100-form validate-form needs-validation" method='POST' enctype='multipart/form-data' id="submit-profil-servisa">
         {% csrf_token %}
         {{ detalji_servisa.role }}
 
@@ -246,11 +246,13 @@
                 <div class="row">
                     <!-- SLIKA LOGO SERVISA -->
                     <div class="col-md-6 mb-2">
-                        <img src="{{logo_servisa.slika_logo_servisa.url}}" class="img-fluid rounded-3" style='width:50%; height: 10vw; object-fit: cover;'>
+                        {% for image in slika_logo_servisa %}
+                            <img src="{{logo_servisa.slika_logo_servisa.url}}" class="img-fluid rounded-3" style='width:50%; height: 10vw; object-fit: cover;'>
+                        {% endfor %}
 
                         <div class="form-group">
                             <label class="form-label">Logo Auto Servisa</label>
-                            {{ image_form.management_form }}
+                            {{ slika_logoa_form.management_form }}
                             {% for form in slika_logoa_form %}
                                 {% render_field form.slika_logo_servisa class="dropify" %}
                             {% endfor %}
