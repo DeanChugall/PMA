@@ -1,5 +1,6 @@
 {% extends "auto_servis/auto-servis-base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %} Lista Svih Auto Servisa {% endblock %}
 
@@ -44,29 +45,29 @@
                                 <div class="card p-0">
                                     <div class="card-body p-4">
                                         <div class="row">
-                                            <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="input-group d-flex w-100 float-start input-group-lg">
-                                                    <input type="text"
-                                                        class="form-control border-end-0 my-2"
-                                                        placeholder="Pretraga ...">
-                                                    <button class="btn input-group-text bg-transparent border-start-0 text-muted my-2">
-                                                        <i class="fe fe-search text-muted" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            {% if user.role == "VOZAC" %}
-                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
-                                                    <ul class="nav item2-gl-menu float-end my-2">
-                                                        <li class="border-end">
 
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-12">
+                                            {% if user.role == "VOZAC" %}
+
+                                                <div class="col-xl-8 col-lg-8">
                                                     <a href="{% url 'ponude:kreiranje_zahteva' %}"
                                                         class="btn btn-primary btn-block float-end my-2 p-3">
                                                         <i class="fa fa-plus-square me-2"></i>Novi Zahtev
                                                     </a>
+                                                </div>
+                                                <div class="col-xl-1 col-lg-1 ">
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 ">
+                                                    <form method="GET" action="{% url 'auto_servis:lista_svih_servisa' %}">
+                                                        {% render_field profil_servisa_form.grad_auto_servisa class="form-control" %}
+                                                        <input type="submit" value="Filtriranje Po Gradu" class="btn btn-primary btn-block mt-3" />
+                                                    </form>
+                                                </div>
+                                            {% else %}
+                                                <div class="col-xl-3 col-lg-3 ">
+                                                    <form method="GET" action="{% url 'auto_servis:lista_svih_servisa' %}">
+                                                        {% render_field profil_servisa_form.grad_auto_servisa class="form-control" %}
+                                                        <input type="submit" value="Filtriranje Po Gradu" class="btn btn-primary btn-block mt-3" />
+                                                    </form>
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -319,7 +320,7 @@
                                                     <ul class='pagination'>
                                                         {% if pages.has_previous %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}'>
+                                                                <a class='page-link' href='?page={{ pages.previous_page_number }}{% if get_grad_servisa_pagination_url %}&grad_auto_servisa={{ get_grad_servisa_pagination_url }}{% endif %}'>
                                                                     &laquo;
                                                                 </a>
                                                             </li>
@@ -334,14 +335,18 @@
                                                                     <a class='page-link' href='#'>{{ i }}</a>
                                                                 </li>
                                                             {% else %}
+
                                                                 <li class='page-item'>
-                                                                    <a class='page-link' href='?page={{ i }}'>{{ i }}</a>
+                                                                    <a class='page-link'
+                                                                       href='?page={{ i }}{% if get_grad_servisa_pagination_url %}&grad_auto_servisa={{ get_grad_servisa_pagination_url }}{% endif %}'>
+                                                                        {{ i }}
+                                                                    </a>
                                                                 </li>
                                                             {% endif %}
                                                         {% endfor %}
                                                         {% if pages.has_next %}
                                                             <li class='page-item'>
-                                                                <a class='page-link' href='?page={{ pages.next_page_number }}'>
+                                                                <a class='page-link' href='?page={{ pages.next_page_number }}{% if get_grad_servisa_pagination_url %}&grad_auto_servisa={{ get_grad_servisa_pagination_url }}{% endif %}'>
                                                                     &raquo;
                                                                 </a>
                                                             </li>

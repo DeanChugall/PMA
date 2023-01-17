@@ -15,6 +15,7 @@ from django.urls import reverse
 from django.views import generic
 
 from pma_apps.auctions.models import Auction, Bid, Category
+from pma_apps.auto_servisi.filters import FilterServisaPoGradovima
 from pma_apps.auto_servisi.forms import (
     ImageLogoaServisaForm,
     ImageServisaForm,
@@ -214,10 +215,17 @@ class ListaSvihServisaView(generic.ListView):
 
     def get_context_data(self, **kwargs):
 
-        profil_servisa = ServisProfile.objects.all()
+        # profil_servisa = FilterServisaPoGradovima(ServisProfile.objects.all()
+        profil_servisa = FilterServisaPoGradovima(
+            self.request.GET,
+            queryset=ServisProfile.objects.all(),
+        )
+
+        # Prosledi URL parametar ako ima u GET-u za paginaciju.
+        get_grad_servisa_pagination_url = self.request.GET.get("grad_auto_servisa")
 
         # Get Last uploaded logo image for Servis
-        for servis in profil_servisa:
+        for servis in profil_servisa.qs:
             servis.slika_logo_servisa = servis.get_slika_logo_servisa.first()
             servis.prosek_rating = servis.averageReview
             servis.rating = servis.countReview
@@ -225,7 +233,7 @@ class ListaSvihServisaView(generic.ListView):
             servis.prihvacene_ponude = servis.count_prihvacene_poonude
 
         page = self.request.GET.get("page", 1)
-        paginator = Paginator(profil_servisa, 10)
+        paginator = Paginator(profil_servisa.qs, 10)
 
         try:
             pages = paginator.page(page)
@@ -235,15 +243,17 @@ class ListaSvihServisaView(generic.ListView):
             pages = paginator.page(paginator.num_pages)
 
         context = {
-            "profil_servisa": profil_servisa,
+            "profil_servisa": profil_servisa.qs,
+            "profil_servisa_form": profil_servisa.form,
             "categories": Category.objects.all(),
             "pages": pages,
+            "get_grad_servisa_pagination_url": get_grad_servisa_pagination_url,
         }
 
         return context
 
     def get_queryset(self):
-        queryset = ServisProfile.objects.all()
+        queryset = (ServisProfile.objects.all(),)
         return queryset
 
 
