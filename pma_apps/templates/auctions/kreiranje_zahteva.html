@@ -105,7 +105,6 @@
 
                                     <!--BTN KREIRANJA i ODUSTAJANJA ZAHTEVA-->
                                     <div class="card-footer">
-
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-9">
@@ -157,163 +156,175 @@
                     <div class="col-xl-12">
                         <div class="card p-0">
                             <div class="card-body p-4">
+                                <div class="row">
+                                    <!-- VIN BROJ -->
+                                    <div class="col-md-12 col-xl-12">
+                                        <h1 class="page-title">Podaci Automobila</h1>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="{% url 'users:izmena_profila_vozaca' user.username %}#automobil" class="btn btn-outline-primary btn float-end">
+                                            <i class="fa fa-edit"></i> Izmeni Podatke Automobila
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <hr/>
+
+                                <!-- PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
+                                <div class="row">
+                                    <!-- VIN BROJ -->
+                                    <div class="col-md-6 col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">VIN BROJ (broj šasije):</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.vin|default_if_none:"VIN" }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END VIN BROJ -->
+
+                                    <!-- KILOMETRAZA -->
+                                    <div class="col-md-6 col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">KILOMETRAŽA:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.kilometraza|default_if_none:"0 km" }}</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- END KILOMETRAZA -->
+                                </div>
+                                <!-- END PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
+
+                                <!-- PODACI O AUTOMOBILU (MARKA, MODEL, GODISTE) -->
+                                <div class="row">
+                                    <!-- MARKA -->
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card">
+                                            <div class="card-header br-te-3 br-ts-3" style="background-color: #6c5ffc;">
+                                                <h3 class="card-title text-white">MARKA:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.marka|default_if_none:"marka" }}</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- END MARKA -->
+
+                                    <!-- MODEL -->
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">MODEL:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.modell|default_if_none:"model" }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END MODEL -->
+
+                                    <!-- GODISTE -->
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">GODIŠTE:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.godiste|default_if_none:"godiste" }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END GODISTE -->
+                                </div>
+                                <!-- END PODACI O AUTOMOBILU (MARKA, MODEL, GODISTE) -->
+
+                                <!-- PODACI O AUTOMOBILU (GORIVO, ZAPREMINA, SNAGA) -->
+                                <div class="row">
+                                    <!-- GORIVO -->
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">VRSTA GORIVA:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.vrsta_goriva|default_if_none:"vrsta goriva" }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END GORIVO -->
+
+                                    <!-- ZAPREMINA -->
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">ZAPREMINA MOTORA:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.zapremina_motora|default_if_none:"0 ccm" }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END ZAPREMINA -->
+
+                                    <!-- SNAGA -->
+                                    <div class="SNAGA col-xl-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary br-te-3 br-ts-3">
+                                                <h3 class="card-title text-white">SNAGA MOTORA:</h3>
+                                                <div class="card-options ">
+                                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
+                                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h3>{{ profil_vozaca.snaga_motora|default_if_none:"0 ks / 0 kw" }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END GODISTE -->
+                                </div>
+                                <!-- END PODACI O AUTOMOBILU (GORIVO, ZAPREMINA, SNAGA) -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <h1 class="page-title">Podaci Automobila</h1>
-                <hr/>
 
-                <!-- PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
-                <div class="row">
-                    <!-- VIN BROJ -->
-                    <div class="col-md-6 col-xl-6">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">VIN BROJ (broj šasije):</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.vin|default_if_none:"VIN" }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END VIN BROJ -->
-
-                    <!-- KILOMETRAZA -->
-                    <div class="col-md-6 col-xl-6">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">KILOMETRAŽA:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.kilometraza|default_if_none:"0 km" }}</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END KILOMETRAZA -->
-                </div>
-                <!-- END PODACI O AUTOMOBILU (VIN BROJ, KILOMETRAZA) -->
-
-                <!-- PODACI O AUTOMOBILU (MARKA, MODEL, GODISTE) -->
-                <div class="row">
-                    <!-- MARKA -->
-                    <div class="col-md-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header br-te-3 br-ts-3" style="background-color: #6c5ffc;">
-                                <h3 class="card-title text-white">MARKA:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.marka|default_if_none:"marka" }}</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- END MARKA -->
-
-                    <!-- MODEL -->
-                    <div class="col-md-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">MODEL:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.modell|default_if_none:"model" }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END MODEL -->
-
-                    <!-- GODISTE -->
-                    <div class="col-md-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">GODIŠTE:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.godiste|default_if_none:"godiste" }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END GODISTE -->
-                </div>
-                <!-- END PODACI O AUTOMOBILU (MARKA, MODEL, GODISTE) -->
-
-                <!-- PODACI O AUTOMOBILU (GORIVO, ZAPREMINA, SNAGA) -->
-                <div class="row">
-                    <!-- GORIVO -->
-                    <div class="col-md-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">VRSTA GORIVA:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.vrsta_goriva|default_if_none:"vrsta goriva" }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END GORIVO -->
-
-                    <!-- ZAPREMINA -->
-                    <div class="col-md-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">ZAPREMINA MOTORA:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.zapremina_motora|default_if_none:"0 ccm" }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END ZAPREMINA -->
-
-                    <!-- SNAGA -->
-                    <div class="SNAGA col-xl-4">
-                        <div class="card">
-                            <div class="card-header bg-primary br-te-3 br-ts-3">
-                                <h3 class="card-title text-white">SNAGA MOTORA:</h3>
-                                <div class="card-options ">
-                                    <a href="javascript:void(0)" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up text-white"></i></a>
-                                    <a href="javascript:void(0)" class="card-options-remove" data-bs-toggle="card-remove"><i class="fe fe-x text-white"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h3>{{ profil_vozaca.snaga_motora|default_if_none:"0 ks / 0 kw" }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END GODISTE -->
-                </div>
-                <!-- END PODACI O AUTOMOBILU (GORIVO, ZAPREMINA, SNAGA) -->
             </div>
             <!-- CONTAINER CLOSED -->
         </div>

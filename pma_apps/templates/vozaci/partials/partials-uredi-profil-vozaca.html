@@ -175,16 +175,52 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="card-footer text-end">
+
+            <!-- PRIKAZ BTN-a NA MALIM REZOLUCIJAMA -->
+            <div class="card-footer d-lg-none">
                 {{ form.errors }}
-                <button type='submit' class='btn btn-success my-1'>
-                    <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
-                </button>
-                <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1">
-                    <i class="fa fa-trash-o"></i>&nbsp;Odustani
-                </a>
+                <div class="col-12 ">
+                    <button type='submit' class='btn btn-success my-1 col-12'>
+                        <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                    </button>
+                </div>
+                <div class="col-12">
+                    <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1 col-12">
+                        <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                    </a>
+                </div>
+                <div class="col-12">
+                    <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-outline-primary btn col-12 my-2">
+                        <i class="fa fa-edit"></i> Kreiraj Zahtev Za Ponudu
+                    </a>
+                </div>
+            </div>
+            <!-- END PRIKAZ BTN-a NA MALIM REZOLUCIJAMA -->
+
+            <!-- PRIKAZ BTN-a NA VELIKIM REZOLUCIJAMA -->
+            <div class="card-footer d-none d-lg-block ">
+                {{ form.errors }}
+                <div class="col-12">
+                    <div class="btn-group me-0 float-end" role="group">
+                        <button type='submit' class='btn btn-success my-1 mr-5 float-end'>
+                            <i class="fa fa-check-square"></i>&nbsp;Sačuvaj
+                        </button>
+                    </div>
+
+                    <div class="btn-group me-1 float-end" role="group">
+                        <a href="{% url 'users:detalji_vozaca' request.user.username %}" class="btn btn-danger my-1  me-0">
+                            <i class="fa fa-trash-o"></i>&nbsp;Odustani
+                        </a>
+                    </div>
+
+                    <div class="btn-group mr-2 float-left" role="group" >
+                        <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-outline-primary btn col-12 my-1">
+                            <i class="fa fa-edit"></i> Kreiraj Zahtev Za Ponudu
+                        </a>
+                    </div>
+                </div>
+                <!-- END PRIKAZ BTN-a NA VELIKIM REZOLUCIJAMA -->
             </div>
         </div>
         <!-- END EDIT AUTOMOBILA -->
