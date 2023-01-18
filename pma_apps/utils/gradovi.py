@@ -2,9 +2,6 @@ from django.db import models
 
 
 class Gradovi(models.TextChoices):
-    BEOGRAD = "Beograd|44.820556|20.462222", "Beograd"
-    NOVI_SAD = "Novi Sad|45.262231|19.851858", "Novi Sad"
-    NIS = "Niš|43.324600|21.903000", "Niš"
     ADA = "Ada|45.800000|20.133333", "Ada"
     ALEKSANDROVAC = "Aleksandrovac|43.460800|21.053881", "Aleksandrovac"
     ALEKSINAC = "Aleksinac|43.550980|21.710340", "Aleksinac"
@@ -27,6 +24,7 @@ class Gradovi(models.TextChoices):
     BECEJ = "Bečej|45.616667|20.033333", "Bečej"
     BELA_CRKVA = "Bela Crkva|44.891833|21.417000", "Bela Crkva"
     BELA_PALANKA = "Bela Palanka|43.253306|22.340670", "Bela Palanka"
+    BEOGRAD = "Beograd|44.820556|20.462222", "Beograd"
     BEOCIN = "Beočin|45.192333|19.720166", "Beočin"
     BESKA = "Beška|45.130440|20.069450", "Beška"
     BLACE = "Blace|43.290556|21.284722", "Blace"
@@ -44,6 +42,8 @@ class Gradovi(models.TextChoices):
     LAZAREVAC = "Lazarevac|44.385894|20.273802", "Lazarevac"
     LESKOVAC = "Leskovac|43.000000|21.950000", "Leskovac"
     LOZNICA = "Loznica|44.533503|19.225938", "Loznica"
+    NIS = "Niš|43.324600|21.903000", "Niš"
+    NOVI_SAD = "Novi Sad|45.262231|19.851858", "Novi Sad"
     NOVI_PAZAR = "Novi Pazar|43.135333|20.507333", "Novi Pazar"
     OBRENOVAC = "Obrenovac|44.659618|20.207927", "Obrenovac"
     PANCEVO = "Pančevo|44.863655|20.659329", "Pančevo"
@@ -62,3 +62,4 @@ class Gradovi(models.TextChoices):
     ZAJECAR = "Zaječar|43.921143|22.277817", "Zaječar"
     ZEMUN = "Zemun|44.845278|20.410278", "Zemun"
     ZRENJANIN = "Zrenjanin|45.367102|20.406997", "Zrenjanin"
+    SIMANOVCI = "Šimanovci|44.8751275|20.0923634", "Šimanovci"
