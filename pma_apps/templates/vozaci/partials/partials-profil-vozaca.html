@@ -110,6 +110,8 @@
                         disabled readonly>
                 </div>
                 <!-- END VIN BROJ -->
+
+                <!-- Marka -->
                 <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                         <label class="form-label">Marka:</label>
@@ -122,6 +124,9 @@
                             disabled readonly>
                     </div>
                 </div>
+                <!-- END Marka -->
+
+                <!-- Model -->
                 <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                         <label class="form-label">Model:</label>
@@ -134,6 +139,7 @@
                             disabled readonly>
                     </div>
                 </div>
+                <!-- END Model -->
             </div>
             <div class="form-group">
                 <div class="row">
@@ -150,7 +156,7 @@
                     </div>
                     <!-- END Godište Automobila -->
 
-
+                    <!-- Vrsta Goriva Automobila -->
                     <div class="col-md-4 mb-2">
                         <label class="form-label">Vrsta Goriva:</label>
                         <input
@@ -161,6 +167,9 @@
                             placeholder="Vrsta Goriva nije uneta."
                             disabled readonly>
                     </div>
+                    <!-- END Vrsta Goriva Automobila -->
+
+                    <!-- Kilometraža Automobila -->
                     <div class="col-md-4 mb-2">
                         <label class="form-label">Kilometraža:</label>
                         <input
@@ -171,9 +180,12 @@
                             placeholder="Kilometraža nije uneta."
                             disabled readonly>
                     </div>
+                    <!-- END Kilometraža Automobila -->
                 </div>
             </div>
+
             <div class="row">
+                <!-- Zapremina Motora Automobila -->
                 <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                         <label class="form-label">Zapremina Motora:</label>
@@ -186,6 +198,9 @@
                             disabled readonly>
                     </div>
                 </div>
+                <!-- END Zapremina Motora Automobila -->
+
+                <!-- Snaga Motora Automobila -->
                 <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                         <label class="form-label">Snaga Motora:</label>
@@ -198,199 +213,220 @@
                             disabled readonly>
                     </div>
                 </div>
+                <!-- END Snaga Motora Automobila -->
             </div>
         </div>
-        <!-- BTN-s IZMENI I KREIRAJ ZAHTEV -->
-        <div class="card-footer">
+
+        <!-- PRIKAZ BTN-a IZMENI PODATKE AUTOMOBILA I KREIRAJ ZAHTEV NA MALIM REZOLUCIJAMA -->
+        <div class="card-footer d-lg-none">
+            <!--BTN IZMENI PODATKE AUTOMOBILA MALA REZOLUCIJA -->
+            <div class="col-12 ">
+                <a href="{% url 'users:izmena_profila_vozaca' user.username %}#automobil"
+                    class="btn btn-outline-success col-12 my-1">
+                    <i class="fa fa-edit"></i>&nbsp;Izmeni Podatke Automobila
+                </a>
+            </div>
+            <!--END BTN SACUVAJ IZMENE MALA REZOLUCIJA -->
+
+            <!--BTN KREIRANJE NOVOG ZAHTEVA MALA REZOLUCIJA -->
             <div class="col-12">
+                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-outline-primary btn col-12 my-2">
+                    <i class="fa fa-edit"></i> Kreiraj Zahtev Za Ponudu
+                </a>
+            </div>
+            <!-- END BTN KREIRANJE NOVOG ZAHTEVA MALA REZOLUCIJA -->
+        </div>
+        <!-- PRIKAZ BTN-a IZMENI PODATKE AUTOMOBILA I KREIRAJ ZAHTEV NA MALIM REZOLUCIJAMA -->
+
+        <!-- PRIKAZ BTN-a IZMENI PODATKE AUTOMOBILA I KREIRAJ ZAHTEV NA VELIKIM REZOLUCIJAMA -->
+        <div class="card-footer d-none d-lg-block ">
+            <div class="col-12">
+                <!--BTN IZMENI PODATKE AUTOMOBILA VELIKA REZOLUCIJA -->
                 <div class="btn-group me-0 float-end" role="group">
-                    <!--BTN IZMENI PODATKE AUTOMOBILA -->
-                    <div class="float-lg-end">
-                        <a href="{% url 'users:izmena_profila_vozaca' user.username %}#automobil"
-                            class="btn btn-outline-success col-12 my-1">
-                            <i class="fa fa-edit"></i>&nbsp;Izmeni Podatke Automobila
-                        </a>
-                    </div>
-                    <!--BTN IZMENI PODATKE AUTOMOBILA -->
+                    <a href="{% url 'users:izmena_profila_vozaca' user.username %}#automobil"
+                        class="btn btn-outline-success col-12 my-1">
+                        <i class="fa fa-edit"></i>&nbsp;Izmeni Podatke Automobila
+                    </a>
                 </div>
-                <!--BTN KREIRANJE NOVOG ZAHTEVA -->
-                <div class="float-lg-start">
-                    <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-outline-primary col-12 my-1">
+                <!--END BTN IZMENI PODATKE AUTOMOBILA VELIKA REZOLUCIJA -->
+
+                <!--BTN KREIRANJE NOVOG ZAHTEVA VELIKIM REZOLUCIJA -->
+                <div class="btn-group mr-2 float-left" role="group" >
+                    <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-outline-primary btn col-12 my-1">
                         <i class="fa fa-edit"></i> Kreiraj Zahtev Za Ponudu
                     </a>
                 </div>
-                <!--END BTN KREIRANJE NOVOG ZAHTEVA -->
+                <!--END BTN KREIRANJE NOVOG ZAHTEVA VELIKIM REZOLUCIJA -->
             </div>
         </div>
-        <!-- END BTN-s IZMENI I KREIRAJ ZAHTEV -->
+        <!-- PRIKAZ BTN-a IZMENI PODATKE AUTOMOBILA I KREIRAJ ZAHTEV NA VELIKIM REZOLUCIJAMA -->
     </div>
-</div>
-<!-- END EDIT AUTOMOBILA -->
+    <!-- END EDIT AUTOMOBILA -->
 
-<!-- EDIT NOTIFIKACIJE I BRISANJE NALOGA -->
-<div class="row">
-    <!-- EDIT NOTIFIKACIJE -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Obaveštenja</div>
-            </div>
-            <div class="card-body">
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            checked=""
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Prikaz Kontakta</span>
-                    </label>
+    <!-- EDIT NOTIFIKACIJE I BRISANJE NALOGA -->
+    <div class="row">
+        <!-- EDIT NOTIFIKACIJE -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Obaveštenja</div>
                 </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            checked=""
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Prikaz Obaveštenja</span>
-                    </label>
+                <div class="card-body">
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                checked=""
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Prikaz Kontakta</span>
+                        </label>
+                    </div>
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                checked=""
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Prikaz Obaveštenja</span>
+                        </label>
+                    </div>
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Prikaz Statistike</span>
+                        </label>
+                    </div>
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                checked=""
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Prikaz Email Obaveštenja</span>
+                        </label>
+                    </div>
                 </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Prikaz Statistike</span>
-                    </label>
+                <div class="card-footer text-end">
+                    <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije"
+                        class="btn btn-outline-success my-1">
+                        <i class="fa fa-edit"></i>&nbsp;Izmeni
+                    </a>
                 </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            checked=""
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Prikaz Email Obaveštenja</span>
-                    </label>
-                </div>
-            </div>
-            <div class="card-footer text-end">
-                <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije"
-                    class="btn btn-outline-success my-1">
-                    <i class="fa fa-edit"></i>&nbsp;Izmeni
-                </a>
             </div>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Privatnost i Sigurnost</div>
-            </div>
-            <div class="card-body">
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            checked=""
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Dozvoli drugima da vide moj profil</span>
-                    </label>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Privatnost i Sigurnost</div>
                 </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Učini moj profil javnim</span>
-                    </label>
+                <div class="card-body">
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                checked=""
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Dozvoli drugima da vide moj profil</span>
+                        </label>
+                    </div>
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Učini moj profil javnim</span>
+                        </label>
+                    </div>
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Verifikacija u dva koraka</span>
+                        </label>
+                    </div>
+                    <div class="form-group mg-b-10">
+                        <label class="custom-switch ps-0">
+                            <input type="checkbox"
+                                name="custom-switch-checkbox"
+                                class="custom-switch-input"
+                                checked=""
+                                disabled readonly>
+                            <span class="custom-switch-indicator me-3"></span>
+                            <span class="custom-switch-description mg-l-10">Ostani uvek prijavljen</span>
+                        </label>
+                    </div>
                 </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Verifikacija u dva koraka</span>
-                    </label>
+                <div class="card-footer text-end">
+                    <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije"
+                        class="btn btn-outline-success my-1">
+                        <i class="fa fa-edit"></i>&nbsp;Izmeni
+                    </a>
                 </div>
-                <div class="form-group mg-b-10">
-                    <label class="custom-switch ps-0">
-                        <input type="checkbox"
-                            name="custom-switch-checkbox"
-                            class="custom-switch-input"
-                            checked=""
-                            disabled readonly>
-                        <span class="custom-switch-indicator me-3"></span>
-                        <span class="custom-switch-description mg-l-10">Ostani uvek prijavljen</span>
-                    </label>
-                </div>
-            </div>
-            <div class="card-footer text-end">
-                <a href="{% url 'users:izmena_profila_vozaca' user.username  %}#notifikacije"
-                    class="btn btn-outline-success my-1">
-                    <i class="fa fa-edit"></i>&nbsp;Izmeni
-                </a>
             </div>
         </div>
-    </div>
-    <!-- END EDIT NOTIFIKACIJE -->
+        <!-- END EDIT NOTIFIKACIJE -->
 
-    <!-- PROMENA LOZINKE -->
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Promena Lozinke Korisničkog Naloga</div>
-            </div>
-            <div class="card-body">
-                <p><strong>Za promenu lozinke korisničkog naloga e-mail mora da je ispravno unesen i da imate pristup istom!</strong></p>
-            </div>
-            <div class="card-footer text-end">
-                <a href="{% url 'users:pass-reset' %}" class="btn btn-outline-danger my-1">
-                    <i class="fa fa-chain-broken"></i>&nbsp;Promeni Lozinku
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- END PROMENA LOZINKE -->
-
-    <!-- BRISANJE NALOGA -->
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Brisanje Korisničkog Naloga</div>
-            </div>
-            <div class="card-body">
-                <p>Potpuno brisanje korisničkog naloga '<b>{{ detalji_vozaca.username }}</b>', takođe i svih podataka vezanih za isti!</p>
-            </div>
-
-            <!-- Modal BRISANJE NALOGA -->
-            {% include 'vozaci/partials/partials-obrisi-nalog-vozaca.html' %}
-            <!-- END Modal BRISANJE NALOGA -->
-            <div class="card-footer text-end">
-                <button class="btn btn-outline-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#obrisiModal"
-                    type="button"
-                    value="Obriši">
-                    <i class="fa fa-trash-o"></i>&nbsp;Brisanje Naloga
-                </button>
+        <!-- PROMENA LOZINKE -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Promena Lozinke Korisničkog Naloga</div>
+                </div>
+                <div class="card-body">
+                    <p><strong>Za promenu lozinke korisničkog naloga e-mail mora da je ispravno unesen i da imate pristup istom!</strong></p>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'users:pass-reset' %}" class="btn btn-outline-danger my-1">
+                        <i class="fa fa-chain-broken"></i>&nbsp;Promeni Lozinku
+                    </a>
+                </div>
             </div>
         </div>
+        <!-- END PROMENA LOZINKE -->
+
+        <!-- BRISANJE NALOGA -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Brisanje Korisničkog Naloga</div>
+                </div>
+                <div class="card-body">
+                    <p>Potpuno brisanje korisničkog naloga '<b>{{ detalji_vozaca.username }}</b>', takođe i svih podataka vezanih za isti!</p>
+                </div>
+
+                <!-- Modal BRISANJE NALOGA -->
+                {% include 'vozaci/partials/partials-obrisi-nalog-vozaca.html' %}
+                <!-- END Modal BRISANJE NALOGA -->
+                <div class="card-footer text-end">
+                    <button class="btn btn-outline-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#obrisiModal"
+                        type="button"
+                        value="Obriši">
+                        <i class="fa fa-trash-o"></i>&nbsp;Brisanje Naloga
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- END BRISANJE NALOGA -->
     </div>
-    <!-- END BRISANJE NALOGA -->
-</div>
-<!-- END EDIT NOTIFIKACIJE I BRISANJE NALOGA -->
+    <!-- END EDIT NOTIFIKACIJE I BRISANJE NALOGA -->
 </div>
 <!-- END PROMENA PROFILA -->
