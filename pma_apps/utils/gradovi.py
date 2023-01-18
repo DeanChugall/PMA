@@ -35,6 +35,7 @@ class Gradovi(models.TextChoices):
     GORNJI_MILANOVAC = "Gornji Milanovac|44.031549|20.461600", "Gornji Milanovac"
     INDJIJA = "Inđija|45.048542|20.085354", "Inđija"
     JAGODINA = "Jagodina|43.981760|21.245921", "Jagodina"
+    KANJIZA = "Kanjiža|46.066204|20.050045", "Kanjiža"
     KIKINDA = "Kikinda|45.828231|20.464861", "Kikinda"
     KRAGUJEVAC = "Kragujevac|44.012787|20.925300", "Kragujevac"
     KRALJEVO = "Kraljevo|43.723568|20.685403", "Kraljevo"
