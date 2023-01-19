@@ -31,44 +31,40 @@
                 <!-- PAGE-HEADER END -->
 
                 <!-- ROW-1 OPEN -->
-                <div class="row row-cards">
-                    <div class="col-xl-12 col-lg-12">
-                        <!-- FILTER --- NOVI ZAHTEV ... -->
-                        <div class="card p-2 card-block justify-content-between align-items-end">
-                            {% if user.role == "VOZAC" %}
-                                <div class="col-xl-12 col-lg-12">
-                                    <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block p-3">
-                                        <i class="fa fa-plus-square me-2"></i><strong>Novi Zahtev</strong>
-                                    </a>
-                                </div>
-                            {% else %}
-                                <!-- FILTER ZAHTEVA ZA SERVISE PO GRADOVIMA -->
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4 col-xl-4 col-sm-12">
-                                            <div style="height: 100px; background-color: rgba(0,69,169,0.1);">
-                                                <a href="{% url 'ponude:aktivni_zahtevi' %}?creator__grad={{ user.grad }}"
-                                                    style="color:inherit">
-                                                    <button type="button" class="btn btn-outline-primary btn-block" style="width:100%; height:100%;">
-                                                        <strong>Zahtevi {{ user.get_grad_servisa }}</strong>
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-xl-4 col-sm-12">
-                                            &nbsp;
-                                        </div>
-                                        <div class="col-md-4 col-xl-4 col-sm-12">
-                                            <form method="GET" action="{% url 'ponude:aktivni_zahtevi' %}">
-                                                {% render_field auctions_form.creator__grad class="form-control" %}
-                                                <input type="submit" value="Filtriranje Po Gradu" class="btn btn-primary btn-block mt-3" />
-                                            </form>
-                                        </div>
+                <div class="row">
+                    <!-- FILTER --- NOVI ZAHTEV ... -->
+                    <div class="card p-2">
+                        {% if user.role == "VOZAC" %}
+                            <div class="col-xl-12 col-lg-12">
+                                <a href="{% url 'ponude:kreiranje_zahteva' %}" class="btn btn-primary btn-block p-3">
+                                    <i class="fa fa-plus-square me-2"></i><strong>Novi Zahtev</strong>
+                                </a>
+                            </div>
+                        {% else %}
+                            <!-- FILTER ZAHTEVA ZA SERVISE PO GRADOVIMA -->
+                            <div class="row">
+                                <div class="col-md-4 col-xl-4 col-sm-12">
+                                    <div style="height: 100px; background-color: rgba(0,69,169,0.1);">
+                                        <a href="{% url 'ponude:aktivni_zahtevi' %}?creator__grad={{ user.grad }}"
+                                            style="color:inherit">
+                                            <button type="button" class="btn btn-outline-primary btn-block" style="width:100%; height:100%;">
+                                                <strong>Zahtevi {{ user.get_grad_servisa }}</strong>
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
-                                <!-- END FILTER ZAHTEVA ZA SERVISE PO GRADOVIMA -->
-                            {% endif %}
-                        </div>
+                                <div class="col-md-4 col-xl-4 col-sm-12">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-4 col-xl-4 col-sm-12">
+                                    <form method="GET" action="{% url 'ponude:aktivni_zahtevi' %}">
+                                        {% render_field auctions_form.creator__grad class="form-control" %}
+                                        <input type="submit" value="Filtriranje Po Gradu" class="btn btn-primary btn-block mt-3" />
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- END FILTER ZAHTEVA ZA SERVISE PO GRADOVIMA -->
+                        {% endif %}
                     </div>
                     <!-- END FILTER --- NOVI ZAHTEV ... -->
                     <div class="tab-content">
