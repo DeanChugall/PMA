@@ -184,6 +184,9 @@ DATABASES = {
         "PASSWORD": env.str("POSTGRES_PASSWORD", default="pma_database"),
         "HOST": env.str("POSTGRES_HOST", default="0.0.0.0"),
         "PORT": env.str("POSTGRES_PORT", default="5432"),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
