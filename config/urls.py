@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import include, path
 from django.views import defaults as default_views
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView, TemplateView
 
 urlpatterns = [
     path("", include("pma_apps.landing_page.urls", namespace="landing_page")),
@@ -11,6 +12,12 @@ urlpatterns = [
     path("", include("pma_apps.users.urls", namespace="users")),
     path("", include("pma_apps.auto_servisi.urls", namespace="auto_servis")),
     path("ponude/", include("pma_apps.auctions.urls", namespace="ponude")),
+    path(
+        "favicon.ico",
+        RedirectView.as_view(
+            url=staticfiles_storage.url("assets/images/brand/favicon.ico")
+        ),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # add robots.txt if not in STAGE mode
