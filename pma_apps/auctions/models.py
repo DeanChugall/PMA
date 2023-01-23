@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 from pma_apps.users.models import ServisProfile, User, VozacProfile
@@ -14,6 +15,11 @@ class Category(models.Model):
 
     def __str__(self):
         return f"{self.category_name}"
+
+    def get_absolute_url(self):
+        return reverse(
+            "ponude:category_details_view", kwargs={"category_name": self.category_name}
+        )
 
     @property
     def count_active_auctions(self):

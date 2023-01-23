@@ -115,6 +115,7 @@ def category_details_view(request, category_name):
         "auctions/auctions_category.html",
         {
             "categories": Category.objects.all(),
+            "category": category,
             "auctions": auctions.qs,
             "auctions_form": auctions.form,
             "auctions_count": auctions.qs.count(),
