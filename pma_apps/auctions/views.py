@@ -30,7 +30,7 @@ def ponude_view(request):
     """
     The default route which renders a Dashboard page
     """
-    auctions_obj = Auction.objects.all()
+    auctions_obj = Auction.objects.all()[:4]
 
     for auction in auctions_obj:
         auction.image = auction.get_images.first()
@@ -70,12 +70,10 @@ def category_details_view(request, category_name):
     Auctions are paginated: 3 per page
     """
 
+    # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+    auctions_obj = Auction.objects.all()[:4]
+
     category = get_object_or_404(Category, category_name=category_name)
-    # auctions = (
-    #     Auction.objects.filter(category=category)
-    #     .filter(active=True)
-    #     .order_by("-date_created")
-    # )
 
     auctions = FilterZahtevaPoGradovima(
         request.GET,
@@ -116,6 +114,7 @@ def category_details_view(request, category_name):
         {
             "categories": Category.objects.all(),
             "category": category,
+            "auctions_obj": auctions_obj,
             "auctions": auctions.qs,
             "auctions_form": auctions.form,
             "auctions_count": auctions.qs.count(),
@@ -136,6 +135,9 @@ def detalji_zahteva_view(request, zahtev_id):
     if not request.user.is_authenticated:
         next_page = request.GET.get("next", "/")
         return resolve_url(next_page, "/")
+
+    # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+    auctions_obj = Auction.objects.all()[:4]
 
     zahtevi = Auction.objects.get(id=zahtev_id)
 
@@ -183,6 +185,7 @@ def detalji_zahteva_view(request, zahtev_id):
         "auctions/detalji_zahteva.html",
         {
             "categories": Category.objects.all(),
+            "auctions_obj": auctions_obj,
             "auction": zahtevi,
             "images": zahtevi.get_images.all(),
             "bid_form": BidForm(
@@ -510,6 +513,9 @@ def aktivni_zahtevi_view(request):
     It renders a page that displays all the currently active auction listings
     Active auctions are paginated: 3 per page
     """
+    # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+    auctions_obj = Auction.objects.all()[:4]
+
     id_pracenog_zahteva = request.user.watchlist.all()
 
     category_name = request.GET.get("category_name", None)
@@ -559,6 +565,7 @@ def aktivni_zahtevi_view(request):
         {
             "categories": Category.objects.all(),
             "auctions": auctions.qs,
+            "auctions_obj": auctions_obj,
             "auctions_count": auctions.qs.count(),
             "pages": pages,
             "title": "Aktivni Zahtevi Auctions",
@@ -576,6 +583,9 @@ def watchlist_view(request):
     It renders a page that displays all the listings Zahteva that a
     user has added to their watchlist Zahteva are paginated: 3 per page.
     """
+
+    # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+    auctions_obj = Auction.objects.all()[:4]
 
     auctions = request.user.watchlist.all()
 
@@ -604,6 +614,7 @@ def watchlist_view(request):
         {
             "categories": Category.objects.all(),
             "auctions": auctions,
+            "auctions_obj": auctions_obj,
             "auctions_count": auctions.count(),
             "pages": pages,
             "title": "Watchlist",

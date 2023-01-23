@@ -80,7 +80,6 @@
                             </div>
                             <!-- END SEARCH -->
                             <div class="d-flex order-lg-2 ms-auto header-right-icons">
-
                                 <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto"
                                     type="button"
                                     data-bs-toggle="collapse"
@@ -108,12 +107,49 @@
                                             </div>
                                             <!-- NAV BAR ICONS -->
                                             {% if user.role == "SERVIS" %}
+                                                <!--USER NAME i IKONA KOLA -->
                                                 <div class="d-flex">
                                                     <a class="nav-link icon text-center" href="{% url 'auto_servis:detalji_servisa' request.user.username  %}">
                                                         <i class="fa fa-car"></i>
                                                         <span class="fs-16 ms-2 d-none d-xl-block"><strong>{{user.username}}</strong></span>
                                                     </a>
                                                 </div>
+                                                <!-- END USER NAME i IKONA KOLA -->
+
+                                                <!--ZVONO-OBAVESTENJE NOVIH ZAHTEVA -->
+                                                <div class="dropdown  d-flex notifications">
+                                                    <a class="nav-link icon" data-bs-toggle="dropdown"><i
+                                                        class="fe fe-bell"></i><span class=" pulse"></span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                        <div class="drop-heading border-bottom">
+                                                            <div class="d-flex">
+                                                                <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">Novi Zahtevi
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="notifications-menu">
+                                                            {% for zahtev in auctions_obj %}
+                                                                <a class="dropdown-item d-flex"
+                                                                    href="{% url 'ponude:detalji_ponude_view' zahtev.id %}">
+                                                                    <div class="me-3 notifyimg  bg-primary brround box-shadow-primary">
+                                                                        <i class="fe fe-check-square"></i>
+                                                                    </div>
+                                                                    <div class="mt-1 wd-80p">
+                                                                        <h5 class="notification-label mb-1">{{ zahtev.title }}</h5>
+                                                                        <span class="notification-subtext">{{ zahtev.creator.get_grad_servisa }}</span>
+                                                                    </div>
+                                                                </a>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <div class="dropdown-divider m-0"></div>
+                                                        <a href="{% url 'ponude:aktivni_zahtevi' %}"
+                                                            class="dropdown-item text-center p-3 text-muted">
+                                                            Pregled Svih Aktivnih Zahteva
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- END ZVONO-OBAVESTENJE NOVIH ZAHTEVA -->
                                             {% else %}
                                             {% endif %}
                                             {% if user.role == "VOZAC" %}
