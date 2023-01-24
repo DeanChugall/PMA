@@ -30,7 +30,7 @@ def ponude_view(request):
     """
     The default route which renders a Dashboard page
     """
-    auctions_obj = Auction.objects.all()[:4]
+    auctions_obj = Auction.objects.filter(active=True)[:4]
 
     for auction in auctions_obj:
         auction.image = auction.get_images.first()
@@ -71,7 +71,7 @@ def category_details_view(request, category_name):
     """
 
     # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
-    auctions_obj = Auction.objects.all()[:4]
+    auctions_obj = Auction.objects.filter(active=True)[:4]
 
     category = get_object_or_404(Category, category_name=category_name)
 
@@ -137,7 +137,7 @@ def detalji_zahteva_view(request, zahtev_id):
         return resolve_url(next_page, "/")
 
     # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
-    auctions_obj = Auction.objects.all()[:4]
+    auctions_obj = Auction.objects.filter(active=True)[:4]
 
     zahtevi = Auction.objects.get(id=zahtev_id)
 
@@ -514,7 +514,7 @@ def aktivni_zahtevi_view(request):
     Active auctions are paginated: 3 per page
     """
     # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
-    auctions_obj = Auction.objects.all()[:4]
+    auctions_obj = Auction.objects.filter(active=True)[:4]
 
     id_pracenog_zahteva = request.user.watchlist.all()
 
@@ -585,7 +585,7 @@ def watchlist_view(request):
     """
 
     # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
-    auctions_obj = Auction.objects.all()[:4]
+    auctions_obj = Auction.objects.filter(active=True)[:4]
 
     auctions = request.user.watchlist.all()
 
