@@ -150,6 +150,46 @@
                                                     </div>
                                                 </div>
                                                 <!-- END ZVONO-OBAVESTENJE NOVIH ZAHTEVA -->
+
+                                                <!-- PORUKA ICONS OBAVESTENJE NOVIH ZAHTEVA -->
+                                                <div class="dropdown  d-flex message">
+                                                    <a class="nav-link icon text-center" data-bs-toggle="dropdown">
+                                                        <i class="fe fe-message-square"></i><span class="pulse-danger"></span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                        <div class="drop-heading border-bottom">
+                                                            <div class="d-flex">
+                                                                <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">Novih Zahteva {{ auctions_obj|length }}</h6>
+                                                                <div class="ms-auto">
+                                                                    <a href="javascript:void(0)" class="text-muted p-0 fs-12">sve pročitano</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="message-menu message-menu-scroll">
+                                                            {% for zahtev in auctions_obj %}
+                                                                <a class="dropdown-item d-flex"
+                                                                    href="{% url 'ponude:detalji_ponude_view' zahtev.id %}">
+                                                                    <div class="wd-90p">
+                                                                        <div class="d-flex">
+                                                                            <h5 class="mb-1">{{ zahtev.title }}</h5>
+                                                                            <small class="text-muted ms-auto text-end">
+                                                                                {{ zahtev.date_created|date:"d M Y" }}
+                                                                            </small>
+                                                                        </div>
+                                                                        <span>{{ zahtev.creator.get_grad_servisa }}</span>
+                                                                    </div>
+                                                                </a>
+                                                            {% endfor %}
+
+                                                        </div>
+                                                        <div class="dropdown-divider m-0"></div>
+                                                        <a href="{% url 'ponude:aktivni_zahtevi' %}"
+                                                            class="dropdown-item text-center p-3 text-muted">
+                                                            Pregled Svih Aktivnih Zahteva
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!-- PORUKA ICONS OBAVESTENJE NOVIH ZAHTEVA -->
                                             {% else %}
                                             {% endif %}
                                             {% if user.role == "VOZAC" %}

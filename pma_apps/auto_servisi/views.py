@@ -96,6 +96,9 @@ class DetaljiServisaView(generic.DetailView):
         :return: context
         """
 
+        # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+        auctions_obj = Auction.objects.filter(active=True)[:4]
+
         servis = Servis.objects.all().filter(username=self.kwargs["username"]).first()
         profil_servisa = ServisProfile.objects.all().filter(user_id=servis.id).first()
 
@@ -116,6 +119,7 @@ class DetaljiServisaView(generic.DetailView):
 
         context = {
             "categories": Category.objects.all(),
+            "auctions_obj": auctions_obj,
             "servis": servis,
             "broj_ponuda_servisa": broj_ponuda_servisa,
             "profil_servisa": profil_servisa,
@@ -129,6 +133,9 @@ class DetaljiServisaView(generic.DetailView):
 
 @login_required
 def profil_servisa_update_view(request, username):
+
+    # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+    auctions_obj = Auction.objects.filter(active=True)[:4]
 
     # Slike Auto Servisa
     slika_auto_servisa_form_set = forms.modelformset_factory(
@@ -193,6 +200,7 @@ def profil_servisa_update_view(request, username):
 
     context = {
         "categories": Category.objects.all(),
+        "auctions_obj": auctions_obj,
         "detalji_servisa": servis_form,
         "detalji_profila_servisa": servis_profile_form,
         "vozac_obj": servis,
@@ -214,6 +222,9 @@ class ListaSvihServisaView(generic.ListView):
     context_object_name = "lista_svih_servisa"
 
     def get_context_data(self, **kwargs):
+
+        # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+        auctions_obj = Auction.objects.filter(active=True)[:4]
 
         # profil_servisa = FilterServisaPoGradovima(ServisProfile.objects.all()
         profil_servisa = FilterServisaPoGradovima(
@@ -244,6 +255,7 @@ class ListaSvihServisaView(generic.ListView):
 
         context = {
             "profil_servisa": profil_servisa.qs,
+            "auctions_obj": auctions_obj,
             "profil_servisa_form": profil_servisa.form,
             "categories": Category.objects.all(),
             "pages": pages,
@@ -262,6 +274,9 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
     context_object_name = "sve_ponude_servisa"
 
     def get_context_data(self, **kwargs):
+
+        # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+        auctions_obj = Auction.objects.filter(active=True)[:4]
 
         profil_servisa = ServisProfile.objects.get(user_id=self.request.user.id)
 
@@ -291,6 +306,7 @@ class ListaPonudaServisaView(LoginRequiredMixin, generic.ListView):
 
         context = {
             "categories": Category.objects.all(),
+            "auctions_obj": auctions_obj,
             "zahtevi_vozaca": ponude,
             "pages": pages,
             "id_pracenog_zahteva": id_pracenog_zahteva,
@@ -309,6 +325,9 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
     context_object_name = "sve_ponude_servisa"
 
     def get_context_data(self, **kwargs):
+
+        # Uzmi Sve zahteva i prosledi u header *(obavestenja-zvono)
+        auctions_obj = Auction.objects.filter(active=True)[:4]
 
         profil_servisa = ServisProfile.objects.get(user_id=self.request.user.id)
 
@@ -342,6 +361,7 @@ class ListaPrihvacenihPonudaServisaView(LoginRequiredMixin, generic.ListView):
 
         context = {
             "categories": Category.objects.all(),
+            "auctions_obj": auctions_obj,
             "zahtevi_vozaca": ponude,
             "pages": pages,
             "id_pracenog_zahteva": id_pracenog_zahteva,
