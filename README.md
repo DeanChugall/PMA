@@ -25,7 +25,7 @@
 ---
 
 ## Korisne komande:
-- Ciscenje svi paketa iz PIP-a: ```pip freeze | xargs pip uninstall -y```
+- Brisanje svih paketa iz PIP-a: ```pip freeze | xargs pip uninstall -y```
 - Pre-Commit run: ```pre-commit run```
 - HTML pre-commit: ```djhtml -i pma_apps/templates/ .```
 - Generisanje hash lozinke:
@@ -74,7 +74,7 @@ make_password('pa_ovde_lozinka')
 
 ## Change Git username and email
 
-```shell 
+```shell
 git config --global user.name "your_username"
 git config --global user.email "your_email"
 ```
