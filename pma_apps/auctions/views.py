@@ -656,9 +656,6 @@ def ponuda_zahteva_view(request, zahtev_id):
 
     profil_servisa = ServisProfile.objects.get(user_id=request.user.id)
 
-    # Get Ponudu Servisa
-    ponuda = Bid.objects.filter(auction_id=auction.id).first()
-
     auction.current_bid = amount
 
     # Ocisti sve no int vrednosti iz POST-aa i sacuvaj za validaciju forme.
@@ -715,9 +712,9 @@ def ponuda_zahteva_view(request, zahtev_id):
                     f"Poštovani {profil_servisa.user.username},",
                     f"Dali ste novu ponuda za zahtev: '{auction.title}'.\n"
                     f"---------------------------------------------------------------------------------\n"
-                    f"Naziv Zahteva: {ponuda.auction.title}\n"
-                    f"Opis Zahteva: {ponuda.auction.description}\n"
-                    f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
+                    f"Naziv Zahteva: {auction.title}\n"
+                    f"Opis Zahteva: {auction.description}\n"
+                    f"Datum Kreiranja Zahteva: {auction.date_created}\n"
                     f"\n"
                     f"---------------------------------------------------------------------------------\n"
                     f"Cena: {amount}\n"
