@@ -324,7 +324,7 @@ def prihvati_ponudu_zahteva_view(request, pk):
                     f"-----------------------------------------------------------------------------------\n"
                     f"Naziv Zahteva: {ponuda.auction.title}\n"
                     f"Opis Zahteva: {ponuda.auction.description}\n"
-                    f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
+                    f'Datum Kreiranja Zahteva: {ponuda.auction.date_created.strftime("%d.%m.%Y")}\n'
                     f"CENA: {ponuda.amount} rsd\n"
                     f"LINK: {request.build_absolute_uri()}\n"
                     f"\n"
@@ -365,6 +365,8 @@ def otkazi_ponudu_zahteva_view(request, pk):
         zahtev.buyer_id = None
         zahtev.save()
 
+        profil_vozaca = VozacProfile.objects.filter(user=request.user).first()
+
         # Send Mail (Vozacu i Serviseru) i loguj da je ponuda Otkazana,
         try:
             logger.info(
@@ -396,10 +398,14 @@ def otkazi_ponudu_zahteva_view(request, pk):
                     f"Vozač {request.user} je otkazao Vašu ponudu!",
                     f"Nažalost {profil_servisa_email.user.username},"
                     f" Vozač {request.user} je otkazao Vašu ponudu u zahtevu: {ponuda.auction.title}!\n"
+                    f"Email Vozača: {email_vozac} \n"
+                    f"Broj Telefona Vozača: {profil_vozaca.broj_telefona} \n"
                     f"---------------------------------------------------------------------------------\n"
                     f"Naziv Zahteva: {ponuda.auction.title}\n"
                     f"Opis Zahteva: {ponuda.auction.description}\n"
-                    f"Datum Kreiranja Zahteva: {ponuda.auction.date_created}\n"
+                    f'Datum Kreiranja Zahteva: {ponuda.auction.date_created.strftime("%d.%m.%Y")}\n'
+                    f"CENA: {ponuda.amount} rsd\n"
+                    f"LINK: {request.build_absolute_uri()}\n"
                     f"\n"
                     f"Srdačan pozdrav, Vaš 'Popravi Moj Auto'.",
                     settings.EMAIL_HOST_USER,
