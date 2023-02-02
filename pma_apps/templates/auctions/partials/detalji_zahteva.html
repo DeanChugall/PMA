@@ -70,20 +70,20 @@
                         <!-- END DA LI JE ZAHTEV AKTIVAN -->
 
                         <!-- GRAD VOZACA -->
-                        <span class="tag tag-radius tag-round tag-outline-primary">Grad: &nbsp;strong>{{ auction.creator.get_grad_servisa}}</strong></span>
-                    <!-- END GRAD VOZACA -->
+                        <span class="tag tag-radius tag-round tag-outline-primary">Grad: &nbsp;<strong>{{ auction.creator.get_grad_servisa}}</strong></span>
+                        <!-- END GRAD VOZACA -->
 
-                    <!-- DATUM KREIRANJA -->
-                    <span class="tag tag-radius tag-round tag-outline-success"><strong>Kreirano: &nbsp;{{ auction.date_created }}</strong></span>
-                    <!-- END DATUM KREIRANJA -->
+                        <!-- DATUM KREIRANJA -->
+                        <span class="tag tag-radius tag-round tag-outline-success"><strong>Kreirano: &nbsp;{{ auction.date_created }}</strong></span>
+                        <!-- END DATUM KREIRANJA -->
 
-                    <!-- AUTOR ZAHTEVA -->
-                    <span class="tag tag-radius tag-round tag-outline-success"><strong>Zahtev Kreirao: &nbsp;{{ auction.creator }}</strong></span>
-                    <!-- END AUTOR ZAHTEVA -->
-                    <!-- KATEGORIJA ZAHTEVA -->
-                    <span class="tag tag-radius tag-round tag-outline-primary mb-2">Kategorija: &nbsp;<strong>{{ auction.category }}</strong></span>
-                    <!-- END KATEGORIJA ZAHTEVA -->
-                </div>
+                        <!-- AUTOR ZAHTEVA -->
+                        <span class="tag tag-radius tag-round tag-outline-success"><strong>Zahtev Kreirao: &nbsp;{{ auction.creator }}</strong></span>
+                        <!-- END AUTOR ZAHTEVA -->
+                        <!-- KATEGORIJA ZAHTEVA -->
+                        <span class="tag tag-radius tag-round tag-outline-primary mb-2">Kategorija: &nbsp;<strong>{{ auction.category }}</strong></span>
+                        <!-- END KATEGORIJA ZAHTEVA -->
+                    </div>
                 </div>
             {% endif %}
         </span>
