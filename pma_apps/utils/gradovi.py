@@ -55,6 +55,8 @@ class Gradovi(models.TextChoices):
     KOSJERIC = "Kosjerić|43.997569|19.908414", "Kosjerić"
     KOSOVSKA_MITROVICA = "Kosovska Mitrovica|42.887096|20.874352", "Kosovska Mitrovica"
     KOSTOLAC = "Kostolac|44.716667|21.166667", "Kostolac"
+    KOVACICA = "Kovačica|45.107000|20.619500", "Kovačica"
+    KOVIN = "Kovin|44.741833|20.972333", "Kovin"
     KRAGUJEVAC = "Kragujevac|44.012787|20.925300", "Kragujevac"
     KRALJEVO = "Kraljevo|43.723568|20.685403", "Kraljevo"
     KRUSEVAC = "Kruševac|43.583469|21.317718", "Kruševac"
