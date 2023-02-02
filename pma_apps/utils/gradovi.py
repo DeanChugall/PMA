@@ -50,6 +50,8 @@ class Gradovi(models.TextChoices):
     KIKINDA = "Kikinda|45.828231|20.464861", "Kikinda"
     KLADOVO = "Kladovo|44.611599|22.621000", "Kladovo"
     KNIC = "Knić|43.926706|20.721152", "Knić"
+    KNJAZEVAC = "Knjaževac|43.571437|22.262993", "Knjaževac"
+    KOCELJEVA = "Koceljeva|44.466315|19.813406", "Koceljeva"
     KRAGUJEVAC = "Kragujevac|44.012787|20.925300", "Kragujevac"
     KRALJEVO = "Kraljevo|43.723568|20.685403", "Kraljevo"
     KRUSEVAC = "Kruševac|43.583469|21.317718", "Kruševac"
