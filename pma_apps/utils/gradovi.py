@@ -66,6 +66,8 @@ class Gradovi(models.TextChoices):
     KUPINOVO = "Kupinovo|44.705571|20.048196", "Kupinovo"
     KURSUMLIJA = "Kuršumlija|43.131182|21.269603", "Kuršumlija"
     KUZMIN = "Kuzmin|45.022461|19.405625", "Kuzmin"
+    LACARAK = "Laćarak|45.000131|19.566987", "Laćarak"
+    LAJKOVAC = "Lajkovac|44.368333|20.159166", "Lajkovac"
     LAZAREVAC = "Lazarevac|44.385894|20.273802", "Lazarevac"
     LESKOVAC = "Leskovac|43.000000|21.950000", "Leskovac"
     LOZNICA = "Loznica|44.533503|19.225938", "Loznica"
