@@ -82,6 +82,8 @@ class Gradovi(models.TextChoices):
     MALI_ZVORNIK = "Mali Zvornik|44.378840|19.117041", "Mali Zvornik"
     MIONICA = "Mionica|44.250118|20.082572", "Mionica"
     MLADENOVAC = "Mladenovac|44.433473|20.700209", "Mladenovac"
+    MOJSINJE = "Mojsinje|43.888522|20.470144", "Mojsinje"
+    MRCAJEVCI = "Mrčajevci|43.867084|20.527067", "Mrčajevci"
     NIS = "Niš|43.324600|21.903000", "Niš"
     NOVI_SAD = "Novi Sad|45.262231|19.851858", "Novi Sad"
     NOVI_PAZAR = "Novi Pazar|43.135333|20.507333", "Novi Pazar"
