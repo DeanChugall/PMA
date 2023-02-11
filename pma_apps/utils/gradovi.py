@@ -89,6 +89,8 @@ class Gradovi(models.TextChoices):
     NISKA_BANJA = "Niška Banja|43.293325|22.006338", "Niška Banja"
     NOVA_PAZOVA = "Nova Pazova|44.940166|20.218500", "Nova Pazova"
     NOVA_VAROS = "Nova Varoš|43.456333|19.806833", "Nova Varoš"
+    NOVI_BANOVCI = "Novi Banovci|44.950069|44.950069", "Novi Banovci"
+    NOVI_BECEJ = "Novi Bečej|45.592500|20.134666", "Novi Bečej"
     NOVI_SAD = "Novi Sad|45.262231|19.851858", "Novi Sad"
     NOVI_PAZAR = "Novi Pazar|43.135333|20.507333", "Novi Pazar"
     OBRENOVAC = "Obrenovac|44.659618|20.207927", "Obrenovac"
