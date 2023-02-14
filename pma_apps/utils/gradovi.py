@@ -100,6 +100,8 @@ class Gradovi(models.TextChoices):
     OPOVO = "Opovo|45.051333|20.424833", "Opovo"
     OSECINA = "Osečina|44.370500|19.600833", "Osečina"
     PANCEVO = "Pančevo|44.863655|20.659329", "Pančevo"
+    PARACIN = "Paraćin|43.867394|21.415772", "Paraćin"
+    PECINCI = "Pećinci|44.914128|19.972358", "Pećinci"
     PIROT = "Pirot|43.166625|22.601080", "Pirot"
     POZAREVAC = "Požarevac|44.616667|21.183333", "Požarevac"
     RUMA = "Ruma|45.003651|19.828209", "Ruma"
