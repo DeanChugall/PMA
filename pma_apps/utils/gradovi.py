@@ -106,6 +106,8 @@ class Gradovi(models.TextChoices):
     POZEGA = "Požega|43.846444|20.035450", "Požega"
     PRESEVO = "Preševo|42.312862|21.652029", "Preševo"
     PRIBOJ = "Priboj|43.571437|19.532568", "Priboj"
+    PRIJEPOLJE = "Prijepolje|43.390579|19.640779", "Prijepolje"
+    PROKUPLJE = "Prokuplje|43.240982|21.598170", "Prokuplje"
     PIROT = "Pirot|43.166625|22.601080", "Pirot"
     POZAREVAC = "Požarevac|44.616667|21.183333", "Požarevac"
     RUMA = "Ruma|45.003651|19.828209", "Ruma"
