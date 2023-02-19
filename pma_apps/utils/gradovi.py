@@ -104,6 +104,8 @@ class Gradovi(models.TextChoices):
     PECINCI = "Pećinci|44.914128|19.972358", "Pećinci"
     PETROVARADIN = "Petrovaradin|45.250000|19.866667", "Petrovaradin"
     POZEGA = "Požega|43.846444|20.035450", "Požega"
+    PRESEVO = "Preševo|42.312862|21.652029", "Preševo"
+    PRIBOJ = "Priboj|43.571437|19.532568", "Priboj"
     PIROT = "Pirot|43.166625|22.601080", "Pirot"
     POZAREVAC = "Požarevac|44.616667|21.183333", "Požarevac"
     RUMA = "Ruma|45.003651|19.828209", "Ruma"
