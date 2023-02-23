@@ -116,7 +116,12 @@ class Gradovi(models.TextChoices):
     SECANJ = "Sečanj|45.367102|20.774406", "Sečanj"
     SENTA = "Senta|45.933483|20.082611", "Senta"
     SIVAC = "Sivac|45.704261|19.384762", "Sivac"
+    SJENICA = "Sjenica|43.266769|19.999102", "Sjenica"
     SMEDEREVO = "Smederevo|44.651742|20.935636", "Smederevo"
+    SMEDEREVSKA_PALANKA = (
+        "Smederevska Palanka|44.365097|20.962547",
+        "Smederevska Palanka",
+    )
     SOMBOR = "Sombor|45.774857|19.122298", "Sombor"
     SREMSKA_MITROVICA = "Sremska Mitrovica|44.987627|19.626281", "Sremska Mitrovica"
     SREMCICA = "Sremčica|44.67265|20.3978858", "Sremčica"
