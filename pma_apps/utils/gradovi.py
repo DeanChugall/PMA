@@ -122,7 +122,9 @@ class Gradovi(models.TextChoices):
         "Smederevska Palanka|44.365097|20.962547",
         "Smederevska Palanka",
     )
+    SOKOBANJA = "Sokobanja|43.639616|21.869224", "Sokobanja"
     SOMBOR = "Sombor|45.774857|19.122298", "Sombor"
+    SRBOBRAN = "Srbobran|45.552333|19.801666", "Srbobran"
     SREMSKA_MITROVICA = "Sremska Mitrovica|44.987627|19.626281", "Sremska Mitrovica"
     SREMCICA = "Sremčica|44.67265|20.3978858", "Sremčica"
     SUBOTICA = "Subotica|46.097281|19.669620", "Subotica"
