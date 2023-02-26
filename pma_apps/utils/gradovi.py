@@ -127,6 +127,8 @@ class Gradovi(models.TextChoices):
     SRBOBRAN = "Srbobran|45.552333|19.801666", "Srbobran"
     SREMSKA_MITROVICA = "Sremska Mitrovica|44.987627|19.626281", "Sremska Mitrovica"
     SREMCICA = "Sremčica|44.67265|20.3978858", "Sremčica"
+    SREMSKI_KARLOVCI = "Sremski Karlovci|45.201500|19.934000", "Sremski Karlovci"
+    STARA_PAZOVA = "Stara Pazova|44.988599|20.166725", "Stara Pazova"
     SUBOTICA = "Subotica|46.097281|19.669620", "Subotica"
     TEMERIN = "Temerin|45.405166|19.886833", "Temerin"
     TOPOLA = "Topola|44.248242|20.683859", "Topola"
