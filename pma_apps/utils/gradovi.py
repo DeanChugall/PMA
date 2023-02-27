@@ -129,6 +129,8 @@ class Gradovi(models.TextChoices):
     SREMCICA = "Sremčica|44.67265|20.3978858", "Sremčica"
     SREMSKI_KARLOVCI = "Sremski Karlovci|45.201500|19.934000", "Sremski Karlovci"
     STARA_PAZOVA = "Stara Pazova|44.988599|20.166725", "Stara Pazova"
+    STARCEVO = "Starčevo|44.806858|20.705617", "Starčevo"
+    STARI_BANOVCI = "Stari Banovci|44.983014|20.283798", "Stari Banovci"
     SUBOTICA = "Subotica|46.097281|19.669620", "Subotica"
     TEMERIN = "Temerin|45.405166|19.886833", "Temerin"
     TOPOLA = "Topola|44.248242|20.683859", "Topola"
