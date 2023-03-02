@@ -138,6 +138,8 @@ class Gradovi(models.TextChoices):
     TEMERIN = "Temerin|45.405166|19.886833", "Temerin"
     TITEL = "Titel|45.203666|20.290000", "Titel"
     TOPOLA = "Topola|44.248242|20.683859", "Topola"
+    TRSTENIK = "Trstenik|43.618679|20.997950", "Trstenik"
+    TUTIN = "Tutin|42.987697|20.324509", "Tutin"
     CUPRIJA = "Ćuprija|43.927819|21.383486", "Ćuprija"
     UB = "Ub|44.449231|20.065136", "Ub"
     UZICE = "Užice|43.850251|19.849865", "Užice"
