@@ -144,6 +144,8 @@ class Gradovi(models.TextChoices):
     UB = "Ub|44.449231|20.065136", "Ub"
     UZICE = "Užice|43.850251|19.849865", "Užice"
     VALJEVO = "Valjevo|44.274368|19.891100", "Valjevo"
+    VARVARIN = "Varvarin|43.724964|21.364962", "Varvarin"
+    VELIKA_PLANA = "Velika Plana|44.333426|21.083265", "Velika Plana"
     VETERNIK = "Veternik|45.252000|19.755666", "Veternik"
     VRANJE = "Vranje|42.550172|21.899736", "Vranje"
     ZAJECAR = "Zaječar|43.921143|22.277817", "Zaječar"
