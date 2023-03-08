@@ -154,6 +154,8 @@ class Gradovi(models.TextChoices):
     VRANJE = "Vranje|42.550172|21.899736", "Vranje"
     VRBAS = "Vrbas|45.569500|19.637833", "Vrbas"
     VRDNIK = "Vrdnik|45.116691|19.783066", "Vrdnik"
+    VRNJACKA_BANJA = "Vrnjačka Banja|43.625763|20.898373", "Vrnjačka Banja"
+    VRSAC = "Vršac|45.116666|21.302166", "Vršac"
     ZAJECAR = "Zaječar|43.921143|22.277817", "Zaječar"
     ZEMUN = "Zemun|44.845278|20.410278", "Zemun"
     ZRENJANIN = "Zrenjanin|45.367102|20.406997", "Zrenjanin"
