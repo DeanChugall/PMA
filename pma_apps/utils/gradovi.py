@@ -152,6 +152,8 @@ class Gradovi(models.TextChoices):
     VLADIMIRCI = "Vladimirci|44.618333|19.769884", "Vladimirci"
     VLASOTINCE = "Vlasotince|42.966667|22.133333", "Vlasotince"
     VRANJE = "Vranje|42.550172|21.899736", "Vranje"
+    VRBAS = "Vrbas|45.569500|19.637833", "Vrbas"
+    VRDNIK = "Vrdnik|45.116691|19.783066", "Vrdnik"
     ZAJECAR = "Zaječar|43.921143|22.277817", "Zaječar"
     ZEMUN = "Zemun|44.845278|20.410278", "Zemun"
     ZRENJANIN = "Zrenjanin|45.367102|20.406997", "Zrenjanin"
