@@ -16,7 +16,7 @@
 
 ## Integracija sa Digital Ocean APP platformom
 
-- Napravljen **STAGE server** na APP Digital Ocean platformi [Link ka APP-u](https://pma-app-k89y6.ondigitalocean.app/).
+- Napravljen **STAGE server** na APP Digital Ocean platformi [Link ka APP-u](https://popravimojauto.com/).
 - U
   sekciji [APP / SETTINGS / DOMAIN](https://cloud.digitalocean.com/apps/8058ee2c-a1c4-420f-bb1c-534672111037/settings?i=8d2545)
   dodati domain name: **popravimojauto.com**.
