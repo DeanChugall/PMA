@@ -8,7 +8,7 @@
 ---
 
 <p align="left">
-  <img width="500" src="https://user-images.githubusercontent.com/4832847/206937496-6f031876-26e6-49a8-a144-19f59801c048.png" alt="Material Bread logo">
+  <img width="500" src="https://github.com/DeanChugall/PMA/assets/4832847/774ac0c3-e8c7-4a05-958b-a2bd94bbaa2d" alt="Material Bread logo">
 </p>
 
 
